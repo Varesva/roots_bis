@@ -1,0 +1,251 @@
+<header>
+	{# barre de navigation #}
+	<nav
+		class="navbar navbar-light container-fluid">
+		{# logo lien accueil #}
+		<a class="logo_container" href="{{path('app_home')}}">
+			<img class="logo_img" src="{{ asset('assets/img/logo_roots.png') }}" alt="Logo du site Roots">
+		</a>
+		{# listes menu dropdown header #}
+		<ul
+			class="header_nav_list_menu">
+			{# menu dropdown : restaurants  #}
+			<li
+				class="nav-item dropdown">
+				{# titre menu #}
+				<a id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Restaurants
+					<i class="fa-solid fa-xs fa-chevron-down"></i>
+				</a>
+				{# menu déroulant #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					<li>
+						<a class="dropdown-item" href="/afrique">Cuisines africaines</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">Cuisines caribéennes</a>
+					</li>
+					{# trop de répétitions de catégories je crois : 
+										<li>
+											<a class="dropdown-item" href="/caraibes">Cuisines spécialisées
+											</a>
+										</li> #}
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li>
+						<a class="dropdown-item" href="/catalogue-restaurants">Recommander un restaurant</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/catalogue-restaurants">Tous les restaurants</a>
+					</li>
+				</ul>
+			</li>
+			{# menu dropdown : Livres de recettes #}
+			<li
+				class="nav-item dropdown">
+				{# titre menu #}
+				<a id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Livres de recettes
+					<i class="fa-solid fa-xs fa-chevron-down"></i>
+				</a>
+				{# menu déroulant #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					<li>
+						<a class="dropdown-item" href="/livres-recettes">Par types de cuisine</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/livres-recettes">Par types d'alimentation</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+
+					{# produit inutile je pense : 
+										<li>
+											<a class="dropdown-item" href="/cartes-cadeaux">Cartes cadeaux</a>
+										</li> #}
+					<li>
+						<a class="dropdown-item" href="/cartes-cadeaux">Tous les livres de recettes</a>
+					</li>
+				</ul>
+			</li>
+			{# menu dropdown : Types alimentaire #}
+			<li
+				class="nav-item dropdown">
+				{# titre menu #}
+				<a id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Types d'alimentation
+					<i class="fa-solid fa-xs fa-chevron-down"></i>
+				</a>
+				{# menu déroulant #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					<li>
+						<a class="dropdown-item" href="/afrique">Omnivore et flexitarien</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/afrique">Végétarien</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">Sans gluten</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">Pescétarien</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">Végétalien</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">Cétogène</a>
+					</li>
+
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li>
+						<a class="dropdown-item" href="/catalogue-restaurants">Tous les régimes alimentaires</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		{# header - icones menu de navigation #}
+		<div
+			class="header_nav_menu_icon">
+			{# icone recherche #}
+			<a href="/">
+				<i class="fa-solid fa-xl fa-magnifying-glass"></i>
+			</a>
+			{# icone favoris #}
+			<a href="/favoris">
+				<i class="fa-solid fa-xl fa-star"></i>
+			</a>
+			{# icone utilisateur - dropdown #}
+			<div
+				class="header_nav_menu_icon_user dropdown">
+				{# titre menu #}
+				<a id="navbarScrollingDropdown" role="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">	
+					{% if is_granted('ROLE_USER')==false %}
+						<i class="fa-solid fa-xl fa-circle-user"></i>
+					{% else %}
+						{{ app.user.prenom | upper }}
+					{% endif %}
+				</a>
+				{# menu déroulant #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					{% if is_granted('ROLE_USER')==false %}
+						<li>
+							<a class="dropdown-item" href="{{ path('app_register')}}">Inscription</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_login')}}">Connexion</a>
+						</li>
+					{% else %}
+						<li>
+							<a class="dropdown-item" href="#">Mon profil</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Mes commandes</a>
+						</li>
+					{% endif %}
+					<li>
+						<a class="dropdown-item" href="#">Mes favoris</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{ path('app_contact')}}">Contacter Roots</a>
+					</li>
+					{% if is_granted('ROLE_USER') %}
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+						<li>
+							<a class="dropdown-item" href="#">Paramètres</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_logout') }}">
+								Déconnexion
+								<i class="fa-solid fa-arrow-right-from-bracket"></i>
+							</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+			{# fin icone utilisateur - dropdown #}
+
+			{# icone panier #}
+			<a href="/panier">
+				<i class="fa-solid fa-xl fa-cart-shopping"></i>
+			</a>
+
+			{# icone menu burger #}
+			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+				<i class="fa-solid fa-xl fa-bars"></i>
+			</button>
+			{# menu burger - offcanvas #}
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+				<div class="offcanvas-header">
+					<h5 id="offcanvasRightLabel">
+						Menu général - Roots
+					</h5>
+					<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fermer le menu"></button>
+				</div>
+				<div
+					class="offcanvas-body">
+					{# formulaire de recherche sur le site dans le menu burger #}
+					<form class="d-flex">
+						<div class="input-group mb-3">
+							<input class="form-control" type="search" placeholder="Que recherchez-vous ?" aria-label="Recherche" aria-describedby="basic-addon1">
+							<button type="submit" class="btn btn-success" id="basic-addon1">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+					</form>
+					{#  liste de menu burger général offcanva #}
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_register') }}">Inscription/connexion</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">A propos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Les restaurants</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Les régimes alimentaires</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Recommander un restaurant</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_contact') }}">Contact</a>
+						</li>
+						{# sous-menu dropdown #}
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Nos conditions générales
+								<i class="fa-solid fa-xs fa-chevron-down"></i>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+								<li>
+									<a class="dropdown-item" href="#">Paiement sécurisé
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Conditions générales de vente
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Mentions légales</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Confidentialité et cookies</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>

@@ -1,0 +1,85 @@
+/* header & navigation */
+
+/* header navigation - modif de class bootstrap */
+.navbar {
+    height: 4rem;
+    color: #e62121;
+    margin-bottom: 1rem;
+}
+
+/* menu de navigation principale */
+.header_nav_list_menu {
+    width: 50%;
+    font-weight: 700;
+    font-size: 1.10rem;
+    margin: 0;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* icones menu de nav pricipale */
+.header_nav_menu_icon {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.header_nav_menu_icon>a, .header_nav_menu_icon>.header_nav_menu_icon_user,
+.navbar-toggler  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* bootstrap modif : couleur du menu burger et suppression border et focus border */
+.navbar-light .navbar-toggler {
+    color: inherit;
+    border: 0;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* hover nav icones du menu principal */
+header a:hover, .dropdown-item:hover, .navbar-toggler i:hover, .navbar-light .navbar-nav .nav-link:hover {
+    color: #2d9b48;
+}
+
+/* dans le menu burger : offcanvas */
+.navbar-light .navbar-nav .nav-link {
+    color: inherit;
+}
+
+.navbar-nav {
+    font-size: 1.10rem;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    color: inherit;
+    border: 1px solid #2d9b48;
+}
+
+.dropdown-item {
+    color: inherit;
+}
+
+.offcanvas-header {
+    background-color:rgb(255, 221, 51, 0.7);
+    height: 5rem;
+}
+
+.offcanvas-body {
+    font-weight: 700;
+}
+
+#offcanvasRightLabel {
+    line-height: 0;
+    margin: 0;
+}

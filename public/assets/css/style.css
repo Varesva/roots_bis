@@ -1,0 +1,36 @@
+/* généralités */
+* {
+    box-sizing: border-box;
+    /* On applique cette propriété pour éviter que les blocs sortent de leur conteneur */
+    margin: 0;
+    padding: 0;
+    /* ligne à effacer */
+    /* border: 1px black solid;  */
+}
+
+a {
+    text-decoration: none;
+    /* On supprime les déco des liens */
+    color: inherit;
+}
+
+ul {
+    /* On supprime les puces des listes */
+    list-style: none;
+    padding-left: 0.5rem;
+    margin-bottom: 0;
+}
+section {
+    margin-bottom: 1rem;
+}
+
+.btn {
+    background-color: #2d9b48;
+    color: white;
+    height: 3rem;
+}
+
+.btn:hover {
+    background-color: #e62121;
+    color: white;
+}

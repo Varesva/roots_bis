@@ -1,0 +1,73 @@
+/* formulaire de contact */
+
+/* envoyer la requete */
+/* modif de bootstrap : formulaire */
+.row {
+  width: 50%;
+  background-color: #ffdd33;
+  border-radius: 15px;
+  padding: 20px;
+  margin: auto;
+}
+
+.page_contact_container {
+  margin-bottom: 5rem;
+}
+
+.form-label {
+  font-size: 1.35rem;
+  color: #545454;
+  font-weight: 700;
+}
+
+.position_center {
+  display: flex;
+  justify-content: center;
+}
+
+/* text area - formulaire  */
+.contact_form_control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* reception requete et confirmation user */
+.submitted_form_container {
+  width: 70%;
+  margin: auto;
+}
+
+.contact_form_control_submitted_container {
+  background-color: #f3eed9;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.contact_confirm {
+  width: 100%;
+  margin-bottom: 5rem;
+}
+
+/* personnalisation user */
+.text_strong_green {
+  color: #2d9b48;
+  font-weight: 700;
+}
+
+/* copie message user */
+.submitted_form_nav {
+  width: 30%;
+}

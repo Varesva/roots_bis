@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ home_page_name }}
+{% endblock %}
+
+{% block body %}
+    <section class="section_home_recherche">
+        {% block section_home %}
+            {% include "home/section_home.html.twig" %}
+        {% endblock %}
+    </section>
+
+    <section class="section_carousel">
+        {% block section_carousel %}
+            {% include "home/section_carousel.html.twig" %}
+        {% endblock %}
+    </section>
+
+    <section class="##">
+        {% block section_about %}
+            {% include "home/section_about.html.twig" %}
+        {% endblock %}
+    </section>
+
+
+{% endblock %}

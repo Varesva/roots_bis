@@ -1,0 +1,25 @@
+{% block section_home %}
+    <h1> Les meilleurs restaurants<br/>africains et caribéens </h1>      
+
+    <form class="section_home_recherche_form" action="/search" method="get">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+                <i class="fa-solid fa-utensils"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Cuisine ou région d'Afrique, Caraïbes..." aria-label="Categorie" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+                <i class="fa-solid fa-location-dot"></i>
+            </span>
+
+            <input type="text" class=" form-control" placeholder="Localisation" aria-label="localisation" aria-describedby="basic-addon1">
+        </div>
+
+        <button type="submit" class="btn section_form_search">Recherche</button>
+
+    </form>
+
+{% endblock %}

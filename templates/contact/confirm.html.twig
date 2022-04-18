@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{contact_form_submitted_title}}
+{% endblock %}
+
+{% block body %}
+<section class="contact_confirm">
+
+	<h1 class="position_center">
+		Message envoyé !
+	</h1>
+
+	<div class="submitted_form_container">
+		<p>
+			Merci
+			<span class="text_strong_green">
+				{{ valid_contact_form.identity }}
+			</span>
+			pour votre message !
+			<br>
+			L'équipe de Roots reviendra vers vous dans les meilleurs délais.
+			<br>
+			Nous vous répondrons sur l'email suivant :
+			<span class="text_strong_green">
+				{{ valid_contact_form.email}}
+			</span>
+			<br>
+			(Vérifiez vos spams !)
+		</p>
+		<p>
+			Copie de votre message :
+			<div class="contact_form_control_submitted_container">
+				{{ valid_contact_form.message}}
+			</div>
+		</p>
+	</div>
+
+	<div class="position_center">
+		<a role="button" href="{{path('app_home') }}" class="btn submitted_form_nav">
+		Retourner sur la page d'accueil
+		</a>
+	</div>
+</section>
+
+{% endblock %}

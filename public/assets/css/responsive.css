@@ -1,0 +1,30 @@
+
+/* mobile portrait */
+@media screen and (max-width: 720px) {
+   ul {
+        display: none ;
+    }
+}
+/* mobile paysage */
+@media screen and (max-width: 720px) {
+    
+}
+
+/* tablette portrait */
+@media screen and (max-width: 900px) {
+    
+}
+/* tablette paysage */
+@media screen and (max-width: 1024px) {
+    
+}
+
+/* ordi fixe et portable */
+@media screen and (max-width: 1200px) {
+    
+}
+/* affichage PC et grand format */
+@media screen and (min-width: 1200px) {
+    
+}
+
