@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restauration{% endblock %}
+
+{% block body %}
+    <h1>Restauration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ restauration.id }}</td>
+            </tr>
+            <tr>
+                <th>Type_cuisine</th>
+                <td>{{ restauration.typeCuisine }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_restauration_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_restauration_edit', {'id': restauration.id}) }}">edit</a>
+
+    {{ include('admin_restauration/_delete_form.html.twig') }}
+{% endblock %}
