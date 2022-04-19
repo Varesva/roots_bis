@@ -25,19 +25,15 @@
 					<li>
 						<a class="dropdown-item" href="/caraibes">Cuisines caribéennes</a>
 					</li>
-					{# trop de répétitions de catégories je crois : 
-										<li>
-											<a class="dropdown-item" href="/caraibes">Cuisines spécialisées
-											</a>
-										</li> #}
 					<li>
 						<hr class="dropdown-divider">
 					</li>
 					<li>
-						<a class="dropdown-item" href="/catalogue-restaurants">Recommander un restaurant</a>
+						<a class="dropdown-item" href="#">Recommander un restaurant</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="/catalogue-restaurants">Tous les restaurants</a>
+						<a class="dropdown-item" href="{{path('app_restaurant_index')}}">Tous les restaurants</a>
+
 					</li>
 				</ul>
 			</li>
@@ -59,14 +55,12 @@
 					</li>
 					<li>
 						<hr class="dropdown-divider">
-					</li>
-
-					{# produit inutile je pense : 
-										<li>
-											<a class="dropdown-item" href="/cartes-cadeaux">Cartes cadeaux</a>
-										</li> #}
+					</li>				
 					<li>
-						<a class="dropdown-item" href="/cartes-cadeaux">Tous les livres de recettes</a>
+						<a class="dropdown-item" href="{{path('app_cadeau_index')}}">Cartes cadeaux</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_livre_index')}}">Tous les livres de recettes</a>
 					</li>
 				</ul>
 			</li>
@@ -103,7 +97,7 @@
 						<hr class="dropdown-divider">
 					</li>
 					<li>
-						<a class="dropdown-item" href="/catalogue-restaurants">Tous les régimes alimentaires</a>
+						<a class="dropdown-item" href="{{path('app_profile_nutrition_index')}}">Tous les régimes alimentaires</a>
 					</li>
 				</ul>
 			</li>
