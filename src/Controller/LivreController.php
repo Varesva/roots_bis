@@ -26,26 +26,6 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_livre_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, LivreRepository $livreRepository): Response
-    {
-        $livre = new Livre();
-        $form = $this->createForm(LivreType::class, $livre);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $livreRepository->add($livre);
-            return $this->redirectToRoute('app_livre_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('livre/new.html.twig', [
-            'livre' => $livre,
-            'form' => $form,
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="app_livre_show", methods={"GET"})
      */
     public function show(Livre $livre): Response
@@ -53,36 +33,5 @@ class LivreController extends AbstractController
         return $this->render('livre/show.html.twig', [
             'livre' => $livre,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="app_livre_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Livre $livre, LivreRepository $livreRepository): Response
-    {
-        $form = $this->createForm(LivreType::class, $livre);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $livreRepository->add($livre);
-            return $this->redirectToRoute('app_livre_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('livre/edit.html.twig', [
-            'livre' => $livre,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="app_livre_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Livre $livre, LivreRepository $livreRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->request->get('_token'))) {
-            $livreRepository->remove($livre);
-        }
-
-        return $this->redirectToRoute('app_livre_index', [], Response::HTTP_SEE_OTHER);
     }
 }

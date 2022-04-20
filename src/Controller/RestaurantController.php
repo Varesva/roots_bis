@@ -25,23 +25,15 @@ class RestaurantController extends AbstractController
         ]);
     }
 
+    // sous-categorie : restaurants des cuisines caribbénnes 
     /**
-     * @Route("/new", name="app_restaurant_new", methods={"GET", "POST"})
+     * @Route("/caraibes", name="app_restaurant_caraibes")
      */
-    public function new(Request $request, RestaurantRepository $restaurantRepository): Response
+    public function caraibes(Request $request, RestaurantRepository $restaurantRepository): Response
     {
-        $restaurant = new Restaurant();
-        $form = $this->createForm(RestaurantType::class, $restaurant);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $restaurantRepository->add($restaurant);
-            return $this->redirectToRoute('app_restaurant_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('restaurant/new.html.twig', [
-            'restaurant' => $restaurant,
-            'form' => $form,
+        
+        return $this->render('restaurant/caraibes.html.twig', [
+            'restaurants' => $restaurantRepository->findAll(),
         ]);
     }
 

@@ -38,7 +38,7 @@ class Livre
     private $couverture;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=800)
      */
     private $resume;
 

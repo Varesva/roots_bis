@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
+use App\Service\FileUploader;
 use App\Repository\RestaurantRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin/restaurant")
@@ -28,15 +29,28 @@ class AdminRestaurantController extends AbstractController
     /**
      * @Route("/new", name="app_admin_restaurant_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, RestaurantRepository $restaurantRepository): Response
+    public function new(Request $request, RestaurantRepository $restaurantRepository, FileUploader $fileUploader): Response
     {
         $restaurant = new Restaurant();
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** 
+             * @var UploadedFile $image 
+             */
+            $imageFile = $form->get('photo')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imageFile) 
+            {
+                $image = $fileUploader->upload($imageFile); // l'upload du fichier
+                $restaurant->setPhoto($image);  // le nom du fichier 
+            
             $restaurantRepository->add($restaurant);
             return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('admin_restaurant/new.html.twig', [
