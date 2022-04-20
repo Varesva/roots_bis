@@ -11,19 +11,14 @@
 				<a href="tel:+33600000000">
 					<i class="fa-solid fa-phone"></i>
 					06.00.00.00.00</a>
-
-
 			</li>
 			<li>
 				<a href="https://goo.gl/maps/iqavF1LSDoXUHwCbA">
 					<i class="fa-solid fa-house"></i>
 					Paris 11e, France
 				</a>
-
-
 			</li>
 		</ul>
-
 	</div>
 
 	<!-- menu du footer -->
@@ -31,10 +26,13 @@
 		<ul>
 			<li><a href={{ path('app_contact')}}>Contact</a></li>
 			<li><a href="">Plan du site</a></li>
-			<li><a href="">Régimes alimentaires</a></li>
-			<li><a href="">Recommander un restaurant</a></li>
+			<li>
+				<a href="{{path('app_profile_nutrition_index')}}">Régimes alimentaires</a>
+			</li>
+			<li>
+				<a href="{{path('app_recommander')}}">Recommander un restaurant</a>
+			</li>
 		</ul>
-
 	</div>
 
 	<div class="footer_links">

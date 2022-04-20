@@ -26,26 +26,6 @@ class CadeauController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_cadeau_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, GiftcardRepository $giftcardRepository): Response
-    {
-        $giftcard = new Giftcard();
-        $form = $this->createForm(GiftcardType::class, $giftcard);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $giftcardRepository->add($giftcard);
-            return $this->redirectToRoute('app_cadeau_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('cadeau/new.html.twig', [
-            'giftcard' => $giftcard,
-            'form' => $form,
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="app_cadeau_show", methods={"GET"})
      */
     public function show(Giftcard $giftcard): Response
@@ -53,36 +33,5 @@ class CadeauController extends AbstractController
         return $this->render('cadeau/show.html.twig', [
             'giftcard' => $giftcard,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="app_cadeau_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Giftcard $giftcard, GiftcardRepository $giftcardRepository): Response
-    {
-        $form = $this->createForm(GiftcardType::class, $giftcard);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $giftcardRepository->add($giftcard);
-            return $this->redirectToRoute('app_cadeau_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('cadeau/edit.html.twig', [
-            'giftcard' => $giftcard,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="app_cadeau_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Giftcard $giftcard, GiftcardRepository $giftcardRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$giftcard->getId(), $request->request->get('_token'))) {
-            $giftcardRepository->remove($giftcard);
-        }
-
-        return $this->redirectToRoute('app_cadeau_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -45,22 +45,34 @@ class RestaurantRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Restaurant[] Returns an array of Restaurant objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    /**
+     * @return Restaurant[] Returns an array of Restaurant objects
     */
+    
+    public function findByCuisinecarib(string $type_cuisine):array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery
+        (
+            'SELECT restauration
+            FROM App\Entity\Restauration
+            WHERE restauration.type_cuisine = :Cuisines caribéennes
+            ORDER BY restauration.type_cuisine ASC'
+        )
+        ->setParameter('type_cuisine', $type_cuisine)
+        ->setMaxResults(15);
+
+        return $query->getResult();
+
+        // return $this->createQueryBuilder('restaurant')
+        //     ->andWhere('restaurant.type_cuisine = :Cuisines africaines')
+        //     ->setParameter('val', $value)
+        //     ->orderBy('restaurant.id', 'ASC')
+        //     ->getQuery()
+        //     ->getResult()
+        
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Restaurant

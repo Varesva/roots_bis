@@ -31,8 +31,19 @@ class RestaurantController extends AbstractController
      */
     public function caraibes(Request $request, RestaurantRepository $restaurantRepository): Response
     {
+            return $this->render('restaurant/caraibes.html.twig', [
+            'restaurants' => $restaurantRepository->findByCuisinecarib(),
+        ]);
+    }
+
+    // sous-categorie : restaurants des cuisines africaines 
+    /**
+     * @Route("/caraibes", name="app_restaurant_afrique")
+     */
+    public function afrique(Request $request, RestaurantRepository $restaurantRepository): Response
+    {
         
-        return $this->render('restaurant/caraibes.html.twig', [
+        return $this->render('restaurant/afrique.html.twig', [
             'restaurants' => $restaurantRepository->findAll(),
         ]);
     }

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{recommander_form_submitted_title}}
+{% endblock %}
+
+{% block body %}
+<section class="contact_confirm">
+
+	<h1 class="position_center">
+		Recommandation envoyée !
+	</h1>
+
+	<div class="submitted_form_container">
+		<p>
+			Merci pour votre recommandation !
+			<br>
+			L'équipe de Roots étudiera votre suggestion. Si votre recommandation nous semble pertinente, vous recevrez un petit cadeau dans votre boite mail :) !
+			<br>
+			Surveillez vos emails (et vérifiez vos spams !):
+			<span class="text_strong_green">
+				{{ valid_recommander_form.email}}
+			</span>	
+		</p>
+		<p>
+			Copie de votre message :
+			<div class="contact_form_control_submitted_container">
+				{{ valid_recommander_form.commentaire}}
+			</div>
+		</p>
+	</div>
+
+	<div class="position_center">
+		<a role="button" href="{{path('app_home') }}" class="btn submitted_form_nav">
+		Retourner sur la page d'accueil
+		</a>
+	</div>
+</section>
+
+{% endblock %}

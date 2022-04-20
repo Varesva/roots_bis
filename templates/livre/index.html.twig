@@ -30,7 +30,8 @@
                 <td>{{ livre.prix }}</td>
                 <td>
                     <a href="{{ path('app_livre_show', {'id': livre.id}) }}">show</a>
-                    <a href="{{ path('app_livre_edit', {'id': livre.id}) }}">edit</a>
+                    <a href="{{ path('app_cart_add', {'id': livre.id}) }}" class="btn btn-outline-success">Ajouter au panier</a>
+
                 </td>
             </tr>
         {% else %}

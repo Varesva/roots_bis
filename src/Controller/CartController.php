@@ -9,15 +9,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
-    public function index(): Response
-    {
-        return $this->render('cart/index.html.twig', []);
-        
-    }
+    // /**
+    //  * @Route("/cart" name="app_cart")
+    //  */
+    // public function index(): Response
+    // {
+    //     return $this->render('cart/index.html.twig', []);
+    // }
 
     // ajouter un article dans le panier --- le param converter recupere l'id dans l'url
     /**
-     * @Route("/cart/add/{id}", name="app_cart")
+     * @Route("/cart/add/{id}", name="app_cart_add")
      */
     public function addCart($id, Cart $cart): Response
     {

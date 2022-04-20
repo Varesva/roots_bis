@@ -20,20 +20,22 @@
 				{# menu déroulant #}
 				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 					<li>
-						<a class="dropdown-item" href="/afrique">Cuisines africaines</a>
+						<a class="dropdown-item" href="{{path('app_restaurant_afrique')}}">Cuisines africaines</a>
+
 					</li>
 					<li>
-						<a class="dropdown-item" href="/caraibes">Cuisines caribéennes</a>
+						<a class="dropdown-item" href="{{path('app_restaurant_caraibes')}}">Cuisines caribéennes</a>
+
 					</li>
 					<li>
 						<hr class="dropdown-divider">
 					</li>
 					<li>
-						<a class="dropdown-item" href="#">Recommander un restaurant</a>
+						<a class="dropdown-item" href="{{path('app_recommander')}}">Recommander un restaurant</a>
+
 					</li>
 					<li>
 						<a class="dropdown-item" href="{{path('app_restaurant_index')}}">Tous les restaurants</a>
-
 					</li>
 				</ul>
 			</li>
@@ -197,19 +199,22 @@
 					{#  liste de menu burger général offcanva #}
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 						<li class="nav-item">
-							<a class="nav-link" href="{{path('app_register') }}">Inscription/connexion</a>
+							<a class="nav-link" href="{{path('app_register') }}">Inscription</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">A propos</a>
+							<a class="nav-link" href="{{path('app_login') }}">Connexion</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Les restaurants</a>
+							<a class="nav-link" href="{{path('app_about')}}">A propos</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Les régimes alimentaires</a>
+							<a class="nav-link" href="{{path('app_restaurant_index')}}">Les restaurants</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Recommander un restaurant</a>
+							<a class="nav-link" href="{{path('app_profile_nutrition_index')}}">Les régimes alimentaires</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_recommander')}}">Recommander un restaurant</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_contact') }}">Contact</a>

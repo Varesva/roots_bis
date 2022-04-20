@@ -26,7 +26,7 @@
                 <td>{{ giftcard.prix }}</td>
                 <td>
                     <a href="{{ path('app_cadeau_show', {'id': giftcard.id}) }}">show</a>
-                    <a href="{{ path('app_cadeau_edit', {'id': giftcard.id}) }}">edit</a>
+                    <a href="{{ path('app_cart_add', {'id': giftcard.id}) }}" class="btn btn-success">Ajouter au panier</a>
                 </td>
             </tr>
         {% else %}
