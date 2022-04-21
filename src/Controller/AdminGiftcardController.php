@@ -53,7 +53,6 @@ class AdminGiftcardController extends AbstractController
             return $this->redirectToRoute('app_admin_giftcard_index', [], Response::HTTP_SEE_OTHER);
             }
         }
-
         return $this->renderForm('admin_giftcard/new.html.twig', [
             'giftcard' => $giftcard,
             'form' => $form,

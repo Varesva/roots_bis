@@ -34,4 +34,13 @@ class CadeauController extends AbstractController
             'giftcard' => $giftcard,
         ]);
     }
+    // /**
+    //  * @Route("/detail/{id}", name="app_cadeau_detail", methods={"GET"})
+    //  */
+    // public function detail($id, GiftcardRepository $giftcardRepository)
+    // {
+    //     return $this->render('cadeau/index.html.twig', [
+    //         'giftcard' => $giftcardRepository->findBy(['restauration'=>$id])
+    //     ]);
+    // }
 }

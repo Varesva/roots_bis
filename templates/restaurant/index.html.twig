@@ -26,7 +26,6 @@
                 <td>{{ restaurant.prix }}</td>
                 <td>
                     <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">show</a>
-                    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
