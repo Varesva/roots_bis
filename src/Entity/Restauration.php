@@ -41,10 +41,16 @@ class Restauration
      */
     private $livres;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="categ_restauration")
+     */
+    private $produits;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
         $this->livres = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -118,6 +124,36 @@ class Restauration
             // set the owning side to null (unless already changed)
             if ($livre->getRestauration() === $this) {
                 $livre->setRestauration(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setCategRestauration($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getCategRestauration() === $this) {
+                $produit->setCategRestauration(null);
             }
         }
 

@@ -2,21 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Giftcard;
+use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class GiftcardType extends AbstractType
+class ProduitType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('carte')
-            ->add('valeur')
+            ->add('titre')
             ->add('image', FileType::class, [
-                'label' => 'Image de la carte cadeau',
+                'label' => 'Image de couverture du livre',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
                 // make it optional so you don't have to re-upload the PDF file
@@ -24,13 +23,19 @@ class GiftcardType extends AbstractType
                 'required' => false,
             ])
             ->add('prix')
+            ->add('giftcard_valeur')
+            ->add('livre_auteur')
+            ->add('livre_edition')
+            ->add('livre_resume')
+            ->add('categ_restauration')
+            ->add('categ_nutrition')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Giftcard::class,
+            'data_class' => Produit::class,
         ]);
     }
 }
