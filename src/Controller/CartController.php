@@ -1,14 +1,10 @@
 <?php
-
+// dossier virtuel pouraccéder au dossier de ce fichier
 namespace App\Controller;
-
-use App\Form\ProduitType;
-use App\Repository\ProduitRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+// auto-wiring
+use App\Service\Cart\CartService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartController extends AbstractController
 {
@@ -16,21 +12,12 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="app_cart_index")
      */
-    public function index(SessionInterface $session, ProduitRepository $produitRepository)
+    public function index(CartService $cartService)
     {
-        $cart = $session->get('cart', []);
-        $viewCart = [];
-        foreach($cart as $id => $quantite)
-        {
-            // afficher le panier avec toutes ses données
-            $viewCart[]=
-            [
-                'produit'=> $produitRepository->find($id),
-                'quantite'=> $quantite
-            ];
-        }
+        // retourner la vue avec les données du panier et le total des prix
         return $this->render('cart/index.html.twig', [
-            'ligne_commande' => $viewCart
+            'ligne_panier' => $cartService->indexCart(), // appel de la fonction indexCart() de la classe CartService du service container
+            'total_cart' => $cartService->totalCart()  // appel de la fonction totalCart() de la classe CartService du service container
         ]);
     }
 
@@ -38,26 +25,34 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add/{id}", name="app_cart_add")
      */
-    public function add($id, SessionInterface $session): Response
+    public function add($id, CartService $cartService)
     {
-        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
-        $cart = $session->get('cart', []);
-        if(!empty($cart[$id])) // si tableau cart est not empty
-        {
-            $cart[$id]= $cart[$id] + 1; // increment: ajouter 1 au nombre de produit de l'id correspondant
-        } 
-        else
-        {
-            // ajouter dans le tableau cart l'id produit et la quantité = à 1
-            $cart[$id] = 1;
-        }
-        // puis enregistrer l'ajout effectué du produit 
-        $session->set('cart', $cart);
+        // appel de la fonction add de la classe CartService du service container 
+        $cartService->add($id);
+        // retourner la vue avec les données du panier et le total des prix
+        return $this->redirectToRoute('app_cart_index');
+    }
 
-        dd($session->get('cart'));
+    // Supprimer un seul article du panier
+    /**
+     * @Route("/cart/remove/{id}", name="app_cart_remove")
+     */
+    public function remove($id, CartService $cartService)
+    {
+        // appel de la fonction remove de la classe CartService du service container 
+        $cartService->remove($id);
+        // redirige vers la vue
+        return $this->redirectToRoute('app_cart_index');
+    }
 
-        return $this->render('cart/index.html.twig', [
-            'controller_name' => 'CartController',
-        ]);
+
+    // pour vider le panier
+    /**
+     * @Route("/cart/clear", name="app_cart_clear")
+     */
+    public function clear(CartService $cartService)
+    {
+        $cartService->clear();
+        return $this->redirectToRoute('app_cart_index');
     }
 }

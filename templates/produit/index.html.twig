@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titre</th>
                 <th>Image</th>
                 <th>Prix</th>
@@ -22,7 +21,6 @@
         <tbody>
         {% for produit in produits %}
             <tr>
-                <td>{{ produit.id }}</td>
                 <td>{{ produit.titre }}</td>
                 <td>
                     <img src="{{asset('upload/' ~ produit.image)}}" width="150" height="100">
@@ -33,16 +31,13 @@
                 <td>{{ produit.livreEdition }}</td>
                 <td>{{ produit.livreResume }}</td>
                 <td>
-                    <a href="{{ path('app_admin_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_admin_produit_edit', {'id': produit.id}) }}">edit</a>
+                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
+                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
                 </td>
                 <td>
                     <a href="{{ path('app_cart_add', {'id': produit.id}) }}" class="btn btn-md btn-outline-success">
-                        <i class="fas fa-cart-shopping"></i> Ajouter 
-                    </a>
-
-                    <a href="#" class="btn btn-sm btn-outline-success">
-                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-cart-shopping"></i>
+                        Ajouter
                     </a>
                 </td>
             </tr>
@@ -54,5 +49,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_produit_new') }}">Create new</a>
+    <a href="{{ path('app_produit_new') }}">Create new</a>
 {% endblock %}

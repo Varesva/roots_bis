@@ -59,10 +59,10 @@
 						<hr class="dropdown-divider">
 					</li>				
 					<li>
-						<a class="dropdown-item" href="{{path('app_cadeau_index')}}">Cartes cadeaux</a>
+						<a class="dropdown-item" href="#">Cartes cadeaux</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="{{path('app_livre_index')}}">Tous les livres de recettes</a>
+						<a class="dropdown-item" href="{{path('app_produit_index')}}">Tous les livres de recettes</a>
 					</li>
 				</ul>
 			</li>
@@ -169,7 +169,7 @@
 			{# fin icone utilisateur - dropdown #}
 
 			{# icone panier #}
-			<a href="/panier">
+			<a href="{{ path('app_cart_index')}}">
 				<i class="fa-solid fa-xl fa-cart-shopping"></i>
 			</a>
 

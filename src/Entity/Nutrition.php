@@ -47,10 +47,6 @@ class Nutrition
      */
     private $restaurants;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="nutrition")
-     */
-    private $livres;
 
     /**
      * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="categ_nutrition")
@@ -60,7 +56,6 @@ class Nutrition
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
-        $this->livres = new ArrayCollection();
         $this->produits = new ArrayCollection();
     }
 
@@ -134,38 +129,8 @@ class Nutrition
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Livre>
-     */
-    public function getLivres(): Collection
-    {
-        return $this->livres;
-    }
-
-    public function addLivre(Livre $livre): self
-    {
-        if (!$this->livres->contains($livre)) {
-            $this->livres[] = $livre;
-            $livre->setNutrition($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLivre(Livre $livre): self
-    {
-        if ($this->livres->removeElement($livre)) {
-            // set the owning side to null (unless already changed)
-            if ($livre->getNutrition() === $this) {
-                $livre->setNutrition(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
+ 
+     /**
      * @return Collection<int, Produit>
      */
     public function getProduits(): Collection

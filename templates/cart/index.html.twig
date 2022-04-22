@@ -1,31 +1,86 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Panier
+	Panier
 {% endblock %}
 
 {% block body %}
-	<h1>Panier index</h1>
-
-	{% if ligne_commande | length > 0 %}
-
-		{% block section_livre %}
-			{% include "/cart/section_livre.html.twig" %}
-		{% endblock %}
-		<br>
-		{% block section_giftcard %}
-			{% include "/cart/section_giftcard.html.twig" %}
-		{% endblock %}
+	<h1 class="position_center">Panier</h1>
 
 
-    {% else %}
-        <tr>
-            <td colspan="9">Votre panier est vide</td>
-        </tr>
-    {% endif %}
-    </tbody>
-</table>
+	{% if ligne_panier | length > 0 %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Image</th>
+					<th>Quantité</th>
+					<th>Prix</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{# nouvelle variable in variable du controller #}
+				{% for item in ligne_panier %}
+					<tr>
+						<td>
+							<a href="{{ path('app_admin_produit_show', {'id': item.produit.id}) }}">
+								{{ item.produit.titre }}
+							</a>
+						</td>
+						<td>
+							<a href="{{ path('app_admin_produit_show', {'id': item.produit.id}) }}">
+								<img src="{{asset('upload/' ~ item.produit.image ) }}" width="150" height="100">
+							</a>
+						</td>
+						<td>
+							{# lien pour ajouter une quantité #}
+							<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
+								<i class="fa-solid fa-circle-plus"></i>
+							</a>
+							{{ item.quantite }}
+							{# lien pour supprimer une quantité #}
+							<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
+								<i class="fa-solid fa-circle-minus"></i>
+							</a>
+						</td>
+						<td>{{ item.produit.prix }}</td>
+						<td>
+							{# Lien pour modifier le produit #}
+							<a href="{{ path('app_admin_produit_edit', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
+								<i class="fa fas fa-pen-to-square"></i>
+							</a>
+							{# lien pour supprimer le produit #}
+							<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
 
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<tfoot>
+			<tr>
+				<td>
+					Total :
+					{{ total_cart }}
+				</td>
+			</tr>
+		</tfoot>
+
+	{% else %}
+		<tr>
+			<td colspan="9">Votre panier est vide</td>
+		</tr>
+
+	{% endif %}
+			</tbody>
+		</table>
+	<a href="{{path('app_produit_index')}}" class="btn">
+		Continuer mes achats
+	</a>
+	<a href="{{path('app_cart_clear')}}" class="btn">
+		Vider mon panier
+	</a>
 {% endblock %}
-
-

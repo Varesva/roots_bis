@@ -37,11 +37,6 @@ class Restauration
     private $restaurants;
 
     /**
-     * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="restauration")
-     */
-    private $livres;
-
-    /**
      * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="categ_restauration")
      */
     private $produits;
@@ -49,7 +44,6 @@ class Restauration
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
-        $this->livres = new ArrayCollection();
         $this->produits = new ArrayCollection();
     }
 
@@ -94,36 +88,6 @@ class Restauration
             // set the owning side to null (unless already changed)
             if ($restaurant->getRestauration() === $this) {
                 $restaurant->setRestauration(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Livre>
-     */
-    public function getLivres(): Collection
-    {
-        return $this->livres;
-    }
-
-    public function addLivre(Livre $livre): self
-    {
-        if (!$this->livres->contains($livre)) {
-            $this->livres[] = $livre;
-            $livre->setRestauration($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLivre(Livre $livre): self
-    {
-        if ($this->livres->removeElement($livre)) {
-            // set the owning side to null (unless already changed)
-            if ($livre->getRestauration() === $this) {
-                $livre->setRestauration(null);
             }
         }
 
