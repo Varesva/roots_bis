@@ -32,7 +32,6 @@
                 <td>{{ produit.livreResume }}</td>
                 <td>
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
                 </td>
                 <td>
                     <a href="{{ path('app_cart_add', {'id': produit.id}) }}" class="btn btn-md btn-outline-success">
@@ -49,5 +48,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_new') }}">Create new</a>
 {% endblock %}

@@ -77,10 +77,15 @@
 	{% endif %}
 			</tbody>
 		</table>
+<div>
 	<a href="{{path('app_produit_index')}}" class="btn">
 		Continuer mes achats
 	</a>
 	<a href="{{path('app_cart_clear')}}" class="btn">
 		Vider mon panier
 	</a>
+	<a href="{{path('app_profile_payment')}}" class="btn">
+		Valider ma commande
+	</a>
+</div>
 {% endblock %}

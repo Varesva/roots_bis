@@ -62,6 +62,12 @@ class Produit
      */
     private $categ_nutrition;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Boutique::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categ_produit;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +177,18 @@ class Produit
     public function setCategNutrition(?Nutrition $categ_nutrition): self
     {
         $this->categ_nutrition = $categ_nutrition;
+
+        return $this;
+    }
+
+    public function getCategProduit(): ?Boutique
+    {
+        return $this->categ_produit;
+    }
+
+    public function setCategProduit(?Boutique $categ_produit): self
+    {
+        $this->categ_produit = $categ_produit;
 
         return $this;
     }

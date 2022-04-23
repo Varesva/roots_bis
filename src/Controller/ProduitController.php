@@ -1,7 +1,7 @@
 <?php
-
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
-
+// auto-wiring
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Service\FileUploader;
@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ProduitController extends AbstractController
 {
+    // afficher tous les produits
     /**
      * @Route("/", name="app_produit_index", methods={"GET"})
      */
@@ -28,42 +29,6 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_produit_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, ProduitRepository $produitRepository, FileUploader $fileUploader): Response
-    {
-        $produit = new Produit();
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            /** 
-             * @var UploadedFile $image 
-             */
-            $imageFile = $form->get('image')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($imageFile) {
-                $image = $fileUploader->upload($imageFile); // l'upload du fichier
-                $produit->setImage($image);  // le nom du fichier 
-
-                $produitRepository->add($produit);
-                return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
-            }
-        
-            $produitRepository->add($produit);
-            return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('produit/new.html.twig', [
-            'produit' => $produit,
-            'form' => $form,
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="app_produit_show", methods={"GET"})
      */
     public function show(Produit $produit): Response
@@ -71,36 +36,5 @@ class ProduitController extends AbstractController
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="app_produit_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
-    {
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $produitRepository->add($produit);
-            return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('produit/edit.html.twig', [
-            'produit' => $produit,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="app_produit_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
-            $produitRepository->remove($produit);
-        }
-
-        return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
 }

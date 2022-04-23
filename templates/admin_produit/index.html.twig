@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
+                <th>Catégorie de produit</th>
                 <th>Image</th>
                 <th>Prix</th>
                 <th>Giftcard_valeur</th>
@@ -24,6 +25,7 @@
             <tr>
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.titre }}</td>
+                <td>{{ produit.categProduit }}</td>
                 <td>
                     <img src="{{asset('upload/' ~ produit.image)}}" width="150" height="100">
                 </td>

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\DecimalType;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -44,6 +45,22 @@ class ProduitRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+    // /**
+    //  * @return Produit[] Returns an array of Produit objects
+    //  */
+    // public function findGiftcard(DecimalType $giftcard_valeur)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->andWhere('p.exampleField = :val')
+    //         ->setParameter('val', $giftcard_valeur)
+    //         ->orderBy('p.id', 'ASC')
+    //         ->setMaxResults(15)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects
