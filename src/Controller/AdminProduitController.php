@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// Controller d'accès privé ADMIN : produits de la boutique, leurs propriétés et catégories
 /**
  * @Route("/admin/produit")
  */
@@ -48,16 +49,16 @@ class AdminProduitController extends AbstractController
             if ($imageFile) {
                 $image = $fileUploader->upload($imageFile); // l'upload du fichier
                 $produit->setImage($image);  // le nom du fichier 
-
-                $produitRepository->add($produit);
-                return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
             }
 
-            return $this->renderForm('admin_produit/new.html.twig', [
-                'produit' => $produit,
-                'form' => $form,
-            ]);
+            $produitRepository->add($produit);
+            return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
+        
+        return $this->renderForm('admin_produit/new.html.twig', [
+            'produit' => $produit,
+            'form' => $form,
+        ]);
     }
 
     /**
@@ -94,10 +95,11 @@ class AdminProduitController extends AbstractController
      */
     public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $produit->getId(), $request->request->get('_token'))) {
             $produitRepository->remove($produit);
         }
 
         return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

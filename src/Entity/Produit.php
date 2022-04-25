@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Produit
 {
-    /**
+      /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -33,7 +33,7 @@ class Produit
     private $prix;
 
     /**
-     * @ORM\Column(type="decimal", precision=6, scale=2, nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $giftcard_valeur;
 

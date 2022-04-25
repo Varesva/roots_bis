@@ -1,5 +1,5 @@
 <?php
-
+// Entité Contact : les informations de contacts des restaurants
 namespace App\Entity;
 
 use App\Repository\ContactRepository;

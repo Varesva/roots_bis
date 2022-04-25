@@ -1,18 +1,19 @@
 <?php
-// Page d'inscription user 
-
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+// Controller d'accès public MAIS lié à la bdd : Page d'inscription (user) sur le site Roots
 class RegistrationController extends AbstractController
 {
     /**
@@ -32,11 +33,12 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            // end of encoding the plain password
 
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+           
             return $this->redirectToRoute('app_home');
         }
         $account_page_name = "Mon compte - Roots";

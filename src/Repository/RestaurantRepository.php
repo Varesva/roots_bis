@@ -58,9 +58,9 @@ class RestaurantRepository extends ServiceEntityRepository
             FROM App\Entity\Restauration
             WHERE restauration.type_cuisine = :Cuisines caribéennes
             ORDER BY restauration.type_cuisine ASC'
-        )
-        ->setParameter('type_cuisine', $type_cuisine)
-        ->setMaxResults(15);
+        );
+        // ->setParameter('type_cuisine', $type_cuisine)
+        // ->setMaxResults(15);
 
         return $query->getResult();
 
@@ -73,7 +73,7 @@ class RestaurantRepository extends ServiceEntityRepository
         
     }
 
-
+    
     /*
     public function findOneBySomeField($value): ?Restaurant
     {

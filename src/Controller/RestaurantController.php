@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Controller d'accès public MAIS reprend les infos du Ctrl adminRestaurant: Annuaire des restaurants du site Roots
 /**
  * @Route("/restaurant")
  */
@@ -29,12 +32,20 @@ class RestaurantController extends AbstractController
     /**
      * @Route("/caraibes", name="app_restaurant_caraibes")
      */
-    public function caraibes(Request $request, RestaurantRepository $restaurantRepository): Response
+    public function caraibes(RestaurantRepository $restaurantRepository, Restaurant $restaurant): Response
     {
             return $this->render('restaurant/caraibes.html.twig', [
-            'restaurants' => $restaurantRepository->findByCuisinecarib(),
+            'restaurants' => $restaurantRepository->findBy(['type_cuisine'=> $restaurant->getRestauration()]),
         ]);
     }
+
+    // public function categ(SproduitRepository $sproduitRepository, Sproduit $sproduit): Response
+    // {
+
+    //     return $this->render('admin_sproduit/index.html.twig', [
+    //         'sproduits' => $sproduitRepository->findby(['id' => $sproduit->getId()]),
+    //     ]);
+    // }
 
     // sous-categorie : restaurants des cuisines africaines 
     /**

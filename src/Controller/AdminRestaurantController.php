@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Service\FileUploader;
@@ -11,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// Controller d'accès privé ADMIN : annuaires des restaurants du site
 /**
  * @Route("/admin/restaurant")
  */

@@ -11,6 +11,8 @@
 		Message envoyé !
 	</h1>
 
+{# Page de contact pour les utilisateurs non inscrits #}
+{% if is_granted('ROLE_USER')==false %}
 	<div class="submitted_form_container">
 		<p>
 			Merci
@@ -41,6 +43,11 @@
 		Retourner sur la page d'accueil
 		</a>
 	</div>
+{% else %}
+{# Page de contact pour les utilisateurs inscrits #}
+
+{% endif %}
+
 </section>
 
 {% endblock %}

@@ -3,15 +3,12 @@
 namespace App\Controller;
 // auto-wiring
 use App\Entity\Produit;
-use App\Form\ProduitType;
-use App\Service\FileUploader;
 use App\Repository\ProduitRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// Controller d'accès public, reprend les infos du Ctrl adminProduit  : produits de la boutique, leurs propriétés et catégories
 /**
  * @Route("/produit")
  */
@@ -28,6 +25,7 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    // afficher un seul produit selon son id
     /**
      * @Route("/{id}", name="app_produit_show", methods={"GET"})
      */
@@ -37,4 +35,24 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
+    // afficher un seul produit à partir du PANIER selon son id
+    /**
+     * @Route("/{id}", name="app_produit_cart_show", methods={"GET"})
+     */
+    public function cartShow(Produit $produit): Response
+    {
+        return $this->render('produit/cart_show.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
+
+    // /**
+    //  * @Route("/cartes-cadeaux/{id}", name="app_admin_prod_cat", methods={"GET"})
+    //  */
+    // public function showGiftcard(ProduitRepository $produitRepository, Produit $produit): Response
+    // {
+    //     return $this->render('produit/index.html.twig', [
+    //         'produits' => $produitRepository->findBy(['categ_produit' => $produit->getCategProduit()]),
+    //     ]);
+    // }
 }

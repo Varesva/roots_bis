@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Symfony\Component\HttpFoundation\Response;

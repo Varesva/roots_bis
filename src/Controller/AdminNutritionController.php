@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\Nutrition;
 use App\Form\NutritionType;
 use App\Repository\NutritionRepository;
@@ -11,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Controller d'accès privé ADMIN : catégorie Nutrition: regimes alimentaires des livres et restaurants du site
 /**
  * @Route("/admin/nutrition")
  */

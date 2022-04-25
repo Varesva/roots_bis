@@ -14,6 +14,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
+    public function __toString()
+    {
+        return $this->prenom;
+    }
+    // fin conversion en string
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -57,15 +64,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $adresse_livraison;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="user_id")
-     */
-    private $commandes;
-
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -204,33 +202,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Commande>
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getUserId() === $this) {
-                $commande->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
 }

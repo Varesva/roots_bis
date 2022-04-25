@@ -24,34 +24,34 @@
 				{% for item in ligne_panier %}
 					<tr>
 						<td>
-							<a href="{{ path('app_admin_produit_show', {'id': item.produit.id}) }}">
+							<a href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
 								{{ item.produit.titre }}
 							</a>
 						</td>
 						<td>
-							<a href="{{ path('app_admin_produit_show', {'id': item.produit.id}) }}">
+							<a href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
 								<img src="{{asset('upload/' ~ item.produit.image ) }}" width="150" height="100">
 							</a>
 						</td>
 						<td>
-							{# lien pour ajouter une quantité #}
+							{# bouton PLUS : pour ajouter une quantité d'un article du panier #}
 							<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
 								<i class="fa-solid fa-circle-plus"></i>
 							</a>
-							{{ item.quantite }}
-							{# lien pour supprimer une quantité #}
-							<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
+							{{ item.quantite }} {# Quantité du produit dans le panier #}
+							{# bouton MOINS : pour supprimer une quantité d'un article du panier #}
+							<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
 								<i class="fa-solid fa-circle-minus"></i>
 							</a>
 						</td>
 						<td>{{ item.produit.prix }}</td>
 						<td>
 							{# Lien pour modifier le produit #}
-							<a href="{{ path('app_admin_produit_edit', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
+							{# <a href="{{ path('app_admin_produit_edit', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
 								<i class="fa fas fa-pen-to-square"></i>
-							</a>
+							</a> #}
 							{# lien pour supprimer le produit #}
-							<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
+							<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
 
 								<i class="fas fa-trash"></i>
 							</a>

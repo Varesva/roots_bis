@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block body %}
+
 <section class="page_contact_container">
 	<h1 class="position_center">
 		Contactez-nous
 	</h1>
 
+{% if is_granted('ROLE_USER')==false %}
 	{{ form_start(contact_form) }}
 	<div class="row g-3">
 		<div class="col-md-6">
@@ -37,8 +39,11 @@
 			{{ form_widget(contact_form.envoyer)}}
 		</div>
 	</div>
-
 	{{ form_end(contact_form) }}
+{% else %}
+
+{% endif %}
+
 
 </section>
 

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Boutique;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Types\DecimalType;
@@ -49,7 +50,7 @@ class ProduitRepository extends ServiceEntityRepository
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */
-    // public function findGiftcard(DecimalType $giftcard_valeur)
+    // public function showGiftcard(Boutique $giftcard_valeur)
     // {
     //     return $this->createQueryBuilder('p')
     //         ->andWhere('p.exampleField = :val')

@@ -1,12 +1,15 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+// Controller d'accès public MAIS lié à la bdd : Page de connexion sur le site Roots
 class SecurityController extends AbstractController
 {
     /**

@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\Restauration;
 use App\Form\RestaurationType;
 use App\Repository\RestaurationRepository;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Controller d'accès privé ADMIN : catégorie Restauration : type de catégorie de cuisines des livres et restaurants du site (carib ou afrique)
 /**
  * @Route("/admin/restauration")
  */

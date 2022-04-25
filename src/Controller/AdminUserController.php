@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -9,8 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// Liste des utilisateurs - accès admin
 
+// Controller d'accès privé ADMIN : Liste des utilisateurs (User) du site et leur role (admin ou user)
 /**
  * @Route("/admin/user")
  */

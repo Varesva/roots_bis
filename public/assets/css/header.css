@@ -65,6 +65,24 @@ header a:hover, .dropdown-item:hover, .navbar-toggler i:hover, .navbar-light .na
     color: inherit;
     border: 1px solid #2d9b48;
 }
+.show_dropdown {
+        /* ajout pour menu show on hover */
+    position: relative;
+    display: inline-block;
+}
+.hide {
+    display: none; /* afficher le menu au hover */
+    position: absolute;
+    z-index: 1;
+}
+
+.hide a {
+    display: block;
+}
+
+.show_dropdown:hover .hide {
+    display: block;
+}
 
 .dropdown-item {
     color: inherit;

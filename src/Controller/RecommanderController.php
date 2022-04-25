@@ -1,13 +1,16 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Form\RecommanderType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// Controller d'accès public, hors bdd : Page de recommandation de restaurants du site Roots
 class RecommanderController extends AbstractController
 {
     /**

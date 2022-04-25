@@ -1,15 +1,16 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\Nutrition;
-use App\Form\NutritionType;
 use App\Repository\NutritionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Controller d'accès privé PROFILE (user), reprend les infos du Ctrl adminNutrition  : regimes alimentaires des livres et restaurants du site
 /**
  * @Route("/profile/nutrition")
  */

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+    <h1>Produit de mon panier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ produit.titre }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ produit.image }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit.prix }}</td>
+            </tr>
+            <tr>
+                <th>Giftcard_valeur</th>
+                <td>{{ produit.giftcardValeur }}</td>
+            </tr>
+            <tr>
+                <th>Livre_auteur</th>
+                <td>{{ produit.livreAuteur }}</td>
+            </tr>
+            <tr>
+                <th>Livre_edition</th>
+                <td>{{ produit.livreEdition }}</td>
+            </tr>
+            <tr>
+                <th>Livre_resume</th>
+                <td>{{ produit.livreResume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_index') }}">back to list</a>
+
+{% endblock %}

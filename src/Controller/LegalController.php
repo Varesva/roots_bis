@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Controller d'accès public, hors bdd : Conditions et mentions légales du site Roots
 class LegalController extends AbstractController
 {
     /**

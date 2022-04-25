@@ -1,7 +1,9 @@
 <?php
 
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
+// auto-wiring
 use App\Entity\Boutique;
 use App\Form\BoutiqueType;
 use App\Repository\BoutiqueRepository;
@@ -9,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+// Controller d'accès privé ADMIN : produits de la boutique 
 
 /**
  * @Route("/admin/boutique")
