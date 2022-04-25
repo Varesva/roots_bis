@@ -4,6 +4,7 @@ namespace App\Service\Email;
 
 // auto-wiring
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 
@@ -22,7 +23,7 @@ class EmailService {
         $email = new TemplatedEmail(); 
         // définition des paramètres de l'email à envoyer par le Mailer
         $email
-            ->from('hello@example.com')  // expéditeur
+            ->from(new Address('contact@roots.com', 'Roots')) // expéditeur
 
             ->to($recipient)     // destinataire
 

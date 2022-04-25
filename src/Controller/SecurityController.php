@@ -25,12 +25,21 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        // nom de la page navigateur
-        $account_page_name = "Connexion - Roots";
+        // retourner la vue 
         // titre H1
-        $connexion = "Connexion";
+        $security_title = 'Connexion';
+        // titre H1
+        $register_title = "Inscription";
+        // nom de la page navigateur
+        $controller_name = 'Connexion - Roots';
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'controller_name' => $controller_name,
+            'connexion' => $security_title,
+            'inscription' => $register_title,
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'account_page_name' => $account_page_name, 'connexion' => $connexion]);
+        ]);
     }
 
     /**

@@ -1,62 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+	{{controller_name}}
+{% endblock %}
 
 {% block body %}
-<div class="register_container">
-	<section class="section_conn">
-		<h1 class="position_center">Connexion</h1>
-		{# {% include "login.html.twig" %} #}
-	</section>
-
-	<section class="section_inscr position_center">
-		<h1 class="position_center">
-            {{inscription}}
-        </h1>
-
-		{{ form_start(registrationForm) }}
-		<div class="row row_register g-3 position_center">
-
-			<div class="col-md-6">
-				<label for="prenom" class="form-label">
-					Prénom
-				</label>
-				{{ form_widget(registrationForm.prenom)}}
-			</div>
-			<div class="col-md-6">
-				<label for="nom" class="form-label">
-					Nom
-				</label>
-				{{ form_widget(registrationForm.nom)}}
-			</div>
-
-			<div class="col-md-6">
-				<label for="email" class="form-label">
-					Email
-				</label>
-				{{ form_widget(registrationForm.email)}}
-			</div>
-
-			<div class="col-md-6">
-				<label for="password" class="form-label">
-					Mot de passe
-				</label>
-				{{ form_widget(registrationForm.plainPassword)}}
-			</div>
-
-			<div class="agreeTerms_container col-12">
-				{{ form_widget(registrationForm.agreeTerms) }}
-				<p class="agreeTerms_text">
-					J'accepte les
-					<a href="#">Conditions générales d'utilisation</a>
+	{# container #}
+	<div class="register_container">
+		
+		{# section connexion #}
+		<div class="section_other position_center">
+			<div class="row row_register g-3 position_center">
+				<h1 class="position_center col-12">
+					{{connexion}}
+				</h1>
+<p class="col-12 position_center">
+					Vous avez déjà un compte ?
 				</p>
+				<a role="button" class="btn btn_other" href="{{path('app_login')}}">
+					Se connecter
+				</a>
+				<small class="col-12 position_center">
+					<a href="{{path('app_forgot_password_request')}}">
+						Mot de passe oublié ?
+					</a>
+				</small>
+
+			</div>
+		</div>
+		{# section inscription #}
+		<section class="section_main position_center">
+			<h1 class="position_center">
+				{{inscription}}
+			</h1>
+
+			{% for flash_error in app.flashes('verify_email_error') %}
+				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+			{% endfor %}
+
+			{{ form_start(registrationForm) }}
+			<div class="row row_register g-3 position_center">
+
+				<div class="col-md-6">
+					<label for="prenom" class="form-label">
+						Prénom
+					</label>
+					{{ form_widget(registrationForm.prenom)}}
+				</div>
+				<div class="col-md-6">
+					<label for="nom" class="form-label">
+						Nom
+					</label>
+					{{ form_widget(registrationForm.nom)}}
+				</div>
+
+				<div class="col-md-6">
+					<label for="email" class="form-label">
+						Email
+					</label>
+					{{ form_widget(registrationForm.email)}}
+				</div>
+
+				<div class="col-md-6">
+					<label for="password" class="form-label">
+						Mot de passe
+					</label>
+					{{ form_widget(registrationForm.plainPassword)}}
+				</div>
+
+				<div class="agreeTerms_container col-12">
+					{{ form_widget(registrationForm.agreeTerms) }}
+				</div>
+
+				<button type="submit" class="btn btn_main">S'inscrire</button>
 			</div>
 
-			<button type="submit" class="btn btn_register">S'inscrire</button>
-		</div>
-
-		{{ form_end(registrationForm) }}
-	</section>
-</div>
-
+			{{ form_end(registrationForm) }}
+		</section>
+	</div>
 {% endblock %}

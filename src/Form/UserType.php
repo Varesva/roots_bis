@@ -19,6 +19,7 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('adresse_livraison')
+            // ->add('isVerified')
         ;
     }
 

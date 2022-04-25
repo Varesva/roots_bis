@@ -1,0 +1,41 @@
+
+<a href="{{app_home}}" style="text-align:center;">
+
+	<img src="{{ email.image('@images/logo_roots.png') }}" alt=" logo du site roots" style="
+		box-sizing: border-box;
+		font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'; max-width: 100%;
+		border: none; height: 100px; width: 100px; text-align:center;">					
+</a>
+
+<h1>
+	Bienvenue sur Roots !
+</h1>
+
+<p>
+	Bonjour,
+	<br><br>
+	Vous venez de créer un compte sur Roots.
+
+	Pour confirmer votre inscription et activer votre compte, veuillez cliquer sur ce lien :
+	<br><br>
+	<a href="{{ signedUrl }}" role="button" class="btn submitted_form_nav">Valider mon compte</a>.
+</p>
+<p>
+	Ce lien expirera dans
+	{{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+<p>
+	Si vous n'êtes pas à l'origine de la création de ce compte ne tenez pas compte de cet email, le compte sera ainsi automatiquement supprimé.
+</p>
+
+<p>
+	N'hésitez pas à
+	<a href="{{ app_contact }}">nous contacter</a>
+	si vous avez des questions.
+</p>
+
+<p>
+	Un grand merci,
+	<br>
+	L'equipe Roots
+</p>

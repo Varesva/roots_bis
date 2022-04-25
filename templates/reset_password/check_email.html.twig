@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email de réinitialisation envoyé - Roots {% endblock %}
+
+{% block body %}
+    <p>
+        S
+        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+Ce lien expire dans
+{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+<br>
+Si vous n'avez pas créé de compte sur Roots, vous pouvez ignorer cet e-mail.
+    </p>
+    
+    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+{% endblock %}

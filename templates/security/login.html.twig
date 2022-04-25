@@ -1,18 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{account_page_name}}
+{{controller_name}}
+
 {% endblock %}
 
 {% block body %}
 <div class="register_container">
-	<section class="section_conn">
-		<h1 class="position_center">Inscription</h1>
+	<section class="section_other">
 
+{# container #}
+<div
+	class="register_container">
+
+	{# section connexion #}
+	<div class="section_main position_center">
+		<div class="row row_register g-3 position_center">
+			<h1 class="position_center col-12">
+				{{inscription}}
+			</h1>
+			<p class="col-12 position_center">
+				Vous n'avez pas encore de compte sur Roots ?
+			</p>
+			<a role="button" class="btn btn_other" href="{{path('app_register')}}">
+				Créer mon compte
+			</a>
+
+		</div>
+	</div>
 
 	</section>
 
-	<section class="section_conn position_center">
+	<section class="section_main position_center">
 		<h1 class="position_center">{{connexion}}</h1>
 
         <div class="row row_register g-3 position_center">

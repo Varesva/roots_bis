@@ -37,9 +37,13 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-
+    // AJOUTER LE LIEN DES CONDITIONS GENERALES 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => '<a class="agreeTerms_text" href="#">J\'accepte les
+						Conditions générales</a>',
+    //permet d'ajouter du html et de la mise en forme dans le label
+                'label_html' => true,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les conditions pour vous inscrire.',
