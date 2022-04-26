@@ -9,6 +9,11 @@
 
 
 	{% if ligne_panier | length > 0 %}
+		<div>
+			<a href="{{path('app_cart_clear')}}" class="btn">
+				Vider mon panier
+			</a>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -38,22 +43,20 @@
 							<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
 								<i class="fa-solid fa-circle-plus"></i>
 							</a>
-							{{ item.quantite }} {# Quantité du produit dans le panier #}
+							{{ item.quantite }}
+							{# Quantité du produit dans le panier #}
 							{# bouton MOINS : pour supprimer une quantité d'un article du panier #}
-							<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
-								<i class="fa-solid fa-circle-minus"></i>
+								<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success"> <i class="fa-solid fa-circle-minus"></i>
 							</a>
 						</td>
 						<td>{{ item.produit.prix }}</td>
 						<td>
 							{# Lien pour modifier le produit #}
 							{# <a href="{{ path('app_admin_produit_edit', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
-								<i class="fa fas fa-pen-to-square"></i>
-							</a> #}
+																													<i class="fa fas fa-pen-to-square"></i>
+																												</a> #}
 							{# lien pour supprimer le produit #}
-							<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
-
-								<i class="fas fa-trash"></i>
+								<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success"> <i class="fas fa-trash"></i>
 							</a>
 						</td>
 					</tr>
@@ -68,24 +71,28 @@
 				</td>
 			</tr>
 		</tfoot>
+		<div>
+			<a href="{{path('app_produit_index')}}" class="btn">
+				Continuer mes achats
+			</a>
+			<a href="{{path('app_profile_payment')}}" class="btn">
+				Valider ma commande
+			</a>
+		</div>
 
 	{% else %}
-		<tr>
-			<td colspan="9">Votre panier est vide</td>
-		</tr>
+		<div class="position_center">
+			<p>
+			Votre panier est actuellement vide &#128546;
+			</p>
+		</div>
 
+		</tbody>
+	</table>
+	<div class="position_center">
+		<a href="{{path('app_produit_index')}}" class="btn">
+			Consulter la boutique
+		</a>
+	</div>
 	{% endif %}
-			</tbody>
-		</table>
-<div>
-	<a href="{{path('app_produit_index')}}" class="btn">
-		Continuer mes achats
-	</a>
-	<a href="{{path('app_cart_clear')}}" class="btn">
-		Vider mon panier
-	</a>
-	<a href="{{path('app_profile_payment')}}" class="btn">
-		Valider ma commande
-	</a>
-</div>
 {% endblock %}

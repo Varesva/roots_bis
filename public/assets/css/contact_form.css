@@ -16,13 +16,14 @@
 
 .form-label {
   font-size: 1.35rem;
-  color: #545454;
+  color: #e62221;
   font-weight: 700;
 }
 
 .position_center {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 /* text area - formulaire  */

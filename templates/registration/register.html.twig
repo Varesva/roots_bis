@@ -6,26 +6,30 @@
 
 {% block body %}
 	{# container #}
-	<div class="register_container">
-		
+	<div
+		class="register_container">
 		{# section connexion #}
-		<div class="section_other position_center">
-			<div class="row row_register g-3 position_center">
+		<div
+			class="section_other position_center">
+			{# text container et section connexion #}
+			<div class="row row_register g-2 position_center">
 				<h1 class="position_center col-12">
 					{{connexion}}
 				</h1>
-<p class="col-12 position_center">
-					Vous avez déjà un compte ?
-				</p>
+				<div class="row_center">
+					<p>
+						Vous avez déjà un compte ?
+					</p>
+					<i class="fa-solid fa-angles-down"></i>
+				</div>
 				<a role="button" class="btn btn_other" href="{{path('app_login')}}">
 					Se connecter
 				</a>
-				<small class="col-12 position_center">
+				<small class="position_center">
 					<a href="{{path('app_forgot_password_request')}}">
 						Mot de passe oublié ?
 					</a>
 				</small>
-
 			</div>
 		</div>
 		{# section inscription #}
@@ -33,49 +37,54 @@
 			<h1 class="position_center">
 				{{inscription}}
 			</h1>
-
-			{% for flash_error in app.flashes('verify_email_error') %}
-				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-			{% endfor %}
-
+			{# formulaire d'inscription #}
 			{{ form_start(registrationForm) }}
 			<div class="row row_register g-3 position_center">
-
+				<small class="info_detail">
+					*champs obligatoires
+				</small>
 				<div class="col-md-6">
 					<label for="prenom" class="form-label">
-						Prénom
+						Prénom*
 					</label>
 					{{ form_widget(registrationForm.prenom)}}
 				</div>
 				<div class="col-md-6">
 					<label for="nom" class="form-label">
-						Nom
+						Nom*
 					</label>
 					{{ form_widget(registrationForm.nom)}}
 				</div>
 
 				<div class="col-md-6">
 					<label for="email" class="form-label">
-						Email
+						Email*
 					</label>
 					{{ form_widget(registrationForm.email)}}
 				</div>
 
 				<div class="col-md-6">
 					<label for="password" class="form-label">
-						Mot de passe
+						Mot de passe*
 					</label>
 					{{ form_widget(registrationForm.plainPassword)}}
 				</div>
 
-				<div class="agreeTerms_container col-12">
+				<div class="agreeTerms_container col-12 container-fluid">
+
 					{{ form_widget(registrationForm.agreeTerms) }}
+
+					{# block de vérification d'email après inscription #}
+					{% for flash_error in app.flashes('verify_email_error') %}
+						<small class="alert alert-danger bg-danger text-white" role=" alert">{{ flash_error }}</small>
+					{% endfor %}
+
 				</div>
 
 				<button type="submit" class="btn btn_main">S'inscrire</button>
 			</div>
-
 			{{ form_end(registrationForm) }}
+			{# fin du formulaire d'inscription #}
 		</section>
 	</div>
 {% endblock %}

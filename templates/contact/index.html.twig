@@ -1,51 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ contact_title}}
+	{{ controller_name}}
+
 {% endblock %}
 
 {% block body %}
 
-<section class="page_contact_container">
-	<h1 class="position_center">
-		Contactez-nous
-	</h1>
+	<section class="page_contact_container">
+		<h1 class="position_center">
+			{{contact_h1}}
+		</h1>
 
-{% if is_granted('ROLE_USER')==false %}
-	{{ form_start(contact_form) }}
-	<div class="row g-3">
-		<div class="col-md-6">
-			<label for="prenom" class="form-label">
-				Nom complet
-			</label>
-			{{ form_widget(contact_form.identity)}}
-		</div>
+		{% if is_granted('ROLE_USER')==false %}
+			{{ form_start(contact_form) }}
+			<div class="row g-3">
+				<small class="info_detail">
+					*champs obligatoires
+				</small>
+				<div class="col-md-6">
+					<label for="prenom" class="form-label">
+						Nom complet*
+					</label>
+					{{ form_widget(contact_form.identity)}}
+				</div>
 
-		<div class="col-md-6">
-			<label for="email" class="form-label">
-				Email
-			</label>
-			{{ form_widget(contact_form.email)}}
-		</div>
+				<div class="col-md-6">
+					<label for="email" class="form-label">
+						Email*
+					</label>
+					{{ form_widget(contact_form.email)}}
+				</div>
 
-		<div class="col-12">
-			<label for="message" class="form-label">
-				Message
-			</label>
-			{{ form_widget(contact_form.message)}}
-		</div>
+				<div class="col-12">
+					<label for="message" class="form-label">
+						Message*
+					</label>
+					{{ form_widget(contact_form.message)}}
+				</div>
 
-		<div class="col-12">
-			{{ form_widget(contact_form.envoyer)}}
-		</div>
-	</div>
-	{{ form_end(contact_form) }}
-{% else %}
+				<div class="col-12">
+					{{ form_widget(contact_form.envoyer)}}
+				</div>
+			</div>
+			{{ form_end(contact_form) }}
+			{% else %}
 
-{% endif %}
+		{% endif %}
 
 
-</section>
+	</section>
 
 
 {% endblock %}

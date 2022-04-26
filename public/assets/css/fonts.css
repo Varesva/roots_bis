@@ -46,7 +46,12 @@ h5 {
   font-size: 1.25rem;
 }
 
+label {
+  color: #e62121;
+}
+
 small,
 .text_small {
   font-size: 0.8rem;
+  color: #e62121;
 }

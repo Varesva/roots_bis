@@ -23,7 +23,7 @@ class RecommanderType extends AbstractType
         ])
             ->add('resto', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Le nom du restaurant que je conseille est ...',
+                    'placeholder' => 'Je conseille ...',
                     'class' => 'form-control'
                 ]
             ])

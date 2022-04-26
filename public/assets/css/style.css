@@ -1,7 +1,7 @@
 /* généralités */
 * {
-    box-sizing: border-box;
     /* On applique cette propriété pour éviter que les blocs sortent de leur conteneur */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     /* ligne à effacer */
@@ -21,13 +21,14 @@ ul {
     margin-bottom: 0;
 }
 section {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .btn {
     background-color: #2d9b48;
     color: white;
-    height: 3rem;
+    height: auto;
+    margin-top: 0.5rem;
 }
 
 .btn:hover {

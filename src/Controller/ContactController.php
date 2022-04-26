@@ -55,10 +55,12 @@ class ContactController extends AbstractController
 
         } else {
             // si invalide, renvoyer la même page de contact
-            $contact_form_request_title = "Contacter Roots";
+            $controller_name = "Contacter Roots";
+            $contact_h1 = "Nous contacter";
             return $this->renderForm('contact/index.html.twig', [
                 'contact_form' => $contact_form,
-                'contact_form_request_title' => $contact_form_request_title
+                'controller_name' => $controller_name,
+                'contact_h1' => $contact_h1,
             ]);
         }
     }

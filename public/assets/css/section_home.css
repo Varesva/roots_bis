@@ -1,13 +1,13 @@
 /* section home recherche et formulaire  */
-.section_home_recherche {
+/* .section_home_recherche {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .section_home_recherche_form {
-  width: 30%;
+  width: 50%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@
 }
 .section_home_recherche_form .btn {
   background-color: #e62221;
+  transition: 0.3s;
 }
 .section_home_recherche_form .btn:hover {
   background-color: #ffdd33;

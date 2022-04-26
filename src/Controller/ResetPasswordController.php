@@ -21,7 +21,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 /**
- * @Route("/reset-password")
+ * @Route("/reinitialiser")
  */
 class ResetPasswordController extends AbstractController
 {
@@ -53,9 +53,14 @@ class ResetPasswordController extends AbstractController
                 $translator
             );
         }
-
+        // title d'onglet navigateur - page de réinitialisation de mot de passe
+        $controller_name = 'Mot de passe oublié - Roots';
+        // titre h1 - page de réinitialisation de mot de passe
+        $reset_h1 = 'Réinitialiser mon mot de passe';
         return $this->render('reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
+            'controller_name'=> $controller_name,
+            'reset_h1'=>$reset_h1,
         ]);
     }
 
@@ -80,7 +85,7 @@ class ResetPasswordController extends AbstractController
     /**
      * Validates and process the reset URL that the user clicked in their email.
      *
-     * @Route("/reset/{token}", name="app_reset_password")
+     * @Route("/reinitialisation/{token}", name="app_reset_password")
      */
     public function reset(Request $request, UserPasswordHasherInterface $userPasswordHasher, TranslatorInterface $translator, string $token = null): Response
     {
