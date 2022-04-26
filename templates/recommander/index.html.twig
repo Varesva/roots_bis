@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ recommander_form_request_title}}
+	{{ controller_name}}
 {% endblock %}
 
 {% block body %}
 	<section class="page_contact_container">
 		<h1 class="position_center">
-			Recommander un restaurant
+			{{recommander_h1}}
 		</h1>
 
 		{{ form_start(recommander_form) }}
@@ -26,8 +26,8 @@
 			</div>
 			<div class="col-12">
 				<label for="message" class="form-label">
-                Commentaire				
-                </label>
+					Commentaire
+				</label>
 				{{ form_widget(recommander_form.commentaire)}}
 			</div>
 

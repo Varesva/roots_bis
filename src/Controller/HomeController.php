@@ -11,13 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="app_home")
+     * @Route("/accueil", name="app_home")
      */
     public function index(): Response
     {       
-        $home_page_name = "Accueil";
+        $controller_name = "Accueil";
         return $this->render('home/index.html.twig', [
-            'home_page_name' => $home_page_name,
+            'controller_name' => $controller_name,
         ]);
     }
 }

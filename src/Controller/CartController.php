@@ -11,12 +11,13 @@ class CartController extends AbstractController
 {
     // Pour voir le panier
     /**
-     * @Route("/cart", name="app_cart_index")
+     * @Route("/panier", name="app_cart_index")
      */
-    public function index(CartService $cartService)
+    public function indexCart(CartService $cartService)
     {
-        $full_cart=$cartService->indexCart();
-        $total_cart=$cartService->totalCart();
+            $full_cart=$cartService->indexCart();
+            $total_cart=$cartService->totalCart();
+        
         // retourner la vue avec les données du panier et le total des prix
         return $this->render('cart/index.html.twig', [
             'ligne_panier' => $full_cart,
@@ -26,7 +27,7 @@ class CartController extends AbstractController
 
     // création de panier et ajouter un article au panier--- le param converter recupere l'{id} dans l'url
     /**
-     * @Route("/cart/add/{id}", name="app_cart_add")
+     * @Route("/panier/ajouter/{id}", name="app_cart_add")
      */
     public function plusOne($id, CartService $cartService)
     {
@@ -42,7 +43,7 @@ class CartController extends AbstractController
         ]);
     }
     /**
-     * @Route("/cart/remove/{id}", name="app_cart_remove")
+     * @Route("/panier/retirer/{id}", name="app_cart_remove")
      */
     public function minusOne($id, CartService $cartService)
     {
@@ -56,7 +57,7 @@ class CartController extends AbstractController
 
     // Supprimer un seul article du panier
     /**
-     * @Route("/cart/delete/{id}", name="app_cart_delete")
+     * @Route("/panier/supprimer/{id}", name="app_cart_delete")
      */
     public function delete($id, CartService $cartService)
     {
@@ -69,7 +70,7 @@ class CartController extends AbstractController
 
     // pour vider le panier
     /**
-     * @Route("/cart/clear", name="app_cart_clear")
+     * @Route("/panier/vider", name="app_cart_clear")
      */
     public function clear(CartService $cartService)
     {

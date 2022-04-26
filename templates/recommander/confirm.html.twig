@@ -1,40 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{recommander_form_submitted_title}}
+	{{controller_name}}
 {% endblock %}
 
 {% block body %}
-<section class="contact_confirm">
+	<section class="contact_confirm">
 
-	<h1 class="position_center">
-		Recommandation envoyée !
-	</h1>
+		<h1 class="position_center">
+			{{recommander_h1}}
+		</h1>
 
-	<div class="submitted_form_container">
-		<p>
-			Merci pour votre recommandation !
+		<div class="submitted_form_container">
+			<p>
+				Merci pour votre recommandation !
+				<br><br>
+				L'équipe de Roots étudiera votre suggestion. <br>
+				Si votre recommandation nous semble pertinente, vous recevrez un petit cadeau dans votre boite mail :) !
+				<br><br>
+				Surveillez vos emails (et vérifiez vos spams !).
+				<br>
+			</p>
+		</div>
+		<hr>
+
+		<div class="position_center">
+			<p>En attendant, venez découvrir nos choix de restaurants actuellement disponibles !</p>
 			<br>
-			L'équipe de Roots étudiera votre suggestion. Si votre recommandation nous semble pertinente, vous recevrez un petit cadeau dans votre boite mail :) !
+		</div>
+		<div class="position_center">
+			<a role="button" href="{{path('app_restaurant_index') }}" class="btn submitted_form_nav">
+				Découvrir tous les restaurants
+			</a>
+		</div>
+<hr>
+		<div class="position_center">
+			<p>Vous souhaitez faire une autre recommandation ?</p>
 			<br>
-			Surveillez vos emails (et vérifiez vos spams !):
-			<span class="text_strong_green">
-				{{ valid_recommander_form.email}}
-			</span>	
-		</p>
-		<p>
-			Copie de votre message :
-			<div class="contact_form_control_submitted_container">
-				{{ valid_recommander_form.commentaire}}
-			</div>
-		</p>
-	</div>
-
-	<div class="position_center">
-		<a role="button" href="{{path('app_home') }}" class="btn submitted_form_nav">
-		Retourner sur la page d'accueil
-		</a>
-	</div>
-</section>
+		</div>
+		<div class="position_center">
+			<a role="button" href="{{path('app_recommander') }}" class="btn submitted_form_nav">
+				Faire une autre recommandation
+			</a>
+		</div>
+	</section>
 
 {% endblock %}

@@ -44,11 +44,13 @@ class ContactController extends AbstractController
             );
             
             // si les infos du contact form sont valides, redirection vers la page de confirmation d'envoi de formulaire aux données valides
-            $contact_form_submitted_title = "Message envoyé !";
 
+            // titre h1 - page de confirmation
+            $contact_title = "Message envoyé !";
+            // retourner la vue
             return $this->renderForm('contact/confirm.html.twig', [
             'valid_contact_form' => $valid_contact_form,
-            'contact_form_submitted_title' => $contact_form_submitted_title
+            'contact_title' => $contact_title
             ]);
 
         } else {
