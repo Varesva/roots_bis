@@ -43,7 +43,7 @@ class CartService
 
         if (!empty($cartService[$id])) // si tableau cart est not empty
         {
-            $cartService[$id] = $cartService[$id] - 1; // pas: retirer 1 au nombre de produit de l'id correspondant
+            $cartService[$id] = $cartService[$id] - 1; // retirer 1 au nombre de produit de l'id correspondant
         } elseif ($cartService[$id] = 1)  // il y a dans le tableau cart l'id produit qui a pour quantité = 1
         {
             unset($cartService[$id]);
