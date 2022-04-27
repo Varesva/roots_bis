@@ -14,8 +14,10 @@ class AboutController extends AbstractController
      */
     public function index(): Response
     {
+        $about_h1 = 'A propos de Roots';
         return $this->render('about/index.html.twig', [
-            'controller_name' => 'A propos de Roots',
+            'controller_name' => 'A propos - Roots',
+            'about_h1' => $about_h1,
         ]);
     }
 }
