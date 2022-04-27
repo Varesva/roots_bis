@@ -11,8 +11,8 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  background-image:url("../img/karib.jpg");
-  /* background-color: #2d9b48; */
+  /* background-image:url("../img/karib.jpg"); */
+  background-color: #2d9b48;
   border-radius: 15px;
   padding: 20px;
   justify-content: center;
