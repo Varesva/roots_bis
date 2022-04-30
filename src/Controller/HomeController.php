@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 // auto-wiring
+
+use App\Service\Display\DisplayService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,9 +17,22 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {       
-        $controller_name = "Accueil";
+        $controller_name = "Accueil - Roots";
         return $this->render('home/index.html.twig', [
             'controller_name' => $controller_name,
         ]);
     }
+
+    /**
+     * @Route("/{id}", name="app_restaurant_show", methods={"GET"})
+     */
+    public function showResto($id, DisplayService $displayService)
+    {
+        $restaurant= $displayService->showResto($id);
+    
+        return $this->render('restaurant/show.html.twig', [
+            'restaurant' => $restaurant,
+        ]);
+    }
+     
 }

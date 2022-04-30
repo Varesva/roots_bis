@@ -6,6 +6,7 @@
     padding: 0;
     /* ligne à effacer */
     /* border: 1px black solid;  */
+    scroll-behavior: smooth;
 }
 
 a {

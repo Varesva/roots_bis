@@ -12,7 +12,7 @@
 			{{contact_h1}}
 		</h1>
 
-		{% if is_granted('ROLE_USER')==false %}
+		{# {% if is_granted('ROLE_USER')==false %} #}
 			{{ form_start(contact_form) }}
 			<div class="row g-3">
 				<small class="info_detail">
@@ -44,9 +44,9 @@
 				</div>
 			</div>
 			{{ form_end(contact_form) }}
-			{% else %}
+			{# {% else %} #}
 
-		{% endif %}
+		{# {% endif %} #}
 
 
 	</section>

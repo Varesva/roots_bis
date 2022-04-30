@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Panier
+	{{controller_name}}
 {% endblock %}
 
 {% block body %}
-	<h1 class="position_center">Panier</h1>
+	<h1 class="position_center">{{cart_h1}}</h1>
 
 
 	{% if ligne_panier | length > 0 %}

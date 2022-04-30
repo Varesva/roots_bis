@@ -41,13 +41,12 @@ class CartService
         // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
         $cartService = $this->session->get('cartService', []);
 
-        if (!empty($cartService[$id])) // si tableau cart est not empty
-        {
-            $cartService[$id] = $cartService[$id] - 1; // retirer 1 au nombre de produit de l'id correspondant
-        } elseif ($cartService[$id] = 1)  // il y a dans le tableau cart l'id produit qui a pour quantité = 1
+        if ($cartService[$id] <= 1) // s'il y a deja dans le tableau cart l'id produit qui a pour quantité = 1 alors on unset (supprime)
         {
             unset($cartService[$id]);
-            //    echo "Voulez-vous supprimer ce produit de votre panier ?"; 
+        } else {
+            $cartService[$id] = $cartService[$id] - 1; // retirer 1 au nombre de produit de l'id correspondant
+
         }
         // puis enregistrer l'ajout effectué du produit 
         $this->session->set('cartService', $cartService);
@@ -79,6 +78,7 @@ class CartService
         $full_cart = $this->indexCart();
         // la variable qui contient le prix total du panier
         $total_cart = 0;
+
         if ($full_cart != "")  //si cartvar contient au moins une seule valeur (donc n'est pas vide)
         {
             // faire une boucle sur chacun des articles (quantite + produit) du panier
@@ -90,7 +90,10 @@ class CartService
                         *
                         $duo['quantite']);
             }
+        } else {
+            return $full_cart;
         }
+
         return $total_cart;
     }
 

@@ -15,35 +15,36 @@ class CartController extends AbstractController
      */
     public function indexCart(CartService $cartService)
     {
-            $full_cart=$cartService->indexCart();
-            $total_cart=$cartService->totalCart();
-        
+        $full_cart = $cartService->indexCart();
+        $total_cart = $cartService->totalCart();
+
+        // nom de la page navigateur
+        $controller_name = 'Panier - Roots';
+        // titre H1
+        $cart_h1 = 'Panier';
         // retourner la vue avec les données du panier et le total des prix
         return $this->render('cart/index.html.twig', [
             'ligne_panier' => $full_cart,
-            'total_cart' => $total_cart
+            'total_cart' => $total_cart,
+            'controller_name' => $controller_name,
+            'cart_h1' => $cart_h1,
         ]);
     }
 
     // création de panier et ajouter un article au panier--- le param converter recupere l'{id} dans l'url
     /**
-     * @Route("/panier/ajouter/{id}", name="app_cart_add")
+     * @Route("/ajouter/{id}", name="app_cart_add")
      */
     public function plusOne($id, CartService $cartService)
     {
-        $full_cart = $cartService->indexCart();
-        $total_cart = $cartService->totalCart();
-
         // appel de la fonction add de la classe CartService du service container 
-        $cartService->plusOne($id);
+        $cartService->plusOne($id);             
+      
         // retourner la vue avec les données du panier 
-        return $this->render('cart/index.html.twig', [
-            'ligne_panier' => $full_cart,
-            'total_cart'=> $total_cart,
-        ]);
+        return $this->redirectToRoute('app_cart_index');
     }
     /**
-     * @Route("/panier/retirer/{id}", name="app_cart_remove")
+     * @Route("/retirer/{id}", name="app_cart_remove")
      */
     public function minusOne($id, CartService $cartService)
     {

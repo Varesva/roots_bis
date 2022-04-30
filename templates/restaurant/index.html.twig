@@ -28,6 +28,9 @@
 					<td>
 						<a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">show</a>
 					</td>
+					<td>
+						<a href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">Aj favoris</a>
+					</td>
 				</tr>
 			{% else %}
 				<tr>

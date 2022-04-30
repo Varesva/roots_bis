@@ -1,20 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileFavorisController!{% endblock %}
+{% block title %}
+	{{controller_name}}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section>
+<h1 class="text-center">{{fav_h1}}</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% if ligne_favoris | length > 0 %}
+	<div>
+		<a href="{{path('app_profile_favoris_clear') }}" class="btn">
+			Effacer tous mes favoris
+		</a>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Photo</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{# nouvelle variable in variable du controller #}
+			{% for item in ligne_favoris %}
+				<tr>
+					<td>
+						<a href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
+							{{ item.restaurant.nom }}
+						</a>
+					</td>
+					<td>
+						<a href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
+							<img src="{{asset('upload/' ~ item.restaurant.photo ) }}" width="150" height="100">
+						</a>
+					</td>	
+					<td>{{ item.restaurant.description }}</td>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Justine 0642671261/Documents/roots_bis/roots_bis_projet/src/Controller/ProfileFavorisController.php'|file_link(0) }}">src/Controller/ProfileFavorisController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Justine 0642671261/Documents/roots_bis/roots_bis_projet/templates/profile_favoris/index.html.twig'|file_link(0) }}">templates/profile_favoris/index.html.twig</a></code></li>
-    </ul>
-</div>
+					<td>
+						{# Lien pour modifier le restaurant #}
+						{# <a href="{{ path('app_admin_restaurant_edit', {'id': item.restaurant.id}) }}" class="btn btn-sm btn-outline-success">
+																																															<i class="fa fas fa-pen-to-square"></i>
+																																														</a> #}
+						{# lien pour ajouter le restaurant des favoris au panier #}
+							<a href="{{ path('app_cart_add', {'id': item.restaurant.id}) }}" class="btn btn-md btn-outline-success"> <i class="fas fa-cart-shopping"></i>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{path('app_cart_index')}}" class="btn">
+		Voir mon panier
+	</a>
+{% else %}
+
+	<div class="text-center">
+		<p>
+			Vous n'avez actuellement aucun favori &#128546;.
+		</p>
+		<img class="rounded mx-auto d-block" src="{{ asset('assets/img/nothing.gif') }}" alt="Meme d'expression de confusion (Confused math lady meme)">
+		<p>
+			<br>
+			N'hésitez pas à en ajouter dès maintenant !
+		</p>
+	</div>
+
+</tbody></table><div class="row_center">
+<a href="{{path('app_produit_index')}}" class="btn">
+	Consulter la boutique
+</a>
+<a href="{{path('app_restaurant_index')}}" class="btn">
+	Consulter les restaurants
+</a></div>{% endif %}
+</section>
+
+
 {% endblock %}
