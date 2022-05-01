@@ -6,28 +6,29 @@ use App\Service\Cart\CartService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+/**
+ * @Route("/panier")
+ */
+
 // Controller d'accès public, hors bdd : Panier du site Roots
 class CartController extends AbstractController
 {
     // Pour voir le panier
     /**
-     * @Route("/panier", name="app_cart_index")
+     * @Route("/", name="app_cart_index")
      */
     public function indexCart(CartService $cartService)
     {
         $full_cart = $cartService->indexCart();
-        $total_cart = $cartService->totalCart();
+        $total_cart_ht = $cartService->totalCart();
+        $total_ttc = $cartService->calculTTC();
 
-        // nom de la page navigateur
-        $controller_name = 'Panier - Roots';
-        // titre H1
-        $cart_h1 = 'Panier';
         // retourner la vue avec les données du panier et le total des prix
         return $this->render('cart/index.html.twig', [
             'ligne_panier' => $full_cart,
-            'total_cart' => $total_cart,
-            'controller_name' => $controller_name,
-            'cart_h1' => $cart_h1,
+            'total_cart_ht' => $total_cart_ht,
+            'total_ttc' => $total_ttc,
         ]);
     }
 
@@ -52,13 +53,11 @@ class CartController extends AbstractController
         $cartService->minusOne($id);
         // retourner la vue avec les données du panier 
         return $this->redirectToRoute('app_cart_index');
-        // return $this->render('cart/index.html.twig', [
-        // ]);
     }
 
     // Supprimer un seul article du panier
     /**
-     * @Route("/panier/supprimer/{id}", name="app_cart_delete")
+     * @Route("/supprimer/{id}", name="app_cart_delete")
      */
     public function delete($id, CartService $cartService)
     {

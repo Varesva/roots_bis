@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{controller_name}}
+	Panier - Roots
 {% endblock %}
 
 {% block body %}
-	<h1 class="position_center">{{cart_h1}}</h1>
+	<h1 class="position_center">Panier</h1>
 
 
 	{% if ligne_panier | length > 0 %}
@@ -20,7 +20,7 @@
 					<th>Titre</th>
 					<th>Image</th>
 					<th>Quantité</th>
-					<th>Prix</th>
+					<th>Prix HT</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -66,8 +66,15 @@
 		<tfoot>
 			<tr>
 				<td>
-					Total :
-					{{ total_cart }}
+					Total HT :
+					{{ total_cart_ht }}
+				</td>
+				<td>
+					TVA en vigueur en France : 20%
+				</td>
+				<td>
+					Total TTC :
+					{{ total_ttc }}
 				</td>
 			</tr>
 		</tfoot>

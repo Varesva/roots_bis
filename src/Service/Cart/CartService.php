@@ -41,12 +41,11 @@ class CartService
         // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
         $cartService = $this->session->get('cartService', []);
 
-        if ($cartService[$id] <= 1) // s'il y a deja dans le tableau cart l'id produit qui a pour quantité = 1 alors on unset (supprime)
+        if ($cartService[$id] <= 1) // s'il y a deja dans le tableau cart l'id produit qui a pour quantité inférieur ou = 1 alors on unset (supprime)
         {
             unset($cartService[$id]);
         } else {
             $cartService[$id] = $cartService[$id] - 1; // retirer 1 au nombre de produit de l'id correspondant
-
         }
         // puis enregistrer l'ajout effectué du produit 
         $this->session->set('cartService', $cartService);
@@ -57,9 +56,8 @@ class CartService
     {
         // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
         $cartService = $this->session->get('cartService', []);
-
-        if (!empty($cartService)) 
-        {
+        // condition pour afficher le contenu du panier s'il n'est pas vide
+        if (!empty($cartService)) {
             foreach ($cartService as $id => $quantite) {
                 $full_cart[] = [
                     'produit' => $this->produitRepository->find($id),
@@ -67,7 +65,7 @@ class CartService
                 ];
             }
             return $full_cart;
-        } 
+        }
         // puis enregistrer l'ajout effectué du produit 
         $this->session->set('cartService', $cartService);
     }
@@ -75,26 +73,47 @@ class CartService
     // pour obtenir le prix total de l'intégralité des données de produit dans le panier 
     public function totalCart()
     {
+        // récupérer la variable d'affichage du panier complet (prix,produits et quantités)
         $full_cart = $this->indexCart();
-        // la variable qui contient le prix total du panier
-        $total_cart = 0;
+        // la variable qui contient le prix HT total du panier
+        $total_cart_ht = 0;
 
-        if ($full_cart != "")  //si cartvar contient au moins une seule valeur (donc n'est pas vide)
-        {
-            // faire une boucle sur chacun des articles (quantite + produit) du panier
-            foreach ($full_cart as $duo) //étant donné que la fonction total est forcéement liée au panier entier, on peut réutiliser l'appel de la fonction $this->indexCart()
+        //si le panier n'est pas vide/contient au moins une seule valeur
+        if (!empty($full_cart)) {
+            //étant donné que la fonction total est forcéement liée au panier entier, on peut réutiliser l'appel de la fonction $this->indexCart() en tant que (as) la nouvelle variable $duo
+            foreach ($full_cart as $duo)
+            // faire une boucle (foreach) sur chacun des articles (quantite + produit) du panier
             {
-                $total_cart =
-                    $total_cart +
+                // calcul du prix HT
+                $total_cart_ht =
+                    $total_cart_ht +
                     ($duo['produit']->getPrix()
                         *
                         $duo['quantite']);
+                
+                // calcul du prix TTC
             }
         } else {
+            // si le panier est vide, retourner la valeur initiale vers le ctrl
             return $full_cart;
         }
-
-        return $total_cart;
+        // retourner les valeurs des variables calculés dans la condition foreach
+        return $total_cart_ht;
+    }
+    
+    public function calculTTC() {
+        // récupérer le total ht
+        $total_cart_ht = $this->totalCart();
+        // prix total avec TVA
+        $total_ttc = 0;
+        // si le prix ht est différent de 0 (€)
+        if ($total_cart_ht != "0") {
+            
+            // calcul de la TVA ==> prix ht + 20% (20/100) de prix ht = montant ttc
+            $total_ttc = $total_cart_ht + ($total_cart_ht*20/100);
+        }
+        // retourner le prix TTC
+        return $total_ttc;
     }
 
     // Supprimer un seul article du panier
