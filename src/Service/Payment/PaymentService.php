@@ -18,16 +18,15 @@ class PaymentService
 
     public function index()
     {
-
-        // prix total HT provenant du panier CartService - Cart ctrl
-        $total_cart_ht = $this->cartService->totalCart();
+        // prix total TTC provenant du panier CartService - Cart ctrl
+        $total_ttc = $this->cartService->calculTTC();
         
         // This is your test secret API key.
         \Stripe\Stripe::setApiKey('sk_test_51KquMELfBciygh7TYzw8WnFFP1EpsrvalTo583O4BscGUCU1CsR7DU9IEzhDm3AjZBFhGK0KnelB4LVOEMVwTRjd00hHXC1Xji');
 
         // Create a PaymentIntent with amount and currency
         $paymentIntent = \Stripe\PaymentIntent::create([
-            'amount' => $total_cart_ht,
+            'amount' => $total_ttc,
             'currency' => 'eur',
             'automatic_payment_methods' => [
                 'enabled' => true,

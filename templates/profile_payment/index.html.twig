@@ -11,9 +11,9 @@
       <div id="payment-element">
         <!--Stripe.js injects the Payment Element-->
       </div>
-      <button id="submit">
+      <button id="submit" class="btn btn-success">
         <div class="spinner hidden" id="spinner"></div>
-        <span id="button-text">Paiement</span>
+        <span id="button-text" >Paiement</span>
       </button>
       <div id="error-message">
     <!-- Display error message to your customers here -->
@@ -44,6 +44,34 @@ const stripe = Stripe("pk_test_51KquMELfBciygh7TnoJXg5vdJCTm6Vey9p0Q4mXEHpUkxxLw
       paymentElement.mount('#payment-element');
 
       const form = document.getElementById('payment-form');
+
+
+        form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+  //Elements instance that was used to create the Payment Element
+  //http://127.0.0.1:8000/purchase/payment/success/
+  const { error } = await stripe.confirmPayment({
+    elements,
+    confirmParams: {
+      return_url: "{{ url('app_profile_payment_confirm') }}",
+    },
+  });
+
+
+if (error) {
+            // This point will only be reached if there is an immediate error when
+            // confirming the payment. Show error to your customer (for example, payment
+            // details incomplete)
+            const messageContainer = document.querySelector('#error-message');
+            messageContainer.textContent = error.message;
+        } else {
+            // Your customer will be redirected to your return_url. For some payment
+            // methods like iDEAL, your customer will be redirected to an intermediate
+            // site first to authorize the payment, then redirected to the return_url.
+        }
+        });
+
 
 </script>
 

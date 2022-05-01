@@ -6,5 +6,24 @@
 {% block body %}
 <h1>Commande validée</h1>
 
+<div class="position_center">
+			<p>
+			Nous vous remercions pour votre commande ! 
+        <br>
+        Retrouvez toutes les informations liées à votre commande dans votre espace personnel 
+			</p>
+		</div>
+
+		</tbody>
+	</table>
+	<div class="position_center row">
+		<a href="{{path('app_produit_index')}}" class="btn col-md-6">
+			Retourner à la boutique
+		</a>
+        <br>
+		<a href="{{path('app_home')}}" class="btn col-md-6">
+			Retourner sur la page d'accueil
+		</a>
+	</div>
 
 {% endblock %}

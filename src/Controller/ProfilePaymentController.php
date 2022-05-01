@@ -11,58 +11,49 @@ use App\Service\Cart\CartService;
 use App\Service\Payment\PaymentService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Stripe\Service\BillingPortal\SessionService;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/profile/paiement")
+ */
 class ProfilePaymentController extends AbstractController
 {
     /**
-     * @Route("/profile/paiement", name="app_profile_payment")
+     * @Route("/", name="app_profile_payment")
      */
-    public function index(PaymentService $paymentService): Response
+    public function index(PaymentService $paymentService, CartService $cartService): Response
     {
-        $paymentIntent = $paymentService->index();    
+        // récupérer la valeur de la variable avec prix et devise monétaire
+        $paymentIntent = $paymentService->index();
+        $total_ttc = $cartService->calculTTC();
 
-    
         // renvoyer la vue
         return $this->render('profile_payment/index.html.twig', [
             'clientSecret' => $paymentIntent->client_secret,
-            // 'total_payment' => $total_cart_ht,
-
+            'total_ttc' => $total_ttc,
         ]);
-       
     }
 
 
-
-
     /**
-     * @Route("/profile/payement/confirm", name="app_profile_payment_confirm")
+     * @Route("/confirmation", name="app_profile_payment_confirm")
      */
-    public function confirm(CartService $cartService): Response
+    public function confirm(CartService $cartService,SessionInterface $session): Response
     {
-        // This is your test secret API key.
-        \Stripe\Stripe::setApiKey('sk_test_51KquMELfBciygh7TYzw8WnFFP1EpsrvalTo583O4BscGUCU1CsR7DU9IEzhDm3AjZBFhGK0KnelB4LVOEMVwTRjd00hHXC1Xji');
+        $cartService = $cartService->indexCart();
+        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
 
-        $total_cart_ht = $cartService->totalCart();
+        $cartService = $session->get('cartService', []);
 
-        // Create a PaymentIntent with amount and currency
-        $paymentIntent = \Stripe\PaymentIntent::create([
-            'amount' => 500,
-            'currency' => 'eur',
-            'automatic_payment_methods' => [
-                'enabled' => true,
-            ],
-        ]);
+        // $paymentIntent = $this->paymentService->index();
 
-        $output = [
-            'clientSecret' => $paymentIntent->client_secret,
-        ];
+        // $cartService = $cartService->clear();
 
-        return $this->render('profile_payment/confirm.html.twig', [
-            'clientSecret' => $paymentIntent->client_secret,
-
-            'total_payment' => $total_cart_ht,
-
-        ]);
+        // vider le panier après paiement
+        // $cartService->clear();
+        // retourner la vue de confirmation
+        return $this->render('profile_payment/confirm.html.twig', []);
     }
 }
