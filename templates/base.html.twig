@@ -7,16 +7,19 @@
 		
 		{# Favicon du site #}
 		{# <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/logo_roots.png') }}"> #}
-		<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
-		<link rel="manifest" href="assets/img/favicon/site.webmanifest">
-		<link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon/favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon/favicon-16x16.png')}}">
+		<link rel="manifest" href="{{ asset('assets/img/favicon/site.webmanifest')}}">
+		<link rel="mask-icon" href="{{ asset('assets/img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
 
 		{# Feuilles de styles CSS #}
-		{% block stylesheets %}
+		{# {% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %} #}
+
 			{# CSS externe - Bootstrap #}
 			<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
@@ -39,18 +42,20 @@
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 			<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
-		{% endblock %}
+
+	
 
 		{# Scripts Javascript #}
-		{% block javascripts %}
+
 			{# JS externe - Bootstrap #}
 			<script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}" defer></script>
 
 			{# Javascript interne #}
 			<script src="{{ asset('assets/js/script.js')}}" defer></script>
 			{# Icon Kit - Fontawesome #}
-			<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous"></script>
-		{% endblock %}
+			<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous" defer></script>
+			{# Script Stripe #}
+			 <script src="https://js.stripe.com/v3/" defer></script>
 
 		<title>
 			{% block title %}
@@ -64,12 +69,16 @@
 		{% include "header.html.twig" %}
             {# container du site #}
 		    <main class="site_container"> 
-                {# contenu X.html.twig du site #}
-                {% block body %}{% endblock %}
+                {# contenu du site #}
+                {% block body %}
+				{% endblock %}
 			</main>
 			{# <div class="scrollToTop" onclick="scrollToTop()" title="Go to top"><i class="scrollToTop fa-solid fa-1xl fa-circle-chevron-up"></i></div> #}
 
         {# footer #}
         {% include "footer.html.twig" %}
     </body>
+	{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
+	{% endblock %}
 </html>
