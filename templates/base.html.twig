@@ -4,9 +4,8 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		{# Favicon du site #}
-		{# <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/logo_roots.png') }}"> #}
 		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon/apple-touch-icon.png')}}">
 		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon/favicon-32x32.png')}}">
 		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon/favicon-16x16.png')}}">
@@ -14,25 +13,23 @@
 		<link rel="mask-icon" href="{{ asset('assets/img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
+		
 
 		{# Feuilles de styles CSS #}
-		{# {% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %} #}
+		{% block stylesheets %}
+			{# {{ encore_entry_link_tags('app') }} #}
 
 			{# CSS externe - Bootstrap #}
-			<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-
+			<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> 
+			
 			{# CSS interne général #}
 			<link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/logo.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/contact_form.css') }}">
-
 			<link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/bckground.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/section_about.css') }}">
 			<link rel="stylesheet" href="{{ asset('assets/css/section_carousel.css') }}">
@@ -42,20 +39,7 @@
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 			<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
-
-	
-
-		{# Scripts Javascript #}
-
-			{# JS externe - Bootstrap #}
-			<script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}" defer></script>
-
-			{# Javascript interne #}
-			<script src="{{ asset('assets/js/script.js')}}" defer></script>
-			{# Icon Kit - Fontawesome #}
-			<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous" defer></script>
-			{# Script Stripe #}
-			 <script src="https://js.stripe.com/v3/" defer></script>
+		{% endblock %}
 
 		<title>
 			{% block title %}
@@ -63,22 +47,35 @@
 			{% endblock %}
 		</title>
 	</head>
-    {# corps du site #}
+	{# corps du site #}
 	<body>
-        {# header #}
+		{# header #}
 		{% include "header.html.twig" %}
-            {# container du site #}
-		    <main class="site_container"> 
-                {# contenu du site #}
-                {% block body %}
-				{% endblock %}
-			</main>
-			{# <div class="scrollToTop" onclick="scrollToTop()" title="Go to top"><i class="scrollToTop fa-solid fa-1xl fa-circle-chevron-up"></i></div> #}
+		{# container du site #}
+		<main
+			class="site_container">
+			{# contenu du site #}
+			{% block body %}{% endblock %}
+		</main>
+		{# <div class="scrollToTop" onclick="scrollToTop()" title="Go to top"><i class="scrollToTop fa-solid fa-1xl fa-circle-chevron-up"></i></div> #}
 
-        {# footer #}
-        {% include "footer.html.twig" %}
-    </body>
+		{# footer #}
+		{% include "footer.html.twig" %}
+	</body>
+
 	{% block javascripts %}
-		{{ encore_entry_script_tags('app') }}
-	{% endblock %}
+		{# {{ encore_entry_script_tags('app') }} #}
+
+		{# JS externe - Bootstrap #}
+		<script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"> </script>
+
+		{# Javascript interne #}
+		<script src="{{ asset('assets/js/script.js')}}"></script>
+
+		{# Icon Kit - Fontawesome #}
+		<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous"></script>
+
+		{# Script Stripe #}
+		<script src="https://js.stripe.com/v3/" </script> 
+	{% endblock %} 
 </html>

@@ -9,3 +9,9 @@ function scrollToTop () {
     window.scrollToTop();
 
 }
+
+// search bar 
+
+function showSearchbar() {
+    document.getElementById("searchBar").style.display = 'block';
+}
