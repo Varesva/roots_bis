@@ -18,43 +18,63 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class AdminProduitController extends AbstractController
 {
+    // constructeur de classe  - pour tjrs avoir ces variables avec la classe
+    protected $produitRepository;
+    protected $fileUploader;
+    protected $produit;
+
+    public function __construct(ProduitRepository $produitRepository, FileUploader $fileUploader)
+    {
+        $this->produitRepository = $produitRepository;
+        $this->fileUploader = $fileUploader;
+    }
+    // fin constructeur de classe  
+
+
     // afficher tous les produits
     /**
      * @Route("/", name="app_admin_produit_index", methods={"GET"})
      */
-    public function index(ProduitRepository $produitRepository): Response
+    public function index(): Response
     {
+        // récuperer tous les produits
+        $produitRepository = $this->produitRepository->findAll();
+        // retourner la vue
         return $this->render('admin_produit/index.html.twig', [
-            'produits' => $produitRepository->findAll(),
+            'produits' => $produitRepository,
         ]);
     }
 
     /**
      * @Route("/new", name="app_admin_produit_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ProduitRepository $produitRepository, FileUploader $fileUploader): Response
+    public function new(Request $request): Response
     {
-        $produit = new Produit();
+        // instanciation de classe - entité Produit
+        $produit =  new Produit();
+        // récupération du formulaire de création de nouveau produit
         $form = $this->createForm(ProduitType::class, $produit);
+        // ? ne sais pas
         $form->handleRequest($request);
-
+// condition si le formulaire soumis est valide
         if ($form->isSubmitted() && $form->isValid()) {
             /** 
              * @var UploadedFile $image 
              */
             $imageFile = $form->get('image')->getData();
 
-            // this condition is needed because the 'brochure' field is not required
+            // this condition is needed because the image/photo field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($imageFile) {
-                $image = $fileUploader->upload($imageFile); // l'upload du fichier
+                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
                 $produit->setImage($image);  // le nom du fichier 
             }
 
-            $produitRepository->add($produit);
+            $produitRepository = $this->produitRepository->add($produit);
+
             return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
-        
+
         return $this->renderForm('admin_produit/new.html.twig', [
             'produit' => $produit,
             'form' => $form,
@@ -80,6 +100,18 @@ class AdminProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** 
+             * @var UploadedFile $image 
+             */
+            $imageFile = $form->get('image')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imageFile) {
+                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $produit->setImage($image);  // le nom du fichier 
+            }
+
             $produitRepository->add($produit);
             return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -101,5 +133,4 @@ class AdminProduitController extends AbstractController
 
         return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
     }
-
 }

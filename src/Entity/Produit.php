@@ -99,12 +99,12 @@ class Produit
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrix(): ?string
     {
         return $this->prix;
     }
 
-    public function setPrix(?int $prix): self
+    public function setPrix(?string $prix): self
     {
         $this->prix = $prix;
 

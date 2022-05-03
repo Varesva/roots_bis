@@ -1,38 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurant{% endblock %}
+{% block title %}Restaurant
+{% endblock %}
 
 {% block body %}
-    <h1>Restaurant</h1>
+	<h1>Restaurant</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ restaurant.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ restaurant.nom }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ restaurant.photo }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ restaurant.description }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ restaurant.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ restaurant.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ restaurant.nom }}</td>
+			</tr>
+			<tr>
+				<th>Image</th>
+				<td>
+					<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
+				</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ restaurant.description }}</td>
+			</tr>
+			<tr>
+				<th>Num_rue</th>
+				<td>{{ restaurant.numRue }}</td>
+			</tr>
+			<tr>
+				<th>Rue</th>
+				<td>{{ restaurant.rue }}</td>
+			</tr>
+			<tr>
+				<th>Code_postal</th>
+				<td>{{ restaurant.codePostal }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ restaurant.ville }}</td>
+			</tr>
+			<tr>
+				<th>Pays</th>
+				<td>{{ restaurant.pays }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ restaurant.email }}</td>
+			</tr>
+			<tr>
+				<th>Telephone</th>
+				<td>{{ restaurant.telephone }}</td>
+			</tr>
+			<tr>
+				<th>Website</th>
+				<td>{{ restaurant.website }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_admin_restaurant_index') }}">back to list</a>
+	<a href="{{ path('app_admin_restaurant_index') }}">back to list</a>
 
-    <a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
+	<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
 
-    {{ include('admin_restaurant/_delete_form.html.twig') }}
+	{{ include('admin_restaurant/_delete_form.html.twig') }}
 {% endblock %}

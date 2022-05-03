@@ -1,40 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurant index{% endblock %}
+{% block title %}Restaurant - Roots
+{% endblock %}
 
 {% block body %}
-    <h1>Restaurant index</h1>
+	<h1>Cuisines caribéennes</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Photo</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for restaurant in restaurants %}
-            <tr>
-                <td>{{ restaurant.id }}</td>
-                <td>{{ restaurant.nom }}</td>
-                <td>{{ restaurant.photo }}</td>
-                <td>{{ restaurant.description }}</td>
-                <td>{{ restaurant.prix }}</td>
-                <td>
-                    <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">show</a>
-                    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{# <section class="restaurant_container">
+		{% for restaurant in carib %}
+			<section>
+				<div class="card">
+					<img src="{{asset('upload/' ~ restaurant.image)}}" class="card-img-top" alt="Image du restaurant">
+
+					<div class="card-body">
+						<h5 class="card-title">{{ restaurant.nom }}</h5>
+						<p class="card-text">{{ restaurant.restauration }}</p>
+						<p class="card-text">
+							{{ restaurant.codePostal }},
+							{{ restaurant.ville }}
+						</p>
+						<a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">Découvrir...</a>
+					</div>
+				</div>
+			</section>
+		{% endfor %}
+	</section> #}
 
 {% endblock %}
+

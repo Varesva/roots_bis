@@ -1,30 +1,29 @@
+/* affichage grand format et 4K */
+/* @media screen and (min-width: 1640px) {
 
-/* mobile portrait */
-@media screen and (max-width: 720px) {
-   ul {
-        display: none ;
-    }
-}
-/* mobile paysage */
-@media screen and (max-width: 720px) {
-    
-}
+} */
 
-/* tablette portrait */
-@media screen and (max-width: 900px) {
-    
-}
-/* tablette paysage */
-@media screen and (max-width: 1024px) {
-    
-}
+/* affichage PC et tablette paysage */
+/* = tout mon CSS actuel : 1440px */
 
-/* ordi fixe et portable */
-@media screen and (max-width: 1200px) {
+/* tablette portrait, responsive tablette  */
+/* @media screen and (max-width: 1024px) {
+
+} */
+
+
+/* responsive moyen format L, mobile portrait et paysage */
+/* @media screen and (max-width: 768px) {
     
-}
-/* affichage PC et grand format */
-@media screen and (min-width: 1200px) {
-    
-}
+} */
+
+/* responsive format petit */
+/* @media screen and (max-width: 375px) {
+
+} */
+
+
+
+
+
 

@@ -9,25 +9,25 @@
 				class="carousel_item active">
 				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
 
-<div class="img-thumbnail carousel_item_text">
+				<div class="img-thumbnail carousel_item_text">
 
 
 					<p>Lorem Ipsum</p>
 					<div>
-						<a class="" href="#">
-{# <img class="img-thumbnail rounded" src="{{asset('upload/' ~ restaurant.photo)}}" alt="Photo de plat de restaurant" width="150" height="100"> #}
-
+						<a
+							class="" href="#">{# <img class="img-thumbnail rounded" src="{{asset('upload/' ~ restaurant.Image)}}" alt="Image de plat de restaurant" width="150" height="100"> #}
 
 
 						</a>
 					</div>
 					<small>75018</small>
 					<span class="carousel_fav">
-
-						<a href="#">
+{# {{path('app_restaurant_show')}} #}
+						<a href="">
 							Découvrir...
 						</a>
-						<a href="#">
+						{# {{path('app_profile_control_favoris')}} #}
+						<a href="">
 							<i class="fas fa-star"></i>
 						</a>
 					</span>

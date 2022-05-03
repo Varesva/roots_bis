@@ -1,9 +1,7 @@
 <?php
 
-// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
-// auto-wiring
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Service\FileUploader;
@@ -11,9 +9,9 @@ use App\Repository\RestaurantRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// Controller d'accès privé ADMIN : annuaires des restaurants du site
 /**
  * @Route("/admin/restaurant")
  */
@@ -42,17 +40,16 @@ class AdminRestaurantController extends AbstractController
             /** 
              * @var UploadedFile $image 
              */
-            $imageFile = $form->get('photo')->getData();
+            $imageFile = $form->get('image')->getData();
 
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
-            if ($imageFile) 
-            {
+            if ($imageFile) {
                 $image = $fileUploader->upload($imageFile); // l'upload du fichier
-                $restaurant->setPhoto($image);  // le nom du fichier 
-            
-            $restaurantRepository->add($restaurant);
-            return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
+                $restaurant->setImage($image);  // le nom du fichier 
+
+                $restaurantRepository->add($restaurant);
+                return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
             }
         }
 

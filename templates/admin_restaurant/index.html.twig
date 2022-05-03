@@ -11,9 +11,16 @@
 			<tr>
 				<th>Id</th>
 				<th>Nom</th>
-				<th>Photo</th>
+				<th>Image</th>
 				<th>Description</th>
-				<th>Prix</th>
+				<th>Num_rue</th>
+				<th>Rue</th>
+				<th>Code_postal</th>
+				<th>Ville</th>
+				<th>Pays</th>
+				<th>Email</th>
+				<th>Telephone</th>
+				<th>Website</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -23,10 +30,17 @@
 					<td>{{ restaurant.id }}</td>
 					<td>{{ restaurant.nom }}</td>
 					<td>
-						<img src="{{asset('upload/' ~ restaurant.photo)}}" width="150" height="100">
+						<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
 					</td>
 					<td>{{ restaurant.description }}</td>
-					<td>{{ restaurant.prix }}</td>
+					<td>{{ restaurant.numRue }}</td>
+					<td>{{ restaurant.rue }}</td>
+					<td>{{ restaurant.codePostal }}</td>
+					<td>{{ restaurant.ville }}</td>
+					<td>{{ restaurant.pays }}</td>
+					<td>{{ restaurant.email }}</td>
+					<td>{{ restaurant.telephone }}</td>
+					<td>{{ restaurant.website }}</td>
 					<td>
 						<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}">show</a>
 						<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
@@ -34,7 +48,7 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="6">no records found</td>
+					<td colspan="14">no records found</td>
 				</tr>
 			{% endfor %}
 		</tbody>

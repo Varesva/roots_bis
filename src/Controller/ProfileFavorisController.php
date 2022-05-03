@@ -19,27 +19,20 @@ class ProfileFavorisController extends AbstractController
      */
     public function indexFav(FavorisService $favorisService)
     {
-        // nom de la page navigateur
-        $controller_name = 'Mes favoris - Roots';
-        // titre H1
-        $fav_h1 = 'Mes favoris';
-        
         $full_fav = $favorisService->indexFav();
         return $this->render('profile_favoris/index.html.twig', [
-            'controller_name' => $controller_name,
-            'fav_h1' =>$fav_h1,
             'ligne_favoris' => $full_fav,
         ]);
     }
 
-    // Pour ajouter et retirer un produit des favoris
+    // Pour ajouter et retirer un resto des favoris
     /**
-     * @Route("/fav/{id}", name="app_profile_control_favoris")
+     * @Route("/ajouter/{id}", name="app_profile_control_favoris")
      */
-    public function controlFav($id, FavorisService $favorisService)
+    public function FavAddRemove($id, FavorisService $favorisService)
     {
         // appel de la fonction controlFav (ajout et retirer un fav) de la classe FavorisService du service container 
-        $favorisService->controlFav($id);
+        $favorisService->FavAddRemove($id);
 
         // retourner la vue 
         return $this->redirectToRoute('app_profile_favoris_index');

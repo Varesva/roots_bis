@@ -35,30 +35,30 @@ class FavorisService
             }
             return $full_fav;
         }
+        var_dump($favorisService) ;
         // puis enregistrer l'ajout effectué du produit 
         $this->session->set('favoris', $favorisService);
     }
 
     // ajouter un article au favoris--- le param converter recupere l'{id} dans l'url
-    public function controlFav(int $id)
+    public function FavAddRemove(int $id)
     {
         // pour crééer le favoris si la session est inexistante ou l'actualiser si la session est déjà créée
         $favorisService = $this->session->get('favoris', []);
-
         if (!empty($favorisService[$id])) // si tableau de favoris est not empty
         {
             // decrement: retirer 1 au produit correspondant à l'id
             unset($favorisService[$id]);
         } else
         {
-           // increment: ajouter 1 au produit correspondant à l'id
-            $favorisService[$id] = 1;
-        }
+            // increment: ajouter 1 au produit correspondant à l'id
+            $favorisService[$id] = $id;
+        } 
         // puis enregistrer l'ajout effectué du produit dans les favoris
         $this->session->set('favoris', $favorisService);
     }
 
-    // // retirer un article des favoris--- le param converter recupere l'{id} dans l'url
+    // retirer un article des favoris--- le param converter recupere l'{id} dans l'url
     // public function removeFav(int $id)
     // {
     //     // pour crééer le favoris si la session est inexistante ou l'actualiser si déjà créée
@@ -66,6 +66,7 @@ class FavorisService
 
     //     if (!empty($favorisService[$id])) // si le tableau de favoris est not empty
     //     {
+    //         // on supprime du tableau la clé correspondante
     //         unset($favorisService[$id]);
     //         //    echo "Voulez-vous supprimer ce produit de vos favoris ?"; 
     //     }

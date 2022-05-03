@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\RestaurantRepository;
+use App\Entity\Nutrition;
+use App\Entity\Specialite;
+use App\Entity\Restauration;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RestaurantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=RestaurantRepository::class)
@@ -25,17 +29,12 @@ class Restaurant
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $photo;
+    private $image;
 
     /**
      * @ORM\Column(type="string", length=1000)
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
-     */
-    private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Restauration::class, inversedBy="restaurants")
@@ -54,15 +53,47 @@ class Restaurant
      */
     private $nutrition;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Adresse::class, cascade={"persist", "remove"})
-     */
-    private $adresse;
+  
 
     /**
-     * @ORM\OneToOne(targetEntity=Contact::class, cascade={"persist", "remove"})
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $contact;
+    private $num_rue;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $rue;
+
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $code_postal;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $website;
 
     public function getId(): ?int
     {
@@ -81,14 +112,14 @@ class Restaurant
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getImage(): ?string
     {
-        return $this->photo;
+        return $this->image;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setImage(?string $image): self
     {
-        $this->photo = $photo;
+        $this->image = $image;
 
         return $this;
     }
@@ -101,18 +132,6 @@ class Restaurant
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPrix(): ?string
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(?string $prix): self
-    {
-        $this->prix = $prix;
 
         return $this;
     }
@@ -153,26 +172,98 @@ class Restaurant
         return $this;
     }
 
-    public function getAdresse(): ?Adresse
+    public function getNumRue(): ?int
     {
-        return $this->adresse;
+        return $this->num_rue;
     }
 
-    public function setAdresse(?Adresse $adresse): self
+    public function setNumRue(?int $num_rue): self
     {
-        $this->adresse = $adresse;
+        $this->num_rue = $num_rue;
 
         return $this;
     }
 
-    public function getContact(): ?Contact
+    public function getRue(): ?string
     {
-        return $this->contact;
+        return $this->rue;
     }
 
-    public function setContact(?Contact $contact): self
+    public function setRue(?string $rue): self
     {
-        $this->contact = $contact;
+        $this->rue = $rue;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?string
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(string $code_postal): self
+    {
+        $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(?string $pays): self
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?int $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): self
+    {
+        $this->website = $website;
 
         return $this;
     }

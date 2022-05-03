@@ -1,3 +1,6 @@
+
+/* @media screen and (max-width: 1440px) { */
+
 /* fonts */
 html {
   font-size: 100%; /*16px*/
@@ -11,7 +14,7 @@ body {
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 h1, h2, h3, h4, h5 {
@@ -24,8 +27,8 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   font-size: 3rem;
-  /* margin-left: auto;
-  margin-right: auto; */
+display: flex;
+justify-content: center;
 }
 
 h2 {
@@ -53,5 +56,22 @@ label {
 small,
 .text_small {
   font-size: 0.8rem;
-  color: #e62121;
 }
+/* } */
+
+
+/* tablette portrait, responsive tablette  */
+/* @media screen and (max-width: 1024px) {
+
+} */
+
+
+/* responsive moyen format L, mobile portrait et paysage */
+/* @media screen and (max-width: 768px) {
+    
+} */
+
+/* responsive format petit */
+/* @media screen and (min-width: 375px) {
+
+} */

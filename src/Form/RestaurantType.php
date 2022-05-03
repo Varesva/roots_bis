@@ -14,8 +14,8 @@ class RestaurantType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('photo', FileType::class, [
-                'label' => 'Photo du restaurant',
+            ->add('image', FileType::class, [
+                'label' => 'Image du restaurant',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
                 // make it optional so you don't have to re-upload the PDF file
@@ -23,13 +23,17 @@ class RestaurantType extends AbstractType
                 'required' => false,
             ])
             ->add('description')
-            ->add('prix')
+            ->add('num_rue')
+            ->add('rue')
+            ->add('code_postal')
+            ->add('ville')
+            ->add('pays')
+            ->add('email')
+            ->add('telephone')
+            ->add('website')
             ->add('restauration')
             ->add('specialite')
-            ->add('nutrition')
-            ->add('adresse')
-            ->add('contact')
-        ;
+            ->add('nutrition');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

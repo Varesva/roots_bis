@@ -48,19 +48,29 @@ class RestaurationRepository extends ServiceEntityRepository
     // /**
     //  * @return Restauration[] Returns an array of Restauration objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+
+    // public function findByCaribRestaurant(int $id)
+    // {
+    //     $entityManager = $this->getEntityManager();
+    //     $caribRestaurant = $entityManager->createQuery(
+    //         'SELECT c
+    //         FROM App\Entity\Restauration c
+    //         WHERE c.id :2
+    //         ORDER BY c.id ASC'
+    //     )->setParameter('id', $id);
+
+    //     return $caribRestaurant->getResult();
+            // return $this->createQueryBuilder('c')
+
+            //     ->andWhere('c.id = :2')
+            //     ->setParameter('2', $type_cuisine)
+            //     ->orderBy('r.id', 'ASC')
+            //     ->setMaxResults(10)
+            //     ->getQuery()
+            //     ->getResult()
+    //     ;
+    // }
+
 
     /*
     public function findOneBySomeField($value): ?Restauration
