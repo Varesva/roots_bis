@@ -6,6 +6,8 @@ use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Service\FileUploader;
 use App\Repository\ProduitRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,12 +23,14 @@ class AdminProduitController extends AbstractController
     // constructeur de classe  - pour tjrs avoir ces variables avec la classe
     protected $produitRepository;
     protected $fileUploader;
-    protected $produit;
+    protected $em;
 
-    public function __construct(ProduitRepository $produitRepository, FileUploader $fileUploader)
+    public function __construct(ProduitRepository $produitRepository, FileUploader $fileUploader, EntityManagerInterface $em)
     {
         $this->produitRepository = $produitRepository;
         $this->fileUploader = $fileUploader;
+        $this->entityManagerInterface = $em;
+
     }
     // fin constructeur de classe  
 
@@ -133,4 +137,5 @@ class AdminProduitController extends AbstractController
 
         return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

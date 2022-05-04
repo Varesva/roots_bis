@@ -15,3 +15,8 @@ function scrollToTop () {
 function showSearchbar() {
     document.getElementById("searchBar").style.display = 'block';
 }
+
+// bouton favoris 
+
+const btnFav = document.querySelector('#addFav');
+btnFav.addEventListener('click', () => btnFav.style.color = '#ffd700')

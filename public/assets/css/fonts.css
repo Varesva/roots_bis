@@ -1,70 +1,73 @@
-
 /* @media screen and (max-width: 1440px) { */
 
 /* fonts */
 html {
-  font-size: 100%; /*16px*/
+	font-size: 100%; /*16px*/
 }
 
 body {
-  font-family: "Quicksand", sans-serif;
-  font-weight: 600;
-  line-height: 1.75;
-  color: #545454;
+	font-family: "Quicksand", sans-serif;
+	font-weight: 600;
+	line-height: 1.75;
+	color: #545454;
 }
 
 p {
-  margin-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
-h1, h2, h3, h4, h5 {
-  margin: 0.5rem 0 2rem;
-  font-family: "Quicksand", sans-serif;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #e62121;
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0.5rem 0 2rem;
+	font-family: "Quicksand", sans-serif;
+	font-weight: 700;
+	line-height: 1.3;
+	color: #e62121;
 }
 
 h1 {
-  font-size: 3rem;
-display: flex;
-justify-content: center;
+	font-size: 3rem;
+	display: flex;
+	justify-content: center;
+	text-align: center !important;
 }
 
 h2 {
-  font-size: 2.4rem;
-  display: flex;
-  justify-content: center;
+	font-size: 2.4rem;
+	display: flex;
+	justify-content: center;
+	color: #2d9b48;
 }
 
 h3 {
-  font-size: 1.9rem;
+	font-size: 1.9rem;
 }
 
 h4 {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 h5 {
-  font-size: 1.25rem;
+	font-size: 1.25rem;
 }
 
 label {
-  color: #e62121;
+	color: #e62121;
 }
 
 small,
 .text_small {
-  font-size: 0.8rem;
+	font-size: 0.8rem;
 }
 /* } */
-
 
 /* tablette portrait, responsive tablette  */
 /* @media screen and (max-width: 1024px) {
 
 } */
-
 
 /* responsive moyen format L, mobile portrait et paysage */
 /* @media screen and (max-width: 768px) {

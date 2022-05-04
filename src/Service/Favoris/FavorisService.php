@@ -35,7 +35,7 @@ class FavorisService
             }
             return $full_fav;
         }
-        var_dump($favorisService) ;
+        // var_dump($favorisService) ;
         // puis enregistrer l'ajout effectué du produit 
         $this->session->set('favoris', $favorisService);
     }

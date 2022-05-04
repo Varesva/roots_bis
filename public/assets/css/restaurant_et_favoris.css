@@ -51,13 +51,9 @@ div.card_favoris  {
     justify-content: space-between;
 }
 
-
+/* CSS des la partie show.html.twig */
 /* carousel */
-.carousel.slide.pointer-event {
-    width: 50%;
-    /* height: 50%; */
-    margin: auto;
-}
+
 
 
 

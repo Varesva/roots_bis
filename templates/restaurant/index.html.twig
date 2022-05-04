@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Les restaurants</h1>
+	<h1>Tous les restaurants</h1>
 
 	<section class="restaurant_container">
 {# nouvelle variable in variable du controller #}
@@ -33,7 +33,7 @@
 						<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
 							Découvrir...
 						</a>
-						<a href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
+						<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
 							<i class="fa-solid fa-xl fa-star"></i>
 						</a>
 					</div>

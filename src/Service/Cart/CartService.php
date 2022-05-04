@@ -3,6 +3,7 @@
 namespace App\Service\Cart;
 // auto-wiring
 use App\Repository\ProduitRepository;
+use Doctrine\DBAL\Types\DecimalType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartService
@@ -109,8 +110,8 @@ class CartService
         // si le prix ht est différent de 0 (€)
         if ($total_cart_ht != "0") {
             
-            // calcul de la TVA ==> prix ht + 20% (20/100) de prix ht = montant ttc
-            $total_ttc = $total_cart_ht + ($total_cart_ht*20/100);
+            // calcul de la TVA ==> prix ht + 20% (20/100) de prix ht = montant ttc  -- et la fonction php round pour arrondir le prix donné
+            $total_ttc = round(($total_cart_ht + ($total_cart_ht*20/100)), 2);
         }
         // retourner le prix TTC
         return $total_ttc;

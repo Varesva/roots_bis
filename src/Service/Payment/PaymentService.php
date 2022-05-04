@@ -18,6 +18,8 @@ class PaymentService
 
     public function index()
     {
+        // $total_cart_ht = $this->cartService->totalCart();
+
         // prix total TTC provenant du panier CartService - Cart ctrl
         $total_ttc = $this->cartService->calculTTC();
         
@@ -26,10 +28,14 @@ class PaymentService
 
         // Create a PaymentIntent with amount and currency
         $paymentIntent = \Stripe\PaymentIntent::create([
-            'amount' => $total_ttc,
+            'amount' => $total_ttc * 100,
             'currency' => 'eur',
-            'automatic_payment_methods' => [
-                'enabled' => true,
+            'payment_method_types' => [
+                'bancontact',
+                'card',
+                'giropay',
+                'sepa_debit',
+                'sofort',
             ],
         ]);
         // vérification de la clé secrète

@@ -50,22 +50,6 @@ class ProduitRepository extends ServiceEntityRepository
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */
-    // public function showGiftcard(Boutique $giftcard_valeur)
-    // {
-    //     return $this->createQueryBuilder('p')
-    //         ->andWhere('p.exampleField = :val')
-    //         ->setParameter('val', $giftcard_valeur)
-    //         ->orderBy('p.id', 'ASC')
-    //         ->setMaxResults(15)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
-    
-
-    // /**
-    //  * @return Produit[] Returns an array of Produit objects
-    //  */
     /*
     public function findByExampleField($value)
     {
