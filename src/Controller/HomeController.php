@@ -34,5 +34,17 @@ class HomeController extends AbstractController
             'restaurant' => $restaurant,
         ]);
     }
+
+
+    // page d'accueil du Dashboard Admin 
+    /**
+     * @Route("/admin/dashboard", name="app_admin_dashboard")
+     */
+    public function dashboard(): Response
+    {
+        return $this->render('home/admin_dashboard.html.twig', [
+            // 'controller_name' => 'AdminDashboardController',
+        ]);
+    }
      
 }

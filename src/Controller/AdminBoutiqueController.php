@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Controller d'accès privé ADMIN : produits de la boutique 
-
+// Controller d'accès privé ADMIN : catégories des produits
 /**
  * @Route("/admin/boutique")
  */

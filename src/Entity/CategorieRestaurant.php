@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\RestaurationRepository;
+use App\Repository\CategorieRestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RestaurationRepository::class)
+ * @ORM\Entity(repositoryClass=CategorieRestaurantRepository::class)
  */
-class Restauration
+class CategorieRestaurant
 {
     // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
     public function __toString()
@@ -18,7 +18,7 @@ class Restauration
         return $this->type_cuisine;
     }
     // fin conversion en string
-
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -32,12 +32,12 @@ class Restauration
     private $type_cuisine;
 
     /**
-     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="restauration")
+     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="categorie")
      */
     private $restaurants;
 
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="categ_restauration")
+     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="categ_type_cuisine")
      */
     private $produits;
 
@@ -76,7 +76,7 @@ class Restauration
     {
         if (!$this->restaurants->contains($restaurant)) {
             $this->restaurants[] = $restaurant;
-            $restaurant->setRestauration($this);
+            $restaurant->setCategorie($this);
         }
 
         return $this;
@@ -86,8 +86,8 @@ class Restauration
     {
         if ($this->restaurants->removeElement($restaurant)) {
             // set the owning side to null (unless already changed)
-            if ($restaurant->getRestauration() === $this) {
-                $restaurant->setRestauration(null);
+            if ($restaurant->getCategorie() === $this) {
+                $restaurant->setCategorie(null);
             }
         }
 
@@ -106,7 +106,7 @@ class Restauration
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->setCategRestauration($this);
+            $produit->setCategTypeCuisine($this);
         }
 
         return $this;
@@ -116,8 +116,8 @@ class Restauration
     {
         if ($this->produits->removeElement($produit)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getCategRestauration() === $this) {
-                $produit->setCategRestauration(null);
+            if ($produit->getCategTypeCuisine() === $this) {
+                $produit->setCategTypeCuisine(null);
             }
         }
 

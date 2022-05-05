@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Restaurant{% endblock %}
+{% block title %}Admin - Modifier Restaurant - Roots{% endblock %}
 
 {% block body %}
-    <h1>Edit Restaurant</h1>
+    <h1>Modifier ce Restaurant</h1>
 
-    {{ include('admin_restaurant/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin_restaurant/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    <a href="{{ path('app_admin_restaurant_index') }}">back to list</a>
+    <a href="{{ path('app_admin_restaurant_index') }}">Retour à la liste des restaurants</a>
 
     {{ include('admin_restaurant/_delete_form.html.twig') }}
 {% endblock %}

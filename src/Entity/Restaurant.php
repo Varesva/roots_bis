@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Nutrition;
 use App\Entity\Specialite;
-use App\Entity\Restauration;
+use App\Entity\CategorieRestaurant;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -37,12 +37,6 @@ class Restaurant
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Restauration::class, inversedBy="restaurants")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $restauration;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Specialite::class, inversedBy="restaurants")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -52,8 +46,6 @@ class Restaurant
      * @ORM\ManyToOne(targetEntity=Nutrition::class, inversedBy="restaurants")
      */
     private $nutrition;
-
-  
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -74,7 +66,8 @@ class Restaurant
      * @ORM\Column(type="string", length=50)
      */
     private $ville;
-
+    
+    // peu nécessaire mais sera utile pour répertorier des restaurants à échelle mondiale
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
@@ -94,6 +87,12 @@ class Restaurant
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $website;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CategorieRestaurant::class, inversedBy="restaurants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
 
     public function getId(): ?int
     {
@@ -132,18 +131,6 @@ class Restaurant
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getRestauration(): ?Restauration
-    {
-        return $this->restauration;
-    }
-
-    public function setRestauration(?Restauration $restauration): self
-    {
-        $this->restauration = $restauration;
 
         return $this;
     }
@@ -264,6 +251,18 @@ class Restaurant
     public function setWebsite(?string $website): self
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategorieRestaurant
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?CategorieRestaurant $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

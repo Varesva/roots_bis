@@ -12,6 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Produit
 {
+    // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
+    // public function __toString()
+    // {
+    //     return $this->titre;
+    //     return $this->livre_auteur;
+    //     return $this->livre_edition;
+    //     return $this->livre_resume;
+    // }
+    // fin conversion en string
+
       /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -55,11 +65,6 @@ class Produit
     private $livre_resume;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Restauration::class, inversedBy="produits")
-     */
-    private $categ_restauration;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Nutrition::class, inversedBy="produits")
      */
     private $categ_nutrition;
@@ -69,6 +74,21 @@ class Produit
      * @ORM\JoinColumn(nullable=false)
      */
     private $categ_produit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CategorieRestaurant::class, inversedBy="produits")
+     */
+    private $categ_type_cuisine;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Commande::class, mappedBy="produits")
+     */
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,18 +179,6 @@ class Produit
         return $this;
     }
 
-    public function getCategRestauration(): ?Restauration
-    {
-        return $this->categ_restauration;
-    }
-
-    public function setCategRestauration(?Restauration $categ_restauration): self
-    {
-        $this->categ_restauration = $categ_restauration;
-
-        return $this;
-    }
-
     public function getCategNutrition(): ?Nutrition
     {
         return $this->categ_nutrition;
@@ -191,6 +199,45 @@ class Produit
     public function setCategProduit(?Boutique $categ_produit): self
     {
         $this->categ_produit = $categ_produit;
+
+        return $this;
+    }
+
+    public function getCategTypeCuisine(): ?CategorieRestaurant
+    {
+        return $this->categ_type_cuisine;
+    }
+
+    public function setCategTypeCuisine(?CategorieRestaurant $categ_type_cuisine): self
+    {
+        $this->categ_type_cuisine = $categ_type_cuisine;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeProduit($this);
+        }
 
         return $this;
     }

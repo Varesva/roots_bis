@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CategorieRestaurant{% endblock %}
+
+{% block body %}
+    <h1>Edit CategorieRestaurant</h1>
+
+    {{ include('admin_categorie_restaurant/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_categorie_restaurant_index') }}">back to list</a>
+
+    {{ include('admin_categorie_restaurant/_delete_form.html.twig') }}
+{% endblock %}

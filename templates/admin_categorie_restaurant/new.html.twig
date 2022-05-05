@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategorieRestaurant{% endblock %}
+
+{% block body %}
+    <h1>Create new CategorieRestaurant</h1>
+
+    {{ include('admin_categorie_restaurant/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_categorie_restaurant_index') }}">back to list</a>
+{% endblock %}

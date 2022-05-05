@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{controller_name}}
+	Me connecter - Roots
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,7 @@
 				class="row row_register g-3 position_center">
 				{# section connexion #}
 				<h1 class="position_center col-12">
-					{{inscription}}
+					Inscription
 				</h1>
 				<div class="row_center">
 					<p>
@@ -32,7 +32,7 @@
 		{# section connexion #}
 		<section class="section_main position_center">
 			<h1 class="position_center">
-				{{connexion}}
+				Connexion
 			</h1>
 
 			{# formulaire de connexion #}
@@ -43,12 +43,12 @@
 				<div class="row row_register g-3 position_center">
 					{# block d'indication que user est deja connecté et chemin pour logout #}
 					{# {% if app.user %}
-                            <div class="mb-3">
-                                Vous êtes connecté.e que
-                                {{ app.user.username }},
-                                <a href="{{ path('app_logout') }}">Déconnexion</a>
-                            </div>
-                        {% endif %} #}
+					                            <div class="mb-3">
+					                                Vous êtes connecté.e que
+					                                {{ app.user.username }},
+					                                <a href="{{ path('app_logout') }}">Déconnexion</a>
+					                            </div>
+					                        {% endif %} #}
 						<small class="info_detail"> *champs obligatoires
 					</small>
 
@@ -69,7 +69,7 @@
 					</div>
 
 					{#Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-					                    See https://symfony.com/doc/current/security/remember_me.html#}
+										                    See https://symfony.com/doc/current/security/remember_me.html#}
 
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -78,11 +78,11 @@
 							<input type="checkbox" name="_remember_me" checked>
 							Se souvenir de moi
 						</label>
-					{% if error %}
-                        <small class="alert alert-danger bg-danger text-white">
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
-                        </small>
-					{% endif %}
+						{% if error %}
+							<small class="alert alert-danger bg-danger text-white">
+								{{ error.messageKey|trans(error.messageData, 'security') }}
+							</small>
+						{% endif %}
 					</div>
 
 					<div class="row_center">

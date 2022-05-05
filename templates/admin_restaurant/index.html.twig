@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurant index
+{% block title %}Admin - Tous les Restaurant - Roots
 {% endblock %}
 
 {% block body %}
-	<h1>Restaurant index</h1>
+	<h1>Tous les Restaurants</h1>
 
 	<table class="table">
 		<thead>
@@ -17,7 +17,7 @@
 				<th>Rue</th>
 				<th>Code_postal</th>
 				<th>Ville</th>
-				<th>Pays</th>
+				<th>Catégorie</th>
 				<th>Email</th>
 				<th>Telephone</th>
 				<th>Website</th>
@@ -37,22 +37,22 @@
 					<td>{{ restaurant.rue }}</td>
 					<td>{{ restaurant.codePostal }}</td>
 					<td>{{ restaurant.ville }}</td>
-					<td>{{ restaurant.pays }}</td>
+					<td>{{ restaurant.categorie }}</td>
 					<td>{{ restaurant.email }}</td>
 					<td>{{ restaurant.telephone }}</td>
 					<td>{{ restaurant.website }}</td>
 					<td>
-						<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}">show</a>
-						<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
+						<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}">Afficher</a>
+						<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="14">no records found</td>
+					<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_admin_restaurant_new') }}">Create new</a>
+	<a href="{{ path('app_admin_restaurant_new') }}">Créer un nouveau restaurant</a>
 {% endblock %}

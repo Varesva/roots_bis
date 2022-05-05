@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/connexion", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -26,21 +26,35 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
         // retourner la vue 
-        // titre H1
-        $security_title = 'Connexion';
-        // titre H1
-        $register_title = "Inscription";
-        // nom de la page navigateur
-        $controller_name = 'Connexion - Roots';
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'controller_name' => $controller_name,
-            'connexion' => $security_title,
-            'inscription' => $register_title,
-
         ]);
     }
+    // connexion pour accéder à l'espace admin 
+    /**
+     * @Route("/login/admin", name="app_login_admin")
+     */
+    public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
+    {
+        if ($this->getUser("ROLE_ADMIN")) {
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        // retourner la vue 
+        return $this->render('security/login_admin.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
+    }
+
+
 
     /**
      * @Route("/logout", name="app_logout")

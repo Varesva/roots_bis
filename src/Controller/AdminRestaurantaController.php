@@ -1,7 +1,7 @@
 <?php
-// dossier virtuel pour accéder au dossier de ce fichier
+
 namespace App\Controller;
-// Controller d'accès privé ADMIN : Les restaurants
+
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Service\FileUploader;
@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @Route("/admin/restaurant")
  */
-class AdminRestaurantController extends AbstractController
+class AdminRestaurantaController extends AbstractController
 {
     /**
      * @Route("/", name="app_admin_restaurant_index", methods={"GET"})
@@ -26,7 +26,7 @@ class AdminRestaurantController extends AbstractController
             'restaurants' => $restaurantRepository->findAll(),
         ]);
     }
-// ajouter run restaurant
+
     /**
      * @Route("/new", name="app_admin_restaurant_new", methods={"GET", "POST"})
      */
@@ -48,8 +48,8 @@ class AdminRestaurantController extends AbstractController
                 $image = $fileUploader->upload($imageFile); // l'upload du fichier
                 $restaurant->setImage($image);  // le nom du fichier 
 
-            $restaurantRepository->add($restaurant);
-            return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
+                $restaurantRepository->add($restaurant);
+                return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
             }
         }
 
@@ -58,7 +58,7 @@ class AdminRestaurantController extends AbstractController
             'form' => $form,
         ]);
     }
-// afficher un restaurant
+
     /**
      * @Route("/{id}", name="app_admin_restaurant_show", methods={"GET"})
      */
@@ -68,7 +68,7 @@ class AdminRestaurantController extends AbstractController
             'restaurant' => $restaurant,
         ]);
     }
-// modifier un restaurant
+
     /**
      * @Route("/{id}/edit", name="app_admin_restaurant_edit", methods={"GET", "POST"})
      */
@@ -87,7 +87,7 @@ class AdminRestaurantController extends AbstractController
             'form' => $form,
         ]);
     }
-// supprimer un restaurant
+
     /**
      * @Route("/{id}", name="app_admin_restaurant_delete", methods={"POST"})
      */

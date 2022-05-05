@@ -62,14 +62,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $telephone;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Livraison::class, inversedBy="users")
-     */
-    private $adresse_livraison;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Facture::class, mappedBy="user")
+     */
+    private $factures;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $num;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $rue;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $cp;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $pays;
+
+    public function __construct()
+    {
+        $this->factures = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -197,18 +227,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdresseLivraison(): ?Livraison
-    {
-        return $this->adresse_livraison;
-    }
-
-    public function setAdresseLivraison(?Livraison $adresse_livraison): self
-    {
-        $this->adresse_livraison = $adresse_livraison;
-
-        return $this;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -217,6 +235,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Facture>
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Facture $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures[] = $facture;
+            $facture->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): self
+    {
+        if ($this->factures->removeElement($facture)) {
+            // set the owning side to null (unless already changed)
+            if ($facture->getUser() === $this) {
+                $facture->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNum(): ?int
+    {
+        return $this->num;
+    }
+
+    public function setNum(?int $num): self
+    {
+        $this->num = $num;
+
+        return $this;
+    }
+
+    public function getRue(): ?string
+    {
+        return $this->rue;
+    }
+
+    public function setRue(?string $rue): self
+    {
+        $this->rue = $rue;
+
+        return $this;
+    }
+
+    public function getCp(): ?string
+    {
+        return $this->cp;
+    }
+
+    public function setCp(?string $cp): self
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(?string $pays): self
+    {
+        $this->pays = $pays;
 
         return $this;
     }

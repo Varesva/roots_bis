@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class RestaurantType extends AbstractType
+class RestaurantaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,7 +21,7 @@ class RestaurantType extends AbstractType
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
                 'required' => false,
-            ])            
+            ])
             ->add('description')
             ->add('num_rue')
             ->add('rue')
@@ -31,10 +31,9 @@ class RestaurantType extends AbstractType
             ->add('email')
             ->add('telephone')
             ->add('website')
+            ->add('restauration')
             ->add('specialite')
-            ->add('nutrition')
-            ->add('categorie')
-        ;
+            ->add('nutrition');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
