@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Types de cuisines - Roots
+{% endblock %}
+
+{% block body %}
+	<h1>Les livres de recettes par types de cuisines</h1>
+
+	<section
+		class="produits_container">
+		{# nouvelle variable in variable du controller #}
+		{% for categorie_restaurant in categorie_restaurants %}
+			<div class="card">
+
+				<div class="card-img-top">
+<a class="card_container" href="{{ path('app_produit_ByCateg_cuisine', {'id': categorie_restaurant.id}) }}">
+
+						<img src="{{asset('upload/' ~ categorie_restaurant.image)}}" alt="Image de la catégorie">
+					</a>
+				</div>
+
+				<div class="card-body">
+<a class="card_container" href="{{ path('app_produit_ByCateg_cuisine', {'id': categorie_restaurant.id}) }}">
+
+
+						<h5 class="card-title">{{ categorie_restaurant.typeCuisine }}</h5>
+					</a>
+<a class="card_container btn btn-warning text-secondary" href="{{ path('app_produit_ByCateg_cuisine', {'id': categorie_restaurant.id}) }}">
+						Voir les livres de recettes
+					</a>
+				</div>
+			</div>
+		{% else %}
+			<div class="bg-light p-3 rounded-3">
+				<p>Pas de résultat</p>
+			</div>
+		{% endfor %}
+	</section>
+{% endblock %}

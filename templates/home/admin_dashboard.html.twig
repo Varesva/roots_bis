@@ -1,10 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Admin - Accueil / Dashboard - Roots 
+{% block title %}
+	Admin - Accueil / Dashboard - Roots
 {% endblock %}
 
 {% block body %}
-<h1>Dashboard Admin</h1>
-	
-{% endblock %}
+	<h1>Dashboard Admin</h1>
 
+	<header class="container">
+		<nav class="navbar">
+
+			<ul>
+				<li><a href="{{path('app_admin_boutique_index')}}">Boutique: catégories</a></li>
+<li>
+	<a href="{{path('app_admin_categorie_restaurant_index')}}">Restaurants: catégories</a>
+</li>
+
+<li>
+	<a href="{{path('app_admin_commande_index')}}">Commandes clients/factures</a>
+</li>
+
+<li>
+	<a href="{{path('app_admin_ligne_commande_index')}}">Lignes commandes/détail commande</a>
+</li>
+
+				{# <li><a href="{{path('')}}"></a></li>
+				<li><a href="{{path('')}}"></a></li>
+				<li><a href="{{path('')}}"></a></li>
+				<li><a href="{{path('')}}"></a></li>
+				<li><a href="{{path('')}}"></a></li>
+				<li><a href="{{path('')}}"></a></li> #}
+			</ul>
+
+
+		</nav>
+	</header>
+
+{% endblock %}

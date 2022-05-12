@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Boutique{% endblock %}
+{% block title %}Admin - Ajouter une Boutique - Roots
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Boutique</h1>
+	<h1>Créer une nouvelle catégorie</h1>
+	<section class="container">
 
-    {{ include('admin_boutique/_form.html.twig') }}
+		{{ include('admin_boutique/_form.html.twig') }}
+		<hr>
 
-    <a href="{{ path('app_admin_boutique_index') }}">back to list</a>
+		<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-outline-dark">Retour à la liste des catégories</a>
+
+	</section>
 {% endblock %}

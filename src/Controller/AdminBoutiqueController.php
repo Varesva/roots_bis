@@ -1,8 +1,6 @@
 <?php
-
 // dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
-
 // auto-wiring
 use App\Entity\Boutique;
 use App\Form\BoutiqueType;
@@ -12,12 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Controller d'accès privé ADMIN : catégories des produits
+// Controller d'accès privé ADMIN : Boutique = catégories des produits
 /**
  * @Route("/admin/boutique")
  */
 class AdminBoutiqueController extends AbstractController
 {
+    // afficher les catégories de produits de la boutique
     /**
      * @Route("/", name="app_admin_boutique_index", methods={"GET"})
      */
@@ -27,7 +26,7 @@ class AdminBoutiqueController extends AbstractController
             'boutiques' => $boutiqueRepository->findAll(),
         ]);
     }
-
+    // ajouter une catégorie
     /**
      * @Route("/new", name="app_admin_boutique_new", methods={"GET", "POST"})
      */
@@ -47,7 +46,7 @@ class AdminBoutiqueController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // afficher une seule catégorie
     /**
      * @Route("/{id}", name="app_admin_boutique_show", methods={"GET"})
      */
@@ -57,7 +56,7 @@ class AdminBoutiqueController extends AbstractController
             'boutique' => $boutique,
         ]);
     }
-
+    // modifier une catégorie
     /**
      * @Route("/{id}/edit", name="app_admin_boutique_edit", methods={"GET", "POST"})
      */
@@ -76,13 +75,13 @@ class AdminBoutiqueController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // supprimer une catégorie
     /**
      * @Route("/{id}", name="app_admin_boutique_delete", methods={"POST"})
      */
     public function delete(Request $request, Boutique $boutique, BoutiqueRepository $boutiqueRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$boutique->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $boutique->getId(), $request->request->get('_token'))) {
             $boutiqueRepository->remove($boutique);
         }
 

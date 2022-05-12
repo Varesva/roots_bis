@@ -20,12 +20,14 @@
 				{# menu déroulant #}
 				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 					<li>
-						<a class="dropdown-item" href="">Cuisines africaines</a>
-{# {{path('app_restaurant_afrique')}} #}
+						<a class="dropdown-item" href="{{path('app_restaurant_afrique', {'id': 1})}}">
+							Cuisines africaines
+						</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="">Cuisines caribéennes</a>
-{# {{path('app_restaurant_caraibes')}} #}
+						<a class="dropdown-item" href="{{path('app_restaurant_carib', {'id': 2})}}">
+							Cuisines caribéennes
+						</a>
 					</li>
 					<li>
 						<hr class="dropdown-divider">
@@ -50,19 +52,26 @@
 				{# menu déroulant #}
 				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 					<li>
-						<a class="dropdown-item" href="/livres-recettes">Par types de cuisine</a>
+<a class="dropdown-item" href="{{path('app_categorie_restaurant_index') }}">Par types de cuisines</a>
+
+
+
 					</li>
 					<li>
-						<a class="dropdown-item" href="/livres-recettes">Par types d'alimentation</a>
+<a class="dropdown-item" href="{{path('app_profile_nutrition_index')}}">Par types d'alimentations</a>
+
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_produit_livre', {'id': 1} ) }}">Tous les livres de recettes</a>
 					</li>
 					<li>
 						<hr class="dropdown-divider">
 					</li>
 					<li>
-						<a class="dropdown-item" href="#">Cartes cadeaux</a>
+						<a class="dropdown-item" href="{{path('app_produit_giftcard', {'id': 2})}}">Cartes cadeaux</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="{{path('app_produit_index')}}">Tous les livres de recettes</a>
+						<a class="dropdown-item" href="{{path('app_produit_index')}}">Tous les produits</a>
 					</li>
 				</ul>
 			</li>
@@ -113,20 +122,20 @@
 			{# <div > #}
 
 			{# <div class="form-floating mb-auto" onclick="showSearchbar()">
-			
-			<input type="search" id="floatingInput" class="form-control" aria-label="Recherche"/>
-			
-			<label for="floatingInput">Que recherchez-vous ?</label>
-			
-			
-				</div>
-				<button type="button" class="btn btn-primary">
-							<i class="fa-solid fa-xl fa-magnifying-glass"></i>
-				</button> #}
+															
+															<input type="search" id="floatingInput" class="form-control" aria-label="Recherche"/>
+															
+															<label for="floatingInput">Que recherchez-vous ?</label>
+															
+															
+																</div>
+																<button type="button" class="btn btn-primary">
+																			<i class="fa-solid fa-xl fa-magnifying-glass"></i>
+																</button> #}
 			{# </div> #}
 
 			{# <a onclick="showSearchbar()">
-						</a> #}
+																		</a> #}
 
 			{# <input class="form-control searchbar" type="search" placeholder="Que recherchez-vous ?" aria-label="Recherche" spellcheck="false" aria-autocomplete="list" aria-describedby="basic-addon1"> #}
 

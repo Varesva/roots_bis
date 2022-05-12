@@ -1,7 +1,7 @@
 <?php
 // dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
-// Controller d'accès privé ADMIN : Les restaurants
+// auto-wiring
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Service\FileUploader;
@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// Controller d'accès privé ADMIN : Les restaurants
 /**
  * @Route("/admin/restaurant")
  */
@@ -26,7 +27,18 @@ class AdminRestaurantController extends AbstractController
             'restaurants' => $restaurantRepository->findAll(),
         ]);
     }
-// ajouter run restaurant
+    // afficher les restaurants par type de categorie de cuisine
+    /**
+     * @Route("/voir/{id}", name="app_admin_restaurant_categorie", methods={"GET"})
+     */
+    public function showRestoByCategorie($id, RestaurantRepository $restaurantRepository): Response
+    {
+        return $this->render('admin_restaurant/index.html.twig', [
+            'restaurants' => $restaurantRepository->findBy(['categorie' => $id]),
+        ]);
+    }
+
+    // ajouter un restaurant
     /**
      * @Route("/new", name="app_admin_restaurant_new", methods={"GET", "POST"})
      */
@@ -48,8 +60,8 @@ class AdminRestaurantController extends AbstractController
                 $image = $fileUploader->upload($imageFile); // l'upload du fichier
                 $restaurant->setImage($image);  // le nom du fichier 
 
-            $restaurantRepository->add($restaurant);
-            return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
+                $restaurantRepository->add($restaurant);
+                return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
             }
         }
 
@@ -58,7 +70,7 @@ class AdminRestaurantController extends AbstractController
             'form' => $form,
         ]);
     }
-// afficher un restaurant
+    // afficher un restaurant
     /**
      * @Route("/{id}", name="app_admin_restaurant_show", methods={"GET"})
      */
@@ -68,18 +80,31 @@ class AdminRestaurantController extends AbstractController
             'restaurant' => $restaurant,
         ]);
     }
-// modifier un restaurant
+    // modifier un restaurant
     /**
      * @Route("/{id}/edit", name="app_admin_restaurant_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Restaurant $restaurant, RestaurantRepository $restaurantRepository): Response
+    public function edit(Request $request, Restaurant $restaurant, FileUploader $fileUploader, RestaurantRepository $restaurantRepository): Response
     {
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $restaurantRepository->add($restaurant);
-            return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
+
+            /** 
+             * @var UploadedFile $image 
+             */
+            $imageFile = $form->get('image')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imageFile) {
+                $image = $fileUploader->upload($imageFile); // l'upload du fichier
+                $restaurant->setImage($image);  // le nom du fichier 
+
+                $restaurantRepository->add($restaurant);
+                return $this->redirectToRoute('app_admin_restaurant_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('admin_restaurant/edit.html.twig', [
@@ -87,13 +112,13 @@ class AdminRestaurantController extends AbstractController
             'form' => $form,
         ]);
     }
-// supprimer un restaurant
+    // supprimer un restaurant
     /**
      * @Route("/{id}", name="app_admin_restaurant_delete", methods={"POST"})
      */
     public function delete(Request $request, Restaurant $restaurant, RestaurantRepository $restaurantRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$restaurant->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $restaurant->getId(), $request->request->get('_token'))) {
             $restaurantRepository->remove($restaurant);
         }
 

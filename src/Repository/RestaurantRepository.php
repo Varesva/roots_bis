@@ -45,24 +45,6 @@ class RestaurantRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Restaurant[] Returns an array of Restauration objects
-    //  */
-
-    // public function findByCaribRestaurant()
-    // {
-    //     $query = $this ->createQueryBuilder('c');
-    //     $query->where('c=2');
-    //     $restauration = $this->getEntityManager();
-    //     $caribRestaurant = $entityManager->createQuery(
-    //         'SELECT r
-    //         FROM App\Entity\Restaurant r
-    //         WHERE r.id :2
-    //         ORDER BY r.id ASC'
-    //     )->setParameter('restauration', $restauration);
-
-    //     return $caribRestaurant->getResult();
-
     // return $this->createQueryBuilder('c')
 
     //         //     ->andWhere('c.id = :2')
@@ -73,22 +55,6 @@ class RestaurantRepository extends ServiceEntityRepository
     //         //     ->getResult()
     //     ;
     // }
-
-    // public function findByCaribRestaurant(int $restauration): array
-    // {
-    //     $entityManager = $this->getEntityManager();
-
-    //     $query = $entityManager->createQuery(
-    //         'SELECT c
-    //         FROM App\Entity\Restaurant c
-    //         WHERE c.restauration :2
-    //         ORDER BY c.restauration ASC'
-    //     )->setParameter('restauration', $restauration);
-
-    //     // returns an array of Product objects
-    //     return $query->getResult();
-    // }
-
 
     /*
     public function findOneBySomeField($value): ?Restaurant
@@ -102,20 +68,5 @@ class RestaurantRepository extends ServiceEntityRepository
     }
     */
 
-    // /**
-    //  * @return Restauration[] Returns an array of Restauration objects
-    //  */
-    
-    // public function findByCaribRestaurant(int $restauration_id)
-    // {
-    //     return $this->createQueryBuilder('c')
-    //     ->andWhere('c.restauration_id = :?2')
-    //     ->setParameter('restauration_id', $restauration_id)
-    //     ->orderBy('c.id', 'ASC')
-    //         ->setMaxResults(10)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
     
 }

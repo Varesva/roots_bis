@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Afficher une LigneCommande - Roots
+{% endblock %}
+
+
+{% block body %}
+	<h1>Afficher une LigneCommande</h1>
+	<section class="container">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ ligne_commande.id }}</td>
+				</tr>
+				<tr>
+					<th>Quantite</th>
+					<td>{{ ligne_commande.quantite }}</td>
+				</tr>
+				<tr>
+					<th>Prix</th>
+					<td>{{ ligne_commande.prix }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="d-flex justify-content-around">
+			<a href="{{ path('app_admin_ligne_commande_edit', {'id': ligne_commande.id}) }}" class="btn btn-outline-warning">Modifier</a>
+
+			<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark">Retour à la liste des lignes de commande</a>
+
+			{{ include('admin_ligne_commande/_delete_form.html.twig') }}
+		</div>
+	</section>
+{% endblock %}

@@ -1,39 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nutrition index{% endblock %}
+{% block title %}Admin - Nutrition index - Roots
+{% endblock %}
 
 {% block body %}
-    <h1>Nutrition index</h1>
+	<h1>Nutrition index</h1>
+	<section class="container">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Regime</th>
-                <th>Image</th>
-                <th>Definition</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for nutrition in nutrition %}
-            <tr>
-                <td>{{ nutrition.id }}</td>
-                <td>{{ nutrition.regime }}</td>
-                <td>{{ nutrition.image }}</td>
-                <td>{{ nutrition.definition }}</td>
-                <td>
-                    <a href="{{ path('app_admin_nutrition_show', {'id': nutrition.id}) }}">show</a>
-                    <a href="{{ path('app_admin_nutrition_edit', {'id': nutrition.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<p>Gérer les catégories de types de régimes allimentaires disponibles sur le site</p>
 
-    <a href="{{ path('app_admin_nutrition_new') }}">Create new</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Regime</th>
+					<th>Image</th>
+					<th>Definition</th>
+					<th>actions</th>
+					<th>Les restaurants de la catégorie</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for nutrition in nutrition %}
+					<tr>
+						<td>{{ nutrition.id }}</td>
+						<td>{{ nutrition.regime }}</td>
+						<td>
+							<img src="{{asset('upload/' ~ nutrition.image)}}" width="150" height="100">
+						</td>
+						<td>{{ nutrition.definition }}</td>
+
+						<td>
+							<a href="{{ path('app_admin_nutrition_show', {'id': nutrition.id}) }}" class="btn btn-outline-info ">Afficher</a>
+
+
+							<a href="{{ path('app_admin_nutrition_edit', {'id': nutrition.id}) }}" class="btn btn-outline-warning mt-3">Modifier</a>
+							{# <td>
+								<a href="{{path('app_admin_restaurant_voir', {'id': boutique.id})}}" class="btn btn-outline-secondary">Les produits</a>
+							</td> #}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Pas de résultat</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_admin_nutrition_new') }}" class="btn btn-outline-dark">Créer une nouvelle catégorie</a>
+
+	</section>
 {% endblock %}

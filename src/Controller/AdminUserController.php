@@ -28,6 +28,28 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+     // public function findByCaribRestaurant(int $id)
+    // {
+    //     $entityManager = $this->getEntityManager();
+    //     $caribRestaurant = $entityManager->createQuery(
+    //         'SELECT c
+    //         FROM App\Entity\Restauration c
+    //         WHERE c.id :2
+    //         ORDER BY c.id ASC'
+    //     )->setParameter('id', $id);
+
+    //     return $caribRestaurant->getResult();
+            // return $this->createQueryBuilder('c')
+
+            //     ->andWhere('c.id = :2')
+            //     ->setParameter('2', $type_cuisine)
+            //     ->orderBy('r.id', 'ASC')
+            //     ->setMaxResults(10)
+            //     ->getQuery()
+            //     ->getResult()
+    //     ;
+    // }
+ 
     /**
      * @Route("/new", name="app_admin_user_new", methods={"GET", "POST"})
      */

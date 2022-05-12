@@ -26,15 +26,4 @@ class ProfileNutritionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_profile_nutrition_show", methods={"GET"})
-     */
-    public function show(Nutrition $nutrition): Response
-    {
-        return $this->render('profile_nutrition/show.html.twig', [
-            'nutrition' => $nutrition,
-        ]);
-    }
-
-
 }

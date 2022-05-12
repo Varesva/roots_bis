@@ -10,7 +10,7 @@
 		{{ restaurant.nom }}
 	</h1>
 	<h2>
-		{{ restaurant.restauration }}
+		{{ restaurant.categorie }}
 	</h2>
 
 	<section
@@ -43,7 +43,6 @@
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Suivante</span>
 			</button>
-
 		</div>
 
 		{# informations et descriptif accordeon #}
@@ -53,12 +52,21 @@
 				<article class="accordion-header" id="panelsStayOpen-headingOne">
 					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
 						<h4>
-							Fiche descriptive du restaurant
+							Description du restaurant :
+							{{ restaurant.nom }}
 						</h4>
 					</button>
 				</article>
 				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body">
+						<small>
+							Origine de la cuisine/des fondateurs :
+							{{ restaurant.specialite }}
+							<br>
+							Convient pour les régimes alimentaires de type :
+							{{ restaurant.nutrition }}
+						</small>
+						<hr>
 						<p>
 							{{ restaurant.description }}
 						</p>
@@ -69,7 +77,7 @@
 				<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
 						<h4>
-							Adresse et contact du restaurant
+							Adresse et contact
 						</h4>
 					</button>
 				</h2>
@@ -85,6 +93,7 @@
 								<br>
 								{{ restaurant.codePostal }},
 								{{ restaurant.ville }}
+								{# {{ restaurant.pays }} #}
 							</p>
 
 							<li>
@@ -100,7 +109,7 @@
 								{{ restaurant.telephone }}
 							</p>
 							<li>
-								Site internet :
+								Site internet/réseaux sociaux :
 							</li>
 							<p>
 								{{ restaurant.website }}
@@ -112,13 +121,15 @@
 
 		</div>
 		{# {% endfor %} #}
-		<div class="text-center">
+		<div class=" text-center row-cols-3 text-nowrap m-3">
+			<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}" class="btn btn-warning m-3">
+				Ajouter à mes favoris
+				<i class="fa-solid fa-xl fa-star"></i>
+			</a>
 
-<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
-	Ajouter à mes favoris <i class="fa-solid fa-xl fa-star"></i>
-</a>
-
-			<a class="btn" href="{{ path('app_restaurant_index') }}">Retour à la liste de restaurants</a>
+			<a class="btn btn-outline-dark m-3" href="{{ path('app_restaurant_index') }}">
+				Retour à la liste des restaurants
+			</a>
 		</div>
 
 	</section>

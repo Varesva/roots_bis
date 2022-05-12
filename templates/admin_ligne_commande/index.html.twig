@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - LigneCommande index - Roots
+{% endblock %}
+
+
+{% block body %}
+    <h1>LigneCommande index</h1>
+<section class="container">
+
+<p>Gérer les lignes de commandes</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ligne_commande in ligne_commandes %}
+            <tr>
+                <td>{{ ligne_commande.id }}</td>
+                <td>{{ ligne_commande.quantite }}</td>
+                <td>{{ ligne_commande.prix }}</td>
+                <td>
+<a href="{{ path('app_admin_ligne_commande_show', {'id': ligne_commande.id}) }}" class="btn btn-outline-info">Afficher</a>
+
+<a href="{{ path('app_admin_ligne_commande_edit', {'id': ligne_commande.id}) }}" class="btn btn-outline-warning">Modifier</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+<td colspan="4">Pas de résultat</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<a href="{{ path('app_admin_ligne_commande_new') }}" class="btn btn-outline-dark">Créer une nouvelle ligne commande</a>
+
+{% endblock %}

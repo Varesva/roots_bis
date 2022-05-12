@@ -20,29 +20,24 @@ class Commande
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
-    private $quantite;
+    private $date;
 
     /**
-     * @ORM\Column(type="decimal", precision=6, scale=2)
-     */
-    private $total;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Facture::class, inversedBy="commande", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commandes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $facture;
+    private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produit::class, inversedBy="commandes")
+     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="commande")
      */
-    private $produits;
+    private $lignes_commande;
 
     public function __construct()
     {
-        $this->produits = new ArrayCollection();
+        $this->lignes_commande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,62 +45,56 @@ class Commande
         return $this->id;
     }
 
-    public function getQuantite(): ?int
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->quantite;
+        return $this->date;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->quantite = $quantite;
+        $this->date = $date;
 
         return $this;
     }
 
-    public function getTotal(): ?int
+    public function getUser(): ?User
     {
-        return $this->total;
+        return $this->user;
     }
 
-    public function setTotal(int $total): self
+    public function setUser(?User $user): self
     {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    public function getFacture(): ?Facture
-    {
-        return $this->facture;
-    }
-
-    public function setFacture(Facture $facture): self
-    {
-        $this->facture = $facture;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Produit>
+     * @return Collection<int, LigneCommande>
      */
-    public function getProduits(): Collection
+    public function getLignesCommande(): Collection
     {
-        return $this->produits;
+        return $this->lignes_commande;
     }
 
-    public function addProduit(Produit $produit): self
+    public function addLignesCommande(LigneCommande $lignesCommande): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
+        if (!$this->lignes_commande->contains($lignesCommande)) {
+            $this->lignes_commande[] = $lignesCommande;
+            $lignesCommande->setCommande($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): self
+    public function removeLignesCommande(LigneCommande $lignesCommande): self
     {
-        $this->produits->removeElement($produit);
+        if ($this->lignes_commande->removeElement($lignesCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($lignesCommande->getCommande() === $this) {
+                $lignesCommande->setCommande(null);
+            }
+        }
 
         return $this;
     }

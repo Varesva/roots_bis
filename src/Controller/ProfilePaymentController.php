@@ -43,17 +43,22 @@ class ProfilePaymentController extends AbstractController
     public function confirm(CartService $cartService,SessionInterface $session): Response
     {
         $cartService = $cartService->indexCart();
-        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
 
+        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
         $cartService = $session->get('cartService', []);
 
         // $paymentIntent = $this->paymentService->index();
+
+        // ->OrderInDB();
+
 
         // $cartService = $cartService->clear();
 
         // vider le panier après paiement
         // $cartService->clear();
+
         // retourner la vue de confirmation
         return $this->render('profile_payment/confirm.html.twig', []);
     }
+
 }

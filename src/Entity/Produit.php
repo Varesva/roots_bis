@@ -13,13 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Produit
 {
     // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
-    // public function __toString()
-    // {
-    //     return $this->titre;
-    //     return $this->livre_auteur;
-    //     return $this->livre_edition;
-    //     return $this->livre_resume;
-    // }
+    public function __toString()
+    {
+        // return $this->titre;
+        // return $this->livre_auteur;
+        // return $this->livre_edition;
+        // return $this->livre_resume;
+        // return $this->livre_resume;
+    }
     // fin conversion en string
 
       /**
@@ -81,14 +82,15 @@ class Produit
     private $categ_type_cuisine;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Commande::class, mappedBy="produits")
+     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="produit")
      */
-    private $commandes;
+    private $ligneCommandes;
 
     public function __construct()
     {
-        $this->commandes = new ArrayCollection();
+        $this->ligneCommandes = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -216,31 +218,33 @@ class Produit
     }
 
     /**
-     * @return Collection<int, Commande>
+     * @return Collection<int, LigneCommande>
      */
-    public function getCommandes(): Collection
+    public function getLigneCommandes(): Collection
     {
-        return $this->commandes;
+        return $this->ligneCommandes;
     }
 
-    public function addCommande(Commande $commande): self
+    public function addLigneCommande(LigneCommande $ligneCommande): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->addProduit($this);
+        if (!$this->ligneCommandes->contains($ligneCommande)) {
+            $this->ligneCommandes[] = $ligneCommande;
+            $ligneCommande->setProduit($this);
         }
 
         return $this;
     }
 
-    public function removeCommande(Commande $commande): self
+    public function removeLigneCommande(LigneCommande $ligneCommande): self
     {
-        if ($this->commandes->removeElement($commande)) {
-            $commande->removeProduit($this);
+        if ($this->ligneCommandes->removeElement($ligneCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($ligneCommande->getProduit() === $this) {
+                $ligneCommande->setProduit(null);
+            }
         }
 
         return $this;
     }
-
     
 }

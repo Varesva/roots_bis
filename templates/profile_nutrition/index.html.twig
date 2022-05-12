@@ -1,38 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Types d'alimentation - Roots% endblock %}
+{% block title %}Types d'alimentation - Roots
+{% endblock %}
 
 {% block body %}
-    <h1>Les types d'alimentation</h1>
-<p>
-Retrouvez les restaurants et livres de recettes disponibles sur Roots qui proposent des plats et recettes en accord avec votre régime alimentaire !
-</p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Regime</th>
-                <th>Image</th>
-                <th>Definition</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for nutrition in nutrition %}
-            <tr>
-                <td>{{ nutrition.id }}</td>
-                <td>{{ nutrition.regime }}</td>
-                <td>{{ nutrition.image }}</td>
-                <td>{{ nutrition.definition }}</td>
-                <td>
-                    <a href="{{ path('app_profile_nutrition_show', {'id': nutrition.id}) }}">show</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<h1>Les livres de recettes par types d'alimentations</h1>
+
+	<p class="bg-light p-3 rounded-3 text-center">
+		Retrouvez les restaurants et livres de recettes disponibles sur Roots qui proposent des plats et recettes en accord avec votre régime alimentaire !
+	</p>
+
+	<section
+		class="produits_container">
+
+		{# nouvelle variable in variable du controller #}
+		{% for nutrition in nutrition %}
+			<div class="card">
+				<div class="card-img-top">
+					<a class="card_container" href="{{ path('app_produit_ByCateg_nutrition', {'id': nutrition.id}) }}">
+						<img src="{{asset('upload/' ~ nutrition.image)}}" alt="Image de la catégorie">
+					</a>
+				</div>
+
+				<div class="card-body">
+					<a class="card_container" href="{{ path('app_produit_ByCateg_nutrition', {'id': nutrition.id}) }}">
+						<h5 class="card-title">{{ nutrition.regime }}</h5>
+					</a>
+					<small>
+						{{ nutrition.definition}}
+					</small>
+					<div class="text-center mt-1">
+						<a class="btn btn-outline-danger" href="{{ path('app_produit_ByCateg_nutrition', {'id': nutrition.id}) }}">
+							Voir les livres
+						</a>
+<a class="btn btn-outline-danger mt-2" href="{{ path('app_restaurant_ByCateg_nutrition', {'id': nutrition.id}) }}">
+
+							Voir les restaurants
+						</a>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="bg-light p-3 rounded-3">
+				<p>Pas de résultat</p>
+			</div>
+		{% endfor %}
+	</section>
+
 {% endblock %}

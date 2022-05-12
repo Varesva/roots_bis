@@ -3,47 +3,44 @@
 namespace App\Controller;
 // auto-wiring
 use App\Entity\Restaurant;
-use App\Entity\Restauration;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
-use Doctrine\Persistence\ManagerRegistry;
-use App\Repository\RestaurationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 // Controller d'accès public MAIS reprend les infos du Ctrl adminRestaurant: Annuaire des restaurants du site Roots
-
+/**
+ * @Route("/restaurant")
+ */
 class RestaurantController extends AbstractController
 {
-    // constructeur de classe - pour tjrs avoir ces variables avec la classe
+    // constructeur de classe  - pour tjrs avoir ces variables avec la classe
     protected $restaurantRepository;
-    protected $restaurationRepository;
+    protected $em;
 
-    public function __construct(RestaurantRepository $restaurantRepository, RestaurationRepository $restaurationRepository)
+    public function __construct(RestaurantRepository  $restaurantRepository, EntityManagerInterface $em)
     {
         $this->restaurantRepository = $restaurantRepository;
-        $this->restaurationRepository = $restaurantRepository;
+        $this->entityManagerInterface = $em;
     }
-    // fin constructeur de classe 
-    // Afficher tous les restaurants
+    // fin constructeur de classe  
+
+    // afficher tous les restaurants
     /**
-     * @Route("/restaurant", name="app_restaurant_index", methods={"GET"})
+     * @Route("/", name="app_restaurant_index", methods={"GET"})
      */
     public function index(): Response
     {
-        // récupérer dans la variable tous les restaurants en appellant la fonction construct qui fait appelle à la classe restaurantRepo
-        $allRestaurant = $this->restaurantRepository->findAll();
-        // retourner la vue
         return $this->render('restaurant/index.html.twig', [
-            'restaurants' => $allRestaurant,
+            'restaurants' => $this->restaurantRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("restaurant/{id}", name="app_restaurant_show", methods={"GET"})
+     * @Route("/{id}", name="app_restaurant_show", methods={"GET"})
      */
     public function show(Restaurant $restaurant): Response
     {
@@ -52,27 +49,55 @@ class RestaurantController extends AbstractController
         ]);
     }
 
+    // afficher toutes les restaurants d'une catégorieRestaurant afrique
+    /**
+     * @Route("/cuisines-africaines/{id}", name="app_restaurant_afrique", methods={"GET"})
+     */
+    public function showByCategAfrique($id): Response
+    {
+        // récuperer tous les restaurants africains
+        $restaurantAfrique = $this->restaurantRepository->findBy(
+            ['categorie' => $id]
+        );
+        // retourner la vue
+        return $this->render('restaurant/afrique.html.twig', 
+        [
+            'restaurants' => $restaurantAfrique,
+        ]);
+    }
 
-    // sous-categorie : restaurants des cuisines caribbénnes 
-    // /**
-    //  * @Route("/caraibes", name="app_restaurant_carib"), methods={"GET"})
-    //  */
-    // public function indexCarib(ManagerRegistry $doctrine, RestaurantRepository $restaurantRepository, Restaurant $restaurant): Response
-    // {
+    // afficher toutes les restaurants d'une catégorieRestaurant caribéens
+    /**
+     * @Route("/cuisines-caribeennes/{id}", name="app_restaurant_carib", methods={"GET"})
+     */
+    public function showByCategCarib($id): Response
+    {
+        // récuperer tous les restaurants carib
+        $restaurantCarib = $this->restaurantRepository->findBy(
+            ['categorie' => $id]
+        );
+        // retourner la vue
+        return $this->render('restaurant/carib.html.twig', [
+            'restaurants' => $restaurantCarib,
+        ]);
+    }
 
-    //     // récupérer dans la variable tous les restaurants en appellant la fonction construct qui fait appelle à la classe restaurantRepo
+    // afficher tous les livres selon régime alimentaire
+    /**
+     * @Route("/types-alimentations/{id}", name="app_restaurant_ByCateg_nutrition", methods={"GET"})
+     */
 
-    //     $caribRestaurant = $doctrine->getRepository(Restaurant::class)->findByCaribRestaurant(['restauration_id' => $restaurant->getRestauration(),]);
+    public function showByRestoNutrition($id): Response
+    {
+        // récuperer tous les produits de la categorie séléctionnée
+    
+        $restaurantRepository = $this->restaurantRepository->findBy(
+            ['nutrition' => $id]
+        );
 
-
-    //     // retourner la vue
-    //     return $this->render('restaurant/caraibes.html.twig', [
-    //         'carib' => $caribRestaurant,
-    //     ]);
-    // }
-    // estaurantRepository->findBy(['restauration_id'=>$restaurant->getRestauration()]),
-    // sous-categorie : restaurants des cuisines africaines 
-
-
-
+        // retourner la vue
+        return $this->render('restaurant/index.html.twig', [
+            'restaurants' => $restaurantRepository,
+        ]);
+    }
 }

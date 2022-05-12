@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Nutrition{% endblock %}
+{% block title %}Admin - Modifier une catégorie de Nutrition - Roots
+{% endblock %}
+
 
 {% block body %}
-    <h1>Edit Nutrition</h1>
+	<h1>Modifier une catégorie de Nutrition</h1>
+	<section class="container">
 
-    {{ include('admin_nutrition/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('admin_nutrition/_form.html.twig', {'button_label': 'Mettre à jour et modifier'}) }}
+		<hr>
+		<div class="d-flex justify-content-around">
 
-    <a href="{{ path('app_admin_nutrition_index') }}">back to list</a>
+			<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-outline-dark">Retour aux catégories</a>
 
-    {{ include('admin_nutrition/_delete_form.html.twig') }}
+			{{ include('admin_nutrition/_delete_form.html.twig') }}
+		</div>
+	</section>
+
 {% endblock %}

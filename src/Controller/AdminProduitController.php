@@ -30,10 +30,8 @@ class AdminProduitController extends AbstractController
         $this->produitRepository = $produitRepository;
         $this->fileUploader = $fileUploader;
         $this->entityManagerInterface = $em;
-
     }
     // fin constructeur de classe  
-
 
     // afficher tous les produits
     /**
@@ -49,6 +47,22 @@ class AdminProduitController extends AbstractController
         ]);
     }
 
+    // afficher toutes les cartes cadeaux de la catégorie adminboutique
+    /**
+     * @Route("/voir/{id}", name="app_admin_produit_byCateg", methods={"GET"})
+     */
+    public function showByCateg($id): Response
+    {
+        // récuperer tous les produits
+        $produitRepository = $this->produitRepository->findBy(
+            ['categ_produit' => $id]
+        );
+        // retourner la vue
+        return $this->render('admin_produit/index.html.twig', [
+            'produits' => $produitRepository,
+        ]);
+    }
+ 
     /**
      * @Route("/new", name="app_admin_produit_new", methods={"GET", "POST"})
      */
@@ -58,7 +72,7 @@ class AdminProduitController extends AbstractController
         $produit =  new Produit();
         // récupération du formulaire de création de nouveau produit
         $form = $this->createForm(ProduitType::class, $produit);
-        // ? ne sais pas
+        // traitement
         $form->handleRequest($request);
 // condition si le formulaire soumis est valide
         if ($form->isSubmitted() && $form->isValid()) {
@@ -74,7 +88,7 @@ class AdminProduitController extends AbstractController
                 $produit->setImage($image);  // le nom du fichier 
             }
 
-            $produitRepository = $this->produitRepository->add($produit);
+            $this->produitRepository->add($produit);
 
             return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -98,7 +112,7 @@ class AdminProduitController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_admin_produit_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
+    public function edit(Request $request, Produit $produit): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -116,7 +130,7 @@ class AdminProduitController extends AbstractController
                 $produit->setImage($image);  // le nom du fichier 
             }
 
-            $produitRepository->add($produit);
+            $this->produitRepository->add($produit);
             return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
 

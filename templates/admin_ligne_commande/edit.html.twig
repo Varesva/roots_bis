@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Modifier une LigneCommande - Roots
+{% endblock %}
+
+
+{% block body %}
+	<h1>Modifier une LigneCommande</h1>
+	<section class="container">
+
+		{{ include('admin_ligne_commande/_form.html.twig', {'button_label': 'Modifier'}) }}
+		<hr>
+
+		<div class="d-flex justify-content-around">
+        
+			<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark">Retour aux lignes de commandes</a>
+
+			{{ include('admin_ligne_commande/_delete_form.html.twig') }}
+		</div>
+	</section>
+{% endblock %}

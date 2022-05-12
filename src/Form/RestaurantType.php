@@ -21,7 +21,7 @@ class RestaurantType extends AbstractType
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
                 'required' => false,
-            ])            
+            ])
             ->add('description')
             ->add('num_rue')
             ->add('rue')
@@ -33,8 +33,7 @@ class RestaurantType extends AbstractType
             ->add('website')
             ->add('specialite')
             ->add('nutrition')
-            ->add('categorie')
-        ;
+            ->add('categorie');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

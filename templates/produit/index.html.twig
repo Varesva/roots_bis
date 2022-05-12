@@ -1,51 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}
+	Tous les produits - Roots
+{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
+	<h1>Tous les produits</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Image</th>
-                <th>Prix</th>
-                <th>Giftcard_valeur</th>
-                <th>Livre_auteur</th>
-                <th>Livre_edition</th>
-                <th>Livre_resume</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.titre }}</td>
-                <td>
-                    <img src="{{asset('upload/' ~ produit.image)}}" width="150" height="100">
-                </td>
-                <td>{{ produit.prix }}</td>
-                <td>{{ produit.giftcardValeur }}</td>
-                <td>{{ produit.livreAuteur }}</td>
-                <td>{{ produit.livreEdition }}</td>
-                <td>{{ produit.livreResume }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                </td>
-                <td>
-                    <a href="{{ path('app_cart_add', {'id': produit.id}) }}" class="btn btn-md btn-outline-success">
-                        <i class="fas fa-cart-shopping"></i>
-                        Ajouter
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<section
+		class="produits_container">
+		{# nouvelle variable in variable du controller #}
+		{% for produit in produits %}
+			<div class="card">
+
+				<div class="card-img-top">
+					<a class="card_container" href="{{ path('app_produit_show', {'id': produit.id}) }}">
+						<img src="{{asset('upload/' ~ produit.image )}}" alt="Image du produit">
+					</a>
+				</div>
+
+				<div class="card-body">
+					<a class="card_container" href="{{ path('app_produit_show', {'id': produit.id}) }}">
+						<h6 class="card-title">{{  produit.titre }}</h6>
+					</a>
+					<div class="card_favoris">
+						<a class="card_container" href="{{ path('app_produit_show', {'id': produit.id}) }}">
+							{{produit.prix }}
+							€
+						</a>
+						<a href="{{ path('app_cart_add', {'id': produit.id}) }}" class="btn btn-sm btn-outline-success">
+							Ajouter
+							<i class="fas fa-cart-shopping"></i>
+						</a>
+
+					</div>
+				</div>
+			</div>
+		{% else %}
+        <div class="bg-light">
+			<p>Pas de résultat</p>
+        </div>
+		{% endfor %}
+	</section>
 
 {% endblock %}

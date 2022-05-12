@@ -27,7 +27,7 @@ class ProduitType extends AbstractType
             ->add('livre_auteur')
             ->add('livre_edition')
             ->add('livre_resume')
-            ->add('categ_restauration')
+            ->add('categ_type_cuisine')
             ->add('categ_nutrition')
             ->add('categ_produit')
         ;

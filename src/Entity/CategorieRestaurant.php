@@ -1,7 +1,8 @@
 <?php
-
+// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Entity;
 
+// auto-wiring
 use App\Repository\CategorieRestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -18,7 +19,7 @@ class CategorieRestaurant
         return $this->type_cuisine;
     }
     // fin conversion en string
-    
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -40,6 +41,11 @@ class CategorieRestaurant
      * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="categ_type_cuisine")
      */
     private $produits;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function __construct()
     {
@@ -120,6 +126,18 @@ class CategorieRestaurant
                 $produit->setCategTypeCuisine(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

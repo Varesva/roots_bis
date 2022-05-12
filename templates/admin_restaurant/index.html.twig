@@ -5,54 +5,59 @@
 
 {% block body %}
 	<h1>Tous les Restaurants</h1>
+	<section class="container">
+		<p>Gérer les restaurants disponibles</p>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Nom</th>
-				<th>Image</th>
-				<th>Description</th>
-				<th>Num_rue</th>
-				<th>Rue</th>
-				<th>Code_postal</th>
-				<th>Ville</th>
-				<th>Catégorie</th>
-				<th>Email</th>
-				<th>Telephone</th>
-				<th>Website</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for restaurant in restaurants %}
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{ restaurant.id }}</td>
-					<td>{{ restaurant.nom }}</td>
-					<td>
-						<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
-					</td>
-					<td>{{ restaurant.description }}</td>
-					<td>{{ restaurant.numRue }}</td>
-					<td>{{ restaurant.rue }}</td>
-					<td>{{ restaurant.codePostal }}</td>
-					<td>{{ restaurant.ville }}</td>
-					<td>{{ restaurant.categorie }}</td>
-					<td>{{ restaurant.email }}</td>
-					<td>{{ restaurant.telephone }}</td>
-					<td>{{ restaurant.website }}</td>
-					<td>
-						<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}">Afficher</a>
-						<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}">Modifier</a>
-					</td>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Image</th>
+					<th>Description</th>
+					<th>Adresse</th>
+					<th>Catégorie</th>
+					<th>Contact</th>
+					<th>actions</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for restaurant in restaurants %}
+					<tr>
+						<td>{{ restaurant.id }}</td>
+						<td>{{ restaurant.nom }}</td>
+						<td>
+							<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
+						</td>
+						<td>{{ restaurant.description }}</td>
+						<td>
+						{{ restaurant.numRue }} <br>
+						{{ restaurant.rue }} <br>
+						{{ restaurant.ville }} <br>
+						{{ restaurant.codePostal }} <br>
+						{{ restaurant.pays }}
+						</td>
+						<td>{{ restaurant.categorie }}</td>
+						<td>
+						{{ restaurant.email }} <br>
+						{{ restaurant.telephone }} <br>
+						{{ restaurant.website }}
+						</td>
+						<td>
+							<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}" class="btn btn-outline-info">Afficher</a>
 
-	<a href="{{ path('app_admin_restaurant_new') }}">Créer un nouveau restaurant</a>
+							<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}" class="btn btn-outline-warning mt-3">Modifier</a>
+
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_admin_restaurant_new') }}" class="btn btn-outline-dark">Créer un nouveau restaurant</a>
+	</section>
 {% endblock %}

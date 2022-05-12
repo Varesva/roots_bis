@@ -4,15 +4,18 @@ namespace App\Service\Payment;
 
 // auto-wiring
 use App\Service\Cart\CartService;
+use Symfony\Component\Security\Core\Security;
 
 class PaymentService
 {
     // constructeur de classe PaymentService - pour tjrs avoir ces variables avec la classe
     protected $cartService;
+    protected $user;
 
-    public function __construct(CartService $cartService)
+    public function __construct(CartService $cartService, Security $security)
     {
         $this->cartService = $cartService;
+        $this->security = $security;
     }
     // fin constructeur de classe PaymentService
 
@@ -45,4 +48,13 @@ class PaymentService
         // retourner la valeur de $paymentIntent; au ctrl
         return $paymentIntent;
     }
+
+    // envoie en base de données 
+    // public function OrderInDB() {
+    //     // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
+    //     $cartService = $this->cartService->get('cartService', []);
+
+    //     $user = $this->security->getUser(); 
+
+    // }
 }

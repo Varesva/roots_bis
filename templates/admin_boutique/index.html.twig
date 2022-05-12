@@ -1,35 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Boutique index{% endblock %}
+{% block title %}Admin - Boutique - Roots
+{% endblock %}
 
 {% block body %}
-    <h1>Boutique index</h1>
+	<h1>Boutique index</h1>
+	<section class="container">
+		<p>Gérer les catégories de types de produits disponibles dans la boutique du site</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Type_produit</th>
+					<th>actions</th>
+					<th>Les produits de la catégorie</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for boutique in boutiques %}
+					<tr>
+						<td>{{ boutique.id }}</td>
+						<td>{{ boutique.typeProduit }}</td>
+						<td>
+							<a href="{{ path('app_admin_boutique_show', {'id': boutique.id}) }}" class="btn btn-outline-info">Afficher</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type_produit</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for boutique in boutiques %}
-            <tr>
-                <td>{{ boutique.id }}</td>
-                <td>{{ boutique.typeProduit }}</td>
-                <td>
-                    <a href="{{ path('app_admin_boutique_show', {'id': boutique.id}) }}">show</a>
-                    <a href="{{ path('app_admin_boutique_edit', {'id': boutique.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+							<a href="{{ path('app_admin_boutique_edit', {'id': boutique.id}) }}" class="btn btn-outline-warning">Modifier</a>
+						</td>
+						<td>
+							<a href="{{path('app_admin_produit_byCateg', {'id': boutique.id})}}" class="btn btn-outline-secondary">Les produits par catégorie</a>
+						</td>
+					</tr>
 
-    <a href="{{ path('app_admin_boutique_new') }}">Create new</a>
+				{% else %}
+					<tr>
+						<td colspan="3">Pas de résultat</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_admin_boutique_new') }}" class="btn btn-outline-dark">Créer une nouvelle catégorie</a>
+		<a href="{{ path('app_admin_produit_index') }}" class="btn btn-outline-secondary">Afficher tous les produits</a>
+
+	</section>
 {% endblock %}

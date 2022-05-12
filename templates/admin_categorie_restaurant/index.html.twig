@@ -1,35 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CategorieRestaurant index{% endblock %}
+{% block title %}Admin - CategorieRestaurant - Roots
+{% endblock %}
+
 
 {% block body %}
-    <h1>CategorieRestaurant index</h1>
+	<h1>CategorieRestaurant index</h1>
+	<section class="container">
+		<p>Gérer les catégories de types de cuisine des restaurants disponibles</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type_cuisine</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorie_restaurant in categorie_restaurants %}
-            <tr>
-                <td>{{ categorie_restaurant.id }}</td>
-                <td>{{ categorie_restaurant.typeCuisine }}</td>
-                <td>
-                    <a href="{{ path('app_admin_categorie_restaurant_show', {'id': categorie_restaurant.id}) }}">show</a>
-                    <a href="{{ path('app_admin_categorie_restaurant_edit', {'id': categorie_restaurant.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Type_cuisine</th>
+					<th>Image</th>
+					<th>actions</th>
+					<th>Les restaurants par catégorie</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for categorie_restaurant in categorie_restaurants %}
+					<tr>
+						<td>{{ categorie_restaurant.id }}</td>
+						<td>{{ categorie_restaurant.typeCuisine }}</td>
+						<td>
+							<img src="{{asset('upload/' ~ categorie_restaurant.image)}}" width="150" height="100">
+						</td>
+						<td>
 
-    <a href="{{ path('app_admin_categorie_restaurant_new') }}">Create new</a>
-{% endblock %}
+							<a href="{{ path('app_admin_categorie_restaurant_show', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-info">Afficher</a>
+
+							<a href="{{ path('app_admin_categorie_restaurant_edit', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-warning">Modifier</a>
+						</td>
+					
+				
+				<td>
+					<a href="{{ path('app_admin_restaurant_categorie', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-secondary">Les restaurants</a>
+				</td>
+		</tr>
+			
+
+
+	{% else %}
+		<tr>
+			<td colspan="3">Pas de résultat</td>
+
+		</tr>
+	{% endfor %}
+</tbody></table><a href="{{ path('app_admin_categorie_restaurant_new') }}" class="btn btn-outline-dark">Créer une nouvelle catégorie</a>{% endblock %}
