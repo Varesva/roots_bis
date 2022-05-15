@@ -22,8 +22,8 @@ class CartService
     // ajouter un article au panier--- le param converter recupere l'{id} dans l'url
     public function plusOne(int $id)
     {
-        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
-        $cartService = $this->session->get('cartService', []);
+        // pour créer le panier si la session est inexistante ou l'actualiser si déjà créée
+        $cartService = $this->session->get('cart', []);
 
         if (!empty($cartService[$id])) // si tableau cart est not empty
         {
@@ -33,14 +33,14 @@ class CartService
             $cartService[$id] = 1;
         }
         // puis enregistrer l'ajout effectué du produit 
-        $this->session->set('cartService', $cartService);
+        $this->session->set('cart', $cartService);
     }
 
     // retirer un article du panier--- le param converter recupere l'{id} dans l'url
     public function minusOne(int $id)
     {
-        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
-        $cartService = $this->session->get('cartService', []);
+        // pour créer le panier si la session est inexistante ou l'actualiser si déjà créée
+        $cartService = $this->session->get('cart', []);
 
         if ($cartService[$id] <= 1) // s'il y a deja dans le tableau cart l'id produit qui a pour quantité inférieur ou = 1 alors on unset (supprime)
         {
@@ -49,14 +49,14 @@ class CartService
             $cartService[$id] = $cartService[$id] - 1; // retirer 1 au nombre de produit de l'id correspondant
         }
         // puis enregistrer l'ajout effectué du produit 
-        $this->session->set('cartService', $cartService);
+        $this->session->set('cart', $cartService);
     }
 
     // Pour voir le panier dans son intégralité: avec les données des produits ajoutés dedans
     public function indexCart()
     {
-        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
-        $cartService = $this->session->get('cartService', []);
+        // pour créer le panier si la session est inexistante ou l'actualiser si déjà créée
+        $cartService = $this->session->get('cart', []);
         // condition pour afficher le contenu du panier s'il n'est pas vide
         if (!empty($cartService)) {
             foreach ($cartService as $id => $quantite) {
@@ -68,10 +68,10 @@ class CartService
             return $full_cart;
         }
         // puis enregistrer l'ajout effectué du produit 
-        $this->session->set('cartService', $cartService);
+        $this->session->set('cart', $cartService);
     }
 
-    // pour obtenir le prix total de l'intégralité des données de produit dans le panier 
+    // pour obtenir le prix total HT de l'intégralité des données de produit dans le panier 
     public function totalCart()
     {
         // récupérer la variable d'affichage du panier complet (prix,produits et quantités)
@@ -120,19 +120,19 @@ class CartService
     // Supprimer un seul article du panier
     public function delete(int $id)
     {
-        // pour crééer le panier si la session est inexistante ou l'actualiser si déjà créée
-        $cartService = $this->session->get('cartService', []);
+        // pour créer le panier si la session est inexistante ou l'actualiser si déjà créée
+        $cartService = $this->session->get('cart', []);
         // fonction if pour indiquer que si le panier n'est pas empty, on retire l'id visé
         if (!empty($cartService[$id])) {
             unset($cartService[$id]);
         }
         // puis enregistrer l'ajout effectué du produit 
-        $this->session->set('cartService', $cartService);
+        $this->session->set('cart', $cartService);
     }
 
     // pour vider entièrement le panier
     public function clear()
     {
-        $this->session->clear('cartService');
+        $this->session->clear('cart');
     }
 }

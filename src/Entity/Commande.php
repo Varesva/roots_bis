@@ -35,6 +35,11 @@ class Commande
      */
     private $lignes_commande;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2)
+     */
+    private $total_facturation;
+
     public function __construct()
     {
         $this->lignes_commande = new ArrayCollection();
@@ -95,6 +100,18 @@ class Commande
                 $lignesCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTotalFacturation(): ?string
+    {
+        return $this->total_facturation;
+    }
+
+    public function setTotalFacturation(string $total_facturation): self
+    {
+        $this->total_facturation = $total_facturation;
 
         return $this;
     }

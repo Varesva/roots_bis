@@ -23,6 +23,8 @@ class ProfileUserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');       
+
         return $this->render('profile_user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);

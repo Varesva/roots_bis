@@ -11,17 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/ligne-commande")
+ * @Route("/admin/lignes")
  */
 class AdminLigneCommandeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_admin_ligne_commande_index", methods={"GET"})
+     * @Route("/", name="app_admin_ligne_commande_detail", methods={"GET"})
      */
     public function index(LigneCommandeRepository $ligneCommandeRepository): Response
     {
         return $this->render('admin_ligne_commande/index.html.twig', [
             'ligne_commandes' => $ligneCommandeRepository->findAll(),
+        ]);
+    }
+    // afficher par commande
+    /**
+     * @Route("/commandes/{id}", name="app_admin_ligne_commande_index", methods={"GET"})
+     */
+    public function ligneGroupCommande(LigneCommandeRepository $ligneCommandeRepository,$id): Response
+    {
+        return $this->render('admin_ligne_commande/index.html.twig', [
+            'ligne_commandes' => $ligneCommandeRepository->findBy(['commande'=>$id]),
         ]);
     }
 

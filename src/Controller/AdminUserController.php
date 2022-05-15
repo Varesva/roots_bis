@@ -23,6 +23,8 @@ class AdminUserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('admin_user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);

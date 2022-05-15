@@ -3,25 +3,34 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\User;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/admin/commande")
  */
 class AdminCommandeController extends AbstractController
 {
+    
     /**
      * @Route("/", name="app_admin_commande_index", methods={"GET"})
      */
-    public function index(CommandeRepository $commandeRepository): Response
+    public function index(CommandeRepository $commandeRepository, Security $security): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('admin_commande/index.html.twig', [
-            'commandes' => $commandeRepository->findAll(),
+            'commandes' => $commandeRepository->findBy([
+                // fonctionne bien meme avec l'erreur
+                'user' => $security->getUser()->getId(),
+            ]),
         ]);
     }
 

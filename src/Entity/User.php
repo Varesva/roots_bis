@@ -20,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->prenom;
+        return $this->nom;
     }
     // fin conversion en string
 

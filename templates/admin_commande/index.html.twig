@@ -20,7 +20,9 @@
         <tbody>
         {% for commande in commandes %}
             <tr>
-                <td>{{ commande.id }}</td>
+<td>
+	<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}" > Commande n°{{ commande.id }} </a> </td>
+
                 <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
 <a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}" class="btn btn-outline-info">Afficher</a>

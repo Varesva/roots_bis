@@ -34,7 +34,7 @@ class EmailService {
             // les diverses infos et autres variables qui peuvent être contenus dans les mails envoyés
             ->context([
                 //date d'expiration des liens contenus dans les mails par exemple 
-                // 'expiration_date' => new \DateTime('+7 days'),   
+                'expiration_date' => new \DateTime('+7 days'),   
                 //reprise des infos liées au controller où le service est appelé,
                 'valid_contact_email' => $recipient,
                 'valid_contact_form' => $data,

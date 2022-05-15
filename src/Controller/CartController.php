@@ -14,17 +14,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 // Controller d'accès public, hors bdd : Panier du site Roots
 class CartController extends AbstractController
 {
+    // constructeur
+    // récup le service du panier
+    private $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
     // Pour voir le panier
     /**
      * @Route("/", name="app_cart_index")
      */
-    public function indexCart(CartService $cartService)
+    public function indexCart()
     {
-        $full_cart = $cartService->indexCart();
-        $total_cart_ht = $cartService->totalCart();
-        $total_ttc = $cartService->calculTTC();
+        // définition de variables
+        $full_cart = $this->cartService->indexCart();
+        $total_cart_ht = $this->cartService->totalCart();
+        $total_ttc = $this->cartService->calculTTC();
 
-        // retourner la vue avec les données du panier et le total des prix
+        // retourner la vue avec les données du panier et le total des prix ht et ttc
         return $this->render('cart/index.html.twig', [
             'ligne_panier' => $full_cart,
             'total_cart_ht' => $total_cart_ht,
@@ -36,21 +45,22 @@ class CartController extends AbstractController
     /**
      * @Route("/ajouter/{id}", name="app_cart_add")
      */
-    public function plusOne($id, CartService $cartService)
+    public function plusOne($id)
     {
-        // appel de la fonction add de la classe CartService du service container 
-        $cartService->plusOne($id);             
+        // appel de la fonction plusOne ajouter un produit au panier, contenue dans la classe CartService du service container 
+        $this->cartService->plusOne($id);             
       
         // retourner la vue avec les données du panier 
         return $this->redirectToRoute('app_cart_index');
     }
+    // retirer un article du panier
     /**
      * @Route("/retirer/{id}", name="app_cart_remove")
      */
-    public function minusOne($id, CartService $cartService)
+    public function minusOne($id)
     {
         // appel de la fonction minusOne de la classe CartService du service container 
-        $cartService->minusOne($id);
+        $this->cartService->minusOne($id);
         // retourner la vue avec les données du panier 
         return $this->redirectToRoute('app_cart_index');
     }
@@ -59,22 +69,21 @@ class CartController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="app_cart_delete")
      */
-    public function delete($id, CartService $cartService)
+    public function delete($id)
     {
         // appel de la fonction delete de la classe CartService du service container 
-        $cartService->delete($id);
+        $this->cartService->delete($id);
         // redirige vers la vue
         return $this->redirectToRoute('app_cart_index');
     }
 
-
     // pour vider le panier
     /**
-     * @Route("/panier/vider", name="app_cart_clear")
+     * @Route("/vider", name="app_cart_clear")
      */
-    public function clear(CartService $cartService)
+    public function clear()
     {
-        $cartService->clear();
+        $this->cartService->clear();
         return $this->redirectToRoute('app_cart_index');
     }
 }
