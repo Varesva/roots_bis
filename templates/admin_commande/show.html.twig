@@ -5,27 +5,87 @@
 
 
 {% block body %}
-	<h1>Afficher une Commande</h1>
-	<section class="container">
-		<table class="table">
-			<tbody>
+<h1>
+	Détail de la commande n°
+	{{ commande.id }}
+</h1>
+
+<section class="container">
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>
+					<p class="text-black-50">Date de la commande</p>
+					<p>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</p>
+				</th>
+
+				<th>
+					<p class="text-black-50">Numéro de commande</p>
+					<p>{{ commande.id }}</p>
+				</th>
+
+				<th>
+					<p class="text-black-50">ID du User/client</p>
+					<p>
+						{{ commande.user }}
+						<a href="{{ path('app_admin_commande_user', {'id': commande.user.id}) }}" class="btn btn-sm btn-outline-secondary mx-1">
+							Voir client
+						</a>
+					</p>
+				</th>
+
+				<th>
+					<p class="text-black-50">Total facturation</p>
+					<p>
+						{{ commande.totalFacturation }}
+						€
+					</p>
+				</th>
+			</tr>
+			<tr>
+				<th colspan="4" class="text-center table-warning">
+					<p class=" text-uppercase">
+						Liste des produits de la commande n°{{ commande.id }}
+					</p>
+				</th>
+			</tr>
+			<tr class="text-center table-secondary">
+				<th>Id produit</th>
+				<th>Nom produit</th>
+				<th>Quantité</th>
+				<th>Prix du produit</th>
+			</tr>
+		</thead>
+		<tbody class="text-center">
+			{% for ligne_commande in ligne_commandes %}
 				<tr>
-					<th>Id</th>
-					<td>{{ commande.id }}</td>
+					<th scope="row">
+						<a href="{{ path('app_admin_ligne_commande_show', {'id': ligne_commande.id}) }}">
+							{{ ligne_commande.id }}
+						</a>
+					</th>
+					<td>
+						<p>
+							nomduproduitici
+							{# {{ ligne_commande.produit }} #}
+						</p>
+					</td>
+					<td>
+						<a href="{{ path('app_admin_ligne_commande_show', {'id': ligne_commande.id}) }}">
+							{{ ligne_commande.quantite }}
+
+						</a>
+
+					</td>
+					<td>
+						<a href="{{ path('app_admin_ligne_commande_show', {'id': ligne_commande.id}) }}">
+							{{ ligne_commande.prix }}
+							€
+						</a>
+					</td>
 				</tr>
-				<tr>
-					<th>Date</th>
-					<td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="d-flex justify-content-around">
-			<a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="btn btn-outline-warning">Modifier</a>
-
-			<a href="{{ path('app_admin_commande_index') }}" class="btn btn-outline-dark">Retour à la liste des commandes</a>
-
-			{{ include('admin_commande/_delete_form.html.twig') }}
-		</div>
-	</section>
-
-{% endblock %}
+			</p>
+		</tbody>
+	</td>
+</tr>{% endfor %}</table><div class="d-flex justify-content-around"><a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="btn btn-outline-warning">Modifier</a><a href="{{ path('app_admin_commande_index') }}" class="btn btn-outline-dark">Retour à la liste des commandes</a>{{ include('admin_commande/_delete_form.html.twig') }}</div></section>{% endblock %}

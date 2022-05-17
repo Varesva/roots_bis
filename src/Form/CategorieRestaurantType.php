@@ -15,7 +15,7 @@ class CategorieRestaurantType extends AbstractType
         $builder
             ->add('type_cuisine')
             ->add('image', FileType::class, [
-                'label' => 'Image de la catégorie :',
+                'label' => 'Image de la catégorie',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
                 // make it optional so you don't have to re-upload the PDF file

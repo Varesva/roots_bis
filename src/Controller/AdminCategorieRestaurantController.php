@@ -1,7 +1,6 @@
 <?php
 // dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
-
 // auto-wiring
 use App\Service\FileUploader;
 use App\Entity\CategorieRestaurant;
@@ -15,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 // Controller d'accès privé ADMIN : catégorie Restaurant : type de catégorie de cuisines des livres et restaurants du site (carib ou afrique)
 /**
- * @Route("/admin/restaurant/categorie")
+ * @Route("/admin/categorie-restaurant")
  */
 class AdminCategorieRestaurantController extends AbstractController
 {
@@ -32,14 +31,13 @@ class AdminCategorieRestaurantController extends AbstractController
     }
     // fin constructeur de classe 
 
-    
     /**
      * @Route("/", name="app_admin_categorie_restaurant_index", methods={"GET"})
      */
-    public function index(CategorieRestaurantRepository $categorieRestaurantRepository): Response
+    public function index(): Response
     {
         return $this->render('admin_categorie_restaurant/index.html.twig', [
-            'categorie_restaurants' => $categorieRestaurantRepository->findAll(),
+            'categorie_restaurants' => $this->categorieRestaurantRepository->findAll(),
         ]);
     }
 
@@ -48,13 +46,13 @@ class AdminCategorieRestaurantController extends AbstractController
      */
     public function new(Request $request): Response
     {
-                // instanciation de classe - entité
+        // instanciation de classe - entité
         $categorieRestaurant = new CategorieRestaurant();
-                // récupération du formulaire de création de nouveau produit
+        // récupération du formulaire de création de nouveau produit
         $form = $this->createForm(CategorieRestaurantType::class, $categorieRestaurant);
-                // traitement
+        // traitement
         $form->handleRequest($request);
-// condition si le formulaire soumis est valide
+        // condition si le formulaire soumis est valide
         if ($form->isSubmitted() && $form->isValid()) {
             /** 
              * @var UploadedFile $image 
@@ -122,7 +120,7 @@ class AdminCategorieRestaurantController extends AbstractController
      */
     public function delete(Request $request, CategorieRestaurant $categorieRestaurant): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorieRestaurant->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $categorieRestaurant->getId(), $request->request->get('_token'))) {
             $this->categorieRestaurantRepository->remove($categorieRestaurant);
         }
 

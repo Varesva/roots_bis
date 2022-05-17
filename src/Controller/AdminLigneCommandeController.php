@@ -24,11 +24,11 @@ class AdminLigneCommandeController extends AbstractController
             'ligne_commandes' => $ligneCommandeRepository->findAll(),
         ]);
     }
-    // afficher par commande
+    // afficher les produits de la commande par commande
     /**
-     * @Route("/commandes/{id}", name="app_admin_ligne_commande_index", methods={"GET"})
+     * @Route("/{id}", name="app_admin_grouped_ligne_commande", methods={"GET"})
      */
-    public function ligneGroupCommande(LigneCommandeRepository $ligneCommandeRepository,$id): Response
+    public function ligneGroupedCommande(LigneCommandeRepository $ligneCommandeRepository,$id): Response
     {
         return $this->render('admin_ligne_commande/index.html.twig', [
             'ligne_commandes' => $ligneCommandeRepository->findBy(['commande'=>$id]),

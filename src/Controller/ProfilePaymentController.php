@@ -57,16 +57,24 @@ class ProfilePaymentController extends AbstractController
 
     // afficher la page de confirmation de paiement 
     /**
-     * @Route("/confirmation", name="app_profile_payment_confirm", methods={"GET", "POST"})
+     * @Route("/confirmation", name="app_profile_payment_valid")
+     */
+    public function confirmation(): Response
+    {
+        return $this->render('profile_payment/confirm.html.twig', []);
+    }
+
+    /**
+     * @Route("/confirm", name="app_profile_payment_confirm")
      */
     public function confirm(): Response
     {
-        // récupérer la valeur de la variable avec prix et devise monétaire
-        $paymentIntent = $this->paymentService->paymentIntent();
-        // récuperer le prix total ttc du panier
-        $total_ttc = $this->cartService->calculTTC();
-        // récupérer le panier dans sa totalité (prix, produits, quantité)
-        $cartService = $this->cartService->indexCart();
+        // // récupérer la valeur de la variable avec prix et devise monétaire
+        // $paymentIntent = $this->paymentService->paymentIntent();
+        // // récuperer le prix total ttc du panier
+        // $total_ttc = $this->cartService->calculTTC();
+        // // récupérer le panier dans sa totalité (prix, produits, quantité)
+        // $cartService = $this->cartService->indexCart();
         
         // créer les infos à ajouter dans ligne commande, envoyer la commande en base de données
         $this->paymentService->confirmOrderDB();
@@ -75,6 +83,10 @@ class ProfilePaymentController extends AbstractController
         $this->cartService->clear();
 
         // retourner la vue de confirmation
-        return $this->render('profile_payment/confirm.html.twig', []);
+        return $this->redirectToRoute('app_profile_payment_valid');
+
+        // return $this->render('profile_payment/confirm.html.twig', []);
+
+
     }
 }

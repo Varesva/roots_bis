@@ -1,47 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LegalController!
+{% block title %}Mentions légales - Roots
 {% endblock %}
 
 {% block body %}
-	<h1>
-		Mentions légales
-	</h1>
+	<section class="container">
+		<h1>Mentions légales</h1>
+		<p class=" text-center">(En vigueur au 01/05/2022)</p>
+		<div class="p-4 mt-3 bg-warning bg-opacity-10 rounded-3">
+			<p>
+				Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., il est porté à la connaissance des utilisateurs et visiteurs, ci-après l'
+				<span class=" text-success">"Utilisateur"</span>, du site www.leroots.fr , ci-après le
+				<span class=" text-success">"Site"</span>, les présentes mentions légales.
+				<br>
+				La connexion et la navigation sur le Site par l’Utilisateur implique acceptation intégrale et sans réserve des présentes mentions légales.
+				<br>
+				Ces dernières sont accessibles sur le Site à la rubrique « Mentions légales ».
+			</p>
 
-	<p>
-		TAVARES VAZ JUSTINE
-		<br>
-		Roots
-		<br>
-		5, rue lorem ipsum - 75011 Paris
-		<br>
-		0600000000
-		Numéro RCS: RCS PARIS A 000 000 000
+			<div>
+				<article>
+					<h2>Article 1 - L'éditeur</h2>
+					<p>
+						L’édition et la direction de la publication du Site est assurée par Tavares Vaz Justine, domiciliée 2 rue felix voisin 75011 Paris, dont le numéro de téléphone est 0642671261, et l'adresse e-mail tavaresjustine.pro@gmail.com.
+						<br>
+						ci-après l'<span class=" text-success">"Editeur"</span>.
+					</p>
+				</article>
+				<article>
+					<h2>Article 2 - L'hébergeur</h2>
+
+					<p>L'hébergeur du Site est la société :
+						<ul class="px-5">
+							<li>HOSTINGER, UAB</li>
+							<li>Rue Jonavos 60C, Kaunas 44192 Lituanie</li>
+							<li>Numéro de téléphone : +37064503378</li>
+							<li>Email : domains@hostinger.com</li>
+						</ul>
+					</p>
+				</article>
+				<article>
+					<h2>
+						Article 3 - L'accès au site
+					</h2>
+
+					<p>Le Site est accessible en tout endroit, 7j/7, 24h/24 sauf cas de force majeure, interruption programmée ou non et pouvant découlant d’une nécessité de maintenance.
+						<br>
+						En cas de modification, interruption ou suspension du Site, l'Editeur ne saurait être tenu responsable.
+					</p>
+				</article>
+				<article>
+					<h2>
+						Article 4 - Collecte des données
+					</h2>
+					<p>Le Site assure à l'Utilisateur une collecte et un traitement d'informations personnelles dans le respect de la vie privée conformément à la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés.
+						<br>
+						En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur exerce ce droit :
+						<ul class="px-5">
+							<li style="list-style-type: disc">par mail à l'adresse email :
+								<a href="mailto:contact@roots.fr">contact@roots.fr</a>
+							</li>
+
+							<li style="list-style-type: disc">via un
+								<a href="{{ path('app_contact') }}">formulaire de contact</a>
+								;</li>
+
+							<li style="list-style-type: disc">via son espace personnel ;</li>
+						</ul>
+						<br>
+						Toute utilisation, reproduction, diffusion, commercialisation, modification de toute ou partie du Site, sans autorisation de l’Editeur est prohibée et pourra entraînée des actions et poursuites judiciaires telles que notamment prévues par le Code de la propriété intellectuelle et le Code civil.
+
+					</p>
+				</article>
+
+			</div>
+			<small class=" text-black-50">Rédigé sur
+				<a href="http://legalplace.fr">legalplace.fr</a>
+			</small>
+
+		</div>
 
 
-	</p>
-
-<section>
-    <article>
-        <h2>Hébergement</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorum perspiciatis voluptatem doloribus et debitis sint doloremque excepturi rerum aliquid est numquam porro voluptatum, dicta omnis, autem, illum vero quisquam.</p>
-    </article>
-    <article>
-        <h2>Cookies</h2>
-        <p>Temporibus porro id nulla alias omnis ad provident fuga, architecto iure? Officiis aperiam nesciunt sequi distinctio impedit asperiores velit quam est, saepe consequatur doloribus suscipit beatae autem. Nesciunt, rerum dolore.</p>
-    </article>
-    <article>
-        <h2>
-        <p>Aperiam quis repudiandae ipsam laboriosam eligendi dolorem illo omnis dicta soluta blanditiis temporibus corporis, sed inventore optio laudantium sit, veritatis minima repellat! Distinctio, nemo voluptatem quaerat ab porro eveniet unde!</p>
-    </article>
-    <article>
-        <h2>
-        <p>Deleniti totam qui mollitia. At culpa quo dicta magnam, explicabo fuga reprehenderit tempora ullam minima minus? Adipisci, repellendus eum. Possimus odio asperiores vero! Maiores consequatur natus optio repellendus similique aut.</p>
-    </article>
-    <article>
-        <h2>
-        <p>Repellendus necessitatibus id suscipit incidunt alias, veniam rem, ipsum natus atque deleniti fuga facere commodi ex mollitia! Sed distinctio totam vero. Soluta atque laudantium, doloribus sunt repellendus ad tempora rem!</p>
-    </article>
-</section>
-
+	</section>
 {% endblock %}

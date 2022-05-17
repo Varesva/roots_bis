@@ -6,6 +6,8 @@ use App\Entity\Commande;
 use App\Entity\User;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\LigneCommandeRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,22 +20,49 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AdminCommandeController extends AbstractController
 {
-    
+    // CONSTRUCTEUR 
+    private $commandeRepository;
+
+    public function __construct(CommandeRepository $commandeRepository)
+    {
+        $this->commandeRepository = $commandeRepository;
+    }
+
+    // afficher les commandes dans l'ordre décroissant
     /**
      * @Route("/", name="app_admin_commande_index", methods={"GET"})
      */
-    public function index(CommandeRepository $commandeRepository, Security $security): Response
+    public function indexDesc(): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+
         return $this->render('admin_commande/index.html.twig', [
-            'commandes' => $commandeRepository->findBy([
-                // fonctionne bien meme avec l'erreur
-                'user' => $security->getUser()->getId(),
-            ]),
+            // 'commandes' => $commandeRepository->findAll(),
+            'commandes' => $this->commandeRepository->findByAllCommande($this->commandeRepository),
+
+            // 'users' => $userRepository->findAll(),
+
+            //         // 'user' => $user->getId(),
+            //         // fonctionne bien meme avec l'erreur
+            //         // 'user' => $security->getUser()->getId(),
+
+            //         'user' => $security->getUser(),
+
         ]);
     }
+    // afficher les commandes dans l'ordre croissant
+    /**
+     * @Route("/", name="app_admin_commande_index_asc", methods={"GET"})
+     */
+    public function indexAsc(): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        return $this->render('admin_commande/index.html.twig', [
+            'commandes' => $this->commandeRepository->findAll(),
+        ]);
+           
+    }
     /**
      * @Route("/new", name="app_admin_commande_new", methods={"GET", "POST"})
      */
@@ -57,12 +86,31 @@ class AdminCommandeController extends AbstractController
     /**
      * @Route("/{id}", name="app_admin_commande_show", methods={"GET"})
      */
-    public function show(Commande $commande): Response
+    public function show(Commande $commande, LigneCommandeRepository $ligneCommandeRepository, $id): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('admin_commande/show.html.twig', [
             'commande' => $commande,
+            'ligne_commandes' => $ligneCommandeRepository->findBy(['commande' => $id]),
+
         ]);
     }
+
+    // afficher le user lié à la commande
+    /**
+     * @Route("/client/{id}", name="app_admin_commande_user", methods={"GET"})
+     */
+    public function showUserCommande($id, UserRepository $userRepository, User $user): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        return $this->render('admin_user/show.html.twig', [
+            // 'users' => $userRepository->findOneBy(['commandes' => $id]),
+            'user' => $user,
+        ]);
+    }
+
 
     /**
      * @Route("/{id}/edit", name="app_admin_commande_edit", methods={"GET", "POST"})
@@ -88,7 +136,7 @@ class AdminCommandeController extends AbstractController
      */
     public function delete(Request $request, Commande $commande, CommandeRepository $commandeRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $commande->getId(), $request->request->get('_token'))) {
             $commandeRepository->remove($commande);
         }
 

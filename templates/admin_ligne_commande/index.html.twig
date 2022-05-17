@@ -26,11 +26,11 @@
 						<td>{{ ligne_commande.id }}</td>
 						<td>{{ ligne_commande.quantite }}</td>
 						<td>{{ ligne_commande.prix }}</td>
-						<td>
+						{# <td>
 							<a href="{{ path('app_admin_ligne_commande_index', {'id': ligne_commande.id}) }}">
-								{# {{ ligne_commande.commande }} #}
+								{{ ligne_commande.commande }}
 							</a>
-						</td>
+						</td> #}
 
 						<td>
 							<a href="{{ path('app_admin_ligne_commande_show', {'id': ligne_commande.id}) }}" class="btn btn-outline-info">Afficher</a>

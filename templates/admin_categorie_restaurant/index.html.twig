@@ -25,27 +25,29 @@
 						<td>{{ categorie_restaurant.id }}</td>
 						<td>{{ categorie_restaurant.typeCuisine }}</td>
 						<td>
-							<img src="{{asset('upload/' ~ categorie_restaurant.image)}}" width="150" height="100">
+							<img src="{{asset('upload/' ~ categorie_restaurant.image)}}" class=" w-50 rounded-3">
 						</td>
 						<td>
 
 							<a href="{{ path('app_admin_categorie_restaurant_show', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-info">Afficher</a>
 
-							<a href="{{ path('app_admin_categorie_restaurant_edit', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-warning">Modifier</a>
+							<a href="{{ path('app_admin_categorie_restaurant_edit', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-warning mt-3">Modifier</a>
 						</td>
-					
-				
-				<td>
-					<a href="{{ path('app_admin_restaurant_categorie', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-secondary">Les restaurants</a>
-				</td>
-		</tr>
-			
 
 
-	{% else %}
-		<tr>
-			<td colspan="3">Pas de résultat</td>
+						<td>
+							<a href="{{ path('app_admin_restaurant_categorie', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-secondary">Les restaurants</a>
+						</td>
+					</tr>
 
-		</tr>
-	{% endfor %}
-</tbody></table><a href="{{ path('app_admin_categorie_restaurant_new') }}" class="btn btn-outline-dark">Créer une nouvelle catégorie</a>{% endblock %}
+
+				{% else %}
+					<tr>
+						<td colspan="3">Pas de résultat</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="{{ path('app_admin_categorie_restaurant_new') }}" class="btn btn-outline-dark">Créer une nouvelle catégorie</a>
+	{% endblock %}

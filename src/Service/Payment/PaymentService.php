@@ -3,17 +3,18 @@
 namespace App\Service\Payment;
 
 // auto-wiring
+use DateTime;
+use DateTimeZone;
 use Stripe\Stripe;
 use App\Entity\Commande;
-use App\Entity\LigneCommande;
 use Stripe\PaymentIntent;
+use App\Entity\LigneCommande;
 use App\Service\Cart\CartService;
 use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
 use App\Repository\LigneCommandeRepository;
-use DateTime;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PaymentService
@@ -87,7 +88,10 @@ class PaymentService
 
         // définir la date de la commande avec la classe PHP DateTime
         $order_date = new DateTime('now');
+        // format de la date
         $order_date->format('COOKIE');
+        // fuseau horaire de la date
+        $order_date->setTimeZone(new DateTimeZone('Europe/Paris'));
         // recup et insérer la date actualisée dans l'objet
         $confirmCommande->setDate($order_date);
 

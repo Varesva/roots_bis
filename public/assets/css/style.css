@@ -29,6 +29,10 @@ button:focus {
 section {
     margin-bottom: 2rem;
 }
+
+article {
+    margin-top: 1.75rem;
+}
 /* 
 .btn {
     background-color: #2d9b48;

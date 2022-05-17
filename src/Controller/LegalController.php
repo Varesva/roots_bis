@@ -10,12 +10,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class LegalController extends AbstractController
 {
     /**
-     * @Route("/legal", name="app_legal")
+     * @Route("/mentions-legales", name="app_legal")
      */
-    public function index(): Response
+    public function mentions(): Response
     {
-        return $this->render('legal/index.html.twig', [
-            'controller_name' => 'LegalController',
-        ]);
+        return $this->render('legal/mentions.html.twig', []);
+    }
+    /**
+     * @Route("/conditions-generales-de-vente", name="app_cgv")
+     */
+    public function cgv(): Response
+    {
+        return $this->render('legal/cgv.html.twig', []);
     }
 }

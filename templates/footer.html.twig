@@ -24,7 +24,7 @@
 	<!-- menu du footer -->
 	<div class="footer_links">
 		<ul>
-			<li><a href={{ path('app_contact')}}>Contact</a></li>
+			<li><a href="{{ path('app_contact') }}">Contact</a></li>
 			<li><a href="">Plan du site</a></li>
 			<li>
 				<a href="{{path('app_profile_nutrition_index')}}">Régimes alimentaires</a>
@@ -37,10 +37,16 @@
 
 	<div class="footer_links">
 		<ul>
-			<li><a href="">Conditions générales de vente</a></li>
+			<li>
+				<a href="{{path('app_cgv"')}}">Conditions générales de vente</a>
+			</li>
+
 			<li><a href="">Confidentialité et cookies</a></li>
 			<li><a href="">Conditions d'utilisation</a></li>
-			<li><a href="">Mentions légales</a></li>
+			<li>
+				<a href="{{path('app_legal')}}">Mentions légales</a>
+			</li>
+
 		</ul>
 	</div>
 
