@@ -9,31 +9,31 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ user.id }}</td>
+                <td>{{ app.user.id }}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ user.email }}</td>
+                <td>{{ app.user.email }}</td>
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ app.user.roles ? app.user.roles|json_encode : '' }}</td>
             </tr>
             <tr>
                 <th>Password</th>
-                <td>{{ user.password }}</td>
+                <td>{{ app.user.password }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
-                <td>{{ user.nom }}</td>
+                <td>{{ app.user.nom }}</td>
             </tr>
             <tr>
                 <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
+                <td>{{ app.user.prenom }}</td>
             </tr>
             <tr>
                 <th>Telephone</th>
-                <td>{{ user.telephone }}</td>
+                <td>{{ app.user.telephone }}</td>
             </tr>
         </tbody>
     </table>

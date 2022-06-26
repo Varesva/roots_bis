@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Erreur 401
+{% endblock %}
+
+{% block body %}
+
+	<h1>Erreur 401</h1>
+
+	<section class="container bg-light rounded-3 p-3">
+
+		<p class="h2">
+			Accès refusé
+		</p>
+
+		<div class="text-center mb-5">
+
+			<img class="cart_img" src="{{ asset('img/401.png') }}" alt="Erreur 401, accès refusé">
+
+			<p class="h4">
+				Oups !
+				<br>
+				Nous sommes désolés !
+			</p>
+
+			<div class="d-flex justify-content-center flex-wrap my-5">
+				<a href="{{path('app_produit_index')}}" class="btn btn-outline-dark m-1">
+					Visiter la boutique
+				</a>
+				<a role="button" href="{{path('app_home') }}" class="btn btn-lg btn-warning m-1">
+					Retour à l'accueil
+				</a>
+				<a href="{{path('app_restaurant_index')}}" class="btn btn-outline-dark m-1">
+					Voir les restaurants
+				</a>
+			</div>
+
+		</div>
+
+	</section>
+
+
+{% endblock %}

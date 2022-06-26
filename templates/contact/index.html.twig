@@ -1,55 +1,93 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Nous contacter - Roots 
-
+	Nous contacter
 {% endblock %}
 
 {% block body %}
 
+	<h1>
+		Nous contacter
+	</h1>
 	<section class="page_contact_container">
-		<h1 class="position_center">
-Nous contacter
-		</h1>
 
-		{# {% if is_granted('ROLE_USER')==false %} #}
-			{{ form_start(contact_form) }}
-			<div class="row g-3">
-				<small class="info_detail">
-					*champs obligatoires
+		{{ form_start(contactForm, {
+			'attr' : { 'id' : 'recaptcha-form' }
+		} ) }}
+
+		<div class="row g-3 rounded-3">
+			<p>
+				<small class=" justify-content-end d-flex opacity-75">
+					*Champs obligatoires
 				</small>
-				<div class="col-md-6">
-					<label for="prenom" class="form-label">
-						Nom complet*
-					</label>
-					{{ form_widget(contact_form.identity)}}
-				</div>
+			</p>
 
-				<div class="col-md-6">
-					<label for="email" class="form-label">
-						Email*
-					</label>
-					{{ form_widget(contact_form.email)}}
-				</div>
+			{% if app.user %}
 
-				<div class="col-12">
-					<label for="message" class="form-label">
-						Message*
-					</label>
-					{{ form_widget(contact_form.message)}}
-				</div>
+				{{ form_row(contactForm.identity, {
+					'label' : 'Nom complet*',
+				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				'value' : app.user.prenom ~' '~ app.user.nom|upper,
+				} ) }}
 
-				<div class="col-12">
-					{{ form_widget(contact_form.envoyer)}}
-				</div>
-			</div>
-			{{ form_end(contact_form) }}
-			{# {% else %} #}
+			{% else %}
 
-		{# {% endif %} #}
+				{{ form_row(contactForm.identity, { 
+				'label' : 'Nom complet*', 
+				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				} ) }}
 
+			{% endif %}
 
+			{% if app.user %}
+				{{ form_row(contactForm.email, { 
+				'label' : 'Email*', 
+				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				'value' : app.user.email,
+							} ) }}
+			{% else %}
+
+				{{ form_row(contactForm.email, { 
+				'label' : 'Email*', 
+				'row_attr' : {'class' : 'col-md-6 mb-3'},
+			} ) }}
+
+			{% endif %}
+
+			{{ form_row(contactForm.subject, {
+				'label' : 'Objet*',
+				'row_attr' : {'class' : 'col-12 mb-3'},
+			} ) }}
+
+			{{ form_row(contactForm.message, {
+			'label' : 'Message*',
+				'row_attr' : {'class' : 'col-12 mb-3'},
+			} ) }}
+
+			{{ form_row(contactForm.send) }}
+
+			{{ form_end(contactForm) }}
+		</div>
+
+		<div class="text-center mt-3">
+			<ul class="mb-3">
+				<li>
+					<a href="tel:+33600000000">
+						<i class="fa-solid fa-phone mx-1"></i>
+						06.00.00.00.00
+					</a>
+				</li>
+				<li>
+					<a href="https://goo.gl/maps/iqavF1LSDoXUHwCbA">
+						<i class="fa-solid fa-house mx-1"></i>Paris 11e, France
+					</a>
+				</li>
+			</ul>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20999.219762729637!2d2.38154615!3d48.86007015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66df6d6fb2ac5%3A0x1c0b82c6e1d851a0!2s75011%20Paris!5e0!3m2!1sfr!2sfr!4v1655212478504!5m2!1sfr!2sfr" width="300" height="200" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		</div>
 	</section>
-
+<script>
+	onload();
+</script>
 
 {% endblock %}

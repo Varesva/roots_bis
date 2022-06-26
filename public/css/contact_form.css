@@ -1,0 +1,54 @@
+/* formulaire de contact */
+.page_contact_container {
+	margin-bottom: 5rem;
+	  padding: 10px;
+}
+
+/* Google MAPS PLAN */
+.page_contact_container div > iframe {
+	border-radius: 15px;
+	border: 1px solid #e62121;
+}
+/* PAGE CONTACT ET RECOMMANDER */
+.page_contact_container> form .row {
+  background-color:rgb(255, 221, 51, 0.65);
+  border-radius: 15px;
+  padding: 10px;
+  margin: auto;
+}
+
+.form-label {
+	font-size: 1.15rem;
+	font-weight: 600;
+}
+
+/* responsive format petit */
+@media screen and (min-width: 425px) {
+	.page_contact_container div > iframe {
+		width: 80%;
+		height: 250px;
+	}
+}
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 768px) {
+	.page_contact_container .row {
+		max-width: 55rem;
+	}
+	.page_contact_container div > iframe {
+		width: 500px;
+		height: 250px;
+	}
+
+	.page_contact_container {
+		max-width: 80%;
+		border-radius: 15px;
+	}
+}
+
+.contact_copy {
+	background-color: #f3eed9;
+	border-radius: 5px;
+	padding: 20px;
+	max-width: 70rem;
+	margin: auto;
+}

@@ -1,0 +1,122 @@
+.favoris_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.empty_fav_container {
+	width: 100%;
+	padding: 1rem;
+	margin-bottom: 20%;
+}
+.favoris {
+	background-image: url("../img/bgfav.jpg");
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	width: 100%;
+	margin: 1rem auto;
+}
+.favoris_container .btn {
+	margin: 0.5rem;
+}
+
+/* bouton ajouter aux favoris */
+
+#addFav .fa-star {
+	color: darkgrey;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+#addFav .fa-star .active {
+	color: gold;
+}
+#addFav .fa-star :hover {
+	animation: fa-star-hover 0.3s infinite alternate;
+}
+#addFav .fa-star .is_animating {
+	animation: fa-star-anime 0.3s;
+}
+
+@keyframes fa-star-anime {
+	0% {
+		opacity: 1;
+		font-size: ms(0);
+		-webkit-text-stroke-color: transparent;
+	}
+	25% {
+		opacity: 0.6;
+		color: darkgrey;
+		font-size: ms(-2);
+		-webkit-text-stroke-width: 1px;
+		-webkit-text-stroke-color: gold;
+	}
+	75% {
+		opacity: 0.6;
+		color: darkgrey;
+		font-size: ms(3);
+		-webkit-text-stroke-width: 1px;
+		-webkit-text-stroke-color: gold;
+	}
+	100% {
+		opacity: 1;
+		font-size: ms(2);
+		-webkit-text-stroke-color: transparent;
+	}
+}
+@keyframes fa-star {
+	from {
+		font-size: ms(3);
+	}
+	80% {
+		font-size: ms(2);
+	}
+}
+
+/* ----------------------- cart - profile panier */
+.cart_img {
+	width: 85%;
+}
+
+.card i.fa-solid.fa-circle-minus,
+.card i.fa-solid.fa-circle-plus {
+	color: #2d9b48;
+}
+
+body > main > section > div:nth-child(6) > div {
+	width: 75%;
+}
+
+/* paiement - checkout  */
+/* #payment section {
+	width: 100%;
+} */
+
+#payment div.bg-light.p-1.rounded-3,
+#payment div.bg-light.p-2.rounded-3 {
+	margin: 3rem 0;
+}
+
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 768px) {
+	.empty_fav_container {
+		width: 55%;
+		margin: 1rem auto;
+		padding: 1rem;
+		border-radius: 10px;
+	}
+	.favoris_container {
+		padding: 1rem;
+	}
+	.favoris {
+		margin-bottom: 0;
+		width: 95%;
+		margin: 1rem auto;
+		border-radius: 10px;
+	}
+	.cart_img {
+		width: 45%;
+	}
+	body > main > section > div:nth-child(6) > div {
+		width: 40%;
+	}
+}

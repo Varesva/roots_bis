@@ -1,12 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}
+	Réinitialiser mon mot de passe
+{% endblock %}
+
+{% block metadesc %}
+	Procéder dès à présent à la réinitialisation de votre mot de passe pour accéder à votre compte sur Roots.
+{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
+	<h1>
+		Réinitialiser mon mot de passe
+	</h1>
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+	<section class="page_contact_container p-4 bg-light">
+
+		<p class="my-3">
+			À l'aide de votre email et de ce nouveau mot de passe, vous pourrez vous reconnecter à votre compte Roots à tout moment.
+		</p>
+		<p class="my-5">
+			Entrez votre nouveau mot de passe ci-dessous :
+		</p>
+
+		{{ form_start(resetForm, {
+			'attr' : { 'class' : 'w-75 mx-auto' }
+		} ) }}
+
+		{{ form_row(resetForm.plainPassword) }}
+
+		<button class="btn btn-success my-2">Enregistrer</button>
+
+		{{ form_end(resetForm) }}
+
+	</section>
+
 {% endblock %}

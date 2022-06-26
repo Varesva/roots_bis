@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block body %}
-	{# {% for restaurant in restaurants %} #}
 	<h1>En savoir plus sur :
 		<br>
 		{{ restaurant.nom }}
@@ -14,9 +13,11 @@
 	</h2>
 
 	<section
-		class="container">
+		class="container" id="restaurant_show">
+
 		{# carousel de photos #}
 		<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+		
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>

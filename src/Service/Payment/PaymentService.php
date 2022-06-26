@@ -6,14 +6,18 @@ namespace App\Service\Payment;
 use DateTime;
 use DateTimeZone;
 use Stripe\Stripe;
+use App\Entity\User;
 use App\Entity\Commande;
 use Stripe\PaymentIntent;
 use App\Entity\LigneCommande;
+use App\Form\UserAddressFormType;
 use App\Service\Cart\CartService;
 use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
 use App\Repository\LigneCommandeRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -69,6 +73,8 @@ class PaymentService
         // retourner la valeur de $paymentIntent; au ctrl
         return $paymentIntent;
     }
+
+    
 
     // envoi en base de données 
     public function confirmOrderDB()

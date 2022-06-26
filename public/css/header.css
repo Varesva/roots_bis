@@ -1,0 +1,166 @@
+/* header navigation - modif de class bootstrap */
+header .navbar {
+	color: #e62121;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+header button {
+	background-color: inherit;
+	border: inherit;
+	color: inherit;
+	font-weight: inherit;
+}
+/* hover nav icones du menu principal */
+header a:hover,
+header button:hover,
+.dropdown-item:hover,
+button > i.fa-solid.fa-bars:hover,
+.navbar-light .navbar-nav .nav-link:hover {
+	color: #247c39;
+}
+
+ul.header_nav_list_menu > li.nav-item:hover {
+	background-color: #fff9c1;
+	padding: 5px;
+	border-radius: 20px;
+}
+
+.dropdown-item:hover {
+	font-weight: 600;
+}
+
+/* enlever la couleur bleue du lien */
+.dropdown-item:active {
+	background-color: inherit;
+}
+
+/* CHEVRON TOGGLE DROPDOWN */
+.dropdown-toggle::after {
+	margin-left: 0;
+	color: inherit;
+}
+
+/* ICON USER INITIALS */
+:root {
+	--user-avatar-size: inherit;
+}
+.user_avatar {
+	background-color: #f9d423;
+	background-image: radial-gradient(
+		circle,
+		rgb(249, 212, 35) 20%,
+		#ff4e50 100%
+	);
+	border-radius: 50%;
+	color: black;
+	height: var(--user-avatar-size);
+	width: var(--user-avatar-size);
+	text-align: center;
+	display: inline-block;
+	transition: background-color 0.4s;
+	padding: 2px;
+	border: 1px solid #dc1919;
+}
+.user_avatar:hover {
+	background-color: #468847;
+	background-image: radial-gradient(
+		circle,
+		rgba(36, 124, 56, 0.758) 0%,
+		#f9d423 100%
+	);
+	color: white;
+	border: 1px solid #2d9b48;
+}
+.user_initials {
+	font-style: normal;
+	margin: 5px;
+	font-size: calc(var(--user-avatar-size) / 2);
+	line-height: 1;
+	font-weight: 700;
+	font-family: sans-serif;
+	top: calc(var(--user-avatar-size) / 4);
+}
+
+/* responsive format petit */
+.header_nav_list_menu {
+	display: none;
+}
+
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 830px) {
+	/* menu de navigation principale */
+	.header_nav_list_menu {
+		width: 60%;
+		font-weight: 700;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+	}
+	header .navbar {
+		padding: 0 1rem 0;
+	}
+}
+/* icones menu de nav pricipale */
+.header_nav_menu_icon {
+	display: flex;
+	flex-direction: row;
+}
+.header_nav_menu_icon > a,
+.header_nav_menu_icon > button {
+	padding: 0 0.6rem 0;
+}
+
+/* espacement icones-texte dropdown  */
+.dropdown-item > i {
+	width: 18px;
+}
+
+/* a > .nav-link i {
+	 width: 25px;
+ } */
+
+.dropdown-menu[data-bs-popper] {
+	left: -14px;
+}
+
+/* dans le menu burger : offcanvas */
+button i.fa-solid.fa-bars {
+	font-size: 1.8rem;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.dropdown-item,
+.dropdown-menu {
+	color: inherit;
+	font-weight: 500;
+}
+/* taille police offcanvas menu */
+.navbar-nav {
+	font-size: 1.1rem;
+}
+.dropdown-menu {
+	border-radius: 10px;
+	border: 1px solid #2d9b48;
+	min-width: fit-content;
+}
+/* AUTO DROPDOWN MENU on hover */
+/* .dropdown:hover .dropdown-menu {
+	display: block;
+} */
+
+.offcanvas-header {
+	background-color: rgb(255, 221, 51, 0.7);
+	height: 5rem;
+}
+.offcanvas-body {
+	padding: 1rem 2rem;
+}
+#offcanvasRightLabel {
+	line-height: 0;
+	margin-left: 1rem;
+	color: #247c39;
+}

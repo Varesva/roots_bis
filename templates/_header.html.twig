@@ -1,0 +1,443 @@
+<header>
+	{# NAVIGATION #}
+	<nav
+		class="navbar navbar-light">
+		{# LOGO #}
+		<div class="logo_container">
+			<a class="logo_container" href="{{path('app_home')}}">
+				<img src="{{ asset('img/logo_roots.png') }}" alt="Logo du site Roots">
+			</a>
+		</div>
+		{# MAIN NAV MENU #}
+		<ul
+			class="header_nav_list_menu">
+			{# DROPDOWN : restaurants  #}
+			<li
+				class="nav-item dropdown">
+				{# MAIN NAV ITEM #}
+				<button id="navbarScrollingDropdown" data-bs-toggle="dropdown" type="button" aria-expanded="false">
+
+					Restaurants
+					<i class="fa-solid fa-xs fa-angle-down"></i>
+				</button>
+				{# DROPDOWN ITEMS #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					<li>
+						<a class="dropdown-item" href="{{path('app_restaurant_afrique', {'id': 1})}}">
+							Cuisines africaines
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_restaurant_carib', {'id': 2})}}">
+							Cuisines caribéennes
+						</a>
+					</li>
+					<hr class="dropdown-divider">
+					<li>
+						<a class="dropdown-item" href="{{path('app_recommander')}}">
+							Recommander un restaurant
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_restaurant_index')}}">
+							Tous les restaurants
+						</a>
+					</li>
+				</ul>
+			</li>
+			{# DROPDOWN : Livres de recettes #}
+			<li
+				class="nav-item dropdown">
+				{# MAIN NAV ITEM #}
+				<button id="navbarScrollingDropdown" data-bs-toggle="dropdown" type="button" aria-expanded="false">
+					Livres de recettes
+					<i class="fa-solid fa-xs fa-angle-down"></i>
+				</button>
+				{# DROPDOWN ITEMS #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					<li>
+						<a class="dropdown-item" href="{{path('app_categorie_restaurant_index') }}">
+							Par types de cuisines
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_nutrition_index')}}">
+							Par types d'alimentations
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_produit_livre', {'id': 1} ) }}">
+							Tous les livres de recettes
+						</a>
+					</li>
+					<hr class="dropdown-divider">
+					<li>
+						<a class="dropdown-item" href="{{path('app_produit_giftcard', {'id': 2})}}">
+							Cartes cadeaux
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="{{path('app_produit_index')}}">
+							Tous les produits
+						</a>
+					</li>
+				</ul>
+			</li>
+			{# DROPDOWN: Types d'alimentation #}
+			<li
+				class="nav-item dropdown">
+				{# MAIN NAV ITEM #}
+				<button id="navbarScrollingDropdown" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+
+					Types d'alimentation
+					<i class="fa-solid fa-xs fa-angle-down"></i>
+				</button>
+				{# DROPDOWN ITEMS #}
+				<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+					<li>
+						<a class="dropdown-item" href="#">
+							Omnivore et flexitarien
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="#">
+							Végétarien
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">
+							Sans gluten
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">
+							Pescétarien
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">
+							Végétalien
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/caraibes">
+							Cétogène
+						</a>
+					</li>
+					<hr class="dropdown-divider">
+					<li>
+						<a class="dropdown-item" href="{{path('app_nutrition_index')}}">
+							Tous les régimes alimentaires
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		{# MAIN NAV ICON #}
+		<div
+			class="header_nav_menu_icon">
+			{# USER PROFILE #}
+			<div
+				class="dropdown">
+				{# MAIN NAV ITEM #}
+				<button data-bs-toggle="dropdown" class="dropdown-toggle" aria-expanded="false" type="button">
+					{% if is_granted('ROLE_USER') == false %}
+						<i class="fa-solid fa-xl fa-circle-user"></i>
+					{% else %}
+						<i class="user_avatar shadow">
+
+							<span class="user_initials">
+								{{ app.user.prenom | first | capitalize  ~ " " ~ app.user.nom | first | capitalize }}
+							</span>
+						</i>
+
+					{% endif %}
+				</button>
+				{# DROPDOWN ITEMS #}
+				<ul class="dropdown-menu">
+					{% if is_granted('ROLE_ADMIN') and is_granted('ROLE_USER')  %}
+						<li>
+							<a class="dropdown-item bg-danger bg-opacity-25 text-black fw-bold" href="{{ path('app_admin_dashboard')}}">
+								<i class="fa-solid fa-lock-open "></i>
+								ADMIN
+							</a>
+						</li>
+					{% endif %}
+					{% if is_granted('ROLE_USER')==false %}
+						<li>
+							<a class="dropdown-item" href="{{ path('app_register')}}">
+								<i class="fa-solid fa-sm fa-user-plus "></i>
+								Inscription
+							</a>
+						</li>
+						<hr class="dropdown-divider">
+						<li>
+							<a class="dropdown-item" href="{{ path('app_login')}}">
+								<i class="fa-solid fa-sm fa-arrow-right-to-bracket "></i>
+								Connexion
+							</a>
+						</li>
+
+					{% else %}
+						<li>
+							<a class="dropdown-item" href="{{path('app_profile_user_index', {'id': app.user.id})}}">
+								<i class="fa-solid fa-sm fa-house-user "></i>
+								Profil
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-sm fa-list-check "></i>
+								Commandes
+							</a>
+						</li>
+						<hr class="dropdown-divider">
+						<li>
+							<a class="dropdown-item" href="{{ path('app_contact')}}">
+								<i class="fa-solid fa-sm fa-comment-dots"></i>
+								Contact
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_logout') }}">
+								<i class="fa-solid fa-sm fa-arrow-right-from-bracket"></i>
+								Déconnexion
+							</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+			{# ---- END USER ICON DROPDOWN #}
+			{% if is_granted('ROLE_USER') %}
+				{# FAVORITES ICON #}
+				<a href="{{path('app_profile_favoris_index')}}">
+					<i class="fa-solid fa-xl fa-star"></i>
+				</a>
+			{% endif %}
+
+			{# ICON CART SHOP #}
+			<a href="{{ path('app_cart_index')}}">
+				<i class="fa-solid fa-xl fa-cart-shopping"></i>
+			</a>
+
+			{# ICON MENU BURGER #}
+			<button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+		</div>
+		{# OFFCANVAS MENU BURGER #}
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+			<div class="offcanvas-header pt-4">
+				<p id="offcanvasRightLabel" class="h4 font-weight-bold">
+					Menu général
+				</p>
+				<button type="button" class="btn-close text-reset rounded-circle border border-dark border-1" data-bs-dismiss="offcanvas" type="button" aria-label="Fermer le menu"></button>
+			</div>
+			<div
+				class="offcanvas-body">
+				{# SEARCH FORM #}
+				<form class="d-flex">
+					<div class="input-group mb-3">
+						<input class="form-control" type="search" placeholder="Que recherchez-vous ?" aria-label="Recherche" aria-describedby="basic-addon1">
+						<button type="submit" class="btn btn-success" id="basic-addon1">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+						{# ajouter ce champ de recherche en js #}
+						{# <input class="form-control" type="search" placeholder="Que recherchez-vous ?" aria-label="Recherche" aria-describedby="basic-addon1"> #}
+					</div>
+				</form>
+				{# OFFCANVAS MAIN MENU #}
+				<ul
+					class="navbar-nav justify-content-end flex-grow-1 pe-3">
+					{# HOMEPAGE #}
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_home') }}">
+							<i class="fa-solid fa-sm fa-house"></i>
+							Accueil
+						</a>
+					</li>
+					{% if is_granted('ROLE_USER') == false %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_register') }}">
+								<i class="fa-solid fa-sm fa-user-plus "></i>
+								Inscription
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_login') }}">
+								<i class="fa-solid fa-sm fa-arrow-right-to-bracket "></i>
+								Connexion
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_forgot_password_request')}}">
+								<i class="fa-solid fa-sm fa-question"></i>
+								Mot de passe oublié
+							</a>
+						</li>
+
+					{% endif %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_about')}}">
+							<i class="fa-solid fa-sm fa-circle-info"></i>
+							A propos
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_contact') }}">
+							<i class="fa-solid fa-sm fa-comment-dots"></i>
+							Contact
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_recommander')}}">
+							<i class="fa-solid fa-sm fa-earth-africa"></i>
+							Recommander un restaurant
+						</a>
+					</li>
+					<hr class="dropdown-divider">
+					<li
+						class="nav-item dropdown">
+						{# MAIN NAV ITEM #}
+						<button id="navbarScrollingDropdown" class="nav-link" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+							Les restaurants
+							<i class="fa-solid fa-xs fa-angle-down"></i>
+						</button>
+						{# DROPDOWN ITEMS #}
+						<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+							<li>
+								{# faire controleurs embarqués : https://symfony.com/doc/5.4/templates.html#embedding-controllers  #}
+
+								<a class="dropdown-item" href="{{path('app_restaurant_afrique', {'id': 1})}}">
+									Cuisines africaines
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_restaurant_carib', {'id': 2})}}">
+									Cuisines caribéennes
+								</a>
+							</li>
+							<hr class="dropdown-divider">
+							<li>
+								<a class="dropdown-item" href="{{path('app_recommander')}}">
+									Recommander un restaurant
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_restaurant_index')}}">
+									Tous les restaurants
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li
+						class="nav-item dropdown">
+						{# MAIN NAV ITEM #}
+						<button id="navbarScrollingDropdown" class="nav-link" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+							Livres de recettes
+							<i class="fa-solid fa-xs fa-angle-down"></i>
+						</button>
+						{# DROPDOWN ITEMS #}
+						<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+							<li>
+								<a class="dropdown-item" href="{{path('app_categorie_restaurant_index') }}">
+									Par types de cuisines
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_nutrition_index')}}">
+									Par types d'alimentations
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_produit_livre', {'id': 1} ) }}">
+									Tous les livres de recettes
+								</a>
+							</li>
+							<hr class="dropdown-divider">
+							<li>
+								<a class="dropdown-item" href="{{path('app_produit_giftcard', {'id': 2})}}">
+									Cartes cadeaux
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_produit_index')}}">
+									Tous les produits
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li
+						class="nav-item dropdown">
+						{# MAIN NAV ITEM #}
+						<button id="navbarScrollingDropdown" class="nav-link" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+							Types d'alimentation
+							<i class="fa-solid fa-xs fa-angle-down"></i>
+						</button>
+						{# DROPDOWN ITEMS #}
+						<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+							<li>
+								<a class="dropdown-item" href="#">
+									Omnivore et flexitarien
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Végétarien
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/caraibes">
+									Sans gluten
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/caraibes">
+									Pescétarien
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/caraibes">
+									Végétalien
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/caraibes">
+									Cétogène
+								</a>
+							</li>
+							<hr class="dropdown-divider">
+							<li>
+								<a class="dropdown-item" href="{{path('app_nutrition_index')}}">
+									Tous les régimes alimentaires
+								</a>
+							</li>
+						</ul>
+					</li>
+					<hr class="dropdown-divider">
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_legal')}}">
+							Confidentialité et cookies
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_cgv')}}">
+							CGV
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_cgv')}}">
+							CGU
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_legal')}}">
+							Mentions légales
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>

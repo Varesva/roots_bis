@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	{# {% block stylesheets %} #}
+
+	<style>
+
+		h1 {
+			color: #e62121;
+		}
+
+		footer {
+			background-color: #fff9c1;
+			color: #000000;
+			margin-top: 7rem;
+		}
+	</style>
+	{# {% endblock %} #}
+	<body>
+		<h1>
+			Recommandation envoyée !
+		</h1>
+		<section>
+			<div class="mx-auto w-75 bg-light">
+
+				<p>
+					Bonjour,
+					<br>
+					Merci pour votre recommandation de resto !
+					<br>
+					L'équipe de Roots étudiera votre suggestion :
+					{{ data.restaurant }}
+				</p>
+				{% if data.message == ""  %}
+					<br>
+				{% else %}
+					<br>
+					<p>
+						Copie de votre message :
+						<div class="contact_copy">
+							{{ data.message }}
+						</div>
+					</p>
+				{% endif %}
+			</div>
+
+			<p>
+				N'hésitez pas à
+				<a href="{{path('app_contact')}}">
+					nous contacter
+				</a>
+				si vous avez des questions.</p>
+			<p>
+				Un grand merci,
+				<br>
+				L'equipe Roots !
+			</p>
+		</section>
+
+		<footer>
+			<ul>
+				<li>
+					Cet e-mail vous a été envoyé car vous avez consulté le site
+					<a href="{{path('app_home')}}">
+						Roots
+					</a>
+				</li>
+				<li>
+					<a href="#">Ne plus recevoir d'emails de Roots</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

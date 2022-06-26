@@ -1,0 +1,70 @@
+/* container de page */
+.restaurants_container,
+.restaurant_container_carib,
+.restaurant_container_afr, .produits_container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	background-color: #ffdd33;
+	padding: 1rem;
+	width: 95%;
+	margin: 1rem auto;
+	border-radius: 15px;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.restaurant_container_afr {
+	background-image: url("../img/afr.png");
+}
+.restaurant_container_carib {
+	background-image: url("../img/madras.jpg");
+}
+
+.produits_container {
+	background-color: #2d9b48;
+}
+/* carte presentation de restaurant et image */
+section .card {
+	width: 16rem;
+	border-radius: 10px;
+	margin: 2rem;
+	border: 3px solid #e62121;
+	height: 18rem;
+}
+section .card-img-top img {
+	width: 16rem;
+}
+/* image */
+section .card-img-top {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	overflow: hidden;
+	height: 60%;
+}
+
+.produits_container .card {
+	height: fit-content;
+}
+/* texte de l'image indiquant les specialités (pays) */
+.card-text_img {
+	background-color: #ffdd33;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 5px;
+	padding: 0 0.5rem;
+	color: #e62121;
+	font-weight: 700;
+	width: fit-content;
+	position: absolute;
+	/* top: 41.5%; */
+}
+
+.restaurants_container .card-body {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+/* ajouter aux favoris */
+
+div.card_favoris {
+	display: flex;
+	justify-content: space-between;
+}

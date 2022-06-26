@@ -16,29 +16,29 @@ class FileUploadType extends AbstractType
         $builder
             ->add('upload_file', FileType::class, [
                 'label' => false,
-                'mapped' => false, // Tell that there is no Entity to link
+                'mapped' => false, // Tell that there is no Entity to link - est dissocier de la base de données
                 'required' => false,
-                // 'constraints' => [
-                //     new File(
-                //     [
-                //         'mimeTypes' => 
-                //         [ // We want to let upload only txt, csv or Excel files
-                //             'text/x-comma-separated-values',
-                //             'text/comma-separated-values',
-                //             'text/x-csv',
-                //             'text/csv',
-                //             'text/plain',
-                //             'application/octet-stream',
-                //             'application/vnd.ms-excel',
-                //             'application/x-csv',
-                //             'application/csv',
-                //             'application/excel',
-                //             'application/vnd.msexcel',
-                //             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                //         ],
-                //         'mimeTypesMessage' => "This document isn't valid.",
-                //     ])
-                // ],
+                'help' => 'PNG, JPEG, JPG, WEBP, PDF, EXCEL - 2 Mo maximum',
+                'constraints' => [
+                    new File(
+                        [ 
+                            'mimeTypes' =>
+                            [ 
+                                'image/jpeg',
+                                'image/jpg',
+                                'image/jp2',
+                                'image/webp',
+                                'image/png',
+                                'application/pdf',
+                                'application/excel',
+                            ],
+                            'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide. Les types autorisés sont : {{ types }}",
+
+                            'maxSize' => '2M',
+                            'maxSizeMessage' => 'Le fichier est trop volumineux.',
+                        ]
+                    )
+                ],
             ])
             ->add('send', SubmitType::class); // We could have added it in the view, as stated in the framework recommendations
     }

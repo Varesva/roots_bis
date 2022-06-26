@@ -45,16 +45,34 @@ class RestaurantRepository extends ServiceEntityRepository
         }
     }
 
-    // return $this->createQueryBuilder('c')
-
-    //         //     ->andWhere('c.id = :2')
-    //         //     ->setParameter('2', $type_cuisine)
-    //         //     ->orderBy('r.id', 'ASC')
-    //         //     ->setMaxResults(10)
-    //         //     ->getQuery()
-    //         //     ->getResult()
+    //  /**
+    //  * @return Restaurant[] Returns an array of Restaurant objects
+    //  */
+    
+    // public function findByHomeCarousel($value)
+    // {
+    //     return $this->createQueryBuilder('s')
+    //         ->andWhere('s.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('s.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
     //     ;
     // }
+
+    // public function findByExampleField($value)
+    // {
+    //     return $this->createQueryBuilder('s')
+    //         ->andWhere('s.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('s.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?Restaurant

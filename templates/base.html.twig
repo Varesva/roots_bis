@@ -1,84 +1,92 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 	<head>
+		{# META TAGS #}
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="{% block metadesc %}{% endblock %}">
+		<meta name="keywords" content="restaurant, africain, antillais, caribéen, livre, recette, paris">
+		<meta
+		name="author" content="Justine TAVARES VAZ">
+		{% block meta %}
+		{% endblock %}
 
-		{# Favicon du site #}
-		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon/apple-touch-icon.png')}}">
-		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon/favicon-32x32.png')}}">
-		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon/favicon-16x16.png')}}">
-		<link rel="manifest" href="{{ asset('assets/img/favicon/site.webmanifest')}}">
-		<link rel="mask-icon" href="{{ asset('assets/img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
+		{# FAVICON #}
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicon/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon/favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon/favicon-16x16.png')}}">
+		<link rel="manifest" href="{{ asset('img/favicon/site.webmanifest')}}">
+		<link rel="mask-icon" href="{{ asset('img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
-		
 
-		{# Feuilles de styles CSS #}
 		{% block stylesheets %}
-			{# {{ encore_entry_link_tags('app') }} #}
+			{# CSS BOOTSTRAP #}
+			<link
+			rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+			{# CSS #}
+			<link rel="stylesheet" href="{{ asset('css/fonts.css')}}">
+			<link rel="stylesheet" href="{{ asset('css/logo.css')}}">
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/contact_form.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/security_register.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/section_carousel.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/restaurant_show.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/section_home.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/legal.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/restaurant_et_favoris.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/favorisAndCart.css') }}">
+			<link
+			rel="stylesheet" href="{{ asset('css/profile_user.css') }}">
 
-			{# CSS externe - Bootstrap #}
-			<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> 
-			
-			{# CSS interne général #}
-			<link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/logo.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/contact_form.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/section_about.css') }}">
-			{# <link rel="stylesheet" href="{{ asset('assets/css/section_carousel.css') }}"> #}
-			<link rel="stylesheet" href="{{ asset('assets/css/restaurant_show.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/section_home.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}">
-			<link rel="stylesheet" href="{{ asset('assets/css/restaurant_et_favoris.css') }}">
-
-			{# Google Fonts #}
+			{# GOOGLE FONTS #}
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 		{% endblock %}
 
 		<title>
-			{% block title %}
-				ROOTS - Les meilleurs restaurants africains et caribéens
-			{% endblock %}
+			{% block title %}{% endblock %}
+			- Roots
 		</title>
 	</head>
-	{# corps du site #}
+
 	<body>
-		{# header #}
-		{% include "header.html.twig" %}
-		{# container du site #}
+		{# HEADER #}
+		{% include "_header.html.twig" %}
+
+		{# CONTAINER - sticky footer #}
 		<main
 			class="site_container">
-			{# contenu du site #}
+			{# BODY #}
 			{% block body %}{% endblock %}
 		</main>
-		{# <div class="scrollToTop" onclick="scrollToTop()" title="Go to top"><i class="scrollToTop fa-solid fa-1xl fa-circle-chevron-up"></i></div> #}
 
-		{# footer #}
-		{% include "footer.html.twig" %}
+		{# BACK TO TOP #}
+		<button onclick="backToTop()" id="toTop" title="Retourner en haut de la page"></button>
+
+		{# FOOTER #}
+		{% include "_footer.html.twig" %}
 	</body>
 
 	{% block javascripts %}
-		{# {{ encore_entry_script_tags('app') }} #}
-
-		{# JS externe - Bootstrap #}
-		<script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"> </script>
-
-		{# Javascript interne #}
-		<script src="{{ asset('assets/js/script.js')}}"></script>
-
-		{# Icon Kit - Fontawesome #}
+		{# JS BOOTSTRAP #}
+		<script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+		{# JAVASCRIPT #}
+		<script src="{{ asset('js/script.js')}}"></script>
+		{# ICON KIT - FONTAWESOME #}
 		<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous"></script>
+		{# STRIPE API #}
+		<script src="https://js.stripe.com/v3/"></script>
+		{# GOOGLE reCAPTCHA #}
+		<script src="https://www.google.com/recaptcha/api.js" async defer onload hl ></script>
+		<script src="{{ asset('js/recaptcha_form.js')}}"></script>
 
-		{# Script Stripe #}
-		<script src="https://js.stripe.com/v3/"> </script> 
-	{% endblock %} 
+	{% endblock %}
 </html>

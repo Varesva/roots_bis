@@ -1,3 +1,8 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+        # dsn: 'null://null' # désactive l'envoi de mail
+        envelope:
+            recipients: 
+                ['varesva.dev@gmail.com'] # envoie tous les mails à cette adresse
+                # ['contact@leroots.fr']

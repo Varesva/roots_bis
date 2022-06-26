@@ -40,7 +40,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             new PasswordCredentials($request->request->get('password', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
-                // se souvenir de l'utilisateur : https://symfony.com/doc/current/security/remember_me.html
+                // mémoriser l'utilisateur : https://symfony.com/doc/current/security/remember_me.html
                 new RememberMeBadge(),
             ]
         );
@@ -52,7 +52,6 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

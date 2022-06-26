@@ -1,0 +1,14 @@
+/* Logo du site */
+header .logo_container {
+	max-width: 7rem;
+}
+footer .logo_container {
+	max-width: 8rem;
+}
+
+/* image logo */
+header a img,
+footer a img {
+	width: 100%;
+	height: auto;
+}

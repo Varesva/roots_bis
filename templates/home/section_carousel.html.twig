@@ -1,138 +1,99 @@
 {% block section_carousel %}
-	<h2>Découvrez nos dernières sélections !</h2>
+	<h2 class=" mb-0">Nos dernières sélections de restaurants !</h2>
 
-	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="card-deck">
+					{% for restaurant in carousel_restaurants  %}
+						<div class="card" style="width: 10rem;">
+							<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
 
-		<div class="carousel-inner active">
-
-			<div
-				class="carousel_item active">
-				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
-
-				<div class="img-thumbnail carousel_item_text">
-
-
-					<p>Lorem Ipsum</p>
-					<div>
-						<a
-							class="" href="#">{# <img class="img-thumbnail rounded" src="{{asset('upload/' ~ restaurant.Image)}}" alt="Image de plat de restaurant" width="150" height="100"> #}
-
-
-						</a>
-					</div>
-					<small>75018</small>
-					<span class="carousel_fav">
-{# {{path('app_restaurant_show')}} #}
-						<a href="">
-							Découvrir...
-						</a>
-						{# {{path('app_profile_control_favoris')}} #}
-						<a href="">
-							<i class="fas fa-star"></i>
-						</a>
-					</span>
+							<div class="card-body">
+								<div class="h5 card-title">{{ restaurant.nom }}</div>
+								<small class="card-text">
+									{{ restaurant.codePostal }},
+									{{ restaurant.ville }}
+								</small>
+								<div class="card_favoris">
+									<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+										Découvrir...
+									</a>
+									<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
+										<i class="fa-solid fa-xl fa-star"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
-			<div
-				class="carousel_item">
-				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
+			<div class="carousel-item">
+				<div class="card-deck">
+					{% for restaurant in carousel_restaurants %}
+						<div class="card" style="width: 10rem;">
+							<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
 
-				<div class="carousel_item_text">
+							<div class="card-body">
+								<div class="h5 card-title">{{ restaurant.nom }}</div>
 
-					<h3>Titre</h3>
-					<p>Adresse</p>
-					<span class="carousel_fav">
+								<small class="card-text">
+									{{ restaurant.codePostal }},
+									{{ restaurant.ville }}
+								</small>
+								<div class="card_favoris">
+									<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+										Découvrir...
+									</a>
+									<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
+										<i class="fa-solid fa-xl fa-star"></i>
+									</a>
+								</div>
 
-						<a href="#">
-							Découvrir...
-						</a>
-						<i class="fas fa-star"></i>
-					</span>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
-			<div
-				class="carousel_item">
-				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
+			<div class="carousel-item">
+				<div class="card-deck">
+					{% for restaurant in carousel_restaurants %}
+						<div class="card" style="width: 10rem;">
+							<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
 
-				<div class="carousel_item_text">
+							<div class="card-body">
+								<div class="h5 card-title">{{ restaurant.nom }}</div>
 
-					<h3>Titre</h3>
-					<p>Adresse</p>
-					<span class="carousel_fav">
+								<small class="card-text">
+									{{ restaurant.codePostal }},
+									{{ restaurant.ville }}
+								</small>
+								<div class="card_favoris">
+									<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+										Découvrir...
+									</a>
+									<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
+										<i class="fa-solid fa-xl fa-star"></i>
+									</a>
+								</div>
 
-						<a href="#">
-							Découvrir...
-						</a>
-						<i class="fas fa-star"></i>
-					</span>
-				</div>
-			</div>
-			<div
-				class="carousel_item">
-				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
-
-				<div class="carousel_item_text">
-
-					<h3>Titre</h3>
-					<p>Adresse</p>
-					<span class="carousel_fav">
-
-						<a href="#">
-							Découvrir...
-						</a>
-						<i class="fas fa-star"></i>
-					</span>
-				</div>
-			</div>
-			<div
-				class="carousel_item">
-				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
-
-				<div class="carousel_item_text">
-
-					<h3>Titre</h3>
-					<p>Adresse</p>
-					<span class="carousel_fav">
-
-						<a href="#">
-							Découvrir...
-						</a>
-						<i class="fas fa-star"></i>
-					</span>
-				</div>
-			</div>
-			<div
-				class="carousel_item">
-				{# <img src="http://localhost:3000/african.jpg" class="carousel_img " alt="..."> #}
-
-				<div class="carousel_item_text">
-
-					<h3>Titre</h3>
-					<p>Adresse</p>
-					<span class="carousel_fav">
-
-						<a href="#">
-							Découvrir...
-						</a>
-						<i class="fas fa-star"></i>
-					</span>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
 
-		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-			<span aria-hidden="true">
-				<i class="fa-solid fa-circle-chevron-left"></i>
-			</span>
-			<span class="visually-hidden">Précedent</span>
-
+		<button class="carousel-control-prev" href="#carouselExampleControls" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+			<span class="fa-solid fa-circle-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Précédent</span>
 		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-			<span aria-hidden="true">
-				<i class="fa-solid fa-circle-chevron-right"></i>
-			</span>
-			<span class="visually-hidden">Suivant</span>
+		<button class="carousel-control-next" href="#carouselExampleControls" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+			<span class="fa-solid fa-circle-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Suivant</span>
 		</button>
 
 	</div>
+
+	
 {% endblock %}

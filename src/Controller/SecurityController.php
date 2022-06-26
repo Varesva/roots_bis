@@ -1,9 +1,7 @@
 <?php
 
-// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
-// auto-wiring
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,15 +21,17 @@ class SecurityController extends AbstractController
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        // retourner la vue 
 
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
     }
+
+    
     // connexion pour accéder à l'espace admin 
     /**
      * @Route("/login/admin", name="app_login_admin")

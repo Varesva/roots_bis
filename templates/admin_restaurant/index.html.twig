@@ -5,8 +5,48 @@
 
 {% block body %}
 	<h1>Tous les Restaurants</h1>
+
+<p>Gérer les restaurants disponibles</p>
+
 	<section class="container">
-		<p>Gérer les restaurants disponibles</p>
+
+{# nouvelle variable in variable du controller #}
+{% for restaurant in restaurants %}
+	<div class="card">
+
+		<div class="card-img-top">
+			<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+				<p class="card-text_img">{{ restaurant.id }}</p>
+				<img src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
+			</a>
+		</div>
+
+		<div class="card-body">
+			<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+				<h5 class="card-title">{{ restaurant.nom }}</h5>
+			</a>
+
+			<small class="card-text">
+				{{ restaurant.codePostal }},
+				{{ restaurant.ville }}
+			</small>
+			<div class="card_favoris">
+				<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+					Découvrir...
+				</a>
+				<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
+					<i class="fa-solid fa-xl fa-star"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+{% else %}
+	<div class="bg-light p-3 rounded-3">
+		<p>Pas de résultat</p>
+	</div>
+{% endfor %}
+
+
 
 		<table class="table">
 			<thead>

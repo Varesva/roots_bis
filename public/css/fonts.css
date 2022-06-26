@@ -1,0 +1,90 @@
+/* GLOBAL */
+html {
+	font-size: 100%; /*16px*/
+}
+
+body {
+	font-family: "Quicksand", sans-serif;
+	font-weight: 600;
+	line-height: 1.75;
+	color: black;
+}
+
+.font-weight-bold {
+	font-weight: 700;
+}
+
+p {
+	margin-bottom: 0.5rem;
+}
+
+h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 h6,
+.h6 {
+	margin: 0.5rem 0 2rem;
+	font-family: "Quicksand", sans-serif;
+	font-weight: 600;
+	line-height: 1.3;
+	color: #247c39;
+}
+
+h1 {
+	font-size: 2.6rem;
+	text-align: center !important;
+	display: flex;
+	justify-content: center;
+	font-weight: 700;
+	color: #e62121;
+	/* color: #b22222; */
+}
+
+h2,
+.h2 {
+	font-size: 2.2rem;
+	display: flex;
+	justify-content: center;
+	text-align: center !important;
+}
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (max-width: 768px) {
+	h1 {
+		font-size: calc(2.2rem + 1.5vw);
+	}
+
+	h2,
+	.h2 {
+		font-size: calc(1.325rem + 0.9vw);
+	}
+}
+
+h3,
+.h3 {
+	font-size: 1.8rem;
+}
+
+h4,
+.h4 {
+	font-size: 1.5rem;
+}
+
+h5,
+.h5 {
+	font-size: 1.25rem;
+}
+
+label {
+	color: #b22222;
+}
+
+small,
+.text-small {
+	font-size: 0.9rem;
+	font-weight: 500;
+}

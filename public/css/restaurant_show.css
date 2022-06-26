@@ -1,0 +1,40 @@
+div#carouselExampleIndicators.carousel.slide {
+	width: 60%;
+	margin: 2rem auto;
+}
+
+div#carouselExampleIndicators.carousel-control-next,
+div#carouselExampleIndicators.carousel-control-prev {
+	opacity: 0;
+	width: 11%;
+}
+.accordion-button:not(.collapsed) {
+	background-color: #ffdd33;
+}
+.accordion-button {
+	background-color: #d9beaf;
+}
+.accordion-item {
+	width: 80%;
+	margin: auto;
+	background-color: #f9f5f3;
+}
+.accordion-button:focus {
+	box-shadow: none;
+}
+/* pour le chevron down accordion */
+.accordion-button::after {
+	width: 4.5rem;
+	background-size: 1.7rem;
+}
+
+/* contact accordeon */
+.accordion-body ul li {
+	font-weight: 700;
+	font-size: 1.115rem;
+	border-top: 1.25px solid black;
+}
+.accordion-body {
+	width: 95%;
+	margin: auto;
+}

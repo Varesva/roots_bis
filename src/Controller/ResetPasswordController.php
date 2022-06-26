@@ -21,7 +21,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 /**
- * @Route("/reinitialiser")
+ * @Route("/mot-de-passe-oublie")
  */
 class ResetPasswordController extends AbstractController
 {
@@ -53,21 +53,16 @@ class ResetPasswordController extends AbstractController
                 $translator
             );
         }
-        // title d'onglet navigateur - page de réinitialisation de mot de passe
-        $controller_name = 'Mot de passe oublié - Roots';
-        // titre h1 - page de réinitialisation de mot de passe
-        $reset_h1 = 'Réinitialiser mon mot de passe';
+
         return $this->render('reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
-            'controller_name'=> $controller_name,
-            'reset_h1'=>$reset_h1,
         ]);
     }
 
     /**
      * Confirmation page after a user has requested a password reset.
      *
-     * @Route("/check-email", name="app_check_email")
+     * @Route("/verifiez-vos-emails", name="app_check_email")
      */
     public function checkEmail(): Response
     {
@@ -80,6 +75,7 @@ class ResetPasswordController extends AbstractController
         return $this->render('reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
         ]);
+
     }
 
     /**
@@ -170,14 +166,13 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('contact@roots.com', 'Roots'))
+            ->from(new Address('contact@leroots.fr', 'Roots'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
-            ->htmlTemplate('reset_password/email.html.twig')
+            ->subject('Lien de réinitialisation de votre mot de passe')
+            ->htmlTemplate('email/reset_password_email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
-            ])
-        ;
+            ]);
 
         $mailer->send($email);
 

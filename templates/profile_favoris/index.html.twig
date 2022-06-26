@@ -8,29 +8,28 @@
 
 	<h1>Mes favoris</h1>
 
-	<div class="favoris_container">
+	<section class="favoris_container">
 
 		{% if ligne_favoris | length > 0 %}
-			<div class="boutons_favoris">
-				<a href="{{path('app_restaurant_index')}}" class="btn">
-					Liste des restaurants
+			<div class="text-center">
+				<a href="{{path('app_restaurant_index')}}" class="btn btn-warning">
+					Tous les restaurants
 				</a>
-				<a href="{{path('app_profile_favoris_clear') }}" class="btn">
+				<a href="{{path('app_profile_favoris_clear') }}" class="btn btn-danger text-black">
+					<i class="fa-solid fa-trash"></i>
 					Vider mes favoris
-					<i class="fa-solid fa-trash-can"></i>
 				</a>
 			</div>
-			<div
-				class="favoris">
-				{# nouvelle variable in variable du controller #}
+			<div class="favoris">
+
 				{% for item in ligne_favoris %}
 					<div class="card">
+
 						<div class="card-img-top">
 							<a class="card_container" href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
 
 								<p class="card-text_img">{{ item.restaurant.specialite }}</p>
 								<img src="{{asset('upload/' ~ item.restaurant.image)}}" alt="Image du restaurant">
-
 							</a>
 						</div>
 
@@ -38,17 +37,17 @@
 							<a class="card_container" href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
 								<h5 class="card-title">{{ item.restaurant.nom }}</h5>
 							</a>
-
-							<small class="card-text">
-								{{ item.restaurant.codePostal }},
-								{{ item.restaurant.ville }}
-							</small>
+							<p>
+								<small class="card-text">
+									{{ item.restaurant.codePostal }},
+									{{ item.restaurant.ville }}
+								</small>
+							</p>
 							<div class="card_favoris">
-<a class="card_container" href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
-
+								<a class="card_container" href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
 									Découvrir...
 								</a>
-<a id="addFav" type="button" href="{{ path('app_profile_control_favoris', {'id': item.restaurant.id}) }}">
+								<a id="addFav" type="button" href="{{ path('app_profile_control_favoris', {'id': item.restaurant.id}) }}">
 									<i class="fa-solid fa-xl fa-star"></i>
 								</a>
 							</div>
@@ -57,23 +56,24 @@
 				{% endfor %}
 			{% else %}
 
-				<div class="empty_fav_container text-center">
+				<div class="empty_fav_container text-center bg-light p-5">
+
 					<p>
 						Vous n'avez aucun restaurant dans vos favoris &#128546;.
 					</p>
-					<img class="mx-auto d-block" src="{{ asset('assets/img/nothing.gif') }}" alt="Meme d'expression de confusion (Confused Travolta meme)">
+					<img class="mx-auto d-block" src="{{ asset('img/nothing.gif') }}" alt="Meme d'expression de confusion (Confused Travolta meme)">
+					<br>
 					<p>
-						<br>
 						N'hésitez pas à en ajouter dès maintenant !
 					</p>
 
-					<a href="{{path('app_restaurant_index')}}" class="btn">
+					<a href="{{path('app_restaurant_index')}}" class="btn btn-warning">
 						Voir tous les restaurants
 					</a>
 				</div>
 
-			{% endif %}
-		</div>
+			</div>
 
-	</div>
+		{% endif %}
+	</section>
 {% endblock %}

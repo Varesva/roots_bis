@@ -4,6 +4,8 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -15,28 +17,43 @@ class RecommanderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email', EmailType::class, [
-            'attr' => [
-                'placeholder' => 'email@exemple.com',
-                'class' => 'form-control'
-            ]
-        ])
-            ->add('resto', TextType::class, [
+            ->add('email', EmailType::class, [
+                'help' => 'Email où vous recontacter, si besoin',
                 'attr' => [
-                    'placeholder' => 'Je conseille ...',
-                    'class' => 'form-control'
+                    'placeholder' => 'email@exemple.com',
+                    'autocomplete' => 'email',
+                    'class' => 'form-control',
+                    'maxLength' => 50,
+                    'minLength' => 8,
                 ]
             ])
-            ->add('commentaire', TextareaType::class, [
+            ->add('restaurant', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Bonjour, je vous recommande le restaurant suivant : ... parce que ...',
-                    'class' => 'contact_form_control',
-                    'rows' => '5'
+                    'placeholder' => 'Resto recommandé',
+                    'class' => 'form-control',
+                    'maxLength' => 80,
+                ], 'constraints' => [
+                    new Type([
+                        'type' => 'string'
+                    ]),
+                    new NotBlank([
+                        'message' => 'Veuillez entrer le nom du restaurant recommandé svp',
+                    ]),
                 ]
             ])
-            ->add('envoyer', SubmitType::class, [
+
+            ->add('message', TextareaType::class, [
+                'required' => false,
                 'attr' => [
-                    'class' => 'btn btn-lg'
+                    'placeholder' => 'Quel est votre coup de cœur ?  (Les plats, le lieu, le personnel, l\'histoire ?...). Dites-nous tout !',
+                    'rows' => '5',
+                    'maxLength' => 1000,
+                ]
+            ])
+
+            ->add('send', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-lg btn-success'
                 ]
             ]);
     }

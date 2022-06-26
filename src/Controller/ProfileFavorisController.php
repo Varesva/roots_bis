@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ProfileFavorisController extends AbstractController
 {
-    // Pour voir les favoris
+    // voir les favoris
     /**
      * @Route("/", name="app_profile_favoris_index", methods={"GET"})
      */
@@ -25,7 +25,7 @@ class ProfileFavorisController extends AbstractController
         ]);
     }
 
-    // Pour ajouter et retirer un resto des favoris
+    // ajouter et retirer un resto des favoris
     /**
      * @Route("/ajouter/{id}", name="app_profile_control_favoris")
      */
@@ -33,13 +33,10 @@ class ProfileFavorisController extends AbstractController
     {
         // appel de la fonction controlFav (ajout et retirer un fav) de la classe FavorisService du service container 
         $favorisService->FavAddRemove($id);
-
-        // retourner la vue 
         return $this->redirectToRoute('app_profile_favoris_index');
-   
     }
 
-    // pour vider les favoris
+    // vider les favoris
     /**
      * @Route("/vider", name="app_profile_favoris_clear")
      */

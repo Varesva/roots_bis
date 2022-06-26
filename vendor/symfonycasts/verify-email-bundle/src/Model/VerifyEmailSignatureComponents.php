@@ -82,19 +82,19 @@ final class VerifyEmailSignatureComponents
             case $interval->y > 0:
                 $this->transInterval = $interval->y;
 
-                return '%count% year|%count% years';
+                return '%count% an|%count% ans';
             case $interval->m > 0:
                 $this->transInterval = $interval->m;
 
-                return '%count% month|%count% months';
+                return '%count% mois|%count% mois';
             case $interval->d > 0:
                 $this->transInterval = $interval->d;
 
-                return '%count% day|%count% days';
+                return '%count% jour|%count% jours';
             case $interval->h > 0:
                 $this->transInterval = $interval->h;
 
-                return '%count% hour|%count% hours';
+                return '%count% heure|%count% heures';
             default:
                 $this->transInterval = $interval->i;
 

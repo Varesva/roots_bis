@@ -13,7 +13,7 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre')
+            ->add('titre') 
             ->add('image', FileType::class, [
                 'label' => 'Image du produit :',
                 // unmapped means that this field is not associated to any entity property
@@ -21,6 +21,7 @@ class ProduitType extends AbstractType
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
                 'required' => false,
+                // 'multiple' => true
             ])
             ->add('prix')
             ->add('giftcard_valeur')

@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Me connecter - Roots
+	Se connecter
+{% endblock %}
+
+{% block description %}
+	Connectez-vous sur Roots pour découvrir les meilleurs restaurants et livres de recettes africains et caribéens.
 {% endblock %}
 
 {% block body %}
@@ -9,49 +13,47 @@
 	{# container #}
 	<div class="register_container">
 		<div
-			class="section_other position_center">
+			class="section_other text-center">
 			{# text container et section inscription #}
 			<div
-				class="row row_register g-3 position_center">
+				class="row row_register g-3">
 				{# section connexion #}
-				<h1 class="position_center col-12">
+				<h1>
 					Inscription
 				</h1>
-				<div class="row_center">
+				<div>
 					<p>
 						Pas encore de compte ?
 					</p>
 					<i class="fa-solid fa-angles-down"></i>
 				</div>
-				<a role="button" class="btn btn_other" href="{{path('app_register')}}">
+				<a role="button" class="btn" href="{{path('app_register')}}">
 					S'inscrire
 				</a>
 			</div>
 
 		</div>
 		{# section connexion #}
-		<section class="section_main position_center">
-			<h1 class="position_center">
+		<section class="section_main">
+			<h1>
 				Connexion
 			</h1>
 
 			{# formulaire de connexion #}
-			<form
-				method="post">
-				{# block de sécurité #}
-
+			<form method="post">
 				<div class="row row_register g-3 position_center">
-					{# block d'indication que user est deja connecté et chemin pour logout #}
-					{# {% if app.user %}
-					                            <div class="mb-3">
-					                                Vous êtes connecté.e que
-					                                {{ app.user.username }},
-					                                <a href="{{ path('app_logout') }}">Déconnexion</a>
-					                            </div>
-					                        {% endif %} #}
-						<small class="info_detail"> *champs obligatoires
-					</small>
-
+					<p>
+						<small class=" d-flex justify-content-end opacity-75">
+							*champs obligatoires
+						</small>
+					</p>
+					{% if error %}
+						<p class="d-flex justify-content-center">
+							<small class="alert alert-danger text-center font-weight-bold mb-0 p-2">
+								Email et/ou mot de passe incorrect(s)
+							</small>
+						</p>
+					{% endif %}
 					<div class="col-12">
 						<label for="inputEmail" class="form-label">
 							Email*
@@ -65,31 +67,25 @@
 							Mot de passe*
 						</label>
 
-						<input type="password" name="password" id="inputPassword" placeholder="6 caractères minimum" class="form-control" autocomplete="current-password" required>
+						<input type="password" name="password" id="inputPassword" placeholder="8 caractères minimum" class="form-control" autocomplete="current-password" required>
+						<p class="form-text mb-0 help-text">
+							Au moins 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial
+						</p>
 					</div>
 
-					{#Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-										                    See https://symfony.com/doc/current/security/remember_me.html#}
-
-
+					{# option remember_me : https://symfony.com/doc/current/security/remember_me.html #}
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 					<div class="checkbox mb-3 container-fluid">
 						<label>
 							<input type="checkbox" name="_remember_me" checked>
 							Se souvenir de moi
 						</label>
-						{% if error %}
-							<small class="alert alert-danger bg-danger text-white">
-								{{ error.messageKey|trans(error.messageData, 'security') }}
-							</small>
-						{% endif %}
 					</div>
 
-					<div class="row_center">
-						<button class="btn btn_main" type="submit">
+					<div class="text-center">
+						<button class="btn" type="submit">
 							Se connecter
 						</button>
-
 						<p>
 							<a href="{{path('app_forgot_password_request')}}">
 								Mot de passe oublié ?

@@ -1,46 +1,62 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ controller_name}}
+	Recommander un restaurant
+{% endblock %}
+
+{% block metadesc %}
+	Participez à la sélection des meilleurs restaurants africains et caribéens ! Ce ne sont pas les bonnes adresses qui manquent. Faites-nous vos suggestions !
 {% endblock %}
 
 {% block body %}
+
 	<section class="page_contact_container">
-		<h1 class="position_center">
-			{{recommander_h1}}
+
+		<h1>
+			Recommander un restaurant
 		</h1>
 
-		{{ form_start(recommander_form) }}
+		{{ form_start(recommendForm) }}
+
 		<div class="row g-3">
-<small class="info_detail">
-	*champs obligatoires
-</small>
+			<p>
+				<small class="justify-content-end d-flex opacity-75">
+					*Champs obligatoires
+				</small>
+			</p>
 
-			<div class="col-md-6">
-				<label for="email" class="form-label">
-					Email*
-				</label>
-				{{ form_widget(recommander_form.email)}}
-			</div>
-			<div class="col-md-6">
-				<label for="prenom" class="form-label">
-					Nom du restaurant*
-				</label>
-				{{ form_widget(recommander_form.resto)}}
-			</div>
-			<div class="col-12">
-				<label for="message" class="form-label">
-					Commentaire*
-				</label>
-				{{ form_widget(recommander_form.commentaire)}}
-			</div>
+			{% if app.user %}
 
-			<div class="col-12">
-				{{ form_widget(recommander_form.envoyer)}}
-			</div>
+				{{ form_row(recommendForm.email, {'value' : app.user.email ,
+					'label' : 'Email*', 
+					'row_attr' : {'class' : 'col-md-6 mb-3'},
+				} ) }}
+
+			{% else %}
+
+				{{ form_row(recommendForm.email, {
+					'label' : 'Email*',
+					'row_attr' : {'class' : 'col-md-6 mb-3'},
+				} ) }}
+
+			{% endif %}
+
+			{{ form_row(recommendForm.restaurant, { 
+				'label' : 'Nom du restaurant*', 
+				'row_attr' : {'class' : 'col-md-6 mb-3'},
+			} ) }}
+
+			{{ form_row(recommendForm.message, { 
+				'label' : 'Commentaire', 
+				'row_attr' : {'class' : 'col-12 mb-3'},
+			} ) }}
+
+			{{ form_row(recommendForm.send, {
+				'label' : 'Envoyer', 
+				'row_attr' : {'class' : 'col-12 text-center mb-3'},
+			} ) }}
 		</div>
-
-		{{ form_end(recommander_form) }}
+		{{ form_end(recommendForm) }}
 
 	</section>
 

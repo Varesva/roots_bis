@@ -4,9 +4,9 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     paths:
         # point this wherever your images live
-        '%kernel.project_dir%/public/assets/img': image
+        '%kernel.project_dir%/public/img': image
          # point this wherever your css files live
-        '%kernel.project_dir%/public/assets/css': style
+        '%kernel.project_dir%/public/css': style
     
 when@test:
     twig:

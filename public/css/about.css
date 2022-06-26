@@ -1,0 +1,46 @@
+.about_container > article {
+	justify-content: center;
+	padding: 1rem;
+	margin: 3rem auto;
+	background-color: #d5ebda;
+}
+.about_container > article:nth-child(even) {
+	background-color: rgb(255, 221, 51, 0.65);
+}
+
+/* responsive format petit */
+@media screen and (min-width: 375px) {
+    .about_container > article {
+        border-radius: 15px;
+    }
+    
+    .about_container {
+        width: 90%;
+        margin: auto;
+    }
+}
+
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 830px) {
+        .about_container {
+        width: 80%;
+        max-width: 100rem;
+    }
+
+	.about_container > article {
+		display: flex;
+		justify-content: space-between;
+		padding: 2rem;
+		margin: 5rem auto;
+	}
+	.about_container article > p {
+		width: 60%;
+	}
+
+	.about_container h2 {
+		margin: auto;
+		padding: 0 1.5rem;
+		display: flex;
+		align-items: center;
+	}
+}

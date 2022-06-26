@@ -1,0 +1,102 @@
+<footer>
+	<div class=" logo_container">
+		<a class="logo_container" href="{{path('app_home')}}">
+			<img src="{{ asset('img/logo_roots.png') }}" alt="Logo du site Roots">
+		</a>
+	</div>
+
+	<div class="mt-2 mb-3">
+		<div>
+			<ul class=" mb-0">
+				<li>
+					<a href="{{path('app_about')}}">
+						A propos
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_produit_livre', {'id': 1} ) }}">
+						Livres de recettes
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_restaurant_index')}}">
+						Restaurants
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_nutrition_index')}}">
+						Régimes alimentaires
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_recommander')}}">
+						Recommander un restaurant
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<ul class=" mb-0">
+				<li>
+					<a href="{{path('app_contact')}}">
+						Contact
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_cgv')}}">
+						C.G.V.
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_cgu')}}">
+						C.G.U.
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_cookies')}}">
+						Confidentialité et cookies
+					</a>
+				</li>
+				<li>
+					<a href="{{path('app_legal')}}">
+						Mentions légales
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer_bottom">
+		<div class="socials_container mt-2 row text-center rounded-pill">
+			<p>Suivez-nous !</p>
+			<ul class="socials_icons">
+				<li>
+					<a href="#">
+						<i class="fa-brands fa-xl fa-youtube"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa-brands fa-xl fa-instagram"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa-brands fa-xl fa-twitter"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<p class=" mx-auto mt-3 text-center">
+			<small class="mb-0 opacity-75">
+				Tous droits réservés -
+				<span id="year"></span>
+				&copy Roots /
+				<a href="https://www.linkedin.com/in/justine-tvz">
+					J.T.V.
+				</a>
+			</small>
+		</p>
+	</div>
+</footer>

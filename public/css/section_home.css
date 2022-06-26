@@ -1,0 +1,95 @@
+/* section home recherche et formulaire  */
+#section_home > div:first-of-type {
+	background-repeat: no-repeat;
+	width: 100%;
+	/* padding: 15px; */
+}
+#section_home picture {
+	background-size: cover;
+	background-position: 50%;
+}
+
+#section_home > div:first-of-type > img {
+	overflow: hidden;
+	transition: opacity 0.1s;
+	white-space: nowrap;
+	object-fit: cover;
+	object-position: 50% 50%;
+}
+/* HERO EFFECT */
+.section_hero {
+	min-height: 300px;
+	position: relative;
+	padding-top: 28px;
+	padding-bottom: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--c-white);
+}
+.hero_img {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/* border: 1px solid var(--c-black); */
+
+	background-image: linear-gradient( rgb(0, 0, 0, 0.5),rgb(0, 0, 0, 0.5)
+	) 
+}
+
+
+.sectionWithModules_hero {
+	z-index: 4;
+}
+.sectionWithModules_module {
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--content-max-width);
+}
+
+.img_overlay:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--c-black);
+	opacity: 0.5;
+}
+/* formulaire de recherche */
+#section_home > form {
+	background-image: url("../img/karib.jpg");
+	padding: 20px 15px;
+	background-color: #caa38e;
+}
+/* bouton rechercher */
+/* #section_home form .btn:hover {
+	background-color: #2d9b48;
+} */
+
+/* input icones localisation et recherche */
+.input-group-text {
+	width: 2.5rem;
+}
+
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 425px) {
+	#section_home > div {
+		justify-content: center;
+	}
+	/* formulaire de recherche */
+	#section_home form {
+		border-radius: 15px;
+		width: 90%;
+	}
+}
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 768px) {
+	/* formulaire de recherche */
+	#section_home form {
+		max-width: 40rem;
+	}
+}

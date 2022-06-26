@@ -5,101 +5,106 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="position_center">Panier</h1>
 
+	<h1>Panier</h1>
 
-	{% if ligne_panier | length > 0 %}
-		<div>
-			<a href="{{path('app_cart_clear')}}" class="btn">
-				Vider mon panier
-			</a>
-		</div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Titre</th>
-					<th>Image</th>
-					<th>Quantité</th>
-					<th>Prix HT</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{# nouvelle variable in variable du controller #}
+	<section class="container bg-light rounded-3 p-3">
+
+		{% if ligne_panier | length > 0 %}
+			<div class="d-flex justify-content-end">
+				<a href="{{path('app_cart_clear')}}" class="btn btn-danger">
+					<i class="fa-solid fa-trash"></i>
+					Vider mon panier
+				</a>
+			</div>
+
+			<div class="d-flex flex-wrap justify-content-around">
 				{% for item in ligne_panier %}
-					<tr>
-						<td>
-							<a href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
-								{{ item.produit.titre }}
+
+					<div class="card" style="width: 12rem;">
+
+						<div class="card-img-top">
+							<a class="card_container" href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
+								<img src="{{asset('upload/' ~ item.produit.image )}}" alt="Image du produit" class="w-100 h-100">
 							</a>
-						</td>
-						<td>
-							<a href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
-								<img src="{{asset('upload/' ~ item.produit.image ) }}" width="150" height="100">
+						</div>
+
+						<div class="card-body">
+							<a class="card_container" href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
+								<p class="h6 card-title">{{  item.produit.titre }}</p>
 							</a>
-						</td>
-						<td>
-							{# bouton PLUS : pour ajouter une quantité d'un article du panier #}
-							<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
-								<i class="fa-solid fa-circle-plus"></i>
-							</a>
-							{{ item.quantite }}
-							{# Quantité du produit dans le panier #}
-							{# bouton MOINS : pour supprimer une quantité d'un article du panier #}
-								<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success"> <i class="fa-solid fa-circle-minus"></i>
-							</a>
-						</td>
-						<td>{{ item.produit.prix }}</td>
-						<td>
-							{# Lien pour modifier le produit #}
-							{# <a href="{{ path('app_admin_produit_edit', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success">
-																													<i class="fa fas fa-pen-to-square"></i>
-																												</a> #}
-							{# lien pour supprimer le produit #}
-								<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-success"> <i class="fas fa-trash"></i>
-							</a>
-						</td>
-					</tr>
+							<div class="d-flex justify-content-between">
+								<a class="card_container " href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
+									{{item.produit.prix }}
+									€
+								</a>
+								<small class=" opacity-50">(prix HT)</small>
+							</div>
+							<div class="d-flex justify-content-between mt-2">
+								<div class="border border-success rounded-pill px-3">
+
+									<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}">
+										<i class="fa-solid fa-circle-minus"></i>
+									</a>
+									{# Quantité du produit dans le panier #}
+									{{ item.quantite }}
+
+									<a href="{{ path('app_cart_add', {'id': item.produit.id}) }}">
+										<i class="fa-solid fa-circle-plus"></i>
+									</a>
+								</div>
+
+								<div>
+									<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-danger rounded-circle">
+										<i class="fa-solid fa-sm fa-trash"></i>
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
 				{% endfor %}
-			</tbody>
-		</table>
-		<tfoot>
-			<tr>
-				<td>
-					Total HT :
-					{{ total_cart_ht }} €
-				</td> <br>
-				<td>
-					TVA en vigueur en France : 20%
-				</td> <br>
-				<td>
-					Total TTC :
-					{{ total_ttc }} €
-				</td>
-			</tr>
-		</tfoot>
-		<div>
-			<a href="{{path('app_produit_index')}}" class="btn">
-				Continuer mes achats
-			</a>
-			<a href="{{path('app_profile_payment')}}" class="btn">
-				Commander
-			</a>
-		</div>
+			</div>
+			<hr>
+			<p class=" opacity-75 d-flex justify-content-end">
+				Total HT (TVA en FR : 20%) :
+				{{ total_cart_ht }}
+				€
+			</p>
+			<hr>
+			<div class="d-flex justify-content-end">
+				<div class=" h5 p-2 font-weight-bold d-flex justify-content-around bg-warning rounded-pill">
+					<p>
+						Total TTC :
+					</p>
+					<p>
+						{{ total_ttc }}
+						€
+					</p>
+				</div>
+			</div>
+			<div class=" mt-3 d-flex justify-content-between">
+				<a href="{{path('app_produit_index')}}" class="btn btn-secondary m-1">
+					Continuer mes achats
+				</a>
+				<a href="{{path('app_profile_payment_userAddress', {'id': app.user.id})}}" class="btn btn-success m-1">
+					Commander
+				</a>
+			</div>
+		</section>
 
 	{% else %}
-		<div class="position_center">
-			<p>
-			Votre panier est actuellement vide &#128546;
-			</p>
-		</div>
+		<div class="text-center mb-5">
 
-		</tbody>
-	</table>
-	<div class="position_center">
-		<a href="{{path('app_produit_index')}}" class="btn">
-			Consulter la boutique
-		</a>
-	</div>
+			<img class="cart_img" src="{{ asset('img/cart.png') }}" alt="Panier vide">
+
+			<p>
+				Votre panier est actuellement vide &#128546;
+			</p>
+
+			<a href="{{path('app_produit_index')}}" class="btn btn-warning">
+				Visiter la boutique
+			</a>
+		</div>
 	{% endif %}
 {% endblock %}

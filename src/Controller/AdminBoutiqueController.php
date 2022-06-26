@@ -81,7 +81,9 @@ class AdminBoutiqueController extends AbstractController
      */
     public function delete(Request $request, Boutique $boutique, BoutiqueRepository $boutiqueRepository): Response
     {
+        // fonction de vérif de token 
         if ($this->isCsrfTokenValid('delete' . $boutique->getId(), $request->request->get('_token'))) {
+
             $boutiqueRepository->remove($boutique);
         }
 

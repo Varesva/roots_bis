@@ -12,17 +12,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Un compte lié à cet email existe déjà")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
     public function __toString()
     {
         return $this->prenom;
         return $this->nom;
     }
-    // fin conversion en string
 
     /**
      * @ORM\Id
@@ -97,9 +95,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Restaurant::class, mappedBy="favoris")
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,7 +239,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
-
         return $this;
     }
     
@@ -324,6 +327,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($commande->getUser() === $this) {
                 $commande->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Restaurant>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Restaurant $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Restaurant $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeFavori($this);
         }
 
         return $this;

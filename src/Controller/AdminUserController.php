@@ -1,9 +1,6 @@
 <?php
-
-// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
 
-// auto-wiring
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -59,6 +56,7 @@ class AdminUserController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
+        $form->
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

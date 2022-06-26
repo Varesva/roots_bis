@@ -1,45 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{controller_name}}
+	Recommandation envoyée
+{% endblock %}
+
+{% block metadesc %}
+	Participez à la sélection des meilleurs restaurants africains et caribéens ! Ce ne sont pas les bonnes adresses qui manquent. Faites-nous vos suggestions !
 {% endblock %}
 
 {% block body %}
-	<section class="contact_confirm">
 
-		<h1 class="position_center">
-			{{recommander_h1}}
-		</h1>
+	<h1>
+		Recommandation envoyée !
+	</h1>
 
-		<div class="submitted_form_container">
-			<p>
-				Merci pour votre recommandation !
-				<br><br>
-				L'équipe de Roots étudiera votre suggestion. <br>
-				Si votre recommandation nous semble pertinente, vous recevrez un petit cadeau dans votre boite mail :) !
-				<br><br>
-				Surveillez vos emails (et vérifiez vos spams !).
+	<section class="mb-5 bg-light">
+		<div class="mx-auto w-75">
+			<p class="m-3 h3 text-center">
+				Merci pour votre recommandation de resto !
+			</p>
+			<p class="mb-3">
+				L'équipe de Roots étudiera votre suggestion.
+			</p>
+
+			<p class="mb-3">
+				Si celle-ci nous semble pertinente, vous recevrez un petit cadeau dans votre boite mail !
 				<br>
+				Surveillez vos emails (et vérifiez vos spams !).
 			</p>
 		</div>
 		<hr>
 
-		<div class="position_center">
-			<p>En attendant, venez découvrir nos choix de restaurants actuellement disponibles !</p>
-			<br>
-		</div>
-		<div class="position_center">
-			<a role="button" href="{{path('app_restaurant_index') }}" class="btn submitted_form_nav">
-				Découvrir tous les restaurants
+		<div class="text-center">
+			<p>
+				En attendant, découvrez toutes nos sélections de restaurants !
+			</p>
+			<a role="button" href="{{path('app_restaurant_index') }}" class="btn btn-warning m-2">
+				Découvrir les restaurants
 			</a>
 		</div>
-<hr>
-		<div class="position_center">
-			<p>Vous souhaitez faire une autre recommandation ?</p>
-			<br>
-		</div>
-		<div class="position_center">
-			<a role="button" href="{{path('app_recommander') }}" class="btn submitted_form_nav">
+		<hr>
+		<div class="text-center">
+			<p>
+				Vous souhaitez faire une autre recommandation ?
+			</p>
+
+			<a role="button" href="{{path('app_recommander') }}" class="btn btn-outline-dark m-2">
 				Faire une autre recommandation
 			</a>
 		</div>

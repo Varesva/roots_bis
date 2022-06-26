@@ -388,7 +388,7 @@ final class MakeRegistrationForm extends AbstractMaker
                     UniqueEntity::class,
                     [
                         'fields' => [$usernameField],
-                        'message' => sprintf('There is already an account with this %s', $usernameField),
+                        'message' => sprintf('There is already an account with this ', $usernameField),
                     ]
                 );
             }

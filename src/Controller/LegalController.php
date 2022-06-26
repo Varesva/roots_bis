@@ -16,6 +16,7 @@ class LegalController extends AbstractController
     {
         return $this->render('legal/mentions.html.twig', []);
     }
+
     /**
      * @Route("/conditions-generales-de-vente", name="app_cgv")
      */
@@ -23,4 +24,21 @@ class LegalController extends AbstractController
     {
         return $this->render('legal/cgv.html.twig', []);
     }
+  
+    /**
+     * @Route("/conditions-generales-d-utilisation", name="app_cgu")
+     */
+    public function cgu(): Response
+    {
+        return $this->render('legal/cgu.html.twig', []);
+    }
+
+    /**
+     * @Route("/confidentialite-et-cookies", name="app_cookies")
+     */
+    public function cookies(): Response
+    {
+        return $this->render('legal/cookies.html.twig', []);
+    }
+
 }

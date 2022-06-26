@@ -5,6 +5,7 @@ namespace App\Controller;
 // auto-wiring
 
 use App\Service\Display\DisplayService;
+use App\Repository\RestaurantRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,26 +14,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
+     * @Route("/", name="app_home", methods={"GET"})
      */
-    public function index(): Response
-    {       
-        $controller_name = "Accueil - Roots";
+    public function home(RestaurantRepository $restaurantRepository): Response
+    {
+        // afficher dans carousel les derniers restaurants ajoutés en bdd
+        $carousel_restaurants = $restaurantRepository->findBy(
+            [],
+            ['id' => 'DESC'],
+            $limit = 4,
+            $offset = null,
+            4,
+            8,
+        );
         return $this->render('home/index.html.twig', [
-            'controller_name' => $controller_name,
+            'carousel_restaurants' => $carousel_restaurants,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_restaurant_show", methods={"GET"})
-     */
-    public function showResto($id, DisplayService $displayService)
-    {
-        $restaurant= $displayService->showResto($id);
-    
-        return $this->render('restaurant/show.html.twig', [
-            'restaurant' => $restaurant,
+    public function searchBar() {
+
+        return $this->renderForm('home/search.html.twig', [
         ]);
     }
-     
 }

@@ -1,25 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ controller_name }}
+	Guide francilien des cuisines d'Afrique et des Caraibes
+{% endblock %}
+
+{% block metadesc %}
+	Roots est le guide gastronomique des meilleurs restaurants africains et caribéens d'Ile-de-France. Découvrez-y aussi des livres de recettes spécifiques à votre régime alimentaire !
 {% endblock %}
 
 {% block body %}
-        {% block section_home %}
-            {% include "home/section_home.html.twig" %}
-        {% endblock %}
 
-    <section class="section_carousel">
-        {% block section_carousel %}
-            {% include "home/section_carousel.html.twig" %}
-        {% endblock %}
-    </section>
+	{% block section_home %}
+		{% include "home/section_home.html.twig" %}
+	{% endblock %}
 
-    <section class="##">
-        {% block section_about %}
-            {% include "home/section_about.html.twig" %}
-        {% endblock %}
-    </section>
+	<section class="section_carousel w-100">
+		{% block section_carousel %}
+			{% include "home/section_carousel.html.twig" %}
+		{% endblock %}
+	</section>
 
+	<section class="container">
+		<h2> Le concept de Roots </h2>
+
+		<div class=" d-flex justify-content-around flex-wrap">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sintrit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		</div>
+		
+		<div class="d-flex justify-content-center m-3">
+			<a href="{{path('app_about')}}" role="button" class=" btn btn-success">
+				Découvrir les objectifs de Roots
+			</a>
+		</div>
+
+	</section>
 
 {% endblock %}

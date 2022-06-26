@@ -21,6 +21,7 @@ class RestaurantType extends AbstractType
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
                 'required' => false,
+                // 'multiple' => true,
             ])
             ->add('description')
             ->add('num_rue')

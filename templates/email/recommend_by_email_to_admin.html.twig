@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<body>
+		<h1>
+			Recommandation de restaurant
+		</h1>
+
+		<div class="card border-dark mb-3" style="max-width: 13rem;">
+			<h3 class="card-header">
+				Email de l'interlocuteur
+			</h3>
+			<div class="card-body text-dark">
+				<p class="card-text">
+					{{ data.email }}
+				</p>
+			</div>
+
+			<h3 class="card-header">
+				Restaurant recommandé
+			</h3>
+
+			<div class="card-body text-dark">
+				<p class="card-text">
+					{{ data.restaurant }}
+				</p>
+			</div>
+			<h3 class="card-header">
+				Message/commentaire
+			</h3>
+			<div class="card-body text-dark">
+				<p class="card-text">
+					{{ data.message }}
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
