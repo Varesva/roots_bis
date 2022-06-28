@@ -16,9 +16,10 @@
 			Connecté.e en tant que :
 			<br>
 			<span class=" text-danger">
-				{{ app.user.prenom }} {{ app.user.nom | upper }}
+				{{ app.user.prenom }}
+				{{ app.user.nom | upper }}
 			</span>
-			
+
 			<span class=" text-danger opacity-75">
 				({{app.user.username}})
 			</span>
@@ -27,12 +28,18 @@
 
 	<section class="container bg-light text-center rounded-3 p-3">
 
-		<p class="mb-3">
+		<p class="mb-3 h4">
 			Vous nous quittez déjà &#128542; ?
 		</p>
 		<p class="mb-5">
 			Nous regrettons d'apprendre que vous souhaitez supprimer votre compte.
+			<br>
+			Toute l'équipe de Roots espère vous revoir très bientôt !
 		</p>
+		<figure>
+			<img class="cart_img" src="{{ asset('img/bye_deleted.png') }}" alt="Dessin, personnage disant 'Bye'">
+		</figure>
+
 		<p class="mb-5">
 			En supprimant votre compte, l'intégralité de vos données personnelles seront définitivement supprimées de notre système, et vous ne pourrez pas les récupérer.
 		</p>

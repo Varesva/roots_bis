@@ -9,15 +9,11 @@
 {% endblock %}
 
 {% block body %}
-
-	{# container #}
-	<div class="register_container">
-		<div
-			class="section_other text-center">
-			{# text container et section inscription #}
-			<div
-				class="row row_register g-3">
-				{# section connexion #}
+	<div
+		class="register_container">
+		{# container et section inscription #}
+		<div class=" section_other text-center">
+			<div class="row g-3 m-auto">
 				<h1>
 					Inscription
 				</h1>
@@ -33,20 +29,21 @@
 			</div>
 
 		</div>
-		{# section connexion #}
+		{# section connexion - main #}
 		<section class="section_main">
-			<h1>
-				Connexion
-			</h1>
+			<div class="m-auto">
+				<h1>
+					Connexion
+				</h1>
 
-			{# formulaire de connexion #}
-			<form method="post">
-				<div class="row row_register g-3 position_center">
+				{# formulaire de connexion #}
+				<form method="post" id="login" class="mx-auto row g-3">
 					<p>
 						<small class=" d-flex justify-content-end opacity-75">
 							*champs obligatoires
 						</small>
 					</p>
+
 					{% if error %}
 						<p class="d-flex justify-content-center">
 							<small class="alert alert-danger text-center font-weight-bold mb-0 p-2">
@@ -54,6 +51,7 @@
 							</small>
 						</p>
 					{% endif %}
+
 					<div class="col-12">
 						<label for="inputEmail" class="form-label">
 							Email*
@@ -86,14 +84,15 @@
 						<button class="btn" type="submit">
 							Se connecter
 						</button>
+
 						<p>
 							<a href="{{path('app_forgot_password_request')}}">
 								Mot de passe oublié ?
 							</a>
 						</p>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</section>
 	</div>
 {% endblock %}

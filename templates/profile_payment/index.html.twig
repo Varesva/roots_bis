@@ -4,12 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<section id="payment" class=" bg-warning p-2">
 	<h1>Paiement de votre commande</h1>
 
-		<div class="bg-light p-1 rounded-3">
+	<section id="section_payment" class=" p-3">
+		{# <div > #}
 			<!-- Display a payment form -->
-			<form id="payment-form">
+			<form id="payment-form" class="my-5 p-3 rounded-3">
 				<div
 					id="payment-element"><!--Stripe.js injects the Payment Element-->
 				</div>
@@ -27,14 +27,14 @@
 				</div>
 				<div id="payment-message" class="hidden"></div>
 			</form>
-		</div>
+		{# </div> #}
 
 	</section>
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="https://js.stripe.com/v3/"></script>
+	{# // <script src="https://js.stripe.com/v3/"></script> #}
 
 	<script>
 		const stripe = Stripe( "pk_test_51KquMELfBciygh7TnoJXg5vdJCTm6Vey9p0Q4mXEHpUkxxLwoNP7AorVW0mySoU8x4ZDRWQiii0nLDKhumnr1FWU005AFZWxGX" );

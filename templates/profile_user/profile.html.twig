@@ -9,137 +9,136 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Mon profil</h1>
-	<div class="justify-content-center d-flex m-auto mb-4 row w-75">
+	<h1>Mon profil personnel</h1>
 
-		{% if app.user %}
-			<p class="text-center mx-1">
-				Connecté.e en tant que :
-				<br>
-				<span class=" text-danger">
-					{{ app.user.prenom | capitalize ~ " " ~  app.user.nom | upper }}
-				</span>
-				<span class=" opacity-75">
-					({{app.user.username | lower}})
-				</span>
-			</p>
-		{% endif %}
+	<div id="profile_user">
+		<div class="justify-content-center d-flex m-auto mb-4 row w-75">
 
-		<a href="{{ path('app_logout') }}" role="button" class="btn btn-danger m-2">
-			Déconnexion
-		</a>
-	</div>
+			{% if app.user %}
+				<p class="text-center mx-1">
+					Connecté.e en tant que :
+					<br>
+					<span class=" text-danger">
+						{{ app.user.prenom | capitalize ~ " " ~  app.user.nom | upper }}
+					</span>
+					<span class=" opacity-75">
+						({{app.user.username | lower}})
+					</span>
+				</p>
+			{% endif %}
 
-	<div class="container mb-5">
-
-		<nav class="text-center">
-
-			<p class="h4 m-0 border-bottom border-2 border-success bg-white p-3">
-				<i class="fa-solid fa-sm fa-gears"></i>
-				Paramètres
-			</p>
-
-
-			<ul class="my-2">
-				<li>
-					Historique de commandes
-				</li>
-				<hr>
-				<li>
-					<a href="{{path('app_profile_favoris_index')}}">
-						Mes favoris
-					</a>
-				</li>
-				<hr>
-				<li>
-					<a href="{{ path('app_contact')}}">
-						Contacter Roots
-					</a>
-				</li>
-				<hr>
-				<li>
-					Modifier mon mot de passe
-				</li>
-				<hr>
-				<li>
-					<a href="{{ path('app_profile_delete', {'id': app.user.id})}}">
-						Supprimer mon compte
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<div class="card">
-			<div class="card-body">
-
-				<div class="d-flex flex-row">
-					<p class="text-danger w-25">Email</p>
-					<p class="w-75">{{ app.user.email | lower }}</p>
-				</div>
-				<hr>
-				<div class="d-flex flex-row">
-					<p class="text-danger w-25">Prénom</p>
-					<p class=" w-75">{{ app.user.prenom | capitalize }}</p>
-				</div>
-				<hr>
-				<div class="d-flex flex-row">
-					<p class="text-danger w-25">
-						Nom
-					</p>
-					<p class=" w-75">
-						{{ app.user.nom | upper }}
-					</p>
-				</div>
-				<hr>
-				<div class="d-flex flex-row">
-					<p class="text-danger w-25">Tél.</p>
-					<p class=" w-75">
-						{% if app.user.telephone != "" %}
-							{{ app.user.telephone }}
-						{% else %}
-							<small class="opacity-75">
-								<i>Non renseigné</i>
-							</small>
-						{% endif %}
-					</p>
-				</div>
-				<hr>
-				<div class="d-flex flex-row">
-
-					<p class="text-danger w-25">
-						Adresse
-					</p>
-
-					<p class="w-75">
-						{% if app.user.num and app.user.rue and app.user.cp and app.user.ville != "" %}
-
-							{{ app.user.num ~ ", " ~ app.user.rue }}
-							<br>
-							{{ app.user.ville | capitalize ~ " - " ~ app.user.cp }}
-							<br>
-							{{ app.user.pays | capitalize }}
-
-						{% else %}
-
-							<small class=" opacity-75">
-								<i>
-									Non renseignée
-								</i>
-							</small>
-
-						{% endif %}
-					</p>
-				</div>
-				<hr>
-
-				<div class="text-center col-md">
-					<a class="btn btn-warning" href="{{ path('app_profile_user_edit', {'id': app.user.id}) }}">Modifier mes informations</a>
-				</div>
-
-			</div>
+			<a href="{{ path('app_logout') }}" role="button" class="btn btn-danger m-2">
+				Déconnexion
+			</a>
 		</div>
 
+		<div class="container mb-5">
+
+			<nav class="text-center">
+
+				<p class="h4 m-0 border-bottom border-2 border-success bg-white p-3">
+					<i class="fa-solid fa-sm fa-gears"></i>
+					Paramètres
+				</p>
+
+
+				<ul class="my-2">
+					<li>
+						Historique de commandes
+					</li>
+					<hr>
+					<li>
+						<a href="{{path('app_profile_favoris_index')}}">
+							Mes favoris
+						</a>
+					</li>
+					<hr>
+					<li>
+						<a href="{{ path('app_contact')}}">
+							Contacter Roots
+						</a>
+					</li>
+					<hr>
+					<li>
+						Modifier mon mot de passe
+					</li>
+					<hr>
+					<li>
+						<a href="{{ path('app_profile_delete', {'id': app.user.id})}}">
+							Supprimer mon compte
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="card">
+				<div class="card-body">
+
+					<div class="d-flex flex-row">
+						<p class="text-danger w-25">Email</p>
+						<p class="w-75">{{ app.user.email | lower }}</p>
+					</div>
+					<hr>
+					<div class="d-flex flex-row">
+						<p class="text-danger w-25">Prénom</p>
+						<p class=" w-75">{{ app.user.prenom | capitalize }}</p>
+					</div>
+					<hr>
+					<div class="d-flex flex-row">
+						<p class="text-danger w-25">
+							Nom
+						</p>
+						<p class=" w-75">
+							{{ app.user.nom | upper }}
+						</p>
+					</div>
+					<hr>
+					<div class="d-flex flex-row">
+						<p class="text-danger w-25">Tél.</p>
+						<p class=" w-75">
+							{% if app.user.telephone != "" %}
+								{{ app.user.telephone }}
+							{% else %}
+								<small class="opacity-75">
+									<i>Non renseigné</i>
+								</small>
+							{% endif %}
+						</p>
+					</div>
+					<hr>
+					<div class="d-flex flex-row">
+
+						<p class="text-danger w-25">
+							Adresse
+						</p>
+
+						<p class="w-75">
+							{% if app.user.num and app.user.rue and app.user.cp and app.user.ville != "" %}
+
+								{{ app.user.num ~ ", " ~ app.user.rue }}
+								<br>
+								{{ app.user.ville | capitalize ~ " - " ~ app.user.cp }}
+								<br>
+								{{ app.user.pays | capitalize }}
+
+							{% else %}
+
+								<small class=" opacity-75">
+									<i>
+										Non renseignée
+									</i>
+								</small>
+
+							{% endif %}
+						</p>
+					</div>
+					<hr>
+
+					<div class="text-center col-md my-3">
+						<a class="btn btn-warning" href="{{ path('app_profile_user_edit', {'id': app.user.id}) }}">Modifier mes informations</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</div>
-
-	{# <a href="{{ path('app_profile_user_show', {'id': user.id}) }}">show</a> #}
-
 {% endblock %}

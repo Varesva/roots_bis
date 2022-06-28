@@ -48,15 +48,16 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
-            // generate a signed url and email it to the user
+            // ENVOI MAIL DE VERIFICATION D'ADRESSE EMAIL
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('noreply@leroots.fr', 'Roots'))
+                    ->from(new Address('contact@leroots.fr', 'Roots'))
                     ->to($user->getEmail())
                     ->subject('Confirmation de l\'adresse email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
+
+            $this->addFlash('success', 'Inscription réussie ! Validez vite votre compte via l\'email qui vous a été envoyé.');
 
             return $userAuthenticator->authenticateUser(
                 $user,
@@ -71,7 +72,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/verification/email", name="app_verify_email")
+     * @Route("/verification-email", name="app_verify_email")
      */
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
@@ -87,7 +88,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Votre email est confirmé.');
+        $this->addFlash('success', 'Compte validé. Bienvenue sur votre profil Roots !');
 
         return $this->redirectToRoute('app_profile_user_index');
     }

@@ -52,6 +52,8 @@ class ContactController extends AbstractController
                 $emailTemplate
             );
 
+            $this->addFlash('success', 'Message envoyé !');
+
             return $this->renderForm(
                 'contact/confirm.html.twig',
                 [

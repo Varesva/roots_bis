@@ -4,26 +4,33 @@
 {% endblock %}
 
 {% block body %}
-<h1>Commande validée</h1>
+	<h1>Commande validée</h1>
 
-<div class="position_center">
-			<p>
-			Nous vous remercions pour votre commande ! 
-        <br>
-        Retrouvez toutes les informations liées à votre commande dans votre espace personnel 
-			</p>
+	<section id="payment-confirm" class="text-center">
+
+		<p class="h3 my-5">
+			Merci pour votre commande !
+		</p>
+		<p class="my-3">
+			Retrouvez toutes les informations liées à votre
+			<a href="http://">commande n°XXXX</a>
+			dans votre
+			<a href="{{path('app_profile_user_index')}}">
+				profil personnel
+			</a>, rubrique "Historique de commandes".
+		</p>
+
+		<div class="row my-5">
+			<a href="{{path('app_produit_index')}}" class="my-2 btn btn-outline-secondary col-md-6">
+				Voir la boutique
+			</a>
+			<a href="{{path('app_home')}}" class="my-2 btn btn-warning btn-lg col-md-6">
+				Accueil
+			</a>
+			<a href="{{path('app_restaurant_index')}}" class="my-2 btn btn-outline-secondary col-md-6">
+				Voir les restaurants
+			</a>
 		</div>
-
-		</tbody>
-	</table>
-	<div class="position_center row">
-		<a href="{{path('app_produit_index')}}" class="btn col-md-6">
-			Retourner à la boutique
-		</a>
-        <br>
-		<a href="{{path('app_home')}}" class="btn col-md-6">
-			Retourner sur la page d'accueil
-		</a>
-	</div>
+	</section>
 
 {% endblock %}

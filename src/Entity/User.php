@@ -100,6 +100,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $favoris;
 
+    /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     */
+    private $complement_adresse;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -355,6 +360,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->favoris->removeElement($favori)) {
             $favori->removeFavori($this);
         }
+
+        return $this;
+    }
+
+    public function getComplementAdresse(): ?string
+    {
+        return $this->complement_adresse;
+    }
+
+    public function setComplementAdresse(?string $complement_adresse): self
+    {
+        $this->complement_adresse = $complement_adresse;
 
         return $this;
     }

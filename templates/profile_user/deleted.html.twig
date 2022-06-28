@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Compte supprimé
+{% endblock %}
+
+{% block body %}
+	<h1>Bye bye  &#128542;</h1>
+
+	<section class="container bg-light text-center rounded-3 p-3">
+
+		<p class="mb-5">
+			Votre compte Roots a été supprimé avec succès.
+		</p>
+		<p class="mb-3">
+			Toute l'équipe de Roots espère vous revoir très bientôt !
+		</p>
+		<div class="justify-content-center row d-flex mb-3">
+			<img class="cart_img" src="{{ asset('img/bye_deleted.png') }}" alt="Dessin, personnage disant 'Bye'">
+
+			<a href="{{path('app_home')}}" class="btn my-4 btn-warning ">
+				<i class="fa-solid fa-sm fa-house"></i>
+				Accueil
+			</a>
+		</div>
+
+	</section>
+{% endblock %}

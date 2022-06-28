@@ -27,7 +27,7 @@ class RegistrationFormType extends AbstractType
                     'autocomplete' => 'email',
                     'class' => 'form-control',
                     'maxLength' => 80,
-                    'minLength' => 5,               
+                    'minLength' => 5,
                 ]
             ])
 
@@ -35,13 +35,13 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Jane',
                     'class' => 'form-control',
-                    'maxLength' => 30,
+                    'maxLength' => 50,
                     'minLength' => 2,
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => "/^([a-zA-Z -éà¨'œ][^0-9!?_;,:\$€£&~#%*{§(\[.¤}@)\]°]*)$/",
-                        'message' => 'Veuillez uniquement utiliser des caractères alphabétiques svp.'
+                        'message' => 'Veuillez uniquement utiliser des caractères alphabétiques svp'
                     ]),
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom svp',
@@ -50,7 +50,6 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('nom', TextType::class, [
-
                 'attr' => [
                     'placeholder' => 'Doe',
                     'class' => 'form-control',
@@ -60,27 +59,26 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => "/^([a-zA-Z -éà¨'œ][^0-9!?_;,:\$€£&~#%*{§(\[.¤}@)\]°]*)$/",
-                        'message' => 'Veuillez uniquement utiliser des caractères alphabétiques svp.'
+                        'message' => 'Veuillez uniquement utiliser des caractères alphabétiques svp'
                     ]),
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom svp',
                     ]),
                 ]
-
             ])
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'J\'accepte les <a href="/conditions-generales-de-vente">
-						<u>Conditions générales</u></a>',
+                'label' => 'J\'accepte les <a href="/conditions-generales-d-utilisation">
+						Conditions Générales d\'Utilisation</a>',
                 'label_html' => true,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous devez accepter les conditions pour vous inscrire',
+                        'message' => 'Vous devez accepter les Conditions pour vous inscrire',
                     ]),
                 ],
             ])
-            
+
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'help' => 'Au moins 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial',
@@ -92,7 +90,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Ce champ ne peut être vide. Veuillez entrer un mot de passe svp',
+                        'message' => 'Veuillez entrer un mot de passe svp',
                     ]),
                     new PasswordStrength(
                         [

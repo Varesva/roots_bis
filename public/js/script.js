@@ -22,14 +22,6 @@ function scrollToTop() {
     }
 }
 
-// REDIRECTION
-
-redirectNow(function () {
-    window.location.href = "{{ path('app_home') }}"; // the redirect URL will be here
-
-}, 7000); // 7 seconds
-
-
 
 // RESET FORMS AFTER SENDING
 // function resetForm() {

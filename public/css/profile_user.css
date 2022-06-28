@@ -7,10 +7,9 @@ div.container.mb-5 {
 	margin: auto;
 }
 /* CARD */
-.container div.card {
+#profile_user .container div.card {
 	border: #e62121 4px solid;
-		border-radius: 15px;
-
+	border-radius: 15px;
 }
 /* NAVIGATION */
 div.container.mb-5 nav {
@@ -45,8 +44,9 @@ div.container.mb-5 a:hover {
 	color: #247c39;
 }
 /* card */
-p.w-75 {
-	padding-left: 1rem;
+#profile_user p.text-danger {
+	margin-right: 0.25rem !important;
+	margin-left: 0.25rem !important;
 }
 
 /* responsive format petit */
@@ -74,7 +74,7 @@ p.w-75 {
 		width: 24rem;
 	}
 
-	.container div.card {
+	#profile_user .container div.card {
 		width: 40rem;
 	}
 }

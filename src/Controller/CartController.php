@@ -1,17 +1,14 @@
 <?php
-// dossier virtuel pouraccéder au dossier de ce fichier
 namespace App\Controller;
-// auto-wiring
+
 use App\Service\Cart\CartService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 
 /**
  * @Route("/panier")
  */
 
-// Controller d'accès public, hors bdd : Panier du site Roots
 class CartController extends AbstractController
 {
     // constructeur
@@ -22,18 +19,17 @@ class CartController extends AbstractController
     {
         $this->cartService = $cartService;
     }
-    // Pour voir le panier
+
+    // voir le panier
     /**
      * @Route("/", name="app_cart_index")
      */
     public function indexCart()
     {
-        // définition de variables
         $full_cart = $this->cartService->indexCart();
         $total_cart_ht = $this->cartService->totalCart();
         $total_ttc = $this->cartService->calculTTC();
 
-        // retourner la vue avec les données du panier et le total des prix ht et ttc
         return $this->render('cart/index.html.twig', [
             'ligne_panier' => $full_cart,
             'total_cart_ht' => $total_cart_ht,

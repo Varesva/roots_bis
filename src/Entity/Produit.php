@@ -15,9 +15,10 @@ class Produit
     // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
     public function __toString()
     {
-        // return $this->titre;
+        return $this->titre;
         // return $this->livre_auteur;
         // return $this->livre_edition;
+        // return $this->livre_resume;
         // return $this->livre_resume;
         // return $this->livre_resume;
     }

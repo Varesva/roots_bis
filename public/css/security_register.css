@@ -10,8 +10,16 @@
 .section_main a:not(.btn):hover {
 	color: #2d9b48;
 }
+
+#login,
+#register {
+	max-width: 1200px;
+	margin: 4rem 0;
+}
+
 .section_main > .btn {
 	width: 70%;
+	/* max-width: ; */
 	margin: auto;
 }
 .section_other {

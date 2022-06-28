@@ -40,6 +40,11 @@ class Commande
      */
     private $total_facturation;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $reference;
+
     public function __construct()
     {
         $this->lignes_commande = new ArrayCollection();
@@ -112,6 +117,18 @@ class Commande
     public function setTotalFacturation(string $total_facturation): self
     {
         $this->total_facturation = $total_facturation;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 // Controller d'accès privé PROFILE (user), reprend les infos du Ctrl adminUser : Profil personnel d'utilisateur inscrit (User), et son propre CRUD pour gérer les paramètres de son compte sur Roots
 /**
@@ -87,16 +88,28 @@ class ProfileUserController extends AbstractController
     /**
      * @Route("/confirmation-de-suppression/{id}", name="app_profile_user_delete", methods={"POST"})
      */
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    public function delete(Request $request, User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-
+            
             $userRepository->remove($user);
         }
 
-        return $this->redirectToRoute('app_home');
+        $request->getSession()->invalidate();
+
+        $tokenStorage->setToken(); // TokenStorageInterface
+
+        // $security->logout();
+
+        // header("refresh:6;url=profile_user/deleted.html.twig");
+
+        $this->addFlash('success', 'Votre compte Roots a été supprimé avec succès');
+
+        return $this->redirectToRoute('app_home', []);
+      
         // exit;
     }
 }

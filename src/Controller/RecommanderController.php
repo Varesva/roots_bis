@@ -53,6 +53,8 @@ class RecommanderController extends AbstractController
                 $emailTemplate,
             );
 
+            $this->addFlash('success', 'Recommandation envoyée !');
+            
             return $this->renderForm('recommander/confirm.html.twig', [
                 $sender,
                 $recipient,

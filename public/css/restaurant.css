@@ -24,20 +24,21 @@
 	background-color: #2d9b48;
 }
 /* carte presentation de restaurant et image */
-section .card {
-	width: 16rem;
+.card {
+	width: 15rem;
 	border-radius: 10px;
 	margin: 2rem;
 	border: 3px solid #e62121;
 	height: 18rem;
 }
-section .card-img-top img {
-	width: 16rem;
+.card-img-top img {
+	width: 15rem;
 }
+
 /* image */
 section .card-img-top {
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
 	overflow: hidden;
 	height: 60%;
 }
@@ -47,24 +48,12 @@ section .card-img-top {
 }
 /* texte de l'image indiquant les specialités (pays) */
 .card-text_img {
-	background-color: #ffdd33;
-	border-top-left-radius: 10px;
+	background-color: rgb(255, 221, 51, 1);
+	border-top-left-radius: 6px;
 	border-bottom-right-radius: 5px;
 	padding: 0 0.5rem;
-	color: #e62121;
+	color: #992E00;
 	font-weight: 700;
 	width: fit-content;
 	position: absolute;
-	/* top: 41.5%; */
-}
-
-.restaurants_container .card-body {
-	padding-top: 0;
-	padding-bottom: 0;
-}
-/* ajouter aux favoris */
-
-div.card_favoris {
-	display: flex;
-	justify-content: space-between;
 }

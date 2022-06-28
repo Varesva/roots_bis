@@ -53,7 +53,6 @@ class ResetPasswordController extends AbstractController
                 $translator
             );
         }
-
         return $this->render('reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
         ]);
@@ -66,6 +65,10 @@ class ResetPasswordController extends AbstractController
      */
     public function checkEmail(): Response
     {
+        // $form = $this->createForm(ResetPasswordRequestFormType::class);
+        // $form->handleRequest($request);
+
+        // $resetFormEmail = ;
         // Generate a fake token if the user does not exist or someone hit this page directly.
         // This prevents exposing whether or not a user was found with the given email address or not
         if (null === ($resetToken = $this->getTokenObjectFromSession())) {
@@ -74,8 +77,8 @@ class ResetPasswordController extends AbstractController
 
         return $this->render('reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
+            // 'resetFormEmail' => $form->get('email')->getData(),
         ]);
-
     }
 
     /**
@@ -130,7 +133,9 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('success', 'Mot de passe réinitialisé ! Reconnectez-vous dès à présent avec vos identifiants');
+
+            return $this->redirectToRoute('app_profile_user_index');
         }
 
         return $this->render('reset_password/reset.html.twig', [

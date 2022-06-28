@@ -1,29 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Commande index - Roots
+{% block title %}
+	Admin - Commande index
 {% endblock %}
-
 
 {% block body %}
 	<h1>Commande index</h1>
-	<div class="container">
-		<p>Gérer les commandes du site (de la plus récente à la plus ancienne)</p>
+	<section class="container">
+
+		<p class="mb-4 h5 text-center">
+			Gérer les commandes (factures) du site <br> (de la plus récente à la plus ancienne)
+		</p>
 
 		<table class="table" id="tableOrder">
 			<thead>
 				<tr>
 					<th>
-						Id commande
+						#ID
 						<a type="button" onclick="sortAscDesc()">{# href="{{ path('app_admin_commande_index')}}" #}
 							{# <i class="fa-solid fa-arrow-down-wide-short"></i> #}
 
 							{# <i id="croissant" class="fa-solid fa-arrow-down-short-wide"></i> #}
 						</a>
 					</th>
-
-					<th>Date commande</th>
-					<th>ID du User/client</th>
-					<th>actions</th>
+					<th>Réf commande</th>
+					<th>Date</th>
+					<th>#ID User</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,6 +36,9 @@
 							<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}">
 								{{ commande.id }}
 							</a>
+						</td>
+						<td>
+							{{ commande.reference }}
 						</td>
 						<td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
 						<td>
@@ -45,20 +51,17 @@
 						<td>
 							<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}" class="btn btn-outline-info mt-1">Afficher</a>
 
-
 							<a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="btn btn-outline-warning mt-1">Modifier</a>
-
 						</td>
 					</tr>
 				{% else %}
 					<tr>
 						<td colspan="3">Pas de résultat</td>
-
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 
 		<a href="{{ path('app_admin_commande_new') }}" class="btn btn-outline-dark">Créer une nouvelle commande</a>
-	</div>
+	</section>
 {% endblock %}

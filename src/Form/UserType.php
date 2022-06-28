@@ -15,6 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class UserType extends AbstractType
 {
@@ -22,6 +25,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
+            'label' => 'Email*',
                 'attr' => [
                     'placeholder' => 'email@exemple.com',
                     'class' => 'form-control',
@@ -31,18 +35,29 @@ class UserType extends AbstractType
                 ]
             ])
 
-            ->add('roles')
+            ->add(
+                'roles', null, [
+                'label' => 'Rôle attribué*',
+                ]
+                // , ChoiceType::class, [
+                //     'choices' => [
+                //         'ROLE_USER' => ,
+                //         // 'ROLE_ADMIN' => ['ROLE_ADMIN'],
+                //     ],
+                //     'multiple' => true,
+                //     'expanded' => true,
+                // ]
+            )
 
             ->add('password', PasswordType::class, [
+            'label' => 'Mot de passe*',
                 'mapped' => false,
                 'help' => 'Au moins 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial',
-
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'class' => 'form-control',
                     'placeholder' => '8 caractères minimum'
                 ],
-
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ ne peut être vide. Veuillez entrer un mot de passe svp',
@@ -59,13 +74,12 @@ class UserType extends AbstractType
             ])
 
             ->add('nom', TextType::class, [
+            'label' => 'Nom*',
                 'attr' => [
-                    'placeholder' => 'Votre nom',
                     'class' => 'form-control',
                     'maxLength' => 30,
                     'minLength' => 2,
                 ],
-                
                 'constraints' => [
                     new Regex([
                         'pattern' => "/^([a-zA-Z -éà¨'œ][^0-9!?_;,:\$€£&~#%*{§(\[.¤}@)\]°]*)$/",
@@ -78,8 +92,8 @@ class UserType extends AbstractType
             ])
 
             ->add('prenom', TextType::class, [
+            'label' => 'Prénom*',
                 'attr' => [
-                    'placeholder' => 'Votre prénom',
                     'class' => 'form-control',
                     'maxLength' => 30,
                     'minLength' => 2,
@@ -96,32 +110,66 @@ class UserType extends AbstractType
             ])
 
             ->add('telephone', TelType::class, [
+                'required' => false,
+                'label' => 'N° de téléphone',
                 'attr' => [
-                    'placeholder' => 'N° à joindre lors de la livraison',
+                    'label' => 'Complément d\'adresse',
                     'maxLength' => 20,
                     'minLength' => 9,
                 ]
             ])
 
-            ->add('num')
+            ->add('num', IntegerType::class, [
+                'label' => 'Numéro de rue',
+                'required' => false,
+            ])
 
-            ->add('rue')
+            ->add('rue', TextType::class, [
+                'label' => 'Nom de rue',
+                'required' => false,
+                'attr' => [
+                    'maxLength' => 100,
+                ]
+            ])
 
-            ->add('ville')
-
-            ->add('cp')
+            ->add('ville', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'maxLength' => 100,
+                ]
+            ])
+            ->add('cp', TextType::class, [
+                'label' => 'Code postal',
+                'required' => false,
+                'attr' => [
+                    'maxLength' => 20,
+                ]
+            ])
 
             ->add('pays', TextType::class, [
                 'required' => false,
                 'empty_data' => 'France',
                 'attr' => [
                     'value' => 'France',
+                    'maxLength' => 100,
                 ]
             ])
 
-            ->add('isVerified');
+            ->add('complement_adresse', TextareaType::class, [
+                'label' => 'Complément d\'adresse',
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Informations complémentaires concernant votre adresse',
+                    'rows' => '5',
+                    'maxLength' => 180,
+                ]
+            ])
 
-        // pour convertir un array en string
+            ->add('isVerified', null, [
+                'help' => 'Indique si l\'utilisateur a confirmé son email ou non'
+            ]);
+
+        // POUR CONVERTIR UN ARRAY EN STRING et inversement
         $builder->get('roles')
             ->addModelTransformer(new CallbackTransformer(
                 function ($rolesAsArray) {

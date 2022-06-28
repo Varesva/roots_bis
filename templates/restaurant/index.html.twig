@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tous les restaurants - Roots
+{% block title %}
+	Tous les restaurants
 {% endblock %}
+
+{% block metadesc %}
+	Retrouvez les meilleurs restaurants africains et caribéens d'Ile-de-France sur Roots !
+{% endblock %}
+
 
 {% block body %}
 	<h1>Tous les restaurants</h1>
 
 	<section
-		class="restaurants_container">
+		class="restaurants_container" id="section_restaurant">
 		{# nouvelle variable in variable du controller #}
 		{% for restaurant in restaurants %}
 			<div class="card">

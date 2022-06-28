@@ -13,7 +13,7 @@
 		class="register_container">
 		{# section connexion - other #}
 		<div class="section_other text-center">
-			<div class="row g-2">
+			<div class="row g-3 m-auto">
 				<h1>Connexion</h1>
 				<div>
 					<p>
@@ -21,9 +21,10 @@
 					</p>
 					<i class="fa-solid fa-angles-down"></i>
 				</div>
-				<a role="button" class="btn text-white" href="{{path('app_login')}}">
+				<a role="button" class="btn" href="{{path('app_login')}}">
 					Se connecter
 				</a>
+
 				<p class="mt-0">
 					<small>
 						<a href="{{path('app_forgot_password_request')}}" class=" font-weight-bold">
@@ -36,50 +37,63 @@
 
 		{# section inscription - main #}
 		<section class="section_main">
-			<h1>
-				Inscription
-			</h1>
-			{# formulaire d'inscription #}
-			{{ form_start(registrationForm) }}
-			<div class="row row_register g-3">
-				<small class=" d-flex justify-content-end opacity-75">
-					*champs obligatoires
-				</small>
+			<div class="m-auto">
+				<h1>
+					Inscription
+				</h1>
 
-				{{ form_row(registrationForm.prenom, {
+				{# formulaire d'inscription #}
+				{{ form_start(registrationForm, {
+					'attr' : {
+						'id' : 'register',
+					}
+				}) }}
+
+				<div class="row g-3">
+					<p>
+						<small class=" d-flex justify-content-end opacity-75">
+							*Champs obligatoires
+						</small>
+					</p>
+
+					{{ form_row(registrationForm.prenom, {
 				'label' : 'Prénom*', 
 				'row_attr' : {'class' : 'col-md-6 mb-2'},
 				} ) }}
 
-				{{ form_row(registrationForm.nom, {
+					{{ form_row(registrationForm.nom, {
 				'label' : 'Nom*', 
 				'row_attr' : {'class' : 'col-md-6 mb-2'},
 				} ) }}
 
-				{{ form_row(registrationForm.email, {
+					{{ form_row(registrationForm.email, {
 				'label' : 'Email*', 
 				'row_attr' : {'class' : 'col-md-6 mb-2'},
 				} ) }}
 
-				{{ form_row(registrationForm.plainPassword, {
+					{{ form_row(registrationForm.plainPassword, {
 				'label' : 'Mot de passe*', 
 				'row_attr' : {'class' : 'col-md-6 mb-2'},
 				} ) }}
-								
-				<div
-					class="d-flex justify-content-center col-12">
-					{# case à cocher #}
-					{{ form_widget(registrationForm.agreeTerms) }}
 
-					{# block de vérification d'email après inscription #}
-					{% for flash_error in app.flashes('verify_email_error') %}
-						<small class="alert alert-danger bg-danger text-white" role=" alert">{{ flash_error }}</small>
-					{% endfor %}
+					<div
+						class="d-flex justify-content-center mx-auto my-3 col-10">
+						{# case à cocher #}
+						{{ form_widget(registrationForm.agreeTerms) }}
+
+						{# validate email confirmation link, sets User::isVerified=true and persists #}
+						{% for flash_error in app.flashes('verify_email_error') %}
+							<small class="alert alert-danger bg-danger text-white" role=" alert">{{ flash_error }}</small>
+						{% endfor %}
+					</div>
+
+					<button type="submit" class="btn">
+						S'inscrire
+					</button>
 
 				</div>
-				<button type="submit" class="btn text-white">S'inscrire</button>
+				{{ form_end(registrationForm) }}
 			</div>
-			{{ form_end(registrationForm) }}
 		</section>
 	</div>
 {% endblock %}
