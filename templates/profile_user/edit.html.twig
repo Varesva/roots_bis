@@ -13,14 +13,12 @@
 
 	<section class="container bg-light rounded-3 p-3">
 
-
 		{{ include('profile_user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
 		<hr>
 
-		<div class="d-flex justify-content-around">
-
-			<a href="{{path('app_profile_user_index')}}" class="btn btn-outline-dark">
+		<div class="d-flex justify-content-center">
+			<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark">
 				Retour à mon profil
 			</a>
 		</div>

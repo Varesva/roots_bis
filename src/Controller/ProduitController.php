@@ -1,18 +1,17 @@
 <?php
-// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
-// auto-wiring
+
 use App\Entity\Produit;
+use App\Entity\LigneCommande;
 use App\Repository\ProduitRepository;
 use App\Repository\NutritionRepository;
+use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CategorieRestaurantRepository;
-use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// Controller d'accès public, reprend les infos du Ctrl adminProduit  : produits de la boutique, leurs propriétés et catégories
 /**
  * @Route("/produit")
  */
@@ -40,6 +39,7 @@ class ProduitController extends AbstractController
         ]);
     }
 
+
     // afficher un seul produit selon son id
     /**
      * @Route("/{id}", name="app_produit_show", methods={"GET"})
@@ -50,6 +50,23 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
+
+    // /**
+    //  * @Route("/{id}/produit", name="app_produit_show", methods={"GET"})
+    //  */
+    // public function showProduitByLigne(Produit $produit, $id): Response
+    // {
+    //     $qb = $this->produitRepository->findProduitByLigne($id);
+
+    //     return $this->render('produit/show.html.twig', [
+    //         'produit' => $produit,
+    //         // $qb,
+    //     ]);
+    // }
+
+    
+
+
     // afficher un seul produit à partir du PANIER selon son id
     /**
      * @Route("/{id}", name="app_produit_cart_show", methods={"GET"})

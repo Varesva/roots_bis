@@ -1,33 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paiement
+{% block title %}
+	Paiement
 {% endblock %}
 
 {% block body %}
-	<h1>Commande validée</h1>
+	<h1>
+		Commande validée
+<i class="fa-solid fa-sm fa-circle-check"></i>
+	</h1>
+
 
 	<section id="payment-confirm" class="text-center">
 
-		<p class="h3 my-5">
-			Merci pour votre commande !
+		<p class="h4 my-5">
+			Merci pour votre achat !
 		</p>
 		<p class="my-3">
-			Retrouvez toutes les informations liées à votre
-			<a href="http://">commande n°XXXX</a>
+			Retrouvez votre
+			<span class=" font-weight-bold text-success"><a href="{{path('app_profile_user')}}">commande n°{{orderRef}}</a></span>
 			dans votre
-			<a href="{{path('app_profile_user_index')}}">
+			<a href="{{path('app_profile_user')}}">
 				profil personnel
 			</a>, rubrique "Historique de commandes".
 		</p>
 
-		<div class="row my-5">
-			<a href="{{path('app_produit_index')}}" class="my-2 btn btn-outline-secondary col-md-6">
+		<div class="col-md-5 row mx-auto my-5">
+			<a href="{{path('app_produit_index')}}" class="my-2 btn btn-outline-secondary">
 				Voir la boutique
 			</a>
-			<a href="{{path('app_home')}}" class="my-2 btn btn-warning btn-lg col-md-6">
+			<a href="{{path('app_home')}}" class="my-2 btn btn-warning">
 				Accueil
 			</a>
-			<a href="{{path('app_restaurant_index')}}" class="my-2 btn btn-outline-secondary col-md-6">
+			<a href="{{path('app_restaurant_index')}}" class="my-2 btn btn-outline-secondary">
 				Voir les restaurants
 			</a>
 		</div>

@@ -1,8 +1,7 @@
 <?php
-// dossier virtuel pour accéder au dossier de ce fichier
+
 namespace App\Entity;
 
-// auto-wiring
 use App\Repository\CategorieRestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,12 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CategorieRestaurant
 {
-    // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
     public function __toString()
     {
         return $this->type_cuisine;
     }
-    // fin conversion en string
 
     /**
      * @ORM\Id

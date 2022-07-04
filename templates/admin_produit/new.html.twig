@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Créer un nouveau Produit - Roots
+{% block title %}Créer nouveau Produit
 {% endblock %}
 
 
 {% block body %}
-	<h1>Créer un nouveau Produit</h1>
+	<h1>Créer nouveau Produit</h1>
+
 	<section class="container">
 
 		{{ include('admin_produit/_form.html.twig') }}
 		<hr>
-		<a href="{{ path('app_admin_produit_index') }}" class="btn btn-outline-dark">Retour à la liste des catégories</a>
+		<div class="justify-content-center flex-wrap d-flex">
+
+			<a href="{{ path('app_admin_produit_index') }}" class="btn btn-outline-dark">Retour liste produits</a>
+
+		</div>
 	</section>
 {% endblock %}

@@ -75,6 +75,7 @@ class PaymentService
         }
 
         return $randomStr;
+
     }
 
     // ENVOI EN BASE DE DONNEES
@@ -85,7 +86,7 @@ class PaymentService
 
         // -------------------- PARTIE COMMANDE(facture) --------------------
 
-        // définir var et instancier la classe AdminCommande
+        // INSTANCIATION DE CLASSE
         $confirmCommande = new Commande();
 
         $loggedUser = $this->security->getUser();
@@ -97,11 +98,11 @@ class PaymentService
         $orderDate->setTimeZone(new DateTimeZone('Europe/Paris'));
         $confirmCommande->setDate($orderDate);
         
-        // recup le prix total TTC du panier
+        // RECUP TOTAL TTC PANIER
         $total_facturation = $this->cartService->calculTTC();
         $confirmCommande->setTotalFacturation($total_facturation);
 
-        // générer n° de commande random
+        // générer n° de commande réf random
         $orderRefNumber = $this->generateRandStr();
         $confirmCommande->getReference($orderRefNumber);
         $confirmCommande->setReference($orderRefNumber);
@@ -110,7 +111,8 @@ class PaymentService
 
 
         // --------------------  PARTIE LIGNE COMMANDE --------------
-
+        
+        // INSTANCIATION DE CLASSE
         $add_ligneCommande = new LigneCommande();
 
         // faire une boucle pour chaque produit du panier
@@ -122,8 +124,8 @@ class PaymentService
             $add_ligneCommande->setPrix($produit_add_ligneCommande->getPrix() * $quantite);
             $add_ligneCommande->setCommande($confirmCommande);
 
-            // recup et insérer les lignes commandes concernées dans l'objet
             $this->ligneCommandeRepository->add($add_ligneCommande);
         }
+        return $orderRefNumber;
     }
 }

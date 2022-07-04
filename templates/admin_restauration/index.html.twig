@@ -1,35 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restauration index{% endblock %}
+{% block title %}Restauration index
+{% endblock %}
 
 {% block body %}
-    <h1>Restauration index</h1>
+	<h1>Restauration index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type_cuisine</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for restauration in restaurations %}
-            <tr>
-                <td>{{ restauration.id }}</td>
-                <td>{{ restauration.typeCuisine }}</td>
-                <td>
-                    <a href="{{ path('app_admin_restauration_show', {'id': restauration.id}) }}">show</a>
-                    <a href="{{ path('app_admin_restauration_edit', {'id': restauration.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<p class="h4 text-center">Gérer les catégories de types de cuisines
+	</p>
 
-    <a href="{{ path('app_admin_restauration_new') }}">Create new</a>
+	<section class="container">
+		<div class="table-responsive-lg">
+
+			<table class="table table-striped table-bordered">
+
+				<thead class="table-warning">
+					<tr>
+						<th>Id</th>
+						<th>Type_cuisine</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for restauration in restaurations %}
+						<tr>
+							<td>{{ restauration.id }}</td>
+							<td>{{ restauration.typeCuisine }}</td>
+							<td>
+								<a href="{{ path('app_admin_restauration_show', {'id': restauration.id}) }}" class="btn btn-primary m-2 ">Afficher</a>
+
+								<a href="{{ path('app_admin_restauration_edit', {'id': restauration.id}) }}" class="btn btn-warning m-2">Modifier</a>
+
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de résultat</td>
+
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="justify-content-center flex-wrap d-flex">
+        
+			<a href="{{ path('app_admin_restauration_new') }}" class="btn btn-dark">Créer une nouvelle catégorie</a>
+
+		</div>
+	</section>
 {% endblock %}

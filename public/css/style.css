@@ -3,8 +3,6 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	/* ligne à effacer */
-	/* border: 1px black solid;  */
 	scroll-behavior: smooth;
 }
 
@@ -22,9 +20,19 @@ body {
 	margin: auto;
 }
 
-main a:not(.card a, .btn, nav a,) {
-	text-decoration: underline;
+/* ADMIN NAV */
+#admin_header.sticky-top {
+z-index: 998;
 }
+/* fin sticky footer */
+
+main.site_container p a:not( .btn), section div li a, article a {
+	text-decoration: underline;
+	/* font-weight: 700; */
+}
+/* main a:not(.card a, .btn, nav a,) {
+	text-decoration: underline;
+} */
 
 a {
 	text-decoration: none;
@@ -41,8 +49,10 @@ ul {
 	margin-bottom: 0;
 }
 
-section {
-	margin: 3.75rem auto;
+section:not(.section_carousel) {
+	margin: 3rem auto;
+	max-width: 1000px;
+	padding: 1rem;
 }
 
 article {

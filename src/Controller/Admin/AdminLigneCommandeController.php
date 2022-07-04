@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\LigneCommande;
 use App\Form\LigneCommandeType;
@@ -16,24 +16,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminLigneCommandeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_admin_ligne_commande_detail", methods={"GET"})
+     * @Route("/", name="app_admin_ligne_commande_index", methods={"GET"})
      */
     public function index(LigneCommandeRepository $ligneCommandeRepository): Response
     {
         return $this->render('admin_ligne_commande/index.html.twig', [
-            'ligne_commandes' => $ligneCommandeRepository->findAll(),
+            'lignes_commande' => $ligneCommandeRepository->findAll(),
         ]);
     }
-    // afficher les produits de la commande par commande
-    /**
-     * @Route("/{id}", name="app_admin_grouped_ligne_commande", methods={"GET"})
-     */
-    public function ligneGroupedCommande(LigneCommandeRepository $ligneCommandeRepository,$id): Response
-    {
-        return $this->render('admin_ligne_commande/index.html.twig', [
-            'ligne_commandes' => $ligneCommandeRepository->findBy(['commande'=>$id]),
-        ]);
-    }
+    // // afficher les produits de la commande par commande
+    // /**
+    //  * @Route("/{id}", name="app_admin_grouped_ligne_commande", methods={"GET"})
+    //  */
+    // public function ligneGroupedCommande(LigneCommandeRepository $ligneCommandeRepository,$id): Response
+    // {
+    //     return $this->render('admin_ligne_commande/index.html.twig', [
+    //         'lignes_commande' => $ligneCommandeRepository->findBy(['commande'=>$id]),
+    //     ]);
+    // }
 
     /**
      * @Route("/new", name="app_admin_ligne_commande_new", methods={"GET", "POST"})
@@ -65,6 +65,7 @@ class AdminLigneCommandeController extends AbstractController
         ]);
     }
 
+    
     /**
      * @Route("/{id}/edit", name="app_admin_ligne_commande_edit", methods={"GET", "POST"})
      */

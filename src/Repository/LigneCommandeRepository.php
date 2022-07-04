@@ -45,22 +45,51 @@ class LigneCommandeRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return LigneCommande[] Returns an array of LigneCommande objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return LigneCommande[] Returns an array of LigneCommande objects
+     */
+    
+    public function findLignesByOrder($orderId)
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
+        ->join('l.commande', 'c')
+        ->setParameter('orderId', $orderId)
+        ->where('c.id = :orderId')
+            // ->andWhere('l.exampleField = :val')
             ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
+            // ->setMaxResults(20)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    public function findProduitByLigne($lignesId)
+    {
+        return $this->createQueryBuilder('l')
+        ->join('l.produit', 'p')
+        ->setParameter('lignesId', $lignesId)
+        ->where('p.id = :lignesId')
+            // ->andWhere('l.exampleField = :val')
+            ->orderBy('l.id', 'ASC')
+            // ->setMaxResults(20)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    // public function findByExampleField($value)
+    // {
+    //     return $this->createQueryBuilder('l')
+    //         ->andWhere('l.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('l.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?LigneCommande

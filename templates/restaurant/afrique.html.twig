@@ -12,7 +12,8 @@ class="restaurant_container_afr">
 
 	{# nouvelle variable in variable du controller #}
 	{% for restaurant in restaurants %}
-		<div class="card">
+<div class="card card-restaurant">
+
 
 			<div class="card-img-top">
 				<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">

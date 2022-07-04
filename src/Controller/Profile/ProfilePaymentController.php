@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use Stripe\Stripe;
 use App\Entity\User;
@@ -31,23 +31,23 @@ class ProfilePaymentController extends AbstractController
     private $session;
     private $paymentService;
 
-    public function __construct(PaymentService $paymentService, Security $security, CartService $cartService, SessionInterface $session, UserRepository $userRepository)
+    public function __construct(PaymentService $paymentService, Security $security, CartService $cartService, SessionInterface $session, UserRepository $userRepository, CommandeRepository $commandeRepository)
     {
         $this->security = $security;
         $this->cartService = $cartService;
         $this->session = $session;
         $this->paymentService = $paymentService;
         $this->userRepository = $userRepository;
+        $this->commandeRepository = $commandeRepository;
     }
 
     // afficher la page de paiement avec toutes les infos
     /**
      * @Route("", name="app_profile_payment")
      */
-    public function createPayment( Request $request): Response
+    public function createPayment(): Response
     {
-        // User $user
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->security->getUser();
 
         // récupérer la valeur de la variable avec prix et devise monétaire
         $paymentIntent = $this->paymentService->paymentIntent();
@@ -163,24 +163,26 @@ class ProfilePaymentController extends AbstractController
      */
     public function confirm(): Response
     {
-        // récupérer la valeur de la variable avec prix et devise monétaire
+        // RECUP PRIX ET DEVISE MONETAIRE
         $paymentIntent = $this->paymentService->paymentIntent();
-        // récuperer le prix total ttc du panier
+
+        // RECUP TOTAL TTC PANIER
         $total_ttc = $this->cartService->calculTTC();
-        // récupérer le panier dans sa totalité (prix, produits, quantité)
+
+        // RECUP PANIER ENTIEREMENT(prix, produits, quantité)
         $cartService = $this->cartService->indexCart();
 
-        // créer les infos à ajouter dans ligne commande, envoyer la commande en base de données
-        $this->paymentService->confirmOrderDB();
-
-        // vider le panier après paiement
+        // NUM REF COMMANDE ET AJOUT EN BDD
+        $orderRefNumber = $this->paymentService->confirmOrderDB();
+        
+        // VIDER LE PANIER APRES PAIEMENT
         $this->cartService->clear();
 
         // retourner la vue de confirmation
         // return $this->redirectToRoute('app_profile_payment_valid');
 
-        return $this->render('profile_payment/confirm.html.twig', []);
-
-
+        return $this->render('profile_payment/confirm.html.twig', [
+            'orderRef' => $orderRefNumber,
+        ]);
     }
 }

@@ -1,17 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Ajouter une LigneCommande - Roots
+{% block title %}Ajouter une LigneCommande
 {% endblock %}
 
-
 {% block body %}
-	<h1>Créer une nouvelle LigneCommande</h1>
+	<h1>Créer nouvelle LigneCommande</h1>
 
 	<section class="container">
 
 		{{ include('admin_ligne_commande/_form.html.twig') }}
 		<hr>
-		<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark">Retour à la liste des lignes de commande</a>
+		<div class="justify-content-center flex-wrap d-flex">
+			<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark">Retour aux lignes commande</a>
+		</div>
 
 	</section>
 {% endblock %}

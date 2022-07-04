@@ -12,9 +12,8 @@
 	<h1>Mon profil personnel</h1>
 
 	<div id="profile_user">
-		<div class="justify-content-center d-flex m-auto mb-4 row w-75">
 
-			{% if app.user %}
+		<div class="justify-content-center d-flex m-auto mb-4 row w-75">
 				<p class="text-center mx-1">
 					Connecté.e en tant que :
 					<br>
@@ -25,7 +24,6 @@
 						({{app.user.username | lower}})
 					</span>
 				</p>
-			{% endif %}
 
 			<a href="{{ path('app_logout') }}" role="button" class="btn btn-danger m-2">
 				Déconnexion
@@ -34,17 +32,18 @@
 
 		<div class="container mb-5">
 
-			<nav class="text-center">
+			<nav>
 
 				<p class="h4 m-0 border-bottom border-2 border-success bg-white p-3">
 					<i class="fa-solid fa-sm fa-gears"></i>
 					Paramètres
 				</p>
 
-
 				<ul class="my-2">
 					<li>
-						Historique de commandes
+						<a href="{{path('app_profile_user_commande')}}">
+							Historique de commandes
+						</a>
 					</li>
 					<hr>
 					<li>
@@ -60,11 +59,13 @@
 					</li>
 					<hr>
 					<li>
-						Modifier mon mot de passe
+						<a href="{{ path('app_profile_user_edit_pwd', {'id': app.user.id})}}">
+							Modifier mot de passe
+						</a>
 					</li>
 					<hr>
 					<li>
-						<a href="{{ path('app_profile_delete', {'id': app.user.id})}}">
+						<a href="{{ path('app_profile_user_delete_request' )}}">
 							Supprimer mon compte
 						</a>
 					</li>
@@ -72,12 +73,12 @@
 			</nav>
 			<div class="card">
 				<div class="card-body">
-
 					<div class="d-flex flex-row">
 						<p class="text-danger w-25">Email</p>
 						<p class="w-75">{{ app.user.email | lower }}</p>
 					</div>
 					<hr>
+
 					<div class="d-flex flex-row">
 						<p class="text-danger w-25">Prénom</p>
 						<p class=" w-75">{{ app.user.prenom | capitalize }}</p>
@@ -136,7 +137,6 @@
 					<div class="text-center col-md my-3">
 						<a class="btn btn-warning" href="{{ path('app_profile_user_edit', {'id': app.user.id}) }}">Modifier mes informations</a>
 					</div>
-
 				</div>
 			</div>
 		</div>

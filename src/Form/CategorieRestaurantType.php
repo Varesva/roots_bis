@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CategorieRestaurantType extends AbstractType
 {
@@ -16,9 +17,9 @@ class CategorieRestaurantType extends AbstractType
             ->add('type_cuisine', TextType::class, [
                 'attr' => [
                     'maxLength' => 50,
-                'maxLenghtMessage' => 'Votre message ne doit pas excéder {{ limit }} caractères.'
                 ]
             ])
+
             ->add('image', FileType::class, [
                 'label' => 'Image de la catégorie',
                 // unmapped means that this field is not associated to any entity property

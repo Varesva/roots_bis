@@ -2,24 +2,23 @@
 a.btn.btn-danger.m-2 {
 	width: 10rem;
 }
-/* CONTAINER */
-div.container.mb-5 {
-	margin: auto;
-}
+
 /* CARD */
 #profile_user .container div.card {
 	border: #e62121 4px solid;
 	border-radius: 15px;
+	height: inherit;
+	width: inherit;
 }
 /* NAVIGATION */
 div.container.mb-5 nav {
-	/* color: #ffdd33; */
+	width: 90%;
 	color: #dc1919;
 	background-color: #ffffd6;
-	margin: 2rem;
-	height: fit-content;
+	margin: 2rem auto;
 	border: #2d9b48 2px solid;
 	border-radius: 15px;
+	text-align: center !important;
 }
 
 div.container.mb-5 nav ul {
@@ -34,7 +33,6 @@ div.container.mb-5 nav ul li:hover {
 	background-color: #fff266;
 	font-size: 1.05rem;
 	font-weight: 800;
-	/* color: #e62121; */
 	color: #247c39;
 	width: 100%;
 	margin: auto;
@@ -49,22 +47,18 @@ div.container.mb-5 a:hover {
 	margin-left: 0.25rem !important;
 }
 
-/* responsive format petit */
-@media screen and (min-width: 375px) {
-	/* navigation */
-	div.container.mb-5 nav {
-		width: 90%;
-	}
+#profile_user div.container.mb-5 {
+	padding: 1.5rem;
+	background-color: rgb(255, 221, 51, 0.65);
 }
 
 /* responsive moyen format L, mobile portrait et paysage */
 @media screen and (min-width: 768px) {
 	/* container */
 	div.container.mb-5 {
+		width: inherit;
 		display: flex;
 		flex-direction: row;
-		background-color: rgb(255, 221, 51, 0.65);
-		padding: 1.5rem;
 		border-radius: 10px;
 		align-items: center;
 	}
@@ -72,6 +66,7 @@ div.container.mb-5 a:hover {
 	/* navigation */
 	div.container.mb-5 nav {
 		width: 24rem;
+		margin-right: 2rem;
 	}
 
 	#profile_user .container div.card {
@@ -80,8 +75,13 @@ div.container.mb-5 a:hover {
 }
 
 /* responsive format ordi */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
 	div.container.mb-5 {
-		justify-content: space-between;
+		justify-content: space-evenly;
+	}
+
+	/* navigation */
+	div.container.mb-5 nav {
+		margin: 0;
 	}
 }

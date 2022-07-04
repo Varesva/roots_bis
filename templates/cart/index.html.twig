@@ -21,7 +21,8 @@
 			<div class="d-flex flex-wrap justify-content-around">
 				{% for item in ligne_panier %}
 
-					<div class="card" style="width: 12rem;">
+<div class="card card-restaurant" style="width: 12rem;">
+
 
 						<div class="card-img-top">
 							<a class="card_container" href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
@@ -87,13 +88,12 @@
 				<a href="{{path('app_produit_index')}}" class="btn btn-secondary m-1">
 					Continuer mes achats
 				</a>
-<a href="{{path('app_profile_payment', {'id': app.user.id})}}" class="btn btn-success m-1">
-
+				<a href="{{path('app_profile_payment')}}" class="btn btn-success m-1">
 					Commander
 				</a>
 				{# <a href="{{path('app_profile_payment_userAddress', {'id': app.user.id})}}" class="btn btn-success m-1">
-					Commander
-				</a> #}
+									Commander
+								</a> #}
 			</div>
 		</section>
 

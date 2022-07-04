@@ -1,16 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Modifier User - Roots
+{% block title %}Modifier User
 {% endblock %}
 
 {% block body %}
-	<h1>Modifier cet utilisateur</h1>
+	<h1>Modifier User</h1>
 	<section class="container">
 
-		{{ include('admin_user/_form.html.twig', {'button_label': 'Mettre à jour et modifier'}) }}
+		{{ include('admin_user/_form.html.twig', {'button_label': 'Modifier'}) }}
 		<hr>
-		<div class="d-flex justify-content-around">
-			<a href="{{ path('app_admin_user_index') }}" class="btn btn-outline-dark">Retour à la liste des utilisateurs</a>
+		<div class="d-flex justify-content-center flex-wrap">
+			<a href="{{ path('app_admin_user_index') }}" class="btn btn-outline-dark m-2">Retour à la liste User</a>
+
+			<a href="{{ path('app_admin_user_show', {'id': user.id}) }}" class="btn btn-primary m-2">Afficher ce User</a>
+
 
 			{{ include('admin_user/_delete_form.html.twig') }}
 		</div>

@@ -14,9 +14,9 @@ class BoutiqueType extends AbstractType
     {
         $builder
             ->add('type_produit', TextType::class, [
+                'label' => 'Nom catég produit*',
                 'attr' => [
                 'maxLength' => 50,
-                'maxLenghtMessage' => 'Votre message ne doit pas excéder {{ limit }} caractères.'
                 ]
             ])
         ;

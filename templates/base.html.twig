@@ -48,6 +48,9 @@
 		{% endblock %}
 
 		<title>
+			{% if is_granted('ROLE_ADMIN') %}
+				Admin -
+			{% endif %}
 			{% block title %}{% endblock %}
 			- Roots
 		</title>
@@ -55,7 +58,25 @@
 
 	<body>
 		{# HEADER #}
-		{% include "_header.html.twig" %}
+		{% if is_granted('ROLE_ADMIN') %}
+
+			{# USER #}
+			{% include "_header.html.twig" %}
+
+			{# ADMIN #}
+			{% include "home/admin/_header.html.twig" %}
+
+		{# {% elseif is_granted('ROLE_USER') and is_granted('ROLE_ADMIN') == false %}
+
+			{% include "_header.html.twig" %} #}
+
+		{% else %}
+
+			{# USER #}
+			{% include "_header.html.twig" %}
+
+		{% endif %}
+		{# -- END HEADER #}
 
 		{# CONTAINER - sticky footer #}
 		<main
@@ -64,40 +85,42 @@
 			{# ADDFLASH MESSAGE #}
 			{% for message in app.flashes('success') %}
 				<div class="alert alert-success p-2 w-75 mx-auto text-center fade show align-items-center d-flex space-between" role="alert">
-				<div>
-					{{ message }}
-				</div>
-					
-				<button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close">
-					<i class="fa-solid fa-xmark"></i>
-				</button>
+					<div class="mx-auto">
+						{{ message }}
+					</div>
 
+					<button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close">
+						<i class="fa-solid fa-xmark"></i>
+					</button>
 				</div>
 			{% endfor %}
 
 			{# BODY #}
 			{% block body %}{% endblock %}
+
 		</main>
+
 
 		{# BACK TO TOP #}
 		<button onclick="backToTop()" id="toTop" aria-label="Retourner en haut de la page" title="Retourner en haut de la page"></button>
 
 		{# FOOTER #}
 		{% include "_footer.html.twig" %}
-	</body>
 
-	{% block javascripts %}
-		{# JS BOOTSTRAP #}
-		<script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
-		{# JAVASCRIPT #}
-		<script src="{{ asset('js/script.js')}}"></script>
-		{# ICON KIT - FONTAWESOME #}
-		<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous"></script>
-		{# STRIPE API #}
-		<script src="https://js.stripe.com/v3/"></script>
-		{# GOOGLE reCAPTCHA #}
+
+		{% block javascripts %}
+			{# JS BOOTSTRAP #}
+			<script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+			{# JAVASCRIPT #}
+			<script src="{{ asset('js/script.js')}}"></script>
+			{# ICON KIT - FONTAWESOME #}
+			<script src="https://kit.fontawesome.com/10342158be.js" crossorigin="anonymous"></script>
+			{# STRIPE API #}
+			<script src="https://js.stripe.com/v3/"></script>
+			{# GOOGLE reCAPTCHA #}
 		{# // <script src="https://www.google.com/recaptcha/api.js" async defer onload hl></script> #}
-		{# // <script src="{{ asset('js/recaptcha_form.js')}}"></script> #}
+			{# // <script src="{{ asset('js/recaptcha_form.js')}}"></script> #}
+		{% endblock %}
 
-	{% endblock %}
+	</body>
 </html>

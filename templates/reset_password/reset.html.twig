@@ -15,22 +15,28 @@
 
 	<section class="page_contact_container p-4 bg-light">
 
-		<p class="my-3">
-			À l'aide de votre email et de ce nouveau mot de passe, vous pourrez vous reconnecter à votre compte Roots à tout moment.
-		</p>
-		<p class="my-5">
+		<p class="mb-5 mt-2 h5 text-center">
 			Entrez votre nouveau mot de passe ci-dessous :
 		</p>
 
 		{{ form_start(resetForm, {
 			'attr' : { 'class' : 'w-75 mx-auto' }
 		} ) }}
+<p>
+	<small class=" justify-content-end d-flex opacity-75">
+		*Champs obligatoires
+	</small>
+</p>
 
 		{{ form_row(resetForm.plainPassword) }}
 
 		<button class="btn btn-success my-2">Enregistrer</button>
 
 		{{ form_end(resetForm) }}
+
+		<p class="my-3 mx-auto w-75">
+			Une fois votre nouveau mot de passe enregistré, vous pourrez immédiatement vous connecter à votre compte.
+		</p>
 
 	</section>
 

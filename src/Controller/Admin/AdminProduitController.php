@@ -1,7 +1,7 @@
 <?php
-// dossier virtuel pour accéder au dossier de ce fichier
-namespace App\Controller;
-// auto-wiring
+
+namespace App\Controller\Admin;
+
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Service\FileUploader;
@@ -14,13 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// Controller d'accès privé ADMIN : produits de la boutique, leurs propriétés et catégories
 /**
  * @Route("/admin/produit")
  */
 class AdminProduitController extends AbstractController
 {
-    // constructeur de classe  - pour tjrs avoir ces variables avec la classe
     protected $produitRepository;
     protected $fileUploader;
     protected $em;
@@ -31,7 +29,6 @@ class AdminProduitController extends AbstractController
         $this->fileUploader = $fileUploader;
         $this->entityManagerInterface = $em;
     }
-    // fin constructeur de classe  
 
     // afficher tous les produits
     /**
@@ -39,11 +36,10 @@ class AdminProduitController extends AbstractController
      */
     public function index(): Response
     {
-        // récuperer tous les produits
-        $produitRepository = $this->produitRepository->findAll();
-        // retourner la vue
+        $produits = $this->produitRepository->findAll();
+        
         return $this->render('admin_produit/index.html.twig', [
-            'produits' => $produitRepository,
+            'produits' => $produits,
         ]);
     }
 

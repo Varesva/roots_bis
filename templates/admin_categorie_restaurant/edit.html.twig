@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Modifier une CategorieRestaurant - Roots
+{% block title %}Modifier CategorieRestaurant
 {% endblock %}
 
 
 {% block body %}
-	<h1>Modifier une CategorieRestaurant</h1>
+	<h1>Modifier CategRestaurant</h1>
+
 
 	<section class="container">
 
-		{{ include('admin_categorie_restaurant/_form.html.twig', {'button_label': 'Mettre à jour et modifier'}) }}
+		{{ include('admin_categorie_restaurant/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 		<hr>
-		<div class="d-flex justify-content-around">
+		<div class="d-flex justify-content-center flex-wrap">
 
-			<a href="{{ path('app_admin_categorie_restaurant_index') }}" class="btn btn-outline-dark">Retour aux catégories</a>
+			<a href="{{ path('app_admin_categorie_restaurant_index') }}" class="btn btn-outline-dark m-2">Retour aux catég</a>
 
 			{{ include('admin_categorie_restaurant/_delete_form.html.twig') }}
 		</div>

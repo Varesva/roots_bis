@@ -25,7 +25,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-            'label' => 'Email*',
+                'label' => 'Email*',
                 'attr' => [
                     'placeholder' => 'email@exemple.com',
                     'class' => 'form-control',
@@ -36,8 +36,10 @@ class UserType extends AbstractType
             ])
 
             ->add(
-                'roles', null, [
-                'label' => 'Rôle attribué*',
+                'roles',
+                null,
+                [
+                    'label' => 'Rôle attribué*',
                 ]
                 // , ChoiceType::class, [
                 //     'choices' => [
@@ -50,7 +52,7 @@ class UserType extends AbstractType
             )
 
             ->add('password', PasswordType::class, [
-            'label' => 'Mot de passe*',
+                'label' => 'Mot de passe*',
                 'mapped' => false,
                 'help' => 'Au moins 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial',
                 'attr' => [
@@ -74,7 +76,7 @@ class UserType extends AbstractType
             ])
 
             ->add('nom', TextType::class, [
-            'label' => 'Nom*',
+                'label' => 'Nom*',
                 'attr' => [
                     'class' => 'form-control',
                     'maxLength' => 30,
@@ -92,7 +94,7 @@ class UserType extends AbstractType
             ])
 
             ->add('prenom', TextType::class, [
-            'label' => 'Prénom*',
+                'label' => 'Prénom*',
                 'attr' => [
                     'class' => 'form-control',
                     'maxLength' => 30,
@@ -160,7 +162,7 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Informations complémentaires concernant votre adresse',
-                    'rows' => '5',
+                    'rows' => '3',
                     'maxLength' => 180,
                 ]
             ])

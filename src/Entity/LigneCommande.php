@@ -13,9 +13,9 @@ class LigneCommande
     // convertir en string - pour corriger l'erreur Symfony : https://ourcodeworld.com/articles/read/1460/how-to-fix-symfony-5-error-object-of-class-proxies-cg-appentity-could-not-be-converted-to-string 
     public function __toString()
     {
-        return $this->produit;
+        // return $this->produit;
+        // return $this->commande;
     }
-    // fin conversion en string
 
     /**
      * @ORM\Id

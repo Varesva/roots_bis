@@ -23,7 +23,8 @@
 			<div class="favoris">
 
 				{% for item in ligne_favoris %}
-					<div class="card">
+					<div class="card card-restaurant">
+
 
 						<div class="card-img-top">
 							<a class="card_container" href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">
@@ -66,10 +67,15 @@
 					<p>
 						N'hésitez pas à en ajouter dès maintenant !
 					</p>
+					<div>
+						<a href="{{path('app_restaurant_index')}}" class="btn btn-warning m-2">
+							Voir tous les restaurants
+						</a>
 
-					<a href="{{path('app_restaurant_index')}}" class="btn btn-warning">
-						Voir tous les restaurants
-					</a>
+						<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
+							Mon profil
+						</a>
+					</div>
 				</div>
 
 			</div>

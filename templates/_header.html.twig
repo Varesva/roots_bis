@@ -181,13 +181,13 @@
 
 					{% else %}
 						<li>
-							<a class="dropdown-item" href="{{path('app_profile_user_index', {'id': app.user.id})}}">
+							<a class="dropdown-item" href="{{path('app_profile_user')}}">
 								<i class="fa-solid fa-sm fa-house-user "></i>
 								Profil
 							</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="{{path('app_profile_user_commande')}}">
 								<i class="fa-solid fa-sm fa-list-check "></i>
 								Commandes
 							</a>

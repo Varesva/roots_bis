@@ -1,0 +1,213 @@
+<header id="admin_header" class="sticky-top ">
+
+	<div class="flex-md-nowrap navbar navbar-dark bg-dark m-0 shadow p-2">
+
+		<a class="navbar-brand px-2" href="{{path('app_admin_dashboard')}}">Roots (ADMIN)</a>
+
+		{# <input class="form-control w-75 mx-auto" type="text" placeholder="Recherche" aria-label="Search"> #}
+
+		<button class="navbar-toggler collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+
+
+	<div id="navbarToggleExternalContent" class="collapse" style="background-color: #DBDBDB;">
+
+		<nav class="p-2">
+
+			<ul class="nav flex-row justify-content-center">
+				<li class="m-2">
+					<a class="btn btn-light" href="{{path('app_home')}}" target="_blank">
+						Roots (USER)
+						<i class="fa-solid fa-sm fa-arrow-up-right-from-square"></i>
+					</a>
+				</li>
+
+				<li class="m-2">
+					<a class="btn btn-danger" href=" {{ path('app_logout') }} ">
+
+						Déconn.
+						<i class="fa-solid fa-sm fa-arrow-right-from-bracket"></i>
+					</a>
+				</li>
+			</ul>
+
+			<hr>
+
+			<ul class="nav flex-row justify-content-evenly">
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							User
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_user_index')}}">
+									Tous les users
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_user_new')}}">
+									Créer User
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Boutique
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_boutique_index')}}">
+									Toutes catégories
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_boutique_new')}}">
+									Créer catégorie
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Nutrition
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_nutrition_index')}}">
+									Toutes catégories
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_nutrition_new')}}">
+									Créer catég
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							CategRestaurant
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_categorie_restaurant_index')}}">
+									Toutes catégories
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_categorie_restaurant_new')}}">
+									Créer CategResto
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Produit
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_produit_index')}}">
+									Tous les produits
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_produit_new')}}">
+									Créer produit
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Restaurant
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_restaurant_index')}}">
+									Tous les restaurants
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_restaurant_new')}}">
+									Créer restaurant
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Commande
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_commande_index')}}">
+									Toutes les commandes
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_commande_new')}}">
+									Créer commande
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							LigneCommande
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_ligne_commande_index')}}">
+									Toutes lignes commandes
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_ligne_commande_new')}}">
+									Créer ligne comm.
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+			</ul>
+		</nav>
+	</div>
+</header>

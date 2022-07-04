@@ -5,7 +5,11 @@
 {% block body %}
     <h1>Produit</h1>
 
-    <table class="table">
+<section class="container">
+	<div class="table-responsive-lg">
+
+		<table class="table text-center ">
+
         <tbody>
             <tr>
                 <th>Id</th>
@@ -40,8 +44,26 @@
                 <td>{{ produit.livreResume }}</td>
             </tr>
         </tbody>
-    </table>
 
-    <a href="{{ path('app_produit_index') }}">back to list</a>
+    </table>
+</div>
+<div class="d-flex flex-wrap justify-content-center">
+
+	<a href="{{ path('app_profile_user_commande') }}" class="btn btn-outline-dark m-2">
+		Retour à la liste des commandes
+	</a>
+
+	<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
+		Retour à mon profil
+	</a>
+
+	<a href="{{path('app_home')}}" class="btn btn-warning m-2">
+		<i class="fa-solid fa-sm fa-house"></i>
+		Accueil
+	</a>
+</div>
+
+</section> 
+    {# <a href="{{ path('app_produit_index') }}">back to list</a> #}
 
 {% endblock %}

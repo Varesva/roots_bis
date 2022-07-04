@@ -1,9 +1,7 @@
 <?php
 
-// dossier virtuel pour accéder au dossier de ce fichier
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-// auto-wiring
 use App\Entity\Nutrition;
 use App\Form\NutritionType;
 use App\Service\FileUploader;
@@ -14,24 +12,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// Controller d'accès privé ADMIN : catégorie Nutrition: regimes alimentaires des livres et restaurants du site
 /**
  * @Route("/admin/nutrition")
  */
 class AdminNutritionController extends AbstractController
 {
-    // constructeur de classe  - pour tjrs avoir ces variables avec la classe
     protected $nutritionRepository;
     protected $fileUploader;
     protected $em;
 
-    public function __construct(NutritionRepository $nutritiontRepository, FileUploader $fileUploader, EntityManagerInterface $em)
+    public function __construct(NutritionRepository $nutritionRepository, FileUploader $fileUploader, EntityManagerInterface $em)
     {
-        $this->nutritiontRepository = $nutritiontRepository;
+        $this->nutritionRepository = $nutritionRepository;
         $this->fileUploader = $fileUploader;
         $this->entityManagerInterface = $em;
     }
-    // fin constructeur de classe 
 
     /**
      * @Route("/", name="app_admin_nutrition_index", methods={"GET"})

@@ -40,7 +40,7 @@ class ChangePasswordFormType extends AbstractType
                             ]
                         ),
                     ],
-                    'label' => 'Nouveau mot de passe',
+                    'label' => 'Nouveau mot de passe*',
                 ],
                 'second_options' => [
                     'help' => 'Indiquez une deuxième fois votre nouveau mot de passe',
@@ -52,7 +52,7 @@ class ChangePasswordFormType extends AbstractType
                         'class' => 'mb-3',
                     ],
 
-                    'label' => 'Confirmer le mot de passe',
+                    'label' => 'Confirmer le mot de passe*',
                 ],
 
                 'invalid_message' => 'Les deux champs doivent indiquer un mot de passe identique',

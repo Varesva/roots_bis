@@ -1,14 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Créer une nouvelle catégorie de  Nutrition - Roots
+{% block title %}Créer nouvelle catég Nutrition
 {% endblock %}
 
 
 {% block body %}
-	<h1>Créer une nouvelle catégorie de Nutrition</h1>
+	<h1>Créer nouvelle catég Nutrition</h1>
 	<section class="container">
 		{{ include('admin_nutrition/_form.html.twig') }}
 		<hr>
-		<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-outline-dark">Retour à la liste des catégories</a>
+		<div class="justify-content-center flex-wrap d-flex">
+
+			<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-outline-dark">Retour liste Nutrition</a>
+		</div>
 	</section>
 {% endblock %}

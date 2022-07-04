@@ -1,67 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Admin - Commande index
+{% block title %}Commande
 {% endblock %}
 
 {% block body %}
-	<h1>Commande index</h1>
+	<h1>Admin Commande index</h1>
+
+	<p class="h4 text-center">
+		Gérer les commandes (factures) du site
+		<br>
+		(de la plus récente à la plus ancienne)
+	</p>
+
 	<section class="container">
-
-		<p class="mb-4 h5 text-center">
-			Gérer les commandes (factures) du site <br> (de la plus récente à la plus ancienne)
-		</p>
-
-		<table class="table" id="tableOrder">
-			<thead>
-				<tr>
-					<th>
-						#ID
-						<a type="button" onclick="sortAscDesc()">{# href="{{ path('app_admin_commande_index')}}" #}
-							{# <i class="fa-solid fa-arrow-down-wide-short"></i> #}
-
-							{# <i id="croissant" class="fa-solid fa-arrow-down-short-wide"></i> #}
-						</a>
-					</th>
-					<th>Réf commande</th>
-					<th>Date</th>
-					<th>#ID User</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for commande in commandes %}
+		<div class="table-responsive-lg">
+			<table class="table table-striped table-bordered text-center" id="tableOrder">
+				<thead class="table-warning">
 					<tr>
-						<td class="px-4">
-							<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}">
-								{{ commande.id }}
-							</a>
-						</td>
-						<td>
-							{{ commande.reference }}
-						</td>
-						<td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
-						<td>
-							{{ commande.user }}
-							<a href="{{ path('app_admin_commande_user', {'id': commande.user.id}) }}" class="btn btn-sm btn-outline-secondary mx-1">
-								Voir client
-							</a>
-						</td>
+						<th scope="col">
+							ID
+							{# <a type="button" onclick="sortAscDesc()">href="{{ path('app_admin_commande_index')}}" #}
+								{# <i class="fa-solid fa-arrow-down-wide-short"></i> #}
 
-						<td>
-							<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}" class="btn btn-outline-info mt-1">Afficher</a>
-
-							<a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="btn btn-outline-warning mt-1">Modifier</a>
-						</td>
+								{# <i id="croissant" class="fa-solid fa-arrow-down-short-wide"></i> #}
+							{# </a> #}
+						</th>
+						<th scope="col">Réf.</th>
+						<th scope="col">Date</th>
+						<th scope="col">User</th>
+						<th scope="col">Actions</th>
 					</tr>
-				{% else %}
-					<tr>
-						<td colspan="3">Pas de résultat</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{% for commande in commandes %}
+						<tr>
+							<td class="px-4">
+								<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}">
+									{{ commande.id }}
+								</a>
+							</td>
+							<td>
 
-		<a href="{{ path('app_admin_commande_new') }}" class="btn btn-outline-dark">Créer une nouvelle commande</a>
+								{{ commande.reference }}
+							</td>
+							<td>{{ commande.date ? commande.date|date('d/m/y (@H:i)') : '' }}</td>
+							<td>
+								<a href="{{ path('app_admin_commande_user', {'id': commande.user.id}) }}" class=" btn btn-sm btn-secondary ">
+									{{ commande.user.prenom | first ~ '. ' ~ commande.user.nom | upper }}
+								</a>
+							</td>
+
+							<td>
+								<a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}" class="btn btn-primary m-2">Afficher</a>
+
+								<a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="btn  btn-warning m-2">Modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">Pas de résultat</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="justify-content-center flex-wrap d-flex">
+
+			<a href="{{ path('app_admin_commande_new') }}" class="btn btn-dark">Créer nouvelle commande</a>
+		</div>
 	</section>
 {% endblock %}

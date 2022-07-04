@@ -24,7 +24,7 @@
 	background-color: #2d9b48;
 }
 /* carte presentation de restaurant et image */
-.card {
+.card-restaurant {
 	width: 15rem;
 	border-radius: 10px;
 	margin: 2rem;

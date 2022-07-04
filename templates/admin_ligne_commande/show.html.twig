@@ -7,26 +7,39 @@
 {% block body %}
 	<h1>Afficher une LigneCommande</h1>
 	<section class="container">
-		<table class="table">
-			<tbody>
-				<tr>
-					<th>Id</th>
-					<td>{{ ligne_commande.id }}</td>
-				</tr>
-				<tr>
-					<th>Quantite</th>
-					<td>{{ ligne_commande.quantite }}</td>
-				</tr>
-				<tr>
-					<th>Prix</th>
-					<td>{{ ligne_commande.prix }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="d-flex justify-content-around">
-			<a href="{{ path('app_admin_ligne_commande_edit', {'id': ligne_commande.id}) }}" class="btn btn-outline-warning">Modifier</a>
+		<div class="table-responsive-lg">
 
-			<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark">Retour à la liste des lignes de commande</a>
+			<table class="table table-striped table-bordered">
+				<tbody>
+					<tr>
+						<th scope="col">Id</th>
+						<td>{{ ligne_commande.id }}</td>
+					</tr>
+					<tr>
+						<th scope="col">Ref. commande</th>
+						{# <td>{{ ligne_commande.commande }}</td> #}
+					</tr>
+					<tr>
+						<th scope="col">Produit</th>
+						<td>{{ ligne_commande.produit }}</td>
+					</tr>
+					<tr>
+						<th scope="col">Quantite</th>
+						<td>{{ ligne_commande.quantite }}</td>
+					</tr>
+					<tr>
+						<th scope="col">Prix</th>
+						<td>{{ ligne_commande.prix }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="d-flex justify-content-center flex-wrap">
+
+			<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark m-2">Retour liste lignes commande</a>
+
+			<a href="{{ path('app_admin_ligne_commande_edit', {'id': ligne_commande.id}) }}" class="btn btn-warning m-2">Modifier</a>
 
 			{{ include('admin_ligne_commande/_delete_form.html.twig') }}
 		</div>

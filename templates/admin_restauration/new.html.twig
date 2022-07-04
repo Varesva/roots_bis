@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Restauration{% endblock %}
+{% block title %}Créer Restauration
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Restauration</h1>
+	<h1>Créer Restauration</h1>
 
-    {{ include('admin_restauration/_form.html.twig') }}
+	<section class="container">
 
-    <a href="{{ path('app_admin_restauration_index') }}">back to list</a>
+		{{ include('admin_restauration/_form.html.twig') }}
+		<hr>
+		<div class="justify-content-center flex-wrap d-flex">
+			<a href="{{ path('app_admin_restauration_index') }}" class="btn btn-outline-dark">Retour liste Restauration</a>
+		</div>
+	</section>
 {% endblock %}

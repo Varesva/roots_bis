@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Détails de commande
+{% endblock %}
+
+{% block metadesc %}
+	Retrouvez vite toutes vos commandes passées sur le site Roots depuis votre profil personnel !
+{% endblock %}
+
+{% block body %}
+	<h1>Commande n°{{ commande.reference }}</h1>
+
+	<section class="container">
+		<div class="table-responsive-lg">
+
+			<table class="table text-center table-hover table-bordered">
+				<thead>
+					<tr class="table-dark text-uppercase">
+						<th scope="col">
+							#Ref
+						</th>
+
+						<th scope="col">
+							Date
+						</th>
+						<th scope="col">
+							User
+						</th>
+						<th scope="col" class="bg-success">
+							Total (TTC)
+						</th>
+					</tr>
+					<tr>
+						<td>
+							{{ commande.reference }}
+						</td>
+						<td>
+							{{ commande.date ? commande.date|date('d/m/Y') ~ ' (à ' ~ commande.date|date('H') ~ 'h' ~ commande.date|date('i)') : '' }}
+						</td>
+
+						<td>
+							{{ commande.user }}
+							<a href="{{ path('app_admin_commande_user', {'id': commande.user.id}) }}" class="btn btn-sm btn-outline-secondary mx-1">
+								Client
+							</a>
+						</td>
+						<td class="table-success">
+							{{ commande.totalFacturation }}€
+						</td>
+					</tr>
+
+					<tr>
+						<th colspan="6" class="table-dark">
+							Liste des produits
+						</th>
+					</tr>
+
+					<tr class="table-secondary">
+						<th>Produit(s)</th>
+						<th>Prix unitaire</th>
+						<th>Qté</th>
+						<th>Afficher le produit</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					{% for ligne_commande in lignes_commande %}
+						<tr>
+							<td class="d-flex align-items-center justify-content-around">
+								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}">
+
+									<img src="{{asset('upload/' ~ ligne_commande.produit.image )}}" alt="Image du produit" width="100px">
+								</a>
+
+								{{ ligne_commande.produit }}
+							</td>
+							<td>
+								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}">
+									{{ ligne_commande.produit.prix }}€
+								</a>
+							</td>
+							<td>
+								{{ ligne_commande.quantite }}
+							</td>
+							<td>
+								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}" class="btn btn-sm btn-outline-primary mt-1">
+									<i class="fa-solid fa-eye"></i>
+									Voir
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="d-flex flex-wrap justify-content-center">
+
+			<a href="{{ path('app_profile_user_commande') }}" class="btn btn-outline-dark m-2">
+				Retour à la liste des commandes
+			</a>
+
+			<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
+				Retour à mon profil
+			</a>
+
+			<a href="{{path('app_home')}}" class="btn btn-warning m-2">
+				<i class="fa-solid fa-sm fa-house"></i>
+				Accueil
+			</a>
+		</div>
+	</section>
+
+{% endblock %}

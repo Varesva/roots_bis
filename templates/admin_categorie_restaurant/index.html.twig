@@ -1,53 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - CategorieRestaurant - Roots
+{% block title %}CategorieRestaurant
 {% endblock %}
 
 
 {% block body %}
 	<h1>CategorieRestaurant index</h1>
+
 	<section class="container">
-		<p>Gérer les catégories de types de cuisine des restaurants disponibles</p>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Type_cuisine</th>
-					<th>Image</th>
-					<th>actions</th>
-					<th>Les restaurants par catégorie</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for categorie_restaurant in categorie_restaurants %}
+		<p class="h4 text-center">Gérer les catégories (types de cuisine) des restaurants</p>
+
+		<div class="table-responsive-lg">
+
+			<table class="table table-striped table-bordered">
+
+				<thead class="table-warning">
 					<tr>
-						<td>{{ categorie_restaurant.id }}</td>
-						<td>{{ categorie_restaurant.typeCuisine }}</td>
-						<td>
-							<img src="{{asset('upload/' ~ categorie_restaurant.image)}}" class=" w-50 rounded-3">
-						</td>
-						<td>
-
-							<a href="{{ path('app_admin_categorie_restaurant_show', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-info">Afficher</a>
-
-							<a href="{{ path('app_admin_categorie_restaurant_edit', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-warning mt-3">Modifier</a>
-						</td>
-
-
-						<td>
-							<a href="{{ path('app_admin_restaurant_categorie', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-secondary">Les restaurants</a>
-						</td>
+						<th scope="col">Id</th>
+						<th scope="col">Type_cuisine</th>
+						<th scope="col">Image</th>
+						<th scope="col">actions</th>
+						<th scope="col">Les restau par catég.</th>
 					</tr>
+				</thead>
+				<tbody>
+					{% for categorie_restaurant in categorie_restaurants %}
+						<tr>
+							<td>{{ categorie_restaurant.id }}</td>
+							<td>{{ categorie_restaurant.typeCuisine }}</td>
+							<td>
+								<img src="{{asset('upload/' ~ categorie_restaurant.image)}}" width="200" class=" rounded-3">
+							</td>
+							<td>
+								<a href="{{ path('app_admin_categorie_restaurant_show', {'id': categorie_restaurant.id}) }}" class="btn btn-primary m-2">Afficher</a>
+
+								<a href="{{ path('app_admin_categorie_restaurant_edit', {'id': categorie_restaurant.id}) }}" class="btn btn-warning m-2">Modifier</a>
+							</td>
 
 
-				{% else %}
-					<tr>
-						<td colspan="3">Pas de résultat</td>
+							<td>
+								<a href="{{ path('app_admin_restaurant_categorie', {'id': categorie_restaurant.id}) }}" class="btn btn-outline-secondary">Les restaurants</a>
+							</td>
+						</tr>
 
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<a href="{{ path('app_admin_categorie_restaurant_new') }}" class="btn btn-outline-dark">Créer une nouvelle catégorie</a>
-	{% endblock %}
+
+					{% else %}
+						<tr>
+							<td colspan="3">Pas de résultat</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="justify-content-center flex-wrap d-flex">
+
+			<a href="{{ path('app_admin_categorie_restaurant_new') }}" class="btn btn-dark m-2">Créer nouvelle catégRestaurant</a>
+		</div>
+	</section>
+{% endblock %}

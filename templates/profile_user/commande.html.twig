@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Historique de commandes
+{% endblock %}
+
+{% block metadesc %}
+	Retrouvez vite toutes vos commandes passées sur le site Roots depuis votre profil personnel !
+{% endblock %}
+
+{% block body %}
+	<h1>Historique de commandes</h1>
+
+	<section class="bg-light text-center container rounded-3">
+
+		{% if commandes | length > 0 %}
+
+			<p class="mb-4 text-center">
+				Retrouvez l'ensemble de vos commandes réalisées sur le site Roots
+				<br>
+				(de la plus récente à la plus ancienne)
+			</p>
+
+			<div class="table-responsive-lg">
+				<table class="table table-bordered table-striped text-center">
+					<thead class="table-warning">
+						<tr>
+							<th scope="col">#Réf.</th>
+							<th scope="col">Date</th>
+							<th scope="col">Total</th>
+							<th scope="col">Afficher</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for commande in commandes %}
+							<tr>
+								<td scope="row" class=" col-sm-4">
+									{% if commande.reference != "" %}
+										{{ commande.reference }}
+									{% else %}
+										#
+									{% endif %}
+								</td>
+
+								<td class="col-sm-4">
+									{{ commande.date ? commande.date|date('d/m/y') : '' }}
+								</td>
+								<td class="col-sm-4">
+
+									{{ commande.totalFacturation }}€
+								</td>
+								{# AFFICHER #}
+								<td class="col-sm-4">
+									<a href="{{ path('app_commande_show', {'id': commande.id}) }}" class="btn btn-sm btn-outline-primary mt-1">
+										<i class="fa-solid fa-eye"></i>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
+					Retour à mon profil
+				</a>
+			</div>
+		{% else %}
+			<div class="text-center mb-5">
+
+				<img class="cart_img" src="{{ asset('img/noOrders.png') }}" alt="Dessin carton vide, aucune commande réalisée">
+
+				<p class="my-4 h5">
+					Vous n'avez réalisé aucune commande
+				</p>
+
+				<div>
+					<a href="{{path('app_produit_index')}}" class="btn btn-warning m-2">
+						Visiter la boutique
+					</a>
+
+					<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
+						Retour à mon profil
+					</a>
+				</div>
+
+			</div>
+		{% endif %}
+	</section>
+
+{% endblock %}

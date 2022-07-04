@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Boutique - Roots
+{% block title %}Modifier categ Boutique
 {% endblock %}
 
 {% block body %}
-	<h1>Modifier une catégorie de la Boutique</h1>
+	<h1>Modifier categ Boutique</h1>
 	<section class="container">
 
-{{ include('admin_boutique/_form.html.twig', {'button_label': 'Mettre à jour et modifier'}) }}
+		{{ include('admin_boutique/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 		<hr>
-		<div class="d-flex justify-content-around">
+		<div class="d-flex justify-content-around flex-wrap">
 
-			<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-outline-dark">Retour aux catégories</a>
+			<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-outline-dark">Retour liste Boutique</a>
 
 			{{ include('admin_boutique/_delete_form.html.twig') }}
 		</div>

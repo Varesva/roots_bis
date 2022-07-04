@@ -36,42 +36,43 @@ h5,
 }
 
 h1 {
-	font-size: 2.6rem;
-	text-align: center !important;
+	font-size: 2.3rem;
 	display: flex;
 	justify-content: center;
 	font-weight: 700;
 	color: #e62121;
-	/* color: #b22222; */
+	text-align: center !important;
+	align-items: center;
 }
 
 h2,
 .h2 {
-	font-size: 2.2rem;
+	font-size: 1.9rem;
 	display: flex;
 	justify-content: center;
 	text-align: center !important;
+	align-items: center;
 }
 /* responsive moyen format L, mobile portrait et paysage */
 @media screen and (max-width: 768px) {
 	h1 {
-		font-size: calc(2.2rem + 1.5vw);
+		font-size: calc(1.325rem + 2.5vw);
 	}
 
 	h2,
 	.h2 {
-		font-size: calc(1.325rem + 0.9vw);
+		font-size: calc(1.225rem + 0.9vw);
 	}
 }
 
 h3,
 .h3 {
-	font-size: 1.8rem;
+	font-size: 1.7rem;
 }
 
 h4,
 .h4 {
-	font-size: 1.5rem;
+	font-size: 1.355rem;
 }
 
 h5,
@@ -79,12 +80,11 @@ h5,
 	font-size: 1.25rem;
 }
 
-label {
+label, .label {
 	color: #b22222;
 }
 
 small,
-.text-small {
-	font-size: 0.9rem;
+.small {
 	font-weight: 500;
 }

@@ -49,27 +49,33 @@ class CommandeRepository extends ServiceEntityRepository
      * @return Commande[] Returns an array of Commande objects
      */
 
-    public function findByAllCommande($commande)
+    // ADMIN - ALL ORDERS
+    public function findAllByDesc()
     {
         return $this->createQueryBuilder('c')
+            // ->innerjoin('c.lignes_commande', 'lc')
+            // ->where('lc.commande = 3')
             ->orderBy('c.id', 'DESC')
-            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }
-    
-    // public function findByAllCommande($commande)
-    // {
-    //     return $this->createQueryBuilder('c')
-    //         // ->andWhere('c.exampleField = :val')
-    //         // ->setParameter('val', $commande)
-    //         ->orderBy('c.id', 'DESC')
-    //         // ->setMaxResults(10)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
 
+    // ALL USER'S ORDERS
+    public function findAllOrdersByUser($userId)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->join('c.user', 'u')
+            ->setParameter('userId', $userId)
+            ->where('u.id = :userId')
+            // // ->setFirstResult($order * 3 - 3)
+            // // ->andWhere('u.id = :val')
+            ->orderBy('c.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $qb;
+    }
+  
 
     /*
     public function findOneBySomeField($value): ?Commande

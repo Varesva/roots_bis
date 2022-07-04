@@ -1,6 +1,6 @@
 <?php
 // dossier virtuel pouraccéder au dossier de ce fichier
-namespace App\Controller;
+namespace App\Controller\Profile;
 // auto-wiring
 
 use App\Service\Favoris\FavorisService;

@@ -9,13 +9,11 @@
 	margin-bottom: 20%;
 }
 
-
 /* DIV D'AJOUT AUX FAV, dans les CARD */
 div.card_favoris {
 	display: flex;
 	justify-content: space-between;
 }
-
 
 div.card_favoris {
 	display: flex;
@@ -89,7 +87,7 @@ div.card_favoris {
 /* ----------------------- cart - profile panier */
 
 #section_cart .card-title {
-	text-align: center!important;
+	text-align: center !important;
 }
 
 .cart_img {
@@ -115,17 +113,22 @@ body > main > section > div:nth-child(6) > div {
 	margin: 3rem 0;
 } */
 #section_payment {
-	background-color: rgb(255, 221, 51, 0.65);
-	
-}
-#payment-form {
-	background-color: #ffffd6 ;
+	background-color: rgb(255, 221, 51, 0.6);
 }
 
+#payment-form,
 #payment-confirm {
-	background-color: rgb(255, 221, 51, 0.65);
-
+	background-color: #ffffd6;
 }
+
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 425px) {
+	#section_payment {
+		width: 80%;
+		border-radius: 15px;
+	}
+}
+
 /* responsive moyen format L, mobile portrait et paysage */
 @media screen and (min-width: 768px) {
 	.empty_fav_container {

@@ -1,8 +1,5 @@
 <?php
-// dossier virtuel pour accéder au dossier de ce fichier
 namespace App\Controller;
-
-// auto-wiring
 
 use App\Service\Display\DisplayService;
 use App\Repository\RestaurantRepository;
@@ -37,4 +34,16 @@ class HomeController extends AbstractController
         return $this->renderForm('home/search.html.twig', [
         ]);
     }
+
+    // page d'accueil du Dashboard Admin 
+    /**
+     * @Route("/admin/dashboard", name="app_admin_dashboard")
+     */
+    public function homeAdmin(): Response
+    {
+        return $this->render('home/admin/index.html.twig', []);
+    }
+
+
+
 }

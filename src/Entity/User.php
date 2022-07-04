@@ -20,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->prenom;
         return $this->nom;
+        return $this->email;
     }
 
     /**

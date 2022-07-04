@@ -10,7 +10,8 @@
 		class="produits_container">
 		{# nouvelle variable in variable du controller #}
 		{% for categorie_restaurant in categorie_restaurants %}
-			<div class="card">
+<div class="card card-restaurant">
+
 
 				<div class="card-img-top">
 <a class="card_container" href="{{ path('app_produit_ByCateg_cuisine', {'id': categorie_restaurant.id}) }}">

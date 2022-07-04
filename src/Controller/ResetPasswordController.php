@@ -135,7 +135,7 @@ class ResetPasswordController extends AbstractController
 
             $this->addFlash('success', 'Mot de passe réinitialisé ! Reconnectez-vous dès à présent avec vos identifiants');
 
-            return $this->redirectToRoute('app_profile_user_index');
+            return $this->redirectToRoute('app_profile_user');
         }
 
         return $this->render('reset_password/reset.html.twig', [

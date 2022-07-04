@@ -90,6 +90,6 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Compte validé. Bienvenue sur votre profil Roots !');
 
-        return $this->redirectToRoute('app_profile_user_index');
+        return $this->redirectToRoute('app_profile_user');
     }
 }
