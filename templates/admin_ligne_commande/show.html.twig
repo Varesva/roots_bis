@@ -12,16 +12,34 @@
 			<table class="table table-striped table-bordered">
 				<tbody>
 					<tr>
-						<th scope="col">Id</th>
+						<th scope="col">Id ligneCommande</th>
 						<td>{{ ligne_commande.id }}</td>
 					</tr>
 					<tr>
+						<th scope="col">Id commande</th>
+						<td>
+							{# <a href="{{ path('app_admin_commande_show', {'id': commande.id}) }}"> #}
+
+							{{ ligne_commande.commande.id }}
+							{# </a> #}
+						</td>
+					</tr>
+					<tr>
 						<th scope="col">Ref. commande</th>
-						{# <td>{{ ligne_commande.commande }}</td> #}
+						<td>
+							{{ commande.reference }}
+						</td>
+
 					</tr>
 					<tr>
 						<th scope="col">Produit</th>
-						<td>{{ ligne_commande.produit }}</td>
+						<td class="d-flex flex-column">
+
+							<img src="{{asset('upload/' ~ ligne_commande.produit.image)}}" width="150">
+							<p class="my-3 h5">
+								{{ ligne_commande.produit }}
+							</p>
+						</td>
 					</tr>
 					<tr>
 						<th scope="col">Quantite</th>
@@ -29,7 +47,7 @@
 					</tr>
 					<tr>
 						<th scope="col">Prix</th>
-						<td>{{ ligne_commande.prix }}</td>
+						<td>{{ ligne_commande.prix }}€</td>
 					</tr>
 				</tbody>
 			</table>

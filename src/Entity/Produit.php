@@ -24,7 +24,7 @@ class Produit
     }
     // fin conversion en string
 
-      /**
+    /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -73,7 +73,7 @@ class Produit
 
     /**
      * @ORM\ManyToOne(targetEntity=Boutique::class, inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $categ_produit;
 
@@ -247,5 +247,4 @@ class Produit
 
         return $this;
     }
-    
 }

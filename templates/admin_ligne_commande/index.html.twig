@@ -40,13 +40,13 @@
 								{{ ligne_commande.produit }}
 							</td>
 							<td>
-								{# {{ ligne_commande.commande }} #}
+								{# {{ commande.reference }} #}
 							</td>
 							{# <td>
-																					<a href="{{ path('app_admin_ligne_commande_index', {'id': ligne_commande.id}) }}">
-																						{{ ligne_commande.commande }}
-																					</a>
-																				</td> #}
+																																										<a href="{{ path('app_admin_ligne_commande_index', {'id': ligne_commande.id}) }}">
+																																											{{ ligne_commande.commande }}
+																																										</a>
+																																									</td> #}
 
 							<td>
 								<a href="{{ path('app_admin_ligne_commande_show', {'id': ligne_commande.id}) }}" class="btn btn-primary m-2">Afficher</a>

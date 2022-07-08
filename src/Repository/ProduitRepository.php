@@ -49,22 +49,8 @@ class ProduitRepository extends ServiceEntityRepository
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects
-    //  */
-    
-    // public function findProduitByLigne($ligneId)
-    // {
-    //     return $this->createQueryBuilder('p')
-    //     ->join('p.ligneCommandes', 'lc')
-    //     ->andWhere('lc.id = :ligneId')
-    //     ->setParameter('ligneId', $ligneId)
-    //         ->orderBy('p.id', 'ASC')
-    //         // ->setMaxResults(20)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
-  
-  
+    //  */ 
+
     // public function findByExampleField($value)
     // {
     //     return $this->createQueryBuilder('p')
@@ -76,7 +62,7 @@ class ProduitRepository extends ServiceEntityRepository
     //         ->getResult()
     //     ;
     // }
-    
+
 
     /*
     public function findOneBySomeField($value): ?Produit

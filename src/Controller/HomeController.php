@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Service\Display\DisplayService;
@@ -7,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// Controller d'accès public, hors bdd : Page d'accueil du site Roots
 class HomeController extends AbstractController
 {
     /**
@@ -29,13 +29,13 @@ class HomeController extends AbstractController
         ]);
     }
 
-    public function searchBar() {
+    public function searchBar()
+    {
 
-        return $this->renderForm('home/search.html.twig', [
-        ]);
+        return $this->renderForm('home/search.html.twig', []);
     }
 
-    // page d'accueil du Dashboard Admin 
+    // ADMIN - DASHBOARD  
     /**
      * @Route("/admin/dashboard", name="app_admin_dashboard")
      */
@@ -43,7 +43,4 @@ class HomeController extends AbstractController
     {
         return $this->render('home/admin/index.html.twig', []);
     }
-
-
-
 }

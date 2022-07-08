@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Produit;
@@ -17,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ProduitController extends AbstractController
 {
-    // constructeur de classe  - pour tjrs avoir ces variables avec la classe
     protected $produitRepository;
     protected $em;
 
@@ -26,7 +26,6 @@ class ProduitController extends AbstractController
         $this->produitRepository = $produitRepository;
         $this->entityManagerInterface = $em;
     }
-    // fin constructeur de classe  
 
     // afficher tous les produits
     /**
@@ -50,21 +49,6 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
-
-    // /**
-    //  * @Route("/{id}/produit", name="app_produit_show", methods={"GET"})
-    //  */
-    // public function showProduitByLigne(Produit $produit, $id): Response
-    // {
-    //     $qb = $this->produitRepository->findProduitByLigne($id);
-
-    //     return $this->render('produit/show.html.twig', [
-    //         'produit' => $produit,
-    //         // $qb,
-    //     ]);
-    // }
-
-    
 
 
     // afficher un seul produit à partir du PANIER selon son id
@@ -119,7 +103,7 @@ class ProduitController extends AbstractController
         $produitRepository = $this->produitRepository->findBy(
             ['categ_type_cuisine' => $id]
         );
-        
+
         // retourner la vue
         if ($id == 1) {
             return $this->render('produit/livreafri.html.twig', [
@@ -140,7 +124,7 @@ class ProduitController extends AbstractController
     // afficher tous les livres selon régime alimentaire
     /**
      * @Route("/types-alimentations/{id}", name="app_produit_ByCateg_nutrition", methods={"GET"})
-     */ 
+     */
 
     public function showByLivreNutrition($id, RestaurantRepository $restaurantRepository): Response
     {
@@ -148,14 +132,14 @@ class ProduitController extends AbstractController
         $produitRepository = $this->produitRepository->findBy(
             ['categ_nutrition' => $id]
         );
-        $restaurantRepository = $restaurantRepository ->findBy(
+        $restaurantRepository = $restaurantRepository->findBy(
             ['nutrition' => $id]
         );
-        
+
         // retourner la vue
-            return $this->render('produit/index.html.twig', [
+        return $this->render('produit/index.html.twig', [
             'produits' => $produitRepository,
             'restaurants' => $restaurantRepository,
-            ]);
+        ]);
     }
 }

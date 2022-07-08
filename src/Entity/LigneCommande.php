@@ -36,13 +36,13 @@ class LigneCommande
 
     /**
      * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="ligneCommandes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $produit;
 
     /**
      * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="lignes_commande")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $commande;
 

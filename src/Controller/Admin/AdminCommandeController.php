@@ -32,11 +32,11 @@ class AdminCommandeController extends AbstractController
         $this->security = $security;
     }
 
-    // afficher les commandes dans l'ordre décroissant
+    // COMMANDES DANS L'ORDRE DECROISSANT
     /**
      * @Route("/", name="app_admin_commande_index", methods={"GET"})
      */
-    public function index(): Response
+    public function indexDesc(): Response
     {
         return $this->render('admin_commande/index.html.twig', [
             'commandes' => $this->commandeRepository->findAllByDesc(),
@@ -84,10 +84,14 @@ class AdminCommandeController extends AbstractController
      */
     public function show(Commande $commande, LigneCommandeRepository $ligneCommandeRepository, $id, ProduitRepository $produitRepository): Response
     {
+        $lignes = $ligneCommandeRepository->findBy(['commande' => $id]);
+        // $lignes = $ligneCommandeRepository->findLignesByOrder($id);
+        // dd($lignes);
+
         // $this->security->getUser();
         return $this->render('admin_commande/show.html.twig', [
             'commande' => $commande,
-            'lignes_commande' => $ligneCommandeRepository->findLignesByOrder($id),
+            'lignes_commande' => $lignes,
         ]);
     }
 
@@ -95,20 +99,24 @@ class AdminCommandeController extends AbstractController
     /**
      * @Route("/{id}/client", name="app_admin_commande_user", methods={"GET"})
      */
-    public function showUserFromOrder(): Response
+    public function showUserFromOrder(User $user): Response
     {
         // $this->security->getUser();
-        return $this->render('admin_user/show.html.twig', []);
+        return $this->render('admin_user/show.html.twig', [
+            'user' => $user,
+        ]);
     }
 
     // afficher le produit lié à la commande
     /**
      * @Route("/{id}/produit", name="app_admin_commande_produit", methods={"GET"})
      */
-    public function showProductFromOrder(): Response
+    public function showProductFromOrder(Produit $produit): Response
     {
         // $this->security->getUser();
-        return $this->render('admin_produit/show.html.twig', []);
+        return $this->render('admin_produit/show.html.twig', [
+            'produit' => $produit,
+        ]);
     }
 
     /**
@@ -125,7 +133,7 @@ class AdminCommandeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandeRepository->add($commande);
 
-            $this->addFlash('success', 'L\'utilisateur a bien été modifié');
+            $this->addFlash('success', 'La commande a bien été modifiée');
 
             return $this->redirectToRoute('app_admin_commande_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -145,7 +153,7 @@ class AdminCommandeController extends AbstractController
             $this->commandeRepository->remove($commande);
         }
 
-        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
+        $this->addFlash('success', 'La commande a bien été supprimée');
 
         return $this->redirectToRoute('app_admin_commande_index', [], Response::HTTP_SEE_OTHER);
     }

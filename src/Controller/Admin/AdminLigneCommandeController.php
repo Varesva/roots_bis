@@ -2,13 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Commande;
 use App\Entity\LigneCommande;
 use App\Form\LigneCommandeType;
+use App\Repository\CommandeRepository;
 use App\Repository\LigneCommandeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin/lignes")
@@ -18,10 +20,11 @@ class AdminLigneCommandeController extends AbstractController
     /**
      * @Route("/", name="app_admin_ligne_commande_index", methods={"GET"})
      */
-    public function index(LigneCommandeRepository $ligneCommandeRepository): Response
+    public function index(LigneCommandeRepository $ligneCommandeRepository, CommandeRepository $commandeRepository): Response
     {
         return $this->render('admin_ligne_commande/index.html.twig', [
             'lignes_commande' => $ligneCommandeRepository->findAll(),
+            // 'commande' => $commandeRepository->findOrdersByLC()
         ]);
     }
     // // afficher les produits de la commande par commande
@@ -58,14 +61,21 @@ class AdminLigneCommandeController extends AbstractController
     /**
      * @Route("/{id}", name="app_admin_ligne_commande_show", methods={"GET"})
      */
-    public function show(LigneCommande $ligneCommande): Response
+    public function show(LigneCommande $ligneCommande, CommandeRepository $commandeRepository): Response
     {
+
+        $commande = $commandeRepository->findOrdersByLC($ligneCommande);
+
+        $c = $commande[0];
+        // dd($c);
+
         return $this->render('admin_ligne_commande/show.html.twig', [
             'ligne_commande' => $ligneCommande,
+            'commande' => $c
         ]);
     }
 
-    
+
     /**
      * @Route("/{id}/edit", name="app_admin_ligne_commande_edit", methods={"GET", "POST"})
      */
@@ -90,7 +100,7 @@ class AdminLigneCommandeController extends AbstractController
      */
     public function delete(Request $request, LigneCommande $ligneCommande, LigneCommandeRepository $ligneCommandeRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ligneCommande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $ligneCommande->getId(), $request->request->get('_token'))) {
             $ligneCommandeRepository->remove($ligneCommande);
         }
 

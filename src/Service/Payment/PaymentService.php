@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service\Payment;
 
 use DateTime;
@@ -71,18 +72,16 @@ class PaymentService
 
         for ($i = 0; $i < $length; $i++) {
 
-            $randomStr .= $char[rand(0, $charLength - 1)];       
+            $randomStr .= $char[rand(0, $charLength - 1)];
         }
 
         return $randomStr;
-
     }
 
     // ENVOI EN BASE DE DONNEES
     public function confirmOrderDB()
     {
         $cartService = $this->session->get('cart', []);
-
 
         // -------------------- PARTIE COMMANDE(facture) --------------------
 
@@ -97,7 +96,7 @@ class PaymentService
         $orderDate->format('COOKIE');
         $orderDate->setTimeZone(new DateTimeZone('Europe/Paris'));
         $confirmCommande->setDate($orderDate);
-        
+
         // RECUP TOTAL TTC PANIER
         $total_facturation = $this->cartService->calculTTC();
         $confirmCommande->setTotalFacturation($total_facturation);
@@ -109,23 +108,27 @@ class PaymentService
 
         $this->commandeRepository->add($confirmCommande);
 
-
         // --------------------  PARTIE LIGNE COMMANDE --------------
-        
-        // INSTANCIATION DE CLASSE
-        $add_ligneCommande = new LigneCommande();
 
         // faire une boucle pour chaque produit du panier
         foreach ($cartService as $id => $quantite) {
 
+            // INSTANCIATION DE CLASSE
+            $add_ligneCommande = new LigneCommande();
+
             $produit_add_ligneCommande = $this->produitRepository->find($id); // récupérer l'id du produit
+
             $add_ligneCommande->setProduit($produit_add_ligneCommande);
+
             $add_ligneCommande->setQuantite($quantite);
+
             $add_ligneCommande->setPrix($produit_add_ligneCommande->getPrix() * $quantite);
+
             $add_ligneCommande->setCommande($confirmCommande);
 
             $this->ligneCommandeRepository->add($add_ligneCommande);
         }
-        return $orderRefNumber;
+
+        // return $orderRefNumber;
     }
 }

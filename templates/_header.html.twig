@@ -143,9 +143,7 @@
 				{# MAIN NAV ITEM #}
 				<button data-bs-toggle="dropdown" class="dropdown-toggle" aria-expanded="false" type="button">
 					{% if is_granted('ROLE_USER') %}
-
 						<i class="user_avatar shadow">
-
 							<span class="user_initials">
 								{{ app.user.prenom | first | capitalize  ~ " " ~ app.user.nom | first | capitalize }}
 							</span>

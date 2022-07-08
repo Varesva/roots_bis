@@ -53,14 +53,12 @@ class CommandeRepository extends ServiceEntityRepository
     public function findAllByDesc()
     {
         return $this->createQueryBuilder('c')
-            // ->innerjoin('c.lignes_commande', 'lc')
-            // ->where('lc.commande = 3')
             ->orderBy('c.id', 'DESC')
             ->getQuery()
             ->getResult();
     }
 
-    // ALL USER'S ORDERS
+    // USER - ALL USER'S ORDERS
     public function findAllOrdersByUser($userId)
     {
         $qb = $this->createQueryBuilder('c')
@@ -75,7 +73,33 @@ class CommandeRepository extends ServiceEntityRepository
 
         return $qb;
     }
-  
+
+
+    public function findOrdersByLC($lcId)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->join('c.lignes_commande', 'lc')
+            ->setParameter('lcId', $lcId)
+            ->where('lc.id = :lcId')
+            // // ->andWhere('u.id = :val')
+            ->getQuery()
+            ->getResult();
+
+        return $qb;
+    }
+
+    public function findLastOrderRef()
+    {
+        $qb = $this->createQueryBuilder('c')
+            // ->setFirstResult()
+            ->setMaxResults(1)
+            ->orderBy('c.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $qb;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Commande

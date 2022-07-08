@@ -247,7 +247,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
         return $this;
     }
-    
+
     public function getNum(): ?int
     {
         return $this->num;
@@ -376,5 +376,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 }

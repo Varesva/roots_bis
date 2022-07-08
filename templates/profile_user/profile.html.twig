@@ -14,26 +14,25 @@
 	<div id="profile_user">
 
 		<div class="justify-content-center d-flex m-auto mb-4 row w-75">
-				<p class="text-center mx-1">
-					Connecté.e en tant que :
-					<br>
-					<span class=" text-danger">
-						{{ app.user.prenom | capitalize ~ " " ~  app.user.nom | upper }}
-					</span>
-					<span class=" opacity-75">
-						({{app.user.username | lower}})
-					</span>
-				</p>
+			<p class="text-center mx-1">
+				Connecté.e en tant que :
+				<br>
+				<span class=" text-danger">
+					{{ app.user.prenom | capitalize ~ " " ~  app.user.nom | upper }}
+				</span>
+				<span class=" opacity-75">
+					({{app.user.username | lower}})
+				</span>
+			</p>
 
 			<a href="{{ path('app_logout') }}" role="button" class="btn btn-danger m-2">
 				Déconnexion
+				<i class="fa-solid fa-sm fa-arrow-right-from-bracket"></i>
 			</a>
 		</div>
 
 		<div class="container mb-5">
-
 			<nav>
-
 				<p class="h4 m-0 border-bottom border-2 border-success bg-white p-3">
 					<i class="fa-solid fa-sm fa-gears"></i>
 					Paramètres

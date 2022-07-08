@@ -16,18 +16,21 @@
 
 			<table class="table text-center table-hover table-bordered">
 				<thead>
-					<tr class="table-dark text-uppercase">
+					<tr class="table-warning">
 						<th scope="col">
-							#Ref
+							Ref.
 						</th>
 
 						<th scope="col">
-							Date
+							Date de commande
 						</th>
 						<th scope="col">
-							User
+							Expéditeur
 						</th>
-						<th scope="col" class="bg-success">
+						<th scope="col">
+							Destinataire
+						</th>
+						<th scope="col" class="table-success">
 							Total (TTC)
 						</th>
 					</tr>
@@ -40,10 +43,10 @@
 						</td>
 
 						<td>
-							{{ commande.user }}
-							<a href="{{ path('app_admin_commande_user', {'id': commande.user.id}) }}" class="btn btn-sm btn-outline-secondary mx-1">
-								Client
-							</a>
+							{{ commande.user.prenom ~ ' ' ~ commande.user.nom }}
+						</td>
+						<td>
+							destinataire??
 						</td>
 						<td class="table-success">
 							{{ commande.totalFacturation }}€
@@ -51,13 +54,14 @@
 					</tr>
 
 					<tr>
-						<th colspan="6" class="table-dark">
+						<th colspan="6" class="table-warning">
 							Liste des produits
 						</th>
 					</tr>
 
 					<tr class="table-secondary">
 						<th>Produit(s)</th>
+						<th>Nom</th>
 						<th>Prix unitaire</th>
 						<th>Qté</th>
 						<th>Afficher le produit</th>
@@ -70,11 +74,14 @@
 							<td class="d-flex align-items-center justify-content-around">
 								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}">
 
-									<img src="{{asset('upload/' ~ ligne_commande.produit.image )}}" alt="Image du produit" width="100px">
+									<img src="{{asset('upload/' ~ ligne_commande.produit.image )}}" alt="Image du produit" width="140px">
 								</a>
+							</td>
 
+							<td>
 								{{ ligne_commande.produit }}
 							</td>
+
 							<td>
 								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}">
 									{{ ligne_commande.produit.prix }}€
@@ -84,7 +91,7 @@
 								{{ ligne_commande.quantite }}
 							</td>
 							<td>
-								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}" class="btn btn-sm btn-outline-primary mt-1">
+								<a href="{{ path('app_produit_show', {'id': ligne_commande.produit.id}) }}" class="btn btn-sm btn-outline-secondary mt-1">
 									<i class="fa-solid fa-eye"></i>
 									Voir
 								</a>
@@ -94,19 +101,14 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="d-flex flex-wrap justify-content-center">
+		<div class="d-flex flex-wrap justify-content-center my-3">
 
 			<a href="{{ path('app_profile_user_commande') }}" class="btn btn-outline-dark m-2">
 				Retour à la liste des commandes
 			</a>
 
-			<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
-				Retour à mon profil
-			</a>
-
-			<a href="{{path('app_home')}}" class="btn btn-warning m-2">
-				<i class="fa-solid fa-sm fa-house"></i>
-				Accueil
+			<a href="{{path('app_profile_user')}}" class="btn btn-secondary m-2">
+				Mon profil
 			</a>
 		</div>
 	</section>

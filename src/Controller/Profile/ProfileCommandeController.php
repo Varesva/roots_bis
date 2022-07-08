@@ -32,40 +32,44 @@ class ProfileCommandeController extends AbstractController
         $this->produitRepository = $produitRepository;
     }
 
-    // TOUTES LES COMMANDES d'UN USER
+    // TOUTES LES COMMANDES d'un USER
     /**
      * @Route("", name="app_profile_user_commande", methods={"GET"})
      */
     public function userOrderHistory()
     {
         $userId = $this->security->getUser();
+
         $commandes = $this->commandeRepository->findAllOrdersByUser($userId);
 
-        return $this->render('profile_user/commande.html.twig', [
+        return $this->render('profile_commande/commande.html.twig', [
             'commandes' => $commandes,
         ]);
     }
 
     // AFFICHER DETAILS LIGNES COMMANDES USER
     /**
-     * @Route("/{id}/details-commande", name="app_commande_show", methods={"GET"})
+     * @Route("/details-commande", name="app_commande_show", methods={"GET"})
      */
-    public function show(Commande $commande, $id): Response
+    public function show(): Response
     {
-        $this->security->getUser();
+        // récup commandes du User grace à son Id
+        $userId = $this->security->getUser();
+        $commandes = $this->commandeRepository->findAllOrdersByUser($userId);
+        // recup Id des commandes
+        $orderId = $commandes[0]->getId();
 
-        $orderId = $commande->getId();
+        // dd($orderId);
 
         $lignes = $this->ligneCommandeRepository->findLignesByOrder($orderId);
+        // $lignes = $this->ligneCommandeRepository->findLignesByOrder($orderId);
+        // dd($lignes);
 
-        // $produit = $this->ligneCommandeRepository->findProduitByLigne($id);
+        $c = $commandes[0];
 
-        return $this->render('profile_user/commande_show.html.twig', [
-            'commande' => $commande,
+        return $this->render('profile_commande/show.html.twig', [
+            'commande' => $c,
             'lignes_commande' => $lignes,
-            // 'produit' => $produit,
         ]);
     }
-
-    // AFFICHER CHAQUE PRODUIT PAR LIGNES PAR COMMANDE
 }

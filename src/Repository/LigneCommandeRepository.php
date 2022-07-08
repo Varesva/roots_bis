@@ -48,33 +48,30 @@ class LigneCommandeRepository extends ServiceEntityRepository
     /**
      * @return LigneCommande[] Returns an array of LigneCommande objects
      */
-    
+
     public function findLignesByOrder($orderId)
     {
         return $this->createQueryBuilder('l')
-        ->join('l.commande', 'c')
-        ->setParameter('orderId', $orderId)
-        ->where('c.id = :orderId')
-            // ->andWhere('l.exampleField = :val')
+            ->innerjoin('l.commande', 'c')
+            ->setParameter('orderId', $orderId)
+            ->where('c.id = :orderId')
             ->orderBy('l.id', 'ASC')
             // ->setMaxResults(20)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
+
 
     public function findProduitByLigne($lignesId)
     {
         return $this->createQueryBuilder('l')
-        ->join('l.produit', 'p')
-        ->setParameter('lignesId', $lignesId)
-        ->where('p.id = :lignesId')
-            // ->andWhere('l.exampleField = :val')
+            ->join('l.produit', 'p')
+            ->setParameter('lignesId', $lignesId)
+            ->where('p.id = :lignesId')
             ->orderBy('l.id', 'ASC')
             // ->setMaxResults(20)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
 
@@ -89,7 +86,7 @@ class LigneCommandeRepository extends ServiceEntityRepository
     //         ->getResult()
     //     ;
     // }
-    
+
 
     /*
     public function findOneBySomeField($value): ?LigneCommande

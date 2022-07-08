@@ -172,9 +172,17 @@ class ProfilePaymentController extends AbstractController
         // RECUP PANIER ENTIEREMENT(prix, produits, quantité)
         $cartService = $this->cartService->indexCart();
 
-        // NUM REF COMMANDE ET AJOUT EN BDD
-        $orderRefNumber = $this->paymentService->confirmOrderDB();
-        
+        // NUM REF COMMANDE
+        $orderRefNumber = $this->commandeRepository->findLastOrderRef();
+
+        $refNumber = $orderRefNumber[0]->getReference();
+
+        // AJOUT EN BDD
+        $this->paymentService->confirmOrderDB();
+
+        // $orderRefNumber = $this->paymentService->confirmOrderDB();
+
+
         // VIDER LE PANIER APRES PAIEMENT
         $this->cartService->clear();
 
@@ -182,7 +190,8 @@ class ProfilePaymentController extends AbstractController
         // return $this->redirectToRoute('app_profile_payment_valid');
 
         return $this->render('profile_payment/confirm.html.twig', [
-            'orderRef' => $orderRefNumber,
+            'orderRef' =>
+            $refNumber,
         ]);
     }
 }

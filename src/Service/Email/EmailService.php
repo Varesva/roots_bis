@@ -18,7 +18,7 @@ class EmailService
     // ENVOI MAIL AUTO UTILISATEUR - ACCUSE DE RECEPTION
     public function sendNoReply($recipient, $noReplySubject, $data, $emailTemplate)
     {
-        $atRoots = new Address('varesva.dev@gmail.com', 'Roots');
+        $atRoots = new Address('contact@leroots.fr', 'Roots');
 
         $expirationDate = new \DateTime('+7 days');
 
@@ -43,7 +43,7 @@ class EmailService
     // ENVOI EMAIL: NOUVEAU TICKET - ADMIN
     public function sendAdminEmail($sender, $subject, $data, $emailTemplate)
     {
-        $atRoots = new Address('varesva.dev@gmail.com', 'Roots');
+        $atRoots = new Address('contact@leroots.fr', 'Roots');
 
         $expirationDate = new \DateTime('+7 days');
 
@@ -67,5 +67,5 @@ class EmailService
             ->htmlTemplate($emailTemplate);
 
         $this->mailer->send($email);
-    } 
+    }
 }
