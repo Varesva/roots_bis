@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer Specialite
+{% endblock %}
+
+{% block body %}
+	<div class="bg_admin">
+		<h1>Créer Specialite</h1>
+
+		<div class="container">
+
+			{{ include('admin_specialite/_form.html.twig') }}
+			<hr>
+			<div class="justify-content-center flex-wrap d-flex">
+
+				<a href="{{ path('app_admin_specialite_index') }}" class="btn btn-light">Retour index Specialite</a>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

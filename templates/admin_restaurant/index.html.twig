@@ -1,104 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Tous les Restaurant - Roots
+{% block title %}
+	Index Restaurant
 {% endblock %}
 
 {% block body %}
-	<h1>Tous les Restaurants</h1>
+	<div class="bg_admin">
+		<h1>Restaurant index</h1>
 
-<p>Gérer les restaurants disponibles</p>
+		<div class="container">
+			<p>Gérer les restaurants disponibles</p>
 
-	<section class="container">
+			<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Image</th>
+						<th>Description</th>
+						<th>Adresse</th>
+						<th>Catégorie</th>
+						<th>Contact</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for restaurant in restaurants %}
+						<tr>
+							<td>{{ restaurant.id }}</td>
+							<td>{{ restaurant.nom }}</td>
+							<td>
+								<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
+							</td>
+							<td>{{ restaurant.description }}</td>
+							<td>
+								{{ restaurant.numRue }}
+								<br>
+								{{ restaurant.rue }}
+								<br>
+								{{ restaurant.ville }}
+								<br>
+								{{ restaurant.codePostal }}
+								<br>
+								{{ restaurant.pays }}
+							</td>
+							<td>{{ restaurant.categorie }}</td>
+							<td>
+								{{ restaurant.email }}
+								<br>
+								{{ restaurant.telephone }}
+								<br>
+								{{ restaurant.website }}
+							</td>
+							<td>
+								<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}" class="btn btn-primary ">Afficher</a>
 
-{# nouvelle variable in variable du controller #}
-{% for restaurant in restaurants %}
-<div class="card card-restaurant">
+								<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}" class="btn btn-warning ">Modifier</a>
 
-
-		<div class="card-img-top">
-			<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-				<p class="card-text_img">{{ restaurant.id }}</p>
-				<img src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
-			</a>
-		</div>
-
-		<div class="card-body">
-			<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-				<h5 class="card-title">{{ restaurant.nom }}</h5>
-			</a>
-
-			<small class="card-text">
-				{{ restaurant.codePostal }},
-				{{ restaurant.ville }}
-			</small>
-			<div class="card_favoris">
-				<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-					Découvrir...
-				</a>
-				<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
-					<i class="fa-solid fa-xl fa-star"></i>
-				</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="justify-content-center flex-wrap d-flex">
+				<a href="{{ path('app_admin_restaurant_new') }}" class="btn btn-success ">Créer Restaurant</a>
 			</div>
 		</div>
 	</div>
-{% else %}
-	<div class="bg-light p-3 rounded-3">
-		<p>Pas de résultat</p>
-	</div>
-{% endfor %}
-
-
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nom</th>
-					<th>Image</th>
-					<th>Description</th>
-					<th>Adresse</th>
-					<th>Catégorie</th>
-					<th>Contact</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for restaurant in restaurants %}
-					<tr>
-						<td>{{ restaurant.id }}</td>
-						<td>{{ restaurant.nom }}</td>
-						<td>
-							<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
-						</td>
-						<td>{{ restaurant.description }}</td>
-						<td>
-						{{ restaurant.numRue }} <br>
-						{{ restaurant.rue }} <br>
-						{{ restaurant.ville }} <br>
-						{{ restaurant.codePostal }} <br>
-						{{ restaurant.pays }}
-						</td>
-						<td>{{ restaurant.categorie }}</td>
-						<td>
-						{{ restaurant.email }} <br>
-						{{ restaurant.telephone }} <br>
-						{{ restaurant.website }}
-						</td>
-						<td>
-							<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}" class="btn btn-outline-info">Afficher</a>
-
-							<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}" class="btn btn-outline-warning mt-3">Modifier</a>
-
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-		<a href="{{ path('app_admin_restaurant_new') }}" class="btn btn-outline-dark">Créer un nouveau restaurant</a>
-	</section>
 {% endblock %}

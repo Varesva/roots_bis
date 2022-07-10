@@ -34,6 +34,7 @@
 			<link rel="stylesheet" href="{{ asset('css/section_carousel.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/section_home.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/admin_interface.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/legal.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/restaurant_show_one.css') }}">
@@ -66,9 +67,9 @@
 			{# ADMIN #}
 			{% include "home/admin/_header.html.twig" %}
 
-		{# {% elseif is_granted('ROLE_USER') and is_granted('ROLE_ADMIN') == false %}
-
-			{% include "_header.html.twig" %} #}
+			{# {% elseif is_granted('ROLE_USER') and is_granted('ROLE_ADMIN') == false %}
+						
+									{% include "_header.html.twig" %} #}
 
 		{% else %}
 

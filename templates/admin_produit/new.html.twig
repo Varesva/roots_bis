@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer nouveau Produit
+{% block title %}
+	Créer Produit
 {% endblock %}
 
 
 {% block body %}
-	<h1>Créer nouveau Produit</h1>
+	<div class="bg_admin">
 
-	<section class="container">
+		<h1>Créer Produit</h1>
 
-		{{ include('admin_produit/_form.html.twig') }}
-		<hr>
-		<div class="justify-content-center flex-wrap d-flex">
+		<div class="container">
 
-			<a href="{{ path('app_admin_produit_index') }}" class="btn btn-outline-dark">Retour liste produits</a>
+			{{ include('admin_produit/_form.html.twig') }}
+			<hr>
+			<div class="justify-content-center flex-wrap d-flex">
 
+				<a href="{{ path('app_admin_produit_index') }}" class="btn btn-light">Retour index Produit</a>
+
+			</div>
 		</div>
-	</section>
+	</div>
 {% endblock %}

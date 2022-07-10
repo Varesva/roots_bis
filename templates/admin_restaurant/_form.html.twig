@@ -1,10 +1,10 @@
 {{ form_start(form) }}
-    <p>
-        <small class=" justify-content-end d-flex opacity-75">
-            *Champs obligatoires
-        </small>
-    </p>
+<p>
+	<small class=" justify-content-end d-flex opacity-75">
+		*Champs obligatoires
+	</small>
+</p>
 
-    {{ form_widget(form) }}
-    <button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_widget(form) }}
+<button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

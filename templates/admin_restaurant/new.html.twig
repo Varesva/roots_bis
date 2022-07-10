@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Admin - Créer un Restaurant - Roots
+	Créer Restaurant
 {% endblock %}
 
 {% block body %}
-	<h1>Créer un nouveau Restaurant</h1>
-	<section class="container">
-		{{ include('admin_restaurant/_form.html.twig') }}
-		<hr>
-		<a href="{{ path('app_admin_restaurant_index') }}" class="btn btn-outline-dark">Retour à la liste des restaurants</a>
-	</section>
+	<div class="bg_admin">
+		<h1>Créer un nouveau Restaurant</h1>
+
+		<div class="container">
+
+			{{ include('admin_restaurant/_form.html.twig') }}
+			<hr>
+			<a href="{{ path('app_admin_restaurant_index') }}" class="btn btn-light">Retour index Restaurant</a>
+		</div>
+	</div>
 {% endblock %}

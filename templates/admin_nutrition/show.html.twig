@@ -1,46 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Afficher Nutrition
+{% block title %}
+	Afficher Nutrition
 {% endblock %}
 
 {% block body %}
-	<h1>
-		Afficher type Nutrition</h1>
+	<div class="bg_admin">
+		<h1>
+			Afficher Nutrition
+		</h1>
+		<div class="container">
+			<div class="table-responsive-lg">
 
-	<section class="container">
-		<div class="table-responsive-lg">
+				<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ nutrition.id }}</td>
+						</tr>
+						<tr>
+							<th>Regime</th>
+							<td>{{ nutrition.regime }}</td>
+						</tr>
+						<tr>
+							<th>Image</th>
+							<td>
+								<img src="{{asset('upload/' ~ nutrition.image)}}" width="200">
+							</td>
+						</tr>
+						<tr>
+							<th>Definition</th>
+							<td>{{ nutrition.definition }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="d-flex justify-content-center flex-wrap">
 
-			<table class="table text-center table-striped table-bordered">
+				<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-light">Retour index Nutrition</a>
 
-				<tbody>
-					<tr>
-						<th>Id</th>
-						<td>{{ nutrition.id }}</td>
-					</tr>
-					<tr>
-						<th>Regime</th>
-						<td>{{ nutrition.regime }}</td>
-					</tr>
-					<tr>
-						<th>Image</th>
-						<td>
-							<img src="{{asset('upload/' ~ nutrition.image)}}" width="200">
-						</td>
-					</tr>
-					<tr>
-						<th>Definition</th>
-						<td>{{ nutrition.definition }}</td>
-					</tr>
-				</tbody>
-			</table>
+				<a href="{{ path('app_admin_nutrition_edit', {'id': nutrition.id}) }}" class="btn btn-warning">Modifier</a>
+
+				{{ include('admin_nutrition/_delete_form.html.twig') }}
+			</div>
 		</div>
-		<div class="d-flex justify-content-center flex-wrap">
-
-			<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-outline-dark">Retour à la liste des catégories</a>
-
-			<a href="{{ path('app_admin_nutrition_edit', {'id': nutrition.id}) }}" class="btn btn-outline-warning">Modifier</a>
-
-			{{ include('admin_nutrition/_delete_form.html.twig') }}
-		</div>
-	</section>
+	</div>
 {% endblock %}

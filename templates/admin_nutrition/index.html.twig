@@ -1,61 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nutrition index
+{% block title %}
+	Nutrition index
 {% endblock %}
 
 {% block body %}
-	<h1>Nutrition index</h1>
+	<div class="bg_admin">
+		<h1>Nutrition index</h1>
 
-	<p class="h4 text-center">Gérer les catégories de régimes alimentaires
-	</p>
+		<div class="container">
 
-	<section class="container">
-		<div class="table-responsive-lg">
+			<p>Gérer les catégories de régimes alimentaires
+			</p>
 
-			<table class="table table-striped table-hover table-bordered">
-				<thead class="table-warning">
-					<tr>
-						<th>Id</th>
-						<th>Regime</th>
-						<th>Image</th>
-						<th>Definition</th>
-						<th>actions</th>
-						<th>Les resto par catég</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for nutrition in nutrition %}
+			<div class="table-responsive-lg">
+
+				<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
+
+					<thead>
 						<tr>
-							<td>{{ nutrition.id }}</td>
-							<td>{{ nutrition.regime }}</td>
-							<td>
-								<img src="{{asset('upload/' ~ nutrition.image)}}" width="200">
-							</td>
-							<td>{{ nutrition.definition }}</td>
-
-							<td>
-								<a href="{{ path('app_admin_nutrition_show', {'id': nutrition.id}) }}" class="btn btn-primary m-2 ">Afficher</a>
-
-								<a href="{{ path('app_admin_nutrition_edit', {'id': nutrition.id}) }}" class="btn btn-warning m-2">Modifier</a>
-							</td>
-							<td>
-								<a href="{{ path('app_admin_restaurant_categorie', {'id': nutrition.id}) }}" class="btn btn-outline-secondary">Resto</a>
-
-							</td>
+							<th>Id</th>
+							<th>Regime</th>
+							<th>Image</th>
+							<th>Definition</th>
+							<th>actions</th>
+							<th>Les resto par catég</th>
 						</tr>
-					{% else %}
-						<tr>
-							<td colspan="5">Pas de résultat</td>
+					</thead>
+					<tbody>
+						{% for nutrition in nutrition %}
+							<tr>
+								<td>{{ nutrition.id }}</td>
+								<td>{{ nutrition.regime }}</td>
+								<td>
+									<img src="{{asset('upload/' ~ nutrition.image)}}" width="200">
+								</td>
+								<td>{{ nutrition.definition }}</td>
 
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+								<td>
+									<a href="{{ path('app_admin_nutrition_show', {'id': nutrition.id}) }}" class="btn btn-primary ">Afficher</a>
+
+									<a href="{{ path('app_admin_nutrition_edit', {'id': nutrition.id}) }}" class="btn btn-warning">Modifier</a>
+								</td>
+								<td>
+									<a href="{{ path('app_admin_restaurant_categorie', {'id': nutrition.id}) }}" class="btn btn-light">Resto</a>
+
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">Pas de résultat</td>
+
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="justify-content-center flex-wrap d-flex">
+
+				<a href="{{ path('app_admin_nutrition_new') }}" class="btn btn-success">Créer catégorie Nutrition</a>
+			</div>
+
 		</div>
-		<div class="justify-content-center flex-wrap d-flex">
-
-			<a href="{{ path('app_admin_nutrition_new') }}" class="btn btn-dark">Créer une nouvelle catégorie</a>
-		</div>
-
-	</section>
+	</div>
 {% endblock %}

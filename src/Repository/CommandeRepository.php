@@ -91,7 +91,6 @@ class CommandeRepository extends ServiceEntityRepository
     public function findLastOrderRef()
     {
         $qb = $this->createQueryBuilder('c')
-            // ->setFirstResult()
             ->setMaxResults(1)
             ->orderBy('c.id', 'DESC')
             ->getQuery()

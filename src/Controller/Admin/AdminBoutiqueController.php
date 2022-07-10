@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Entity\Boutique;
@@ -9,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Boutique = catégories des produits
+// BOUTIQUE = CATEGORIES
 /**
  * @Route("/admin/boutique")
  */
 class AdminBoutiqueController extends AbstractController
 {
-    // toutes les catégories
+    // TOUTES LES CATEG
     /**
      * @Route("/", name="app_admin_boutique_index", methods={"GET"})
      */
@@ -26,7 +27,7 @@ class AdminBoutiqueController extends AbstractController
         ]);
     }
 
-    // ajouter une catégorie
+    // AJOUTER CATEG
     /**
      * @Route("/new", name="app_admin_boutique_new", methods={"GET", "POST"})
      */
@@ -47,7 +48,7 @@ class AdminBoutiqueController extends AbstractController
         ]);
     }
 
-    // afficher une seule catégorie
+    // AFFICHER UNE CATEG
     /**
      * @Route("/{id}", name="app_admin_boutique_show", methods={"GET"})
      */
@@ -58,7 +59,7 @@ class AdminBoutiqueController extends AbstractController
         ]);
     }
 
-    // modifier une catégorie
+    // MODIFIER CATEG
     /**
      * @Route("/{id}/edit", name="app_admin_boutique_edit", methods={"GET", "POST"})
      */
@@ -77,8 +78,8 @@ class AdminBoutiqueController extends AbstractController
             'form' => $form,
         ]);
     }
-    
-    // supprimer une catégorie
+
+    // SUPPRIMER CATEG
     /**
      * @Route("/{id}", name="app_admin_boutique_delete", methods={"POST"})
      */

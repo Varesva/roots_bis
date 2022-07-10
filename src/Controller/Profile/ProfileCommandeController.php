@@ -59,8 +59,6 @@ class ProfileCommandeController extends AbstractController
         // recup Id des commandes
         $orderId = $commandes[0]->getId();
 
-        // dd($orderId);
-
         $lignes = $this->ligneCommandeRepository->findLignesByOrder($orderId);
         // $lignes = $this->ligneCommandeRepository->findLignesByOrder($orderId);
         // dd($lignes);

@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Dashboard
+{% endblock %}
+
+{% block body %}
+	<div class="bg_admin">
+		<h1>Dashboard Admin</h1>
+
+		<div class="text-center m-auto row w-75 ">
+			<p class="my-3 overflow-auto">
+				Connecté.e en tant que :
+				<span class=" bg-light p-1 text-danger">
+					{{ app.user.prenom | capitalize ~ " " ~  app.user.nom | upper }}
+				</span>
+				<br>
+				<span class=" opacity-75">
+					({{app.user.username | lower}})
+				</span>
+			</p>
+			<span>
+				<a href="{{ path('app_logout') }}" role="button" class="btn btn-danger rounded-pill">
+					Déconnexion
+					<i class="fa-solid fa-sm fa-arrow-right-from-bracket"></i>
+				</a>
+			</span>
+		</div>
+
+		<div class="container bg-dark flex-wrap d-flex justify-content-around">
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">User</div>
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_user_index')}}">Tous les users</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_user_new')}}">Créer User</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Boutique</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_boutique_index')}}">
+								Toutes Boutique</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_boutique_new')}}">
+								Créer Boutique</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Nutrition</div>
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_nutrition_index')}}">
+								Toutes Nutrition</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_nutrition_new')}}">
+								Créer Nutrition</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">CategRestaurant</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_categorie_restaurant_index')}}">
+								Toutes categRestau</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_categorie_restaurant_new')}}">
+								Créer CategRestau</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Specialite</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_specialite_index')}}">
+								Toutes Specialite</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_specialite_new')}}">
+								Créer Specialite</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Produit</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_produit_index')}}">
+								Tous Produit</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_produit_new')}}">
+								Créer Produit</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Restaurant</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_restaurant_index')}}">
+								Tous Restaurant</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_restaurant_new')}}">
+								Créer Restaurant</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Commande</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_commande_index')}}">
+								Toutes Commande</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_commande_new')}}">
+								Créer Commande</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">LigneCommande</div>
+
+				<div class="card-body">
+					<ul>
+						<li class="disc_style">
+							<a href="{{path('app_admin_ligne_commande_index')}}">
+								Toutes LigneCommande</a>
+						</li>
+
+						<li class="disc_style">
+							<a href="{{path('app_admin_ligne_commande_new')}}">
+								Créer LigneCommande</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Hébergement
+					<br>
+					et Base de données</div>
+				<div class="card-body text-center">
+					<a class="btn btn-dark rounded-pill" href="https://www.hostinger.fr/cpanel-login">
+						Connexion Hostinger
+					</a>
+				</div>
+			</div>
+
+			<div class="card bg-light mb-3">
+				<div class="card-header">Boite mail</div>
+				<div class="card-body text-center">
+					<a class="btn btn-dark rounded-pill" href="https://mail.hostinger.com/">
+						Connexion Email
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

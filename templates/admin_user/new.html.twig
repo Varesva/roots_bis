@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un User
+{% block title %}
+	Créer User
 {% endblock %}
 
 
 {% block body %}
-	<h1>Créer un nouvel utilisateur</h1>
-	<section class="container">
-		{{ include('admin_user/_form.html.twig') }}
-		<hr>
-		<a href="{{ path('app_admin_user_index') }}" class="btn btn-outline-dark">Retour à la liste des utilisateurs</a>
-	</section>
+	<div class="bg_admin">
+		<h1>Créer User</h1>
+
+		<div class="container">
+
+			{{ include('admin_user/_form.html.twig') }}
+			<hr>
+			<a href="{{ path('app_admin_user_index') }}" class="btn btn-light">Retour User index</a>
+		</div>
+	</div>
 {% endblock %}

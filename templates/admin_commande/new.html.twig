@@ -1,25 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Ajouter une Commande
+	Créer Commande
 {% endblock %}
 
-
 {% block body %}
+	<div class="bg_admin">
 
-	<h1>Créer nouvelle Commande</h1>
+		<h1>Créer Commande</h1>
 
-	<section class="container">
+		<div class="container">
 
-		{{ include('admin_commande/_form.html.twig') }}
-		<hr>
+			{{ include('admin_commande/_form.html.twig') }}
+			<hr>
 
-		<div class="justify-content-center flex-wrap d-flex">
+			<div class="justify-content-center flex-wrap d-flex">
 
-			<a href="{{ path('app_admin_commande_index') }}" class="btn btn-outline-dark">
-				Retour aux commandes
-			</a>
+				<a href="{{ path('app_admin_commande_index') }}" class="btn btn-light">
+					Retour index Commande
+				</a>
+			</div>
+
 		</div>
-
-	</section>
+	</div>
 {% endblock %}

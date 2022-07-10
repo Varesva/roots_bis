@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier LigneCommande
+{% block title %}
+	Modifier LigneCommande
 {% endblock %}
 
-
 {% block body %}
-	<h1>Modifier LigneCommande</h1>
-	<section class="container">
+	<div class="bg_admin">
 
-		{{ include('admin_ligne_commande/_form.html.twig', {'button_label': 'Modifier'}) }}
-		<hr>
+		<h1>Modifier LigneCommande</h1>
 
-		<div class="d-flex justify-content-center flex-wrap">
-        
-			<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-outline-dark m-2">Retour Lignes commandes</a>
+		<div class="container">
 
-			{{ include('admin_ligne_commande/_delete_form.html.twig') }}
+			{{ include('admin_ligne_commande/_form.html.twig', {'button_label': 'Modifier'}) }}
+			<hr>
+			<div class="d-flex justify-content-center flex-wrap">
+
+				<a href="{{ path('app_admin_ligne_commande_index') }}" class="btn btn-light">Retour index LigneCommande</a>
+
+				{{ include('admin_ligne_commande/_delete_form.html.twig') }}
+			</div>
 		</div>
-	</section>
+	</div>
 {% endblock %}

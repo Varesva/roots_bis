@@ -40,7 +40,6 @@ class AdminCommandeController extends AbstractController
     {
         return $this->render('admin_commande/index.html.twig', [
             'commandes' => $this->commandeRepository->findAllByDesc(),
-
         ]);
     }
 

@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer Boutique
+{% block title %}
+	Créer Boutique
 {% endblock %}
 
 {% block body %}
-	<h1>Créer une nouvelle catégorie</h1>
-	<section class="container">
+	<div class="bg_admin">
 
-		{{ include('admin_boutique/_form.html.twig') }}
-		<hr>
+		<h1>Créer Boutique</h1>
 
-		<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-outline-dark">Retour à la liste</a>
+		<div class="container">
 
-	</section>
+			{{ include('admin_boutique/_form.html.twig') }}
+			<hr>
+
+			<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-light">Retour index Boutique</a>
+
+		</div>
+	</div>
 {% endblock %}

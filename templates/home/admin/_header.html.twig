@@ -5,20 +5,100 @@
 		<a class="navbar-brand px-2" href="{{path('app_admin_dashboard')}}">Roots (ADMIN)</a>
 
 		{# <input class="form-control w-75 mx-auto" type="text" placeholder="Recherche" aria-label="Search"> #}
+		<div class="d-none d-md-block w-100">
 
-		<button class="navbar-toggler collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+			<ul class="nav justify-content-evenly">
+				<li class="m-2">
+					<a class="btn btn-light rounded-pill" href="{{path('app_home')}}" target="_blank">
+						Roots (USER)
+						<i class="fa-solid fa-sm fa-arrow-up-right-from-square"></i>
+					</a>
+				</li>
+
+				<li class="m-2">
+					<div class="dropdown">
+						<button class="btn btn-warning dropdown-toggle rounded-pill" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Navigation
+						</button>
+
+						<ul class="dropdown-menu bg-light border-2 border-warning" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_user_index')}}">
+									User
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_boutique_index')}}">
+									Boutique
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_nutrition_index')}}">
+									Nutrition
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_specialite_index')}}">
+									Specialite
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_categorie_restaurant_index')}}">
+									CategorieRestaurant
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_produit_index')}}">
+									Produit
+								</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_restaurant_index')}}">
+									Restaurant
+								</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_commande_index')}}">
+									Commande
+								</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_ligne_commande_index')}}">
+									LigneCommande
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</li>
+
+				<li class="m-2">
+					<a class="btn btn-primary rounded-pill" href=" {{ path('app_admin_dashboard') }} ">
+						Dashboard Admin
+						<i class="fa-solid fa-user-gear"></i>
+					</a>
+				</li>
+
+
+			</ul>
+		</div>
+
+		<button class="navbar-toggler collapsed d-md-none border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+
 			<span class="navbar-toggler-icon"></span>
 		</button>
 	</div>
 
+	<div id="navbarToggleExternalContent" class="collapse d-md-none" style="background-color: #DBDBDB;">
 
-	<div id="navbarToggleExternalContent" class="collapse" style="background-color: #DBDBDB;">
 
 		<nav class="p-2">
-
-			<ul class="nav flex-row justify-content-center">
+			<ul class="nav flex-row justify-content-center align-items-center">
 				<li class="m-2">
-					<a class="btn btn-light" href="{{path('app_home')}}" target="_blank">
+					<a class="btn btn-light rounded-pill" href="{{path('app_home')}}" target="_blank">
 						Roots (USER)
 						<i class="fa-solid fa-sm fa-arrow-up-right-from-square"></i>
 					</a>
@@ -26,15 +106,13 @@
 
 				<li class="m-2">
 					<a class="btn btn-primary rounded-pill" href=" {{ path('app_admin_dashboard') }} ">
-
 						Dashboard Admin
 						<i class="fa-solid fa-user-gear"></i>
 					</a>
-
 				</li>
 
 				<li class="m-2">
-					<a class="btn btn-danger rounded-pill" href=" {{ path('app_logout') }} ">
+					<a class="btn btn-sm btn-danger rounded-pill" href=" {{ path('app_logout') }} ">
 						Déconn.
 						<i class="fa-solid fa-sm fa-arrow-right-from-bracket"></i>
 					</a>
@@ -107,6 +185,27 @@
 					</div>
 				</li>
 
+				<li class=" m-2">
+					<div class="dropdown ">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Specialite
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_specialite_index')}}">
+									Toutes Specialite
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('app_admin_specialite_new')}}">
+									Créer Specialite
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
 
 				<li class=" m-2">
 					<div class="dropdown ">
@@ -172,7 +271,6 @@
 					</div>
 				</li>
 
-
 				<li class=" m-2">
 					<div class="dropdown ">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -214,7 +312,6 @@
 						</ul>
 					</div>
 				</li>
-
 			</ul>
 		</nav>
 	</div>

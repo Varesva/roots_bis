@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier Restauration
+{% block title %}
+	Modifier Restauration
 {% endblock %}
 
 {% block body %}
-	<h1>Modifier Restauration</h1>
+	<div class="bg_admin">
+		<h1>Modifier Restauration</h1>
 
-	<section class="container">
+		<div class="container">
 
-		{{ include('admin_restauration/_form.html.twig', {'button_label': 'Modifier'}) }}
-		<hr>
+			{{ include('admin_restauration/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-		<div class="d-flex justify-content-around flex-wrap">
+			<hr>
 
-			<a href="{{ path('app_admin_restauration_index') }}" class=" btn btn-outline-dark">Retour liste Restauration</a>
+			<div class="d-flex justify-content-around flex-wrap">
 
-			{{ include('admin_restauration/_delete_form.html.twig') }}
+				<a href="{{ path('app_admin_restauration_index') }}" class=" btn btn-light">Retour index Restauration</a>
+
+				{{ include('admin_restauration/_delete_form.html.twig') }}
+			</div>
 		</div>
-
-	</section>
+	</div>
 {% endblock %}

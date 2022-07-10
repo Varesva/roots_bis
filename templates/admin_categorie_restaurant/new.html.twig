@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer une nouvelle CategorieRestaurant
+{% block title %}
+	Créer CategorieRestaurant
 {% endblock %}
 
-
 {% block body %}
-	<h1>Créer nouvelle CategorieRestaurant</h1>
-	<section class="container">
+	<div class="bg_admin">
 
-		{{ include('admin_categorie_restaurant/_form.html.twig') }}
-		<hr>
-		<a href="{{ path('app_admin_categorie_restaurant_index') }}" class="btn btn-outline-dark">Retour à la liste</a>
-	</section>
+		<h1>Créer CategorieRestaurant</h1>
+
+		<div class="container">
+
+			{{ include('admin_categorie_restaurant/_form.html.twig') }}
+			<hr>
+			<a href="{{ path('app_admin_categorie_restaurant_index') }}" class="btn btn-light">Retour index CategRestau</a>
+		</div>
+	</div>
 {% endblock %}

@@ -1,0 +1,45 @@
+#admin_header a.dropdown-item {
+	color: initial;
+}
+
+#admin_header ul.dropdown-menu li:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.bg_admin {
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 1rem;
+}
+
+.bg_admin div.card ul {
+	padding: revert;
+}
+
+.bg_admin div.container {
+	margin: 3rem auto;
+}
+
+.bg_admin .btn {
+	margin: 0.5rem !important;
+}
+
+.bg_admin div.card-body li.disc_style {
+	list-style-type: disc;
+}
+
+.bg_admin div.card {
+	max-width: 18rem;
+	width: 15rem;
+	margin: 20px 10px;
+}
+
+.bg_admin > h1,
+.bg_admin p,
+.bg_admin label {
+	color: white;
+}
+
+.bg_admin p:first-child {
+	text-align: center;
+	margin-bottom: 2rem;
+}

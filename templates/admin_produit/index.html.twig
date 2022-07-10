@@ -1,66 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit
+{% block title %}
+	Index Produit
 {% endblock %}
 
 {% block body %}
-	<h1>Admin Produit index</h1>
+	<div class="bg_admin">
+		<h1>Produit index</h1>
 
-	<p class="h4 text-center">Gérer les produits disponibles</p>
+		<div class="container">
 
-	<section class="container">
+			<p>Gérer les produits disponibles</p>
 
-		<div class="table-responsive-lg">
+			<div class="table-responsive-lg">
 
-			<table class="table text-center table-striped table-bordered">
+				<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
 
-				<thead class="table-warning">
-					<tr>
-						<th>Id</th>
-						<th>Titre</th>
-						<th>Catégorie de produit</th>
-						<th>Image</th>
-						<th>Prix</th>
-						<th>Livre_auteur</th>
-						<th>actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for produit in produits %}
+					<thead>
 						<tr>
-							<td>{{ produit.id }}</td>
-							<td>{{ produit.titre }}</td>
-							<td>{{ produit.categProduit }}</td>
-							<td>
-								<img src="{{asset('upload/' ~ produit.image)}}" width="150">
-							</td>
-							<td>
-								{{ produit.prix }}€
-							</td>
-							<td>{{ produit.livreAuteur }}</td>
-							<td>
-								<a href="{{ path('app_admin_produit_show', {'id': produit.id}) }}" class="btn m-2 btn-primary">Afficher</a>
-
-								<a href="{{ path('app_admin_produit_edit', {'id': produit.id}) }}" class="btn m-2 btn-warning">Modifier</td>
-							</td>
+							<th>Id</th>
+							<th>Titre</th>
+							<th>Catégorie de produit</th>
+							<th>Image</th>
+							<th>Prix</th>
+							<th>Livre_auteur</th>
+							<th>actions</th>
 						</tr>
-					{% else %}
-						<tr>
-							<td colspan="9">Pas de résultat</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{% for produit in produits %}
+							<tr>
+								<td>{{ produit.id }}</td>
+								<td>{{ produit.titre }}</td>
+								<td>{{ produit.categProduit }}</td>
+								<td>
+									<img src="{{asset('upload/' ~ produit.image)}}" width="150">
+								</td>
+								<td>
+									{{ produit.prix }}€
+								</td>
+								<td>{{ produit.livreAuteur }}</td>
+								<td>
+									<a href="{{ path('app_admin_produit_show', {'id': produit.id}) }}" class="btn btn-primary">Afficher</a>
+
+									<a href="{{ path('app_admin_produit_edit', {'id': produit.id}) }}" class="btn btn-warning">Modifier</td>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="9">Pas de résultat</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<div class="justify-content-center flex-wrap d-flex">
+
+				<a href="{{ path('app_admin_produit_new') }}" class="btn btn-success">Créer Produit</a>
+
+				<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-light">
+					Categorie Boutique
+				</a>
+			</div>
+
 		</div>
-
-		<div class="justify-content-center flex-wrap d-flex">
-
-			<a href="{{ path('app_admin_produit_new') }}" class="btn btn-dark m-2">Créer un nouveau produit</a>
-
-			<a href="{{ path('app_admin_boutique_index') }}" class="btn btn-outline-secondary m-2">
-				Toutes les catég produit
-			</a>
-		</div>
-
-	</section>
+	</div>
 {% endblock %}

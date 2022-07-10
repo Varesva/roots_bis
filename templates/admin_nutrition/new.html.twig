@@ -1,17 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer nouvelle catég Nutrition
+{% block title %}
+	Créer catégNutrition
 {% endblock %}
 
-
 {% block body %}
-	<h1>Créer nouvelle catég Nutrition</h1>
-	<section class="container">
-		{{ include('admin_nutrition/_form.html.twig') }}
-		<hr>
-		<div class="justify-content-center flex-wrap d-flex">
+	<div class="bg_admin">
+		<h1>Créer catégNutrition</h1>
 
-			<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-outline-dark">Retour liste Nutrition</a>
+		<div class="container">
+
+			{{ include('admin_nutrition/_form.html.twig') }}
+			<hr>
+			<div class="justify-content-center flex-wrap d-flex">
+
+				<a href="{{ path('app_admin_nutrition_index') }}" class="btn btn-light">Retour index Nutrition</a>
+			</div>
 		</div>
-	</section>
+	</div>
 {% endblock %}
