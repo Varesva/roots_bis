@@ -8,7 +8,13 @@
 .page_contact_container div > iframe {
 	border-radius: 15px;
 	border: 1px solid #e62121;
+	margin: 2rem auto;
 }
+
+.page_contact_container .googlemaps_embed {
+	margin: auto;
+}
+
 /* PAGE CONTACT ET RECOMMANDER */
 .page_contact_container> form .row {
   background-color:rgb(255, 221, 51, 0.65);
@@ -26,17 +32,16 @@
 @media screen and (min-width: 425px) {
 	.page_contact_container div > iframe {
 		width: 80%;
-		height: 250px;
 	}
 }
+
 /* responsive moyen format L, mobile portrait et paysage */
 @media screen and (min-width: 768px) {
 	.page_contact_container .row {
 		max-width: 55rem;
 	}
 	.page_contact_container div > iframe {
-		width: 500px;
-		height: 250px;
+		width: 600px;
 	}
 
 	.page_contact_container {

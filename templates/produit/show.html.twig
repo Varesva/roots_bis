@@ -1,69 +1,100 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Produit
+{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+	<style>
+		dt {
+			font-size: 19px;
+		}
+		section.container dt,
+		section.container dd {
+			margin-top: 15px;
+		}
+		/* responsive format petit */
+		@media screen and (min-width: 475px) {
+			section div#carouselExampleControls.carousel.slide.mb-5 {
+				width: 60%;
+				margin: auto;
+			}
+		}
+	</style>
 
-<section class="container">
-	<div class="table-responsive-lg">
+	<h1>Produit</h1>
 
-		<table class="table text-center ">
+	<section class="container">
 
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ produit.titre }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ produit.image }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ produit.prix }}</td>
-            </tr>
-            <tr>
-                <th>Giftcard_valeur</th>
-                <td>{{ produit.giftcardValeur }}</td>
-            </tr>
-            <tr>
-                <th>Livre_auteur</th>
-                <td>{{ produit.livreAuteur }}</td>
-            </tr>
-            <tr>
-                <th>Livre_edition</th>
-                <td>{{ produit.livreEdition }}</td>
-            </tr>
-            <tr>
-                <th>Livre_resume</th>
-                <td>{{ produit.livreResume }}</td>
-            </tr>
-        </tbody>
+		<div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
 
-    </table>
-</div>
-<div class="d-flex flex-wrap justify-content-center">
+					<img class="d-block w-100 rounded-3" src="{{asset('upload/' ~ produit.image )}}" alt="Image du produit">
 
-	<a href="{{ path('app_profile_user_commande') }}" class="btn btn-outline-dark m-2">
-		Retour à la liste des commandes
-	</a>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Image précédente</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Image Suivante</span>
+				</a>
+			</div>
+		</div>
 
-	<a href="{{path('app_profile_user')}}" class="btn btn-outline-dark m-2">
-		Retour à mon profil
-	</a>
+		<div class="bg-light border align-content-center p-2 rounded-3">
+			<dl class="row">
+				<dt class="col-sm-3">Nom du produit</dt>
+				<dd class="col-sm-9">
+					{{ produit.titre }}
+				</dd>
 
-	<a href="{{path('app_home')}}" class="btn btn-warning m-2">
-		<i class="fa-solid fa-sm fa-house"></i>
-		Accueil
-	</a>
-</div>
+				<dt class="col-sm-3">Prix</dt>
+				<dd class="col-sm-9">
+					{{ produit.prix }}€
+				</dd>
+				{% if produit.livreAuteur != "" and produit.livreEdition != "" %}
 
-</section> 
-    {# <a href="{{ path('app_produit_index') }}">back to list</a> #}
+					<dt class="col-sm-3">Auteur/trice</dt>
+					<dd class="col-sm-9">
+						{{ produit.livreAuteur }}
+					</dd>
+
+					<dt class="col-sm-3">Edition</dt>
+					<dd class="col-sm-9">
+						{{ produit.livreEdition }}
+					</dd>
+
+				{% endif %}
+
+				{% if produit.livreResume != ""  %}
+
+					<dt class="col-sm-3">Description</dt>
+					<dd class="col-sm-9">
+						{{ produit.livreResume }}
+					</dd>
+
+				{% endif %}
+			</dl>
+		</div>
+
+
+		<div class="d-flex flex-wrap justify-content-center my-5">
+			<a href="{{ path('app_produit_index') }}" class="btn btn-outline-dark m-2">
+				Tous les produits
+			</a>
+
+			<a href="{{ path('app_profile_user_commande') }}" class="btn btn-outline-secondary m-2">
+				Retour à l'historique de commande
+			</a>
+
+			<a href="{{path('app_home')}}" class="btn btn-warning m-2">
+				<i class="fa-solid fa-sm fa-house"></i>
+				Accueil
+			</a>
+		</div>
+	</section>
+
 
 {% endblock %}

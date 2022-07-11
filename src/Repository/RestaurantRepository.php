@@ -45,21 +45,20 @@ class RestaurantRepository extends ServiceEntityRepository
         }
     }
 
-    //  /**
-    //  * @return Restaurant[] Returns an array of Restaurant objects
-    //  */
-    
-    // public function findByHomeCarousel($value)
-    // {
-    //     return $this->createQueryBuilder('s')
-    //         ->andWhere('s.exampleField = :val')
-    //         ->setParameter('val', $value)
-    //         ->orderBy('s.id', 'ASC')
-    //         ->setMaxResults(10)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+    /**
+     * @return Restaurant[] Returns an array of Restaurant objects
+     */
+
+    public function findByRestoForHomeCarousel()
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.id = :id')
+            // ->setParameter('val', $value)
+            ->orderBy('r.id', 'DESC')
+            ->setMaxResults(8)
+            ->getQuery()
+            ->getResult();
+    }
 
     // public function findByExampleField($value)
     // {
@@ -72,7 +71,7 @@ class RestaurantRepository extends ServiceEntityRepository
     //         ->getResult()
     //     ;
     // }
-    
+
 
     /*
     public function findOneBySomeField($value): ?Restaurant
@@ -85,6 +84,4 @@ class RestaurantRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    
 }

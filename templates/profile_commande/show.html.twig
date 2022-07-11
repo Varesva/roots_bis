@@ -64,7 +64,7 @@
 						<th>Nom</th>
 						<th>Prix unitaire</th>
 						<th>Qté</th>
-						<th>Afficher le produit</th>
+						<th>Fiche produit</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -100,14 +100,23 @@
 					{% endfor %}
 				</tbody>
 			</table>
+
 		</div>
+		<p class="small text-muted justify-content-end d-flex align-items-center">
+
+			<i class="fa-solid fa-sm fa-circle-question"></i>
+			&nbsp Un problème avec la commande? &nbsp
+			<a href="{{path('app_contact')}}">
+				Contactez-nous
+			</a>
+		</p>
 		<div class="d-flex flex-wrap justify-content-center my-3">
 
 			<a href="{{ path('app_profile_user_commande') }}" class="btn btn-outline-dark m-2">
-				Retour à la liste des commandes
+				Retour à l'historique de commande
 			</a>
 
-			<a href="{{path('app_profile_user')}}" class="btn btn-secondary m-2">
+			<a href="{{path('app_profile_user')}}" class="btn btn-warning m-2">
 				Mon profil
 			</a>
 		</div>

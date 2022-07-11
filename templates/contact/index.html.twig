@@ -54,10 +54,23 @@
 
 			{% endif %}
 
-			{{ form_row(contactForm.subject, {
+			{# ESSAI signalez une commande avec le num ref inscrit ou faire un select
+			{% if app.user %}
+
+				{{ form_row(contactForm.subject, {
+				'label' : 'Objet*',
+				'row_attr' : {'class' : 'col-12 mb-3'},
+				'value' : 'Problème avec la commande {{commandeRef}} - ',
+			} ) }}
+
+			{% else %} #}
+
+				{{ form_row(contactForm.subject, {
 				'label' : 'Objet*',
 				'row_attr' : {'class' : 'col-12 mb-3'},
 			} ) }}
+
+			{# {% endif %} #}
 
 			{{ form_row(contactForm.message, {
 			'label' : 'Message*',
@@ -83,11 +96,9 @@
 					</a>
 				</li>
 			</ul>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20999.219762729637!2d2.38154615!3d48.86007015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66df6d6fb2ac5%3A0x1c0b82c6e1d851a0!2s75011%20Paris!5e0!3m2!1sfr!2sfr!4v1655212478504!5m2!1sfr!2sfr" width="300" height="200" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+			<div class="googlemaps_embed" width="250" height="250" id="!1m18!1m12!1m3!1d20999.219762729637!2d2.38154615!3d48.86007015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66df6d6fb2ac5%3A0x1c0b82c6e1d851a0!2s75011%20Paris!5e0!3m2!1sfr!2sfr!4v1655212478504!5m2!1sfr!2sfr"></div>
+
 		</div>
 	</section>
-<script>
-	onload();
-</script>
-
 {% endblock %}

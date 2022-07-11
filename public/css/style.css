@@ -78,14 +78,14 @@ article {
 /* BACK TO TOP BUTTON */
 #toTop {
 	position: fixed;
-	bottom: 20px;
-	right: 20px;
+	bottom: 50px;
+	right: 10px;
 	border-radius: 50%;
 	background-color: #247c39;
 	z-index: 1000;
 	width: 43px;
 	height: 43px;
-	opacity: 0.33;
+	opacity: 0.45;
 	transition: background-color 0.5s, opacity 0.5s;
 	border-style: none;
 }

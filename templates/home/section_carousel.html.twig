@@ -1,17 +1,46 @@
 {% block section_carousel %}
-	<h2 class=" mb-0">Nos dernières sélections de restaurants !</h2>
 
-	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+	<style>
+		.card-deck div.card {
+			width: 13rem;
+		}
+		.card-deck div.card-title {
+			font-size: 18px;
+		}
+		.card-deck .card-body {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.carousel-inner {
+			grid-width: 159.031px;
+			/* padding-left: 10px;
+			padding-right: 10px;
+			margin-left: -10px;
+			margin-right: -10px; */
+		}
+	</style>
+
+	<h2 class=" mb-0">
+		Nos dernières sélections de restaurants !
+	</h2>
+
+	<div id="carouselExampleControls" class="carousel slide" data-interval="false">
+
 		<div class="carousel-inner">
+
 			<div class="carousel-item active">
 				<div class="card-deck">
-					{% for restaurant in carousel_restaurants  %}
-<div class="card card-restaurant" style="width: 10rem;">
+					{% for restaurant in carousel_restaurants1  %}
+						<div class="card card-restaurant">
+							<img
+							class="card-img-top" src="https://fakeimg.pl/250x100/" alt="Image du restaurant">
 
-							<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
+							{# <img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant"> #}
 
 							<div class="card-body">
-								<div class="h5 card-title">{{ restaurant.nom }}</div>
+								<div class="card-title">{{ restaurant.nom }}</div>
+
 								<small class="card-text">
 									{{ restaurant.codePostal }},
 									{{ restaurant.ville }}
@@ -29,15 +58,18 @@
 					{% endfor %}
 				</div>
 			</div>
+
 			<div class="carousel-item">
 				<div class="card-deck">
-					{% for restaurant in carousel_restaurants %}
-<div class="card card-restaurant" style="width: 10rem;">
+					{% for restaurant in carousel_restaurants2 %}
+						<div
+							class="card card-restaurant">
 
-							<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
+							{# <img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant"> #}
+							<img class="card-img-top" src="https://fakeimg.pl/250x100/" alt="Image du restaurant">
 
 							<div class="card-body">
-								<div class="h5 card-title">{{ restaurant.nom }}</div>
+								<div class="card-title">{{ restaurant.nom }}</div>
 
 								<small class="card-text">
 									{{ restaurant.codePostal }},
@@ -59,15 +91,19 @@
 			</div>
 			<div class="carousel-item">
 				<div class="card-deck">
-					{% for restaurant in carousel_restaurants %}
-<div class="card card-restaurant" style="width: 10rem;">
+					{% for restaurant in carousel_restaurants3 %}
+						<div
+							class="card card-restaurant">
 
-							<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
+							{# <img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant"> #}
+							<img class="card-img-top" src="https://fakeimg.pl/250x100/" alt="Image du restaurant">
+
 
 							<div class="card-body">
-								<div class="h5 card-title">{{ restaurant.nom }}</div>
+								<div class="card-title">{{ restaurant.nom }}</div>
 
 								<small class="card-text">
+
 									{{ restaurant.codePostal }},
 									{{ restaurant.ville }}
 								</small>
@@ -98,5 +134,5 @@
 
 	</div>
 
-	
+
 {% endblock %}

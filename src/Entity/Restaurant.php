@@ -39,10 +39,10 @@ class Restaurant
 
     /**
      * @ORM\ManyToOne(targetEntity=Specialite::class, inversedBy="restaurants")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn
      */
     private $specialite;
-
+// (nullable=false)
     /**
      * @ORM\ManyToOne(targetEntity=Nutrition::class, inversedBy="restaurants")
      */
@@ -91,10 +91,10 @@ class Restaurant
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieRestaurant::class, inversedBy="restaurants")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn
      */
     private $categorie;
-
+// (nullable=false)
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="favoris")
      */

@@ -10,22 +10,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    // afficher dans carousel les derniers restaurants ajoutés en bdd
     /**
      * @Route("/", name="app_home", methods={"GET"})
      */
     public function home(RestaurantRepository $restaurantRepository): Response
     {
-        // afficher dans carousel les derniers restaurants ajoutés en bdd
-        $carousel_restaurants = $restaurantRepository->findBy(
+        $homeCarousel1 = $restaurantRepository->findBy(
             [],
             ['id' => 'DESC'],
             $limit = 4,
-            $offset = null,
-            4,
-            8,
+        );
+
+        $homeCarousel2 = $restaurantRepository->findBy(
+            [],
+            ['id' => 'DESC'],
+            $limit = 4,
+            $offset = 4,          
+        );
+
+        $homeCarousel3 = $restaurantRepository->findBy(
+            [],
+            ['id' => 'DESC'],
+            $limit = 4,
+            $offset = 8,          
         );
         return $this->render('home/index.html.twig', [
-            'carousel_restaurants' => $carousel_restaurants,
+            'carousel_restaurants1' => $homeCarousel1,
+            'carousel_restaurants2' => $homeCarousel2,
+            'carousel_restaurants3' => $homeCarousel3,
         ]);
     }
 

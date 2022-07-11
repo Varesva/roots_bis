@@ -65,8 +65,6 @@ class CommandeRepository extends ServiceEntityRepository
             ->join('c.user', 'u')
             ->setParameter('userId', $userId)
             ->where('u.id = :userId')
-            // // ->setFirstResult($order * 3 - 3)
-            // // ->andWhere('u.id = :val')
             ->orderBy('c.date', 'DESC')
             ->getQuery()
             ->getResult();
@@ -98,6 +96,22 @@ class CommandeRepository extends ServiceEntityRepository
 
         return $qb;
     }
+
+
+    
+    public function findOneOrder($userId, $id): ?Commande
+    {
+        return $this->createQueryBuilder('c')
+        ->join('c.user', 'u')
+        ->setParameter('userId', $userId)
+        ->where('u.id = :userId')
+        ->andWhere('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    
 
 
     /*

@@ -50,7 +50,7 @@
 									{{ commande.totalFacturation }}€
 								</td>
 								<td class="col-sm-4">
-									<a href="{{ path('app_commande_show') }}" class="btn btn-sm btn-outline-primary mt-1">
+									<a href="{{ path('app_commande_show', {'id': commande.id}) }}" class="btn btn-sm btn-outline-primary mt-1">
 										<i class="fa-solid fa-eye"></i>
 									</a>
 								</td>

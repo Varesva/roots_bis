@@ -34,7 +34,7 @@ class ProfileCommandeController extends AbstractController
 
     // TOUTES LES COMMANDES d'un USER
     /**
-     * @Route("", name="app_profile_user_commande", methods={"GET"})
+     * @Route("/", name="app_profile_user_commande", methods={"GET"})
      */
     public function userOrderHistory()
     {
@@ -49,22 +49,28 @@ class ProfileCommandeController extends AbstractController
 
     // AFFICHER DETAILS LIGNES COMMANDES USER
     /**
-     * @Route("/details-commande", name="app_commande_show", methods={"GET"})
+     * @Route("/{id}/details-commande", name="app_commande_show", methods={"GET"})
      */
-    public function show(): Response
+    public function show($id, Commande $commande ): Response
     {
-        // récup commandes du User grace à son Id
         $userId = $this->security->getUser();
-        $commandes = $this->commandeRepository->findAllOrdersByUser($userId);
-        // recup Id des commandes
-        $orderId = $commandes[0]->getId();
+        
+        $orderId = $commande->getId();
+
+        $c = $this->commandeRepository->findOneOrder($userId, $orderId);
 
         $lignes = $this->ligneCommandeRepository->findLignesByOrder($orderId);
-        // $lignes = $this->ligneCommandeRepository->findLignesByOrder($orderId);
-        // dd($lignes);
 
-        $c = $commandes[0];
+        // $c = $this->commandeRepository->find($orderId) ;
 
+        // $orderId = $id;
+
+        // $orderId = $commandes->commandes[0]->getId();  
+        // $orderId = $commandes;  
+        // $orderId = $commandes[0]->getId(); 
+       
+       
+   
         return $this->render('profile_commande/show.html.twig', [
             'commande' => $c,
             'lignes_commande' => $lignes,

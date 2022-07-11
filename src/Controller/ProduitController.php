@@ -50,18 +50,6 @@ class ProduitController extends AbstractController
         ]);
     }
 
-
-    // afficher un seul produit à partir du PANIER selon son id
-    /**
-     * @Route("/{id}", name="app_produit_cart_show", methods={"GET"})
-     */
-    public function cartShow(Produit $produit): Response
-    {
-        return $this->render('produit/cart_show.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
-
     // afficher toutes les cartes cadeaux
     /**
      * @Route("/cartes-cadeaux/{id}", name="app_produit_giftcard", methods={"GET"})
