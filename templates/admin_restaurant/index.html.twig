@@ -56,7 +56,11 @@
 								<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}" class="btn btn-primary ">Afficher</a>
 
 								<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}" class="btn btn-warning ">Modifier</a>
-
+							
+								<form method="post" action="{{ path('app_admin_restaurant_delete', {'id': restaurant.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ restaurant.id) }}">
+									<button class="btn btn-danger">Supprimer</button>
+								</form>
 							</td>
 						</tr>
 					{% else %}

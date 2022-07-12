@@ -7,117 +7,56 @@
 
 		<ol class="carousel-indicators">
 			<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-			<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-			<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+
+			{% for number in 1..2 %}
+				<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ number }}"></li>
+			{% endfor %}
 		</ol>
 
 		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<div class="card-deck">
-					{% for restaurant in carousel_restaurants1  %}
-						<div class="card card-restaurant">
-							<img
-							class="card-img-top" src="https://fakeimg.pl/250x100/" alt="Image du restaurant">
+			{% set activeLoop = 1 %}
 
-							{# <img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant"> #}
+			{% for resto in carousel_restaurants  %}
+				<div class="carousel-item {{ activeLoop != 1  ? '' : 'active'}}">
+					<div class="card-deck">
 
-							<div class="card-body">
-								<div class="card-title">{{ restaurant.nom }}</div>
+						{% for restaurant in resto %}
+							<div class="card card-restaurant">
 
-								<small class="card-text">
-									{{ restaurant.codePostal }},
-									{{ restaurant.ville }}
-								</small>
-								<div class="card_favoris">
-									<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-										Découvrir...
-									</a>
-									<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
-										<i class="fa-solid fa-xl fa-star"></i>
-									</a>
+								<img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant">
+
+								<div class="card-body">
+									<div class="card-title">{{ restaurant.nom }}</div>
+
+									<small class="card-text">
+										{{ restaurant.codePostal }},
+										{{ restaurant.ville }}
+									</small>
+									<div class="card_favoris">
+										<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
+											Découvrir...
+										</a>
+										<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
+											<i class="fa-solid fa-xl fa-star"></i>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
-			</div>
-
-			<div class="carousel-item">
-				<div class="card-deck">
-					{% for restaurant in carousel_restaurants2 %}
-						<div
-							class="card card-restaurant">
-
-							{# <img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant"> #}
-							<img class="card-img-top" src="https://fakeimg.pl/250x100/" alt="Image du restaurant">
-
-							<div class="card-body">
-								<div class="card-title">{{ restaurant.nom }}</div>
-
-								<small class="card-text">
-									{{ restaurant.codePostal }},
-									{{ restaurant.ville }}
-								</small>
-								<div class="card_favoris">
-									<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-										Découvrir...
-									</a>
-									<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
-										<i class="fa-solid fa-xl fa-star"></i>
-									</a>
-								</div>
-
-							</div>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="card-deck">
-					{% for restaurant in carousel_restaurants3 %}
-						<div
-							class="card card-restaurant">
-
-							{# <img class="card-img-top" src="{{asset('upload/' ~ restaurant.image)}}" alt="Image du restaurant"> #}
-							<img class="card-img-top" src="https://fakeimg.pl/250x100/" alt="Image du restaurant">
-
-
-							<div class="card-body">
-								<div class="card-title">{{ restaurant.nom }}</div>
-
-								<small class="card-text">
-
-									{{ restaurant.codePostal }},
-									{{ restaurant.ville }}
-								</small>
-								<div class="card_favoris">
-									<a class="card_container" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">
-										Découvrir...
-									</a>
-									<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}">
-										<i class="fa-solid fa-xl fa-star"></i>
-									</a>
-								</div>
-
-							</div>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
+				{% set activeLoop = activeLoop + 1 %}
+			{% endfor %}
 		</div>
 
 		<button class="carousel-control-prev d-lg-block d-none" href="#carouselExampleIndicators" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-
 			<span class="fa-solid fa-circle-chevron-left" aria-hidden="true"></span>
 			<span class="sr-only">Précédent</span>
 		</button>
-		<button class="carousel-control-next d-lg-block d-none" href="#carouselExampleIndicators" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 
+		<button class="carousel-control-next d-lg-block d-none" href="#carouselExampleIndicators" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 			<span class="fa-solid fa-circle-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Suivant</span>
 		</button>
-
 	</div>
-
-
 {% endblock %}

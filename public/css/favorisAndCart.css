@@ -99,9 +99,9 @@ div.card_favoris {
 	color: #2d9b48;
 }
 
-body > main > section > div:nth-child(6) > div {
+/* body > main > section > div:nth-child(6) > div {
 	width: 75%;
-}
+} */
 
 /* paiement - checkout  */
 /* #payment section {
@@ -149,7 +149,7 @@ body > main > section > div:nth-child(6) > div {
 	.cart_img {
 		width: 45%;
 	}
-	body > main > section > div:nth-child(6) > div {
+	/* body > main > section > div:nth-child(6) > div {
 		width: 40%;
-	}
+	} */
 }

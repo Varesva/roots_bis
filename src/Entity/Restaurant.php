@@ -95,6 +95,7 @@ class Restaurant
      */
     private $categorie;
 // (nullable=false)
+
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="favoris")
      */

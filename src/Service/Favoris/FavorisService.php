@@ -1,62 +1,85 @@
 <?php
-// dossier virtuel pouraccéder au dossier de ce fichier
 namespace App\Service\Favoris;
-// auto-wiring
+
+use App\Entity\Restaurant;
+use App\Entity\User;
 use App\Repository\ProduitRepository;
 use App\Repository\RestaurantRepository;
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class FavorisService
 {
-    // constructeur de classe Favoris - pour tjrs avoir ces variables avec la classe
     protected $session;
-    // protected $produitRepository;
     protected $restaurantRepository;
+    protected $security;
+    protected $userRepo;
 
-    public function __construct(SessionInterface $session, ProduitRepository $produitRepository, RestaurantRepository $restaurantRepository)
+    public function __construct(SessionInterface $session, RestaurantRepository $restaurantRepository, Security $security, UserRepository $userRepo)
     {
         $this->session = $session;
-        // $this->produitRepository = $produitRepository;
+
         $this->restaurantRepository = $restaurantRepository;
+        $this->security = $security;
+        $this->userRepo = $userRepo;
     }
-    // fin constructeur de classe Favoris
 
     // Pour voir les favoris dans son intégralité: avec les données des produits ajoutés dedans
     public function indexFav()
     {
         // pour crééer le favoris si la session (tableau) est inexistante ou l'actualiser si déjà créée
-        $favorisService = $this->session->get('favoris', []);
+        $favorites = $this->session->get('favoris', []);
 
-        if (!empty($favorisService)) {
-            foreach ($favorisService as $id) {
+        if (!empty($favorites)) {
+            foreach ($favorites as $id) {
                 $full_fav [] = [
                     'restaurant'=> $this->restaurantRepository->find($id),
                 ];
             }
             return $full_fav;
         }
-        // var_dump($favorisService) ;
         // puis enregistrer l'ajout effectué du produit 
-        $this->session->set('favoris', $favorisService);
+        $this->session->set('favoris', $favorites);
     }
 
     // ajouter un article au favoris--- le param converter recupere l'{id} dans l'url
     public function FavAddRemove(int $id)
     {
-        // pour crééer le favoris si la session est inexistante ou l'actualiser si la session est déjà créée
-        $favorisService = $this->session->get('favoris', []);
-        if (!empty($favorisService[$id])) // si tableau de favoris est not empty
+        $favorites = $this->session->get('favoris', []);
+        if (!empty($favorites[$id])) // si tableau de favoris est not empty
         {
             // decrement: retirer 1 au produit correspondant à l'id
-            unset($favorisService[$id]);
+            unset($favorites[$id]);
         } else
         {
             // increment: ajouter 1 au produit correspondant à l'id
-            $favorisService[$id] = $id;
+            $favorites[$id] = $id;
         } 
         // puis enregistrer l'ajout effectué du produit dans les favoris
-        $this->session->set('favoris', $favorisService);
+        $this->session->set('favoris', $favorites);
     }
+
+    // public function FavAddAndRemove(Restaurant $restoId, User $userId) {
+
+    //     if($restoId != null and $userId != null) {
+
+    //         $restaurant = new Restaurant();
+    //         // $restaurant->getNom();
+    //         $restaurant->addFavori($userId);
+    //         // $this->restaurantRepository->add($restaurant);
+
+    //         $user = new User();
+    //         $user->addFavori($restoId);
+    //         // $this->userRepo->add($user);
+
+            
+    //     } 
+    //     // else {
+
+    //     // }
+
+    // }
 
     // retirer un article des favoris--- le param converter recupere l'{id} dans l'url
     // public function removeFav(int $id)

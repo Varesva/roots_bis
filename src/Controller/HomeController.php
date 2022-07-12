@@ -16,35 +16,26 @@ class HomeController extends AbstractController
      */
     public function home(RestaurantRepository $restaurantRepository): Response
     {
-        $homeCarousel1 = $restaurantRepository->findBy(
-            [],
-            ['id' => 'DESC'],
-            $limit = 5,
-        );
+        $incr5 = 0;
 
-        $homeCarousel2 = $restaurantRepository->findBy(
-            [],
-            ['id' => 'DESC'],
-            $limit = 5,
-            $offset = 5,          
-        );
+        for ($i = 1; $i <= 3; $i++) {
 
-        $homeCarousel3 = $restaurantRepository->findBy(
-            [],
-            ['id' => 'DESC'],
-            $limit = 5,
-            $offset = 10,          
-        );
+            $homeCarousel[] = $restaurantRepository->findBy(
+                [],
+                ['id' => 'DESC'],
+                $limit = 5,
+                $offset = $incr5,
+            );
+            $incr5 = $incr5 + 5;
+        }
+
         return $this->render('home/index.html.twig', [
-            'carousel_restaurants1' => $homeCarousel1,
-            'carousel_restaurants2' => $homeCarousel2,
-            'carousel_restaurants3' => $homeCarousel3,
+            'carousel_restaurants' => $homeCarousel,
         ]);
     }
 
     public function searchBar()
     {
-
         return $this->renderForm('home/search.html.twig', []);
     }
 

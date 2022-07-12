@@ -10,7 +10,11 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class RestaurantFixture extends Fixture
 {
-    
+    private static $restoImage = [
+        'afrikn-2-626fd2a01a069.jpg',
+        'plantain-62c40e90c1a9e.jpg',
+    ];
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -19,7 +23,7 @@ class RestaurantFixture extends Fixture
             $restaurant = new Restaurant();
             $restaurant->setNom($faker->company);
             
-            $restaurant->setImage($faker->imageUrl($width = 640, $height = 480));
+            $restaurant->setImage($faker->randomElement(self::$restoImage));
             
             $restaurant->setDescription($faker->sentence($nbWords = 25, $variableNbWords = true));
 

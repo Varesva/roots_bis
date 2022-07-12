@@ -1,14 +1,12 @@
 <?php
-// dossier virtuel pouraccéder au dossier de ce fichier
 namespace App\Service\Cart;
-// auto-wiring
+
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\DecimalType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartService
 {
-    // constructeur de classe Cart - pour tjrs avoir ces variables avec la classe
     protected $session;
     protected $produitRepository;
 
@@ -17,7 +15,6 @@ class CartService
         $this->session = $session;
         $this->produitRepository = $produitRepository;
     }
-    // fin constructeur de classe Cart 
 
     // ajouter un article au panier--- le param converter recupere l'{id} dans l'url
     public function plusOne(int $id)

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Mes favoris - Roots
+	Mes favoris
 {% endblock %}
 
 {% block body %}
@@ -15,8 +15,8 @@
 				<a href="{{path('app_restaurant_index')}}" class="btn btn-warning">
 					Tous les restaurants
 				</a>
-				<a href="{{path('app_profile_favoris_clear') }}" class="btn btn-danger text-black">
-					<i class="fa-solid fa-trash"></i>
+				<a href="{{path('app_profile_favoris_clear') }}" class="btn btn-danger">
+					<i class="fa-solid fa-sm fa-trash"></i>
 					Vider mes favoris
 				</a>
 			</div>
@@ -24,7 +24,6 @@
 
 				{% for item in ligne_favoris %}
 					<div class="card card-restaurant">
-
 
 						<div class="card-img-top">
 							<a class="card_container" href="{{ path('app_restaurant_show', {'id': item.restaurant.id}) }}">

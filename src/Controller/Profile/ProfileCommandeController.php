@@ -67,10 +67,16 @@ class ProfileCommandeController extends AbstractController
 
         // $orderId = $commandes->commandes[0]->getId();  
         // $orderId = $commandes;  
-        // $orderId = $commandes[0]->getId(); 
-       
-       
-   
+        // $orderId = $commandes[0]->getId();     
+        
+        // if () {
+    
+        //     $this->userOrderHistory();
+
+        // } else {
+
+        // }
+
         return $this->render('profile_commande/show.html.twig', [
             'commande' => $c,
             'lignes_commande' => $lignes,
