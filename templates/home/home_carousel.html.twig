@@ -1,34 +1,17 @@
-{% block section_carousel %}
-
-	<style>
-		.card-deck div.card {
-			width: 13rem;
-		}
-		.card-deck div.card-title {
-			font-size: 18px;
-		}
-		.card-deck .card-body {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-		.carousel-inner {
-			grid-width: 159.031px;
-			/* padding-left: 10px;
-			padding-right: 10px;
-			margin-left: -10px;
-			margin-right: -10px; */
-		}
-	</style>
-
+{% block homeCarousel %}
 	<h2 class=" mb-0">
 		Nos dernières sélections de restaurants !
 	</h2>
 
-	<div id="carouselExampleControls" class="carousel slide" data-interval="false">
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="20000">
+
+		<ol class="carousel-indicators">
+			<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+			<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+			<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+		</ol>
 
 		<div class="carousel-inner">
-
 			<div class="carousel-item active">
 				<div class="card-deck">
 					{% for restaurant in carousel_restaurants1  %}
@@ -123,11 +106,13 @@
 			</div>
 		</div>
 
-		<button class="carousel-control-prev" href="#carouselExampleControls" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+		<button class="carousel-control-prev d-lg-block d-none" href="#carouselExampleIndicators" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
 			<span class="fa-solid fa-circle-chevron-left" aria-hidden="true"></span>
 			<span class="sr-only">Précédent</span>
 		</button>
-		<button class="carousel-control-next" href="#carouselExampleControls" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+		<button class="carousel-control-next d-lg-block d-none" href="#carouselExampleIndicators" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+
 			<span class="fa-solid fa-circle-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Suivant</span>
 		</button>

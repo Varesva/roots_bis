@@ -1,0 +1,57 @@
+#homeCarousel {
+	background-color: rgb(255, 221, 51, 0.65);
+	padding: 0.5rem 0;
+	width: 100%;
+}
+
+#homeCarousel .carousel-indicators {
+	bottom: -15px;
+}
+
+/* #homeCarousel .carousel-inner {
+	padding-left: 10px;
+			padding-right: 10px;
+			margin-left: -10px;
+			margin-right: -10px;
+} */
+
+#homeCarousel .carousel-indicators [data-bs-target] {
+	background-color: #247c39;
+	width: 40px;
+	height: 4px;
+}
+
+#homeCarousel button > span.fa-circle-chevron-right,
+#homeCarousel button > span.fa-circle-chevron-left,
+.carousel-indicators {
+	color: #247c39;
+}
+
+#homeCarousel .carousel-control-next,
+#homeCarousel .carousel-control-prev {
+	width: 30px;
+}
+
+/* rangée de card côte à côte */
+#homeCarousel div.carousel-item > .card-deck {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0 40px 0;
+}
+
+#carouselExampleIndicators {
+	overflow: hidden;
+}
+#homeCarousel .card-deck div.card {
+	min-width: 13rem;
+	max-width: 13rem;
+}
+#homeCarousel .card-deck div.card-title {
+	font-size: 18px;
+}
+#homeCarousel .card-deck .card-body {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

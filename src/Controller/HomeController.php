@@ -19,21 +19,21 @@ class HomeController extends AbstractController
         $homeCarousel1 = $restaurantRepository->findBy(
             [],
             ['id' => 'DESC'],
-            $limit = 4,
+            $limit = 5,
         );
 
         $homeCarousel2 = $restaurantRepository->findBy(
             [],
             ['id' => 'DESC'],
-            $limit = 4,
-            $offset = 4,          
+            $limit = 5,
+            $offset = 5,          
         );
 
         $homeCarousel3 = $restaurantRepository->findBy(
             [],
             ['id' => 'DESC'],
-            $limit = 4,
-            $offset = 8,          
+            $limit = 5,
+            $offset = 10,          
         );
         return $this->render('home/index.html.twig', [
             'carousel_restaurants1' => $homeCarousel1,

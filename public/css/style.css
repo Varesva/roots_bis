@@ -51,7 +51,7 @@ ul {
 	margin-bottom: 0;
 }
 
-section:not(.section_carousel) {
+section {
 	margin: 3rem auto;
 	max-width: 1000px;
 	padding: 1rem;

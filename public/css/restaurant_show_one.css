@@ -1,17 +1,17 @@
-div#carouselExampleIndicators.carousel.slide {
+#restaurant_show div#carouselExampleIndicators.carousel.slide {
 	width: 60%;
 	margin: 2rem auto;
 }
 
-div#carouselExampleIndicators.carousel-control-next,
-div#carouselExampleIndicators.carousel-control-prev {
+#restaurant_show div#carouselExampleIndicators.carousel-control-next,
+#restaurant_show div#carouselExampleIndicators.carousel-control-prev {
 	opacity: 0;
 	width: 11%;
 }
-.accordion-button:not(.collapsed) {
+#restaurant_show .accordion-button:not(.collapsed) {
 	background-color: #ffdd33;
 }
-.accordion-button {
+#restaurant_show .accordion-button {
 	background-color: #d9beaf;
 }
 .accordion-item {
@@ -19,22 +19,22 @@ div#carouselExampleIndicators.carousel-control-prev {
 	margin: auto;
 	background-color: #f9f5f3;
 }
-.accordion-button:focus {
+#restaurant_show .accordion-button:focus {
 	box-shadow: none;
 }
 /* pour le chevron down accordion */
-.accordion-button::after {
+#restaurant_show .accordion-button::after {
 	width: 4.5rem;
 	background-size: 1.7rem;
 }
 
 /* contact accordeon */
-.accordion-body ul li {
+#restaurant_show .accordion-body ul li {
 	font-weight: 700;
 	font-size: 1.115rem;
 	border-top: 1.25px solid black;
 }
-.accordion-body {
+#restaurant_show .accordion-body {
 	width: 95%;
 	margin: auto;
 }

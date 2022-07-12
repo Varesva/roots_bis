@@ -45,20 +45,10 @@ class RestaurantRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @return Restaurant[] Returns an array of Restaurant objects
-     */
+    // /**
+    //  * @return Restaurant[] Returns an array of Restaurant objects
+    //  */
 
-    public function findByRestoForHomeCarousel()
-    {
-        return $this->createQueryBuilder('r')
-            ->where('r.id = :id')
-            // ->setParameter('val', $value)
-            ->orderBy('r.id', 'DESC')
-            ->setMaxResults(8)
-            ->getQuery()
-            ->getResult();
-    }
 
     // public function findByExampleField($value)
     // {

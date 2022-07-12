@@ -36,7 +36,7 @@
 }
 
 /* image */
-section .card-img-top {
+section .card-img-top, div .card-img-top {
 	border-top-left-radius: 7px;
 	border-top-right-radius: 7px;
 	overflow: hidden;
