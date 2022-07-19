@@ -97,11 +97,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $commandes;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Restaurant::class, mappedBy="favoris")
-     */
-    private $favoris;
-
-    /**
      * @ORM\Column(type="string", length=180, nullable=true)
      */
     private $complement_adresse;
@@ -109,7 +104,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -338,33 +332,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Restaurant>
-     */
-    public function getFavoris(): Collection
-    {
-        return $this->favoris;
-    }
-
-    public function addFavori(Restaurant $favori): self
-    {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
-            $favori->addFavori($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavori(Restaurant $favori): self
-    {
-        if ($this->favoris->removeElement($favori)) {
-            $favori->removeFavori($this);
-        }
-
-        return $this;
-    }
-
     public function getComplementAdresse(): ?string
     {
         return $this->complement_adresse;
@@ -375,5 +342,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->complement_adresse = $complement_adresse;
 
         return $this;
-    }
+    }  
 }

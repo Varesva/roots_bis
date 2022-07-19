@@ -49,23 +49,6 @@ class RestaurantRepository extends ServiceEntityRepository
     //  * @return Restaurant[] Returns an array of Restaurant objects
     //  */
 
-
-    public function findByFav($userId)
-    {
-        return $this->createQueryBuilder('r')
-            ->join('r.favoris', 'f')
-            // ->where('u.favoris = :restoId')
-            // ->andWhere('r.exampleField = :val')
-            ->setParameter('userId', $userId)
-            ->where('f = :userId')
-            ->orderBy('r.id', 'ASC')
-            // ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-
     // public function findByExampleField($value)
     // {
     //     return $this->createQueryBuilder('s')
