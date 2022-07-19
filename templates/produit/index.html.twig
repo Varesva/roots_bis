@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Tous les produits - Roots
+	Tous les produits
+{% endblock %}
+
+{% block metadesc %}
+	Profitez dès maintenant des meilleurs livres de recettes et produits inédits dans la boutique de Roots !
 {% endblock %}
 
 {% block body %}
@@ -9,10 +13,8 @@
 
 	<section
 		class="produits_container">
-		{# nouvelle variable in variable du controller #}
 		{% for produit in produits %}
-<div class="card card-restaurant">
-
+			<div class="card card-restaurant">
 
 				<div class="card-img-top">
 					<a class="card_container" href="{{ path('app_produit_show', {'id': produit.id}) }}">
@@ -38,9 +40,9 @@
 				</div>
 			</div>
 		{% else %}
-        <div class="bg-light">
-			<p>Pas de résultat</p>
-        </div>
+			<div class="bg-light">
+				<p>Pas de résultat</p>
+			</div>
 		{% endfor %}
 	</section>
 

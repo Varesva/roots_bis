@@ -175,7 +175,7 @@ class ProfilePaymentController extends AbstractController
         // NUM REF COMMANDE
         $orderRefNumber = $this->commandeRepository->findLastOrderRef();
 
-        $refNumber = $orderRefNumber[0]->getReference();
+        // $refNumber = $orderRefNumber[]->getReference();
 
         // AJOUT EN BDD
         $this->paymentService->confirmOrderDB();
@@ -190,8 +190,8 @@ class ProfilePaymentController extends AbstractController
         // return $this->redirectToRoute('app_profile_payment_valid');
 
         return $this->render('profile_payment/confirm.html.twig', [
-            'orderRef' =>
-            $refNumber,
+            // 'orderRef' =>
+            // $refNumber,
         ]);
     }
 }

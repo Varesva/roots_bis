@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Panier - Roots
+	Panier
+{% endblock %}
+
+{% block metadesc %}
+	Commandez dès maintenant vos livres de recettes et produits coups de coeur dans la boutique de Roots !
 {% endblock %}
 
 {% block body %}
@@ -21,29 +25,30 @@
 			<div class="d-flex flex-wrap justify-content-around">
 				{% for item in ligne_panier %}
 
-					<div class="card card-restaurant" style="width: 12rem;">
+					<div class="card card-restaurant" style="height: inherit;">
 
+						<div class="card-img-top" style="height: inherit;">
 
-						<div class="card-img-top">
-							<a class="card_container" href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
-								<img src="{{asset('upload/' ~ item.produit.image )}}" alt="Image du produit" class="w-100 h-100">
+							<a href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
+								<img src="{{asset('upload/' ~ item.produit.image )}}" alt="Image du produit">
 							</a>
 						</div>
 
 						<div class="card-body">
-							<a class="card_container" href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
+							<a href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
 								<p class="h5 card-title">{{  item.produit.titre }}</p>
 							</a>
+
 							<div class="d-flex justify-content-between">
-								<a class="card_container " href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
+								<a class=" h5" href="{{ path('app_produit_show', {'id': item.produit.id}) }}">
 									{{item.produit.prix }}
 									€
 								</a>
-								<small class=" opacity-50">(prix HT)</small>
+								<small class=" opacity-75">(prix HT)</small>
 							</div>
 							<div class="d-flex justify-content-between mt-2">
-								<div class="border border-success rounded-pill px-2">
 
+								<div class="border border-success rounded-pill px-2">
 									<a href="{{ path('app_cart_remove', {'id': item.produit.id}) }}" class="mx-1">
 										<i class="fa-solid fa-circle-minus"></i>
 									</a>
@@ -56,7 +61,7 @@
 								</div>
 
 								<div>
-									<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-danger rounded-circle">
+									<a href="{{ path('app_cart_delete', {'id': item.produit.id}) }}" class="btn btn-sm btn-danger rounded-circle">
 										<i class="fa-solid fa-trash-can"></i>
 									</a>
 								</div>
@@ -92,8 +97,8 @@
 					Commander
 				</a>
 				{# <a href="{{path('app_profile_payment_userAddress', {'id': app.user.id})}}" class="btn btn-success m-1">
-													Commander
-												</a> #}
+																					Commander
+																				</a> #}
 			</div>
 		</section>
 
