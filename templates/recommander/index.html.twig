@@ -17,44 +17,36 @@
 		</h1>
 
 		{{ form_start(recommendForm) }}
-
 		<div class="row g-3">
-			<p>
-				<small class="justify-content-end d-flex opacity-75">
-					*Champs obligatoires
-				</small>
+			<p class="small">
+				*Champs obligatoires
 			</p>
 
-			{% if app.user %}
-
-				{{ form_row(recommendForm.email, {'value' : app.user.email ,
-					'label' : 'Email*', 
-					'row_attr' : {'class' : 'col-md-6 mb-3'},
-				} ) }}
-
-			{% else %}
-
-				{{ form_row(recommendForm.email, {
-					'label' : 'Email*',
-					'row_attr' : {'class' : 'col-md-6 mb-3'},
-				} ) }}
-
-			{% endif %}
+			{{ form_row(recommendForm.email, {
+				'value': (app.user) ? app.user.email : '',
+				'label' : 'Email*', 
+				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				} ) 
+			}}
 
 			{{ form_row(recommendForm.restaurant, { 
 				'label' : 'Nom du restaurant*', 
 				'row_attr' : {'class' : 'col-md-6 mb-3'},
-			} ) }}
+				} ) 
+			}}
 
 			{{ form_row(recommendForm.message, { 
 				'label' : 'Commentaire', 
 				'row_attr' : {'class' : 'col-12 mb-3'},
-			} ) }}
+				} ) 
+			}}
 
 			{{ form_row(recommendForm.send, {
 				'label' : 'Envoyer', 
 				'row_attr' : {'class' : 'col-12 text-center mb-3'},
-			} ) }}
+				} ) 
+			}}
+
 		</div>
 		{{ form_end(recommendForm) }}
 

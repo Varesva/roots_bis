@@ -4,8 +4,11 @@
 	Nous contacter
 {% endblock %}
 
-{% block body %}
+{% block metadesc %}
+	Besoin de contacter le service client de Roots par email ou par téléphone ? Obtenez rapidement les réponses à toutes vos questions !
+{% endblock %}
 
+{% block body %}
 	<h1>
 		Nous contacter
 	</h1>
@@ -16,61 +19,28 @@
 		} ) }}
 
 		<div class="row g-3 rounded-3">
-			<p>
-				<small class=" justify-content-end d-flex opacity-75">
-					*Champs obligatoires
-				</small>
+			<p class="small">
+				*Champs obligatoires
 			</p>
 
-			{% if app.user %}
-
-				{{ form_row(contactForm.identity, {
+			{{ form_row(contactForm.identity, {
 					'label' : 'Nom complet*',
 				'row_attr' : {'class' : 'col-md-6 mb-3'},
-				'value' : app.user.prenom ~' '~ app.user.nom|upper,
-				} ) }}
+				'value': (app.user) ? app.user.prenom ~' '~ app.user.nom|upper : '',
+				} ) 
+			}}
 
-			{% else %}
-
-				{{ form_row(contactForm.identity, { 
-				'label' : 'Nom complet*', 
-				'row_attr' : {'class' : 'col-md-6 mb-3'},
-				} ) }}
-
-			{% endif %}
-
-			{% if app.user %}
-				{{ form_row(contactForm.email, { 
+			{{ form_row(contactForm.email, { 
 				'label' : 'Email*', 
 				'row_attr' : {'class' : 'col-md-6 mb-3'},
-				'value' : app.user.email,
-							} ) }}
-			{% else %}
+				'value': (app.user) ? app.user.email : '',
+				} )
+			}}
 
-				{{ form_row(contactForm.email, { 
-				'label' : 'Email*', 
-				'row_attr' : {'class' : 'col-md-6 mb-3'},
-			} ) }}
-
-			{% endif %}
-
-			{# ESSAI signalez une commande avec le num ref inscrit ou faire un select
-			{% if app.user %}
-
-				{{ form_row(contactForm.subject, {
-				'label' : 'Objet*',
-				'row_attr' : {'class' : 'col-12 mb-3'},
-				'value' : 'Problème avec la commande {{commandeRef}} - ',
-			} ) }}
-
-			{% else %} #}
-
-				{{ form_row(contactForm.subject, {
+			{{ form_row(contactForm.subject, {
 				'label' : 'Objet*',
 				'row_attr' : {'class' : 'col-12 mb-3'},
 			} ) }}
-
-			{# {% endif %} #}
 
 			{{ form_row(contactForm.message, {
 			'label' : 'Message*',

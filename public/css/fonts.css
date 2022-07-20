@@ -87,4 +87,7 @@ label, .label {
 small,
 .small {
 	font-weight: 500;
+	justify-content: flex-end!important;
+	display: flex!important;
+	opacity: .75!important;
 }

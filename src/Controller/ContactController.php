@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Service\FileUploader;
 use App\Service\Email\EmailService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,8 +12,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
+
+    protected $fileUploader;
+
+    public function __construct(FileUploader $fileUploader)
+    {
+        $this->fileUploader = $fileUploader;
+    }
+
+
     /**
-     * @Route("/contactez-nous", name="app_contact")
+     * @Route("/nous-contacter", name="app_contact")
      */
     public function contact(Request $request, EmailService $emailService): Response
     {
@@ -21,6 +31,17 @@ class ContactController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+
+            // /** 
+            //  * @var UploadedFile $image 
+            //  */
+            // $imageFile = $contactForm->get('image')->getData();
+
+            // // this condition is needed because the image/photo field is not required
+            // // so the PDF file must be processed only when a file is uploaded
+            // if ($imageFile) {
+            //     $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+            // }
 
             // USER
             $ok_contactForm = $contactForm->getData();

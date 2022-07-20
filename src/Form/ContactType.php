@@ -4,15 +4,16 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class ContactType extends AbstractType
 {
@@ -69,6 +70,7 @@ class ContactType extends AbstractType
                     ]),
                 ],
             ])
+
             ->add('message', TextareaType::class, [
                 'attr' => [
                     'placeholder' => 'Bonjour, je vous contacte car ...',
@@ -77,6 +79,15 @@ class ContactType extends AbstractType
                     'maxLength' => 2000,
                 ]
             ])
+
+            // ->add('image', FileType::class, [
+            //     'label' => 'Pièce(s) jointe(s)',
+            //     'help' => 'Ajoutez une ou plusieurs pièces jointes à votre message',
+            //     // 'mapped' => false,
+            //     'required' => false,
+            //     // 'multiple' => true
+            // ])
+
             ->add('send', SubmitType::class, [
                 'label' => 'Envoyer',
                 'row_attr' => [

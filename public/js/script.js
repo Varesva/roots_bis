@@ -22,13 +22,25 @@ function scrollToTop() {
     }
 }
 
+// PAGE CONTACT - ajout de pièces jointes
+// const addingFile = document.querySelector("#addingFile");
+
+// const addWidget = document.querySelector(".fileWidget");
+
+// addingFile.addEventListener("click", function addingWidget() {
+
+//     addWidget.style.display = "block";
+
+// });
+
+
 
 // RESET FORMS AFTER SENDING
 // function resetForm() {
 //     document.getElementById('recaptcha-form').reset();
 // }
 
-// ADD TO FAVORITES 
+// ADD TO FAVORITES
 // const btnFav = document.querySelectorAll(".card-body > .fa-star");
 
 // btnFav.addEventListener('click', function() { addedToFav() } );
