@@ -9,8 +9,8 @@ const btnTop = document.getElementById('toTop');
 window.onscroll = function () { scrollToTop() };
 
 function backToTop() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    document.body.scrollTop = -1; // For Safari
+    document.documentElement.scrollTop = -1; // For Chrome, Firefox, IE and Opera
 }
 
 function scrollToTop() {
@@ -73,4 +73,3 @@ function scrollToTop() {
 // addFav.on('animationend', function () {
 //     $(this).toggleClass('is_animating');
 // });
-

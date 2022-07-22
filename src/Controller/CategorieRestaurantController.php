@@ -11,17 +11,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/categories")
+ * @Route("/categories-restaurants")
  */
 class CategorieRestaurantController extends AbstractController
 {
+        // AFFICHER TOUTES CATEGRESTAU = types de cuisines (afr, carib)
     /**
      * @Route("/", name="app_categorie_restaurant_index", methods={"GET"})
      */
     public function index(CategorieRestaurantRepository $categorieRestaurantRepository): Response
     {
-        return $this->render('produit/categorie.html.twig', [
-            'categorie_restaurants' => $categorieRestaurantRepository->findAll(),
+        return $this->render('categorie_restaurant/categories.html.twig', [
+            'categorie_restaurant' => $categorieRestaurantRepository->findAll(),
         ]);
     }
 

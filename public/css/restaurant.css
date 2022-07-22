@@ -1,18 +1,31 @@
 /* container de page */
-.restaurants_container,
 .restaurant_container_carib,
-.restaurant_container_afr, .produits_container {
+.restaurant_container_afr {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	background-color: #ffdd33;
+	background-color: rgb(255, 221, 51, 0.65) ;
 	padding: 1rem;
-	width: 95%;
+	/* width: 95%; */
 	margin: 1rem auto;
 	border-radius: 15px;
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+
+#categ {
+	background-color: rgb(255, 221, 51, 0.65) ;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 1rem;
+	/* width: 95%; */
+	margin: 1rem auto;
+	border-radius: 15px;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 .restaurant_container_afr {
 	background-image: url("../img/afr.png");
 }
@@ -20,19 +33,9 @@
 	background-image: url("../img/madras.jpg");
 }
 
-.produits_container {
-	background-color: #2d9b48;
-}
-/* carte presentation de restaurant et image */
-.card-restaurant {
-	width: 15rem;
-	border-radius: 10px;
-	margin: 2rem;
-	border: 3px solid #e62121;
+/* card pour les restaurants */
+.restaurant {
 	height: 18rem;
-}
-.card-img-top img {
-	width: 15rem;
 }
 
 /* image */
@@ -40,12 +43,9 @@ section .card-img-top, div .card-img-top {
 	border-top-left-radius: 7px;
 	border-top-right-radius: 7px;
 	overflow: hidden;
-	height: 60%;
+	height: 70%;
 }
 
-.produits_container .card {
-	height: fit-content;
-}
 /* texte de l'image indiquant les specialités (pays) */
 .card-text_img {
 	background-color: rgb(255, 221, 51, 1);

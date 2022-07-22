@@ -1,7 +1,7 @@
 <?php
-// dossier virtuel pour accéder au dossier de ce fichier
+
 namespace App\Controller;
-// auto-wiring
+
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// Controller d'accès public MAIS reprend les infos du Ctrl adminRestaurant: Annuaire des restaurants du site Roots
+// Controller accès public : catalogue des restaurants
+
 /**
  * @Route("/restaurant")
  */
 class RestaurantController extends AbstractController
 {
-    // constructeur de classe  - pour tjrs avoir ces variables avec la classe
     protected $restaurantRepository;
     protected $em;
 
@@ -26,11 +26,10 @@ class RestaurantController extends AbstractController
         $this->restaurantRepository = $restaurantRepository;
         $this->entityManagerInterface = $em;
     }
-    // fin constructeur de classe  
 
-    // afficher tous les restaurants
+    // AFFICHER TOUS LES RESTOS
     /**
-     * @Route("/", name="app_restaurant_index", methods={"GET"})
+     * @Route("/catalogue-complet", name="app_restaurant_index", methods={"GET"})
      */
     public function index(): Response
     {
@@ -39,6 +38,7 @@ class RestaurantController extends AbstractController
         ]);
     }
 
+    // AFFICHER UN RESTO
     /**
      * @Route("/{id}", name="app_restaurant_show", methods={"GET"})
      */
@@ -49,34 +49,32 @@ class RestaurantController extends AbstractController
         ]);
     }
 
-    // afficher toutes les restaurants d'une catégorieRestaurant afrique
+    // AFFICHER TOUS RESTOS CATEGRESTAURANT Afrique
     /**
      * @Route("/cuisines-africaines/{id}", name="app_restaurant_afrique", methods={"GET"})
      */
     public function showByCategAfrique($id): Response
     {
-        // récuperer tous les restaurants africains
         $restaurantAfrique = $this->restaurantRepository->findBy(
             ['categorie' => $id]
         );
-        // retourner la vue
-        return $this->render('restaurant/afrique.html.twig', 
-        [
-            'restaurants' => $restaurantAfrique,
-        ]);
+        return $this->render(
+            'restaurant/afrique.html.twig',
+            [
+                'restaurants' => $restaurantAfrique,
+            ]
+        );
     }
 
-    // afficher toutes les restaurants d'une catégorieRestaurant caribéens
+    // AFFICHER TOUS RESTOS CATEGRESTAURANT Caribéens
     /**
      * @Route("/cuisines-caribeennes/{id}", name="app_restaurant_carib", methods={"GET"})
      */
     public function showByCategCarib($id): Response
     {
-        // récuperer tous les restaurants carib
         $restaurantCarib = $this->restaurantRepository->findBy(
             ['categorie' => $id]
         );
-        // retourner la vue
         return $this->render('restaurant/carib.html.twig', [
             'restaurants' => $restaurantCarib,
         ]);
@@ -89,13 +87,10 @@ class RestaurantController extends AbstractController
 
     public function showByRestoNutrition($id): Response
     {
-        // récuperer tous les produits de la categorie séléctionnée
-    
         $restaurantRepository = $this->restaurantRepository->findBy(
             ['nutrition' => $id]
         );
 
-        // retourner la vue
         return $this->render('restaurant/index.html.twig', [
             'restaurants' => $restaurantRepository,
         ]);

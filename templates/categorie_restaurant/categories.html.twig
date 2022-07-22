@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Livres par types de cuisines
+{% endblock %}
+
+{% block metadesc %}
+	Retrouvez dès maintenant une sélection des meilleurs livres de recettes catégorisés par types de cuisines !
+{% endblock %}
+
+{% block body %}
+	<h1>Les livres de recettes par types de cuisines</h1>
+
+	<section id="categ" class="container">
+		{% for categ in categorie_restaurant %}
+			<div class="card card-restaurant">
+				<div class="card-img-top h-75">
+					<a href="{{ path('app_produit_ByCateg_cuisine', {'id': categ.id}) }}">
+						<img src="{{asset('upload/' ~ categ.image)}}" alt="Image de la catégorie cuisines africaines">
+					</a>
+				</div>
+				<div class="card-body">
+					<a class=" btn btn-warning" href="{{ path('app_produit_ByCateg_cuisine', {'id': categ.id}) }}">
+						Livres de
+						{{ categ.typeCuisine | lower }}
+					</a>
+				</div>
+			</div>
+		{% else %}
+			<div class="bg-light p-3 rounded-3">
+				<p>Pas de résultat</p>
+			</div>
+		{% endfor %}
+	</section>
+{% endblock %}

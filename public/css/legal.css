@@ -1,13 +1,18 @@
 /* CGV  */
-#legal p, #legal span, #legal div {
-    line-height: 2.5rem;
-}
-#legal ul, #legal ol  {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    padding-left: 5rem;
+#legal p,
+#legal span,
+#legal div {
+	line-height: 2.1rem;
 }
 
-#legal .nav-link, #legal a:hover {
-    color: #2d9b48 ;
+#legal ul,
+#legal ol {
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	padding-left: 5rem;
+}
+
+#legal .nav-link,
+#legal a:hover {
+	color: #2d9b48;
 }

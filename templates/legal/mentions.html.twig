@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mentions légales - Roots
+{% block title %}
+	Mentions légales
+{% endblock %}
+
+{% block metadesc %}
+	Découvrez les mentions légales applicables sur le site Roots
 {% endblock %}
 
 {% block body %}
@@ -74,10 +79,8 @@
 				</article>
 
 			</div>
-			<p>
-			<small class=" text-black-50">Rédigé sur
-				<a href="https://legalplace.fr">legalplace.fr</a>
-			</small>
+			<p class="small">
+				Rédigé sur&nbsp<a href="https://legalplace.fr">legalplace.fr</a>
 			</p>
 
 		</div>
@@ -85,3 +88,4 @@
 
 	</section>
 {% endblock %}
+

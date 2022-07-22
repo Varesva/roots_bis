@@ -26,13 +26,13 @@ h3,
 h4,
 .h4,
 h5,
-.h5 h6,
+.h5,
+h6,
 .h6 {
 	margin: 0.5rem 0 2rem;
 	font-family: "Quicksand", sans-serif;
 	font-weight: 600;
 	line-height: 1.3;
-	color: #247c39;
 }
 
 h1 {
@@ -52,7 +52,9 @@ h2,
 	justify-content: center;
 	text-align: center !important;
 	align-items: center;
+	color: #247c39;
 }
+
 /* responsive moyen format L, mobile portrait et paysage */
 @media screen and (max-width: 768px) {
 	h1 {
@@ -80,14 +82,15 @@ h5,
 	font-size: 1.25rem;
 }
 
-label, .label {
+label,
+.label {
 	color: #b22222;
 }
 
-small,
-.small {
+/* small, */
+p.small, p > .small:first-of-type {
 	font-weight: 500;
-	justify-content: flex-end!important;
-	display: flex!important;
-	opacity: .75!important;
+	justify-content: flex-end !important;
+	display: flex !important;
+	opacity: 0.75 !important;
 }

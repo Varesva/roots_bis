@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Restaurant
+	{{ restaurant.nom }}
 {% endblock %}
 
 {% block body %}
@@ -9,16 +9,13 @@ Restaurant
 		<br>
 		{{ restaurant.nom }}
 	</h1>
-	<h2>
-		{{ restaurant.categorie }}
-	</h2>
 
 	<section
 		class="container" id="restaurant_show">
 
 		{# carousel de photos #}
 		<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
-		
+
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -52,23 +49,39 @@ Restaurant
 		<div class="accordion" id="accordionPanelsStayOpenExample">
 			<div class="accordion-item">
 				<article class="accordion-header" id="panelsStayOpen-headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-						<h4>
-							Description du restaurant :
-							{{ restaurant.nom }}
-						</h4>
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-label="Dérouler/Fermer le menu" aria-controls="panelsStayOpen-collapseOne">
+						<p class="h4">
+							Description
+						</p>
 					</button>
 				</article>
 				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body">
-						<small>
-							Origine de la cuisine/des fondateurs :
-							{{ restaurant.specialite }}
-							<br>
-							Convient pour les régimes alimentaires de type :
-							{{ restaurant.nutrition }}
-						</small>
-						<hr>
+						{% if restaurant.categorie %}
+							<p class="h5 text-center">
+								{{ restaurant.categorie }}
+							</p>
+							<hr>
+						{% endif %}
+						{% if restaurant.specialite or restaurant.nutrition  %}
+							<div class="descr1">
+								<p>
+									<span class=" font-weight-bold">
+										Origine de la cuisine/des fondateurs
+										<br>
+									</span>
+									{{ (restaurant.specialite) ? restaurant.specialite : '<span class="fa-sm"> Non renseignée </span>' }}
+								</p>
+								<p>
+									<span class=" font-weight-bold">
+										Convient pour les régimes alimentaires
+										<br>
+									</span>
+									{{ (restaurant.nutrition) ? restaurant.nutrition : '<span class="fa-sm"> Non renseigné </span>' }}
+								</p>
+							</div>
+							<hr>
+						{% endif %}
 						<p>
 							{{ restaurant.description }}
 						</p>
@@ -77,17 +90,17 @@ Restaurant
 			</div>
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-						<h4>
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-label="Dérouler/Fermer le menu" aria-controls="panelsStayOpen-collapseTwo">
+						<p class="h4">
 							Adresse et contact
-						</h4>
+						</p>
 					</button>
 				</h2>
 				<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
 					<div class="accordion-body">
 						<ul>
 							<li>
-								Adresse :
+								Adresse
 							</li>
 							<p>
 								{{ restaurant.numRue }},
@@ -97,24 +110,23 @@ Restaurant
 								{{ restaurant.ville }}
 								{# {{ restaurant.pays }} #}
 							</p>
-
 							<li>
-								Adresse email :
+								Adresse email
 							</li>
 							<p>
-								{{ restaurant.email }}
+								{{ (restaurant.email) ? restaurant.email : '<span class="fa-sm"> Non renseignée </span>' }}
 							</p>
 							<li>
-								Téléphone :
+								Téléphone
 							</li>
 							<p>
-								{{ restaurant.telephone }}
+								{{ (restaurant.telephone) ? restaurant.telephone : '<span class="fa-sm"> Non renseignée </span>' }}
 							</p>
 							<li>
-								Site internet/réseaux sociaux :
+								Site internet/réseaux sociaux
 							</li>
 							<p>
-								{{ restaurant.website }}
+								{{ (restaurant.website) ? restaurant.website : '<span class="fa-sm"> Non renseignée </span>' }}
 							</p>
 						</ul>
 					</div>
@@ -123,17 +135,18 @@ Restaurant
 
 		</div>
 		{# {% endfor %} #}
-		<div class=" text-center row-cols-3 text-nowrap m-3">
-			<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}" class="btn btn-warning m-3">
-				Ajouter à mes favoris
-				<i class="fa-solid fa-xl fa-star"></i>
+		<div class=" justify-content-center d-flex flex-wrap m-3">
+			<a class="btn btn-dark m-3" href="{{ path('app_restaurant_index') }}">
+				Retour
 			</a>
 
-			<a class="btn btn-outline-dark m-3" href="{{ path('app_restaurant_index') }}">
-				Retour à la liste des restaurants
+			<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': restaurant.id}) }}" class="btn btn-warning m-3">
+				Ajouter aux favoris
+				<i class="fa-solid fa-xl fa-star"></i>
 			</a>
 		</div>
 
 	</section>
 
 {% endblock %}
+
