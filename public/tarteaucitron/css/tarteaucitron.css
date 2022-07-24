@@ -130,7 +130,6 @@ span.tarteaucitronH3 {
     font: inherit;
     vertical-align: baseline;
     /*background: initial;*/
-    text-align: initial;
     text-shadow: initial;
 }
 
@@ -771,7 +770,7 @@ span#tarteaucitronDisclaimerAlert {
     position: fixed;
     right: 0;
     text-align: center;
-    width: auto;
+    width: 80px;
     z-index: 2147483646;
 }
 
@@ -779,7 +778,7 @@ span#tarteaucitronDisclaimerAlert {
     color: #fff;
     cursor: pointer;
     display: inline-block;
-    font-size: 13px !important;
+    font-size: 16px !important;
     padding: 5px 8px 5px;
 }
 

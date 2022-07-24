@@ -21,8 +21,6 @@ class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // $recaptcha_public_key = '6LfN8pIgAAAAAJza8SesGMU3l7GRByC3Vm0WOxzs';
-
         $builder
             ->add('email', EmailType::class, [
                 'help' => 'Nous vous recontacterons sur cet email',
@@ -79,42 +77,42 @@ class ContactType extends AbstractType
                 ]
             ])
 
-        ->add(
-            'attachement',
-            FileType::class,
-            [
-                'label' => 'Ajouter une pièce jointe ?',
-                // 'multiple' => true,
-                'mapped' => false,
-                'required' => false,
-                'help' => ' (Formats acceptés : png, jpeg, webp, pdf, doc, odt)',
-                'constraints' => [
-                    new File(
-                        [
-                            'mimeTypes' =>
+            ->add(
+                'attachement',
+                FileType::class,
+                [
+                    'label' => 'Ajouter une pièce jointe ?',
+                    // 'multiple' => true,
+                    'mapped' => false,
+                    'required' => false,
+                    'help' => ' (Formats acceptés : png, jpeg, webp, pdf, doc, odt)',
+                    'constraints' => [
+                        new File(
                             [
-                                'image/jpeg',
-                                'image/jpg',
-                                'image/jp2',
-                                'image/webp',
-                                'image/png',
-                                'application/pdf',
-                                'application / msword',
-                                'application / vnd . oasis . opendocument . text'
-                            ],
-                            'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide.",
+                                'mimeTypes' =>
+                                [
+                                    'image/jpeg',
+                                    'image/jpg',
+                                    'image/jp2',
+                                    'image/webp',
+                                    'image/png',
+                                    'application/pdf',
+                                    'application / msword',
+                                    'application / vnd . oasis . opendocument . text'
+                                ],
+                                'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide.",
 
-                            'maxSize' =>
-                            10485760,
-                            'maxSizeMessage' => 'Le fichier est trop volumineux ( {{ size }} {{ suffix }})',
-                            'uploadIniSizeErrorMessage' => 'Le fichier est trop volumineux. Taille maximale : {{ limit }} {{ suffix }}',
-                            'uploadFormSizeErrorMessage' => 'Le fichier est trop volumineux.',
-                            'uploadErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
-                        ]
-                    )
-                ],
-            ]
-        )
+                                'maxSize' =>
+                                10485760,
+                                'maxSizeMessage' => 'Le fichier est trop volumineux ( {{ size }} {{ suffix }})',
+                                'uploadIniSizeErrorMessage' => 'Le fichier est trop volumineux. Taille maximale : {{ limit }} {{ suffix }}',
+                                'uploadFormSizeErrorMessage' => 'Le fichier est trop volumineux.',
+                                'uploadErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
+                            ]
+                        )
+                    ],
+                ]
+            )
 
             ->add('send', SubmitType::class, [
                 'label' => 'Envoyer',
@@ -123,12 +121,6 @@ class ContactType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'btn btn-lg btn-success ',
-                    // 'onclick' => 'resetForm()'
-                    // g-recaptcha
-                    // 'data-size' => 'invisible',
-                    // 'data-sitekey' => $recaptcha_public_key,
-                    // 'data-callback' => 'onSubmit',
-                    // 'data-action' => 'submit',
                 ],
 
             ]);

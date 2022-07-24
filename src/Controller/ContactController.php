@@ -88,7 +88,7 @@ class ContactController extends AbstractController
                     'data' => $ok_contactForm,
                 ]
             );
-        } elseif ($contactForm->isSubmitted() && $_SERVER['CONTENT_LENGTH'] > 8380000) {
+        } elseif ($_SERVER['CONTENT_LENGTH'] > 8380000) {
 
             $this->addFlash('uploadFile_error', 'Impossible de télécharger ce fichier. Veuillez réessayer');
 

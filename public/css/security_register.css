@@ -66,6 +66,7 @@
 		flex-direction: row;
 		height: 100vh;
 		margin-bottom: 0;
+		width: 100%;
 	}
 	/* section de gauche sur la page - qui n'est pas l'objet princiapl de la page */
 	.section_other {

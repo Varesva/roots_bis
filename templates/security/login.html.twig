@@ -30,7 +30,7 @@
 
 		</div>
 		{# section connexion - main #}
-		<section class="section_main">
+		<div class="section_main">
 			<div class="m-auto">
 				<h1>
 					Connexion
@@ -38,10 +38,8 @@
 
 				{# formulaire de connexion #}
 				<form method="post" id="login" class="mx-auto row g-3">
-					<p>
-						<small class=" d-flex justify-content-end opacity-75">
-							*Champs obligatoires
-						</small>
+					<p class="small">
+						*Champs obligatoires
 					</p>
 
 					{% if error %}
@@ -93,6 +91,18 @@
 					</div>
 				</form>
 			</div>
-		</section>
+		</div>
+
+		<div class="col-sm-5 d-sm-block d-md-none security_form">
+			<h2>
+				Inscription
+			</h2>
+			<p class="my-2">
+				Pas encore de compte ?
+			</p>
+			<a role="button" class="btn my-2 btn-success" href="{{path('app_register')}}" aria-label="s'inscrire">
+				S'inscrire
+			</a>
+		</div>
 	</div>
 {% endblock %}

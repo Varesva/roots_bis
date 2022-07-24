@@ -52,12 +52,15 @@ class RecommanderType extends AbstractType
                 ]
             ])
 
-            ->add('attachement', FileType::class, [
+            ->add(
+                'attachement',
+                FileType::class,
+                [
                     'label' => 'Ajouter une pièce jointe ?',
                     // 'multiple' => true,
                     'mapped' => false,
                     'required' => false,
-                    'help' => ' (png, jpeg, webp, pdf)',
+                    'help' => ' (Formats acceptés : png, jpeg, webp, pdf)',
                     'constraints' => [
                         new File(
                             [

@@ -1,0 +1,90 @@
+.bg-roots-yellow-form,
+.bg-roots-yellow-linear, .bg-roots-yellow-bordered {
+	background-color: #ffee99;
+	padding: 15px 0px;
+}
+
+.security_form {
+	background-color: #fffbea;
+box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+margin: 0 auto 4rem ;
+text-align: center!important;
+border-radius: 15px;
+padding: 20px;
+border: 1px solid gold;
+}
+
+/* PAGE DE CONFIRMATION DE FORMULAIRE */
+.bg-roots-yellow-bordered {
+	background-color: #fffbea;
+	border: 1px solid #2d9b48;
+}
+
+.bg-roots-yellow-linear > form , .contact_copy, .bg-roots-yellow-bordered > div , #requestResest {
+	background-color: #ffee99;
+	padding: 20px;
+	margin: 2rem auto 0;
+}
+
+.bg-roots-yellow-bordered > div {
+		background-color: #fffbea;
+
+}
+.bg-roots-yellow-linear, .bg-roots-yellow-bordered  {
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+		rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+/* Google MAPS PLAN */
+.bg-roots-yellow-linear div > iframe {
+	border-radius: 15px;
+	border: 1px solid black;
+	margin: 2rem auto;
+}
+
+.form-label {
+	font-size: 1.15rem;
+	font-weight: 600;
+}
+
+/* responsive format petit */
+@media screen and (min-width: 425px) {
+	.bg-roots-yellow-linear {
+		background: linear-gradient(120deg, #fdd762 60%, #ffe770 60%);
+	}
+
+	/* GOOGLE MAPS */
+	.bg-roots-yellow-linear div > iframe {
+		max-width: 40rem;
+		width: 50%;
+	}
+
+	.bg-roots-yellow-form,
+	.bg-roots-yellow-linear, .bg-roots-yellow-bordered {
+		padding: 20px;
+	}
+}
+
+/* responsive moyen format L, mobile portrait et paysage */
+@media screen and (min-width: 768px) {
+	.bg-roots-yellow-linear > form , .contact_copy, #resetRequest {
+		border-radius: 0.3rem !important ;
+		width: 85%;
+		max-width: 80%;
+	}
+
+	/* .bg-roots-yellow-form, */
+	.bg-roots-yellow-linear, .bg-roots-yellow-bordered, #resetRequest {
+		max-width: 100rem;
+		width: 85%;
+		border-radius: 15px;
+		margin: auto;
+	}
+}
+
+/* Ordi portable L */
+@media screen and (min-width: 1440px) {
+	.bg-roots-yellow-linear > form  {
+		padding: 4rem;
+	}
+}

@@ -12,13 +12,20 @@
 	<h1>
 		Nous contacter
 	</h1>
-	<section class="bg-roots-yellow-linear">
 
-		{{ form_start(contactForm, {
-			'attr' : { 
-				'id' : 'recaptcha-form',
-				}
-		} ) }}
+	{% for message in app.flashes('uploadFile_error') %}
+		<div class="alert alert-danger p-2 w-75 mx-auto text-center fade show align-items-center d-flex space-between" role="alert">
+			<p class="mx-auto">
+				{{ message }}
+			</p>
+			<button type="button" class="btn" data-bs-dismiss="alert" aria-label="Fermer ce message">
+				<i class="fa-solid fa-xmark"></i>
+			</button>
+		</div>
+	{% endfor %}
+
+	<section class="bg-roots-yellow-linear">
+		{{ form_start(contactForm) }}
 
 		<div class="row g-3">
 			<p class="small">
@@ -34,7 +41,7 @@
 
 			{{ form_row(contactForm.email, { 
 				'label' : 'Email*', 
-				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				'row_attr' : {'class' : 'col-md-6'},
 				'value': (app.user) ? app.user.email : '',
 				} )
 			}}
@@ -50,15 +57,15 @@
 			} ) }}
 
 			{{ form_row(contactForm.attachement, {
-				'row_attr' : {'class' : 'col-sm-6 mb-3'},
+				'row_attr' : {'class' : 'col-sm-6'},
 			} ) }}
 
 			{{ form_row(contactForm.send) }}
-
-			{{ form_end(contactForm) }}
 		</div>
 
-		<div class="text-center mt-3">
+		{{ form_end(contactForm) }}
+
+		<div class="text-center m-4">
 			<ul class="mb-3">
 				<li>
 					<a href="tel:+33600000000">
@@ -77,23 +84,4 @@
 
 		</div>
 	</section>
-{% endblock %}
-
-{% block javascripts %}
-
-<script type="text/javascript">
-if (element.addEventListener) {
-    element.addEventListener("submit", function(evt) {
-        evt.preventDefault();
-        window.history.back();
-    }, true);
-}
-else {
-    element.attachEvent('onsubmit', function(evt){
-        evt.preventDefault();
-        window.history.back();
-    });
-}
-</script>
-
 {% endblock %}

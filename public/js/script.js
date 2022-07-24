@@ -22,6 +22,20 @@ function scrollToTop() {
     }
 }
 
+// Cookies
+// const btnCookie = document.getElementById('tarteaucitronManager');
+
+// window.onscroll = function () { hideCookieManager() };
+
+// function hideCookieManager() {
+//     if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+//         btnCookie.style.display = "none";
+//     }
+//     else {
+//         btnCookie.style.display = "block";
+//     }
+// }
+
 // PAGE CONTACT - ajout de pièces jointes
 // const addingFile = document.querySelector("#addingFile");
 

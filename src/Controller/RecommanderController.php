@@ -97,15 +97,15 @@ class RecommanderController extends AbstractController
 
             $this->addFlash('success', 'Recommandation envoyée ! L\'équipe Roots vous remercie !');
 
-            return $this->redirectToRoute('app_restaurant_index');
+            return $this->redirectToRoute('app_home');
 
             // return $this->renderForm('recommander/confirm.html.twig', [
             //     // DONNEES POUR L'EMAIL
             //     // 'data' => $ok_recommendForm,
             //     // 'attachement' => $file,
             // ]);
-            
-        } elseif ($recommendForm->isSubmitted() && $_SERVER['CONTENT_LENGTH'] > 8380000) {
+
+        } elseif ($_SERVER['CONTENT_LENGTH'] > 8380000) {
 
             $this->addFlash('uploadFile_error', 'Impossible de télécharger ce fichier. Veuillez réessayer');
 

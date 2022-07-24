@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block metadesc %}
-	Mot de passe oublié ? Nous vous enverrons un lien directement sur votre adresse e-mail liée à un compte Roots existant pour que vous puissiez réinitialiser votre mot de passe.
+	Mot de passe oublié ? Nous vous enverrons un lien directement sur votre adresse email pour que vous puissiez réinitialiser votre mot de passe.
 {% endblock %}
 
 {% block body %}
@@ -13,19 +13,21 @@
 		Réinitialiser son mot de passe
 	</h1>
 
-	<section class="bg-roots-yellow-linear text-center">
+	<section id="requestResest" class="bg-roots-yellow-linear text-center">
 
 		<p class="h4 my-2">
 			Vous avez oublié votre mot de passe ?
 		</p>
 
-		<img class="rounded-3 mx-auto m-3 " src="{{ asset('img/confused.gif') }}" alt="Meme, expression de confusion (Confused math lady meme)">
-	
-<p class="h5 mb-3">
+		<figure>
+			<img class="rounded-3 mx-auto m-3 " src="{{ asset('img/confused.gif') }}" alt="Meme viral, femme blonde avec une expression de confusion (Confused math lady meme)">
+		</figure>
+
+		<p class="h5 mb-3">
 			Pas d'inquiétude !
 		</p>
-<div class=" bg-roots-yellow-form rounded-3">
 
+		<div id="resetRequest" class=" bg-roots-yellow-form my-3 rounded-3">
 
 			<p class="my-4 text-center">
 				Recevez les instructions de réinitialisation de mot de passe, en indiquant votre adresse email ci-dessous :
@@ -40,12 +42,8 @@
 			{% endfor %}
 
 			{# FORM REQUEST RESET PASSWORD #}
-			{{ form_start(requestForm, 
-
-		) }}
-
-
-			<div class="col-md-10 mx-auto text-start">
+			{{ form_start(requestForm) }}
+			<div class="col-md-8 mx-auto text-start">
 
 				<label for="email" class="form-label">
 					Email
@@ -59,8 +57,8 @@
 
 			</div>
 
-			<button class="btn btn-success my-3">
-				Envoyer l'email
+			<button class="btn btn-success my-3" aria-label="Envoyer email de réinitialisation">
+				Envoyer l'email de réinitialisation
 			</button>
 
 			{{ form_end(requestForm) }}

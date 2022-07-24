@@ -36,7 +36,7 @@
 		</div>
 
 		{# section inscription - main #}
-		<section class="section_main">
+		<div class="section_main">
 			<div class="m-auto">
 				<h1>
 					Inscription
@@ -50,10 +50,8 @@
 				}) }}
 
 				<div class="row g-3">
-					<p>
-						<small class=" d-flex justify-content-end opacity-75">
+					<p class="small">
 							*Champs obligatoires
-						</small>
 					</p>
 
 					{{ form_row(registrationForm.prenom, {
@@ -94,6 +92,19 @@
 				</div>
 				{{ form_end(registrationForm) }}
 			</div>
-		</section>
+		</div>
+
+		<div class="col-sm-6 d-sm-block d-md-none security_form">
+			<h2>
+				Connexion
+			</h2>
+			<p class="my-2">
+				Vous avez déjà un compte ?
+			</p>
+			<a role="button" class="btn btn-success my-2" href="{{path('app_login')}}" aria-label="se connecter">
+				Se connecter
+			</a>
+		</div>
+
 	</div>
 {% endblock %}

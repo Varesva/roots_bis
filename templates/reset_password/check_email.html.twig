@@ -5,7 +5,7 @@
 {% endblock %} #}
 
 {% block title %}
-	Email de réinitialisation envoyé
+	Lien de réinitialisation envoyé !
 {% endblock %}
 
 {% block metadesc %}
@@ -15,14 +15,14 @@
 {% block body %}
 
 	<h1>
-		Lien de réinitialisation envoyé
+		Lien de réinitialisation envoyé !
 	</h1>
 
-	<h2>
-		Consultez vos emails
-	</h2>
 
-	<section class="bg-roots-yellow-form bg-light">
+	<section class="mb-5 bg-roots-yellow-bordered">
+		<h2>
+			Consultez vos emails
+		</h2>
 
 		<div class="m-3 p-3 mx-auto">
 			<p class="mb-5">
@@ -30,7 +30,7 @@
 				{# ( {{ resetFormEmail}} )  #}
 				existe, un email vient de vous être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
 			</p>
-			<p class=" justify-content-center mx-auto d-flex my-3 w-75 alert alert-info">
+			<p class=" justify-content-center mx-auto d-flex my-3 col-md-8 alert alert-info">
 				Ce lien expire dans
 				{{ resetToken.expirationMessageKey| trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}
 			</p>
@@ -57,8 +57,9 @@
 		</div>
 
 		<div class="d-flex justify-content-center my-3">
-			<a role="button" href="{{path('app_home') }}" class="btn btn-warning">
-				Retour à l'accueil
+			<a role="button" href="{{path('app_home') }}" class="btn btn-lg btn-warning" aria-label="Page d'accueil">
+				Accueil&nbsp
+				<i class="fa-solid fa-sm fa-house"></i>
 			</a>
 		</div>
 
