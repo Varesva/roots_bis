@@ -25,5 +25,8 @@ services:
     
 # Ajout du code de système d'uploader : telecharger des fichiers
     App\Service\FileUploader:
-        arguments:
+        arguments: 
             $targetDirectory: '%kernel.project_dir%/public/upload'
+            $recommendDir: '%kernel.project_dir%/public/upload/recommendAttachement'
+            $contactDir: '%kernel.project_dir%/public/upload/contactAttachement'
+            $contentRootsDir: '%kernel.project_dir%/public/upload/contentRoots'

@@ -73,3 +73,10 @@ function scrollToTop() {
 // addFav.on('animationend', function () {
 //     $(this).toggleClass('is_animating');
 // });
+
+
+
+// redirection reotur en arrieere impossible
+// document.getElementById('go-forward').addEventListener('click', e => {
+//     window.history.forward();
+// })

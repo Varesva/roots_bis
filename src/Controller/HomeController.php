@@ -46,5 +46,5 @@ class HomeController extends AbstractController
     public function homeAdmin(): Response
     {
         return $this->render('home/admin/dashboard.html.twig', []);
-    }
+    } 
 }

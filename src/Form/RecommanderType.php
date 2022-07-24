@@ -4,9 +4,11 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,19 +20,18 @@ class RecommanderType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'help' => 'Email où vous recontacter, si besoin',
+                'help' => 'Nous vous recontacterons sur cet email, si besoin',
                 'attr' => [
                     'placeholder' => 'email@exemple.com',
                     'autocomplete' => 'email',
-                    'class' => 'form-control',
                     'maxLength' => 50,
-                    'minLength' => 8,
+                    'minLength' => 3,
                 ]
             ])
+
             ->add('restaurant', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Resto recommandé',
-                    'class' => 'form-control',
                     'maxLength' => 80,
                 ], 'constraints' => [
                     new Type([
@@ -46,10 +47,45 @@ class RecommanderType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Quel est votre coup de cœur ?  (Les plats, le lieu, le personnel, l\'histoire ?...). Dites-nous tout !',
-                    'rows' => '5',
+                    'rows' => '3',
                     'maxLength' => 1000,
                 ]
             ])
+
+            ->add('attachement', FileType::class, [
+                    'label' => 'Ajouter une pièce jointe ?',
+                    'multiple' => true,
+                    'mapped' => false,
+                    'required' => false,
+                    'help' => 'PNG, JPEG WEBP, PDF, texte (.doc, .odt)',
+                    // 'constraints' => [
+                    //     new File(
+                    //         [
+                    //             'mimeTypes' =>
+                    //             [
+                    //                 'image/jpeg',
+                    //                 'image/jpg',
+                    //                 'image/jp2',
+                    //                 'image/webp',
+                    //                 'image/png',
+                    //                 'application/pdf',
+                    //                 'application / msword',
+                    //                 'application / vnd . oasis . opendocument . text'
+                    //             ],
+                    //             'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide. Les types autorisés sont : {{ types }}",
+
+                    //             'maxSize' =>
+                    //             10485760,
+                    //             'maxSizeMessage' => 'Le fichier est trop volumineux ( {{ size }} {{ suffix }})',
+                    //             'uploadIniSizeErrorMessage' => 'Le fichier est trop volumineux. Taille maximale : {{ limit }} {{ suffix }}',
+                    //             'uploadFormSizeErrorMessage' => 'Le fichier est trop volumineux.',
+                    //             'uploadErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
+                    //             'uploadExtensionErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
+                    //         ]
+                    //     )
+                    // ],
+                ]
+            )
 
             ->add('send', SubmitType::class, [
                 'attr' => [

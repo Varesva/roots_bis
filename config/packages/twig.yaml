@@ -5,8 +5,10 @@ twig:
     paths:
         # point this wherever your images live
         '%kernel.project_dir%/public/img': image
-         # point this wherever your css files live
+        # point this wherever your css files live
         '%kernel.project_dir%/public/css': style
+        # récupérer les images du dossier upload
+        '%kernel.project_dir%/public/upload': upload
     
 when@test:
     twig:

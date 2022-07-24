@@ -8,8 +8,11 @@
 
 	<body>
 		<h1>
-			Recommandation de restaurant
+			- Nouveau ticket -
 		</h1>
+		<h2>
+			Recommandation de restaurant
+		</h2>
 
 		<div class="card border-dark mb-3" style="max-width: 13rem;">
 			<h3 class="card-header">
@@ -30,6 +33,7 @@
 					{{ data.restaurant }}
 				</p>
 			</div>
+			{% if data.message %}
 			<h3 class="card-header">
 				Message/commentaire
 			</h3>
@@ -38,6 +42,18 @@
 					{{ data.message }}
 				</p>
 			</div>
+			{% endif %}
+			{# {% if data.attachement %}
+			<h3 class="card-header">
+				Consulter les pièces jointes
+			</h3>
+			<div class="card-body text-dark">
+				
+				<img src={{ data.attachement }} alt="">
+
+				<img src="{{ data.attachement('') }}" alt="">
+			</div>
+			{% endif %} #}
 		</div>
 	</body>
 </html>

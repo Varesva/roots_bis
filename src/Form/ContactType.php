@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Form\FileUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -19,17 +20,16 @@ class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $recaptcha_public_key = '6LfN8pIgAAAAAJza8SesGMU3l7GRByC3Vm0WOxzs';
+        // $recaptcha_public_key = '6LfN8pIgAAAAAJza8SesGMU3l7GRByC3Vm0WOxzs';
 
         $builder
             ->add('email', EmailType::class, [
-                'help' => 'Email pour vous recontacter',
+                'help' => 'Nous vous recontacterons sur cet email',
                 'attr' => [
                     'placeholder' => 'email@exemple.com',
                     'autocomplete' => 'email',
-                    'class' => 'form-control',
                     'maxLength' => 50,
-                    'minLength' => 5,
+                    'minLength' => 3,
                 ]
             ])
 
@@ -37,9 +37,8 @@ class ContactType extends AbstractType
                 'help' => 'Prénom NOM',
                 'attr' => [
                     'placeholder' => 'Jane DOE',
-                    'class' => 'form-control',
                     'maxLength' => 80,
-                    'minLength' => 5,
+                    'minLength' => 3,
                 ],
                 'constraints' => [
                     new Regex([
@@ -55,7 +54,6 @@ class ContactType extends AbstractType
             ->add('subject', TextType::class, [
                 'attr' => [
                     'placeholder' => 'L\'objet de votre email',
-                    'class' => 'form-control',
                     'maxLength' => 100,
                 ],
                 'constraints' => [
@@ -74,19 +72,15 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'attr' => [
                     'placeholder' => 'Bonjour, je vous contacte car ...',
-                    'rows' => '5',
+                    'rows' => '4',
                     'minLength' => 15,
                     'maxLength' => 2000,
                 ]
             ])
 
-            // ->add('image', FileType::class, [
-            //     'label' => 'Pièce(s) jointe(s)',
-            //     'help' => 'Ajoutez une ou plusieurs pièces jointes à votre message',
-            //     // 'mapped' => false,
-            //     'required' => false,
-            //     // 'multiple' => true
-            // ])
+            ->add('attachement', FileUploadType::class, [
+                'label' => false,
+            ])
 
             ->add('send', SubmitType::class, [
                 'label' => 'Envoyer',

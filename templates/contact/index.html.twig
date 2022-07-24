@@ -18,14 +18,14 @@
 			'attr' : { 'id' : 'recaptcha-form' }
 		} ) }}
 
-		<div class="row g-3 rounded-3">
+		<div class="row g-3">
 			<p class="small">
 				*Champs obligatoires
 			</p>
 
 			{{ form_row(contactForm.identity, {
 					'label' : 'Nom complet*',
-				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				'row_attr' : {'class' : 'col-md-6'},
 				'value': (app.user) ? app.user.prenom ~' '~ app.user.nom|upper : '',
 				} ) 
 			}}
@@ -39,12 +39,16 @@
 
 			{{ form_row(contactForm.subject, {
 				'label' : 'Objet*',
-				'row_attr' : {'class' : 'col-12 mb-3'},
+				'row_attr' : {'class' : 'col-12'},
 			} ) }}
 
 			{{ form_row(contactForm.message, {
 			'label' : 'Message*',
-				'row_attr' : {'class' : 'col-12 mb-3'},
+				'row_attr' : {'class' : 'col-12'},
+			} ) }}
+
+			{{ form_row(contactForm.attachement, {
+				'row_attr' : {'class' : 'col-sm-6 mb-3'},
 			} ) }}
 
 			{{ form_row(contactForm.send) }}

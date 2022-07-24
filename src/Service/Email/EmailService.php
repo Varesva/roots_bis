@@ -68,4 +68,35 @@ class EmailService
 
         $this->mailer->send($email);
     }
+
+    // ENVOI EMAIL: NOUVEAU TICKET - ADMIN avec PIECE JOINTE
+    public function sendAdminEmailWithAttachement($sender, $subject, $data, $attachement, $attachementName, $emailTemplate)
+    {
+        $atRoots = new Address('contact@leroots.fr', 'Roots');
+
+        $expirationDate = new \DateTime('+7 days');
+
+        $email = new TemplatedEmail();
+        $email
+            ->from($sender)
+
+            ->to($atRoots)     // destinataire
+
+            // ->replyTo($recipient)
+
+            ->priority(Email::PRIORITY_HIGH)
+
+            ->subject($subject)
+
+            ->context([
+                'data' => $data,
+                'expirationDate' => $expirationDate,
+            ])
+
+            ->attachFromPath($attachement, $attachementName)
+
+            ->htmlTemplate($emailTemplate);
+
+        $this->mailer->send($email);
+    }
 }

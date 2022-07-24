@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Service;
-// src/Service/FileUploader.php - https://symfony.com/doc/current/controller/upload_file.html#creating-an-uploader-service -- 
-// création du dossier virtuel qui contient nos services
+
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -10,41 +9,72 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class FileUploader
 {
     private $targetDirectory;
+    private $recommendDir;
+    private $contactDir;
+    private $contentRootsDir;
     private $slugger;
 
-    public function __construct($targetDirectory, SluggerInterface $slugger)
+    public function __construct($targetDirectory, $contentRootsDir, $contactDir, $recommendDir, SluggerInterface $slugger)
     {
-        // chemin vers le fichier de stockage des images (lié à config>service.yaml)
         $this->targetDirectory = $targetDirectory;
+        $this->contentRootsDir = $contentRootsDir;
+        $this->contactDir = $contactDir;
+        $this->recommendDir = $recommendDir;
         $this->slugger = $slugger;
     }
 
-    // FAIRE L'UPLOAD D'IMAGE
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, $directory)
     {
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
         $safeFilename = $this->slugger->slug($originalFilename);
 
-        $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+        $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 
         try {
-            
-            $file->move($this->getTargetDirectory(), $fileName);
-        } 
+            switch ($directory) {
+                case 'recommend':
+                    
+                    $file->move($this->getRecommendDir(), $newFilename);
+                    echo 'envoyé dans le dossier recommend';
+                    break;
 
-        catch (FileException $e) {
+                case 'contact':
+                    $file->move($this->getContactDir(), $newFilename);
+                    break;
+
+                case 'content':
+                    $file->move($this->getContentRootsDir(), $newFilename);
+                    break;
+
+                default:
+                    $file->move($this->getTargetDirectory(), $newFilename);
+            }
+        } catch (FileException $e) {
             // ... handle exception if something happens during file upload
-            // return null; // for example
-
-            return 'Un problème est survenu. Veuillez réessayez s\'il-vous-plait';
+            // echo 'Oops, une erreur semble s\'être produite';
+            // return null;
         }
-
-        return $fileName;
+        return $newFilename;
     }
 
     public function getTargetDirectory()
     {
         return $this->targetDirectory;
+    }
+
+    public function getRecommendDir()
+    {
+        return $this->recommendDir;
+    }
+
+    public function getContactDir()
+    {
+        return $this->contactDir;
+    }
+
+    public function getContentRootsDir()
+    {
+        return $this->contentRootsDir;
     }
 }

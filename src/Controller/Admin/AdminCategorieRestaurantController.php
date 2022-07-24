@@ -45,6 +45,7 @@ class AdminCategorieRestaurantController extends AbstractController
         $categorieRestaurant = new CategorieRestaurant();
 
         $form = $this->createForm(CategorieRestaurantType::class, $categorieRestaurant);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -93,8 +94,6 @@ class AdminCategorieRestaurantController extends AbstractController
              * @var UploadedFile $image 
              */
             $imageFile = $form->get('image')->getData();
-
-            // this condition is needed because the image/photo field is not required
 
             if ($imageFile) {
                 $image = $this->fileUploader->upload($imageFile); // l'upload du fichier

@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block metadesc %}
-	Participez à la sélection des meilleurs restaurants africains et caribéens ! Ce ne sont pas les bonnes adresses qui manquent. Faites-nous vos suggestions !
+	Participez à notre sélection des meilleurs restaurants africains et caribéens ! Ce ne sont pas les bonnes adresses qui manquent. Faites-nous vos suggestions !
 {% endblock %}
+
 
 {% block body %}
 
@@ -15,6 +16,18 @@
 		<h1>
 			Recommander un restaurant
 		</h1>
+
+		{% for message in app.flashes('uploadFile_error') %}
+			<div class="alert alert-danger p-2 w-75 mx-auto text-center fade show align-items-center d-flex space-between" role="alert">
+				<p class="mx-auto">
+					{{ message }}
+				</p>
+
+				<button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close">
+					<i class="fa-solid fa-xmark"></i>
+				</button>
+			</div>
+		{% endfor %}
 
 		{{ form_start(recommendForm) }}
 		<div class="row g-3">
@@ -25,7 +38,7 @@
 			{{ form_row(recommendForm.email, {
 				'value': (app.user) ? app.user.email : '',
 				'label' : 'Email*', 
-				'row_attr' : {'class' : 'col-md-6 mb-3'},
+				'row_attr' : {'class' : 'col-md-6'},
 				} ) 
 			}}
 
@@ -37,11 +50,16 @@
 
 			{{ form_row(recommendForm.message, { 
 				'label' : 'Commentaire', 
-				'row_attr' : {'class' : 'col-12 mb-3'},
+				'row_attr' : {'class' : 'col-12'},
 				} ) 
 			}}
 
+			{{ form_row(recommendForm.attachement, {
+				'row_attr' : {'class' : 'col-sm-6 mb-3'},
+			} ) }}
+
 			{{ form_row(recommendForm.send, {
+				'id': 'go-forward',
 				'label' : 'Envoyer', 
 				'row_attr' : {'class' : 'col-12 text-center mb-3'},
 				} ) 
