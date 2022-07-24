@@ -54,36 +54,34 @@ class RecommanderType extends AbstractType
 
             ->add('attachement', FileType::class, [
                     'label' => 'Ajouter une pièce jointe ?',
-                    'multiple' => true,
+                    // 'multiple' => true,
                     'mapped' => false,
                     'required' => false,
-                    'help' => 'PNG, JPEG WEBP, PDF, texte (.doc, .odt)',
-                    // 'constraints' => [
-                    //     new File(
-                    //         [
-                    //             'mimeTypes' =>
-                    //             [
-                    //                 'image/jpeg',
-                    //                 'image/jpg',
-                    //                 'image/jp2',
-                    //                 'image/webp',
-                    //                 'image/png',
-                    //                 'application/pdf',
-                    //                 'application / msword',
-                    //                 'application / vnd . oasis . opendocument . text'
-                    //             ],
-                    //             'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide. Les types autorisés sont : {{ types }}",
+                    'help' => ' (png, jpeg, webp, pdf)',
+                    'constraints' => [
+                        new File(
+                            [
+                                'mimeTypes' =>
+                                [
+                                    'image/jpeg',
+                                    'image/jpg',
+                                    'image/jp2',
+                                    'image/webp',
+                                    'image/png',
+                                    'application/pdf',
+                                    'application / msword',
+                                ],
+                                'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide. Les types autorisés sont : {{ types }}",
 
-                    //             'maxSize' =>
-                    //             10485760,
-                    //             'maxSizeMessage' => 'Le fichier est trop volumineux ( {{ size }} {{ suffix }})',
-                    //             'uploadIniSizeErrorMessage' => 'Le fichier est trop volumineux. Taille maximale : {{ limit }} {{ suffix }}',
-                    //             'uploadFormSizeErrorMessage' => 'Le fichier est trop volumineux.',
-                    //             'uploadErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
-                    //             'uploadExtensionErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
-                    //         ]
-                    //     )
-                    // ],
+                                'maxSize' =>
+                                10485760,
+                                'maxSizeMessage' => 'Le fichier est trop volumineux ( {{ size }} {{ suffix }})',
+                                'uploadIniSizeErrorMessage' => 'Le fichier est trop volumineux. Taille maximale : {{ limit }} {{ suffix }}',
+                                'uploadFormSizeErrorMessage' => 'Le fichier est trop volumineux.',
+                                'uploadErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
+                            ]
+                        )
+                    ],
                 ]
             )
 

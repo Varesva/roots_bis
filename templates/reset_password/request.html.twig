@@ -10,56 +10,60 @@
 
 {% block body %}
 	<h1>
-		Mot de passe oublié ?
+		Réinitialiser son mot de passe
 	</h1>
 
-	<section class="page_contact_container bg-light text-center">
+	<section class="bg-roots-yellow-linear text-center">
 
-		<p class="h5 mb-2">
+		<p class="h4 my-2">
 			Vous avez oublié votre mot de passe ?
-			<br>
-			Pas d'inquiétude !
 		</p>
 
 		<img class="rounded-3 mx-auto m-3 " src="{{ asset('img/confused.gif') }}" alt="Meme, expression de confusion (Confused math lady meme)">
-
-		<p class="my-4 text-center">
-			Recevez les instructions de réinitialisation de mot de passe, en indiquant votre adresse email ci-dessous :
+	
+<p class="h5 mb-3">
+			Pas d'inquiétude !
 		</p>
+<div class=" bg-roots-yellow-form rounded-3">
 
-		{% for flash_error in app.flashes('reset_password_error') %}
-			<p class="d-flex justify-content-center">
-				<small class="alert alert-danger bg-danger font-weight-bold mb-0 p-2" role="alert">
-					{{ flash_error }}
-				</small>
+
+			<p class="my-4 text-center">
+				Recevez les instructions de réinitialisation de mot de passe, en indiquant votre adresse email ci-dessous :
 			</p>
-		{% endfor %}
 
-		{# FORM REQUEST RESET PASSWORD #}
-		{{ form_start(requestForm, 
+			{% for flash_error in app.flashes('reset_password_error') %}
+				<p class="d-flex justify-content-center">
+					<small class="alert alert-danger bg-danger font-weight-bold mb-0 p-2" role="alert">
+						{{ flash_error }}
+					</small>
+				</p>
+			{% endfor %}
+
+			{# FORM REQUEST RESET PASSWORD #}
+			{{ form_start(requestForm, 
 
 		) }}
 
 
-		<div class="col-md-10 mx-auto text-start">
+			<div class="col-md-10 mx-auto text-start">
 
-			<label for="email" class="form-label">
-				Email
-			</label>
+				<label for="email" class="form-label">
+					Email
+				</label>
 
-			{{ form_widget(requestForm.email) }}
+				{{ form_widget(requestForm.email) }}
 
-			<p class="form-text mb-0 help-text">
-				Indiquez votre adresse e-mail pour recevoir le lien de réinitialisation de votre mot de passe
-			</p>
+				<p class="form-text mb-0 help-text">
+					Indiquez votre adresse e-mail pour recevoir le lien de réinitialisation de votre mot de passe
+				</p>
 
+			</div>
+
+			<button class="btn btn-success my-3">
+				Envoyer l'email
+			</button>
+
+			{{ form_end(requestForm) }}
 		</div>
-
-		<button class="btn btn-success my-3">
-			Envoyer l'email
-		</button>
-
-		{{ form_end(requestForm) }}
-
 	</section>
 {% endblock %}

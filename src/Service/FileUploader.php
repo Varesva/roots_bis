@@ -34,9 +34,8 @@ class FileUploader
         try {
             switch ($directory) {
                 case 'recommend':
-                    
+
                     $file->move($this->getRecommendDir(), $newFilename);
-                    echo 'envoyé dans le dossier recommend';
                     break;
 
                 case 'contact':

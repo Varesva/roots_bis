@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Form\FileUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -78,9 +79,42 @@ class ContactType extends AbstractType
                 ]
             ])
 
-            ->add('attachement', FileUploadType::class, [
-                'label' => false,
-            ])
+        ->add(
+            'attachement',
+            FileType::class,
+            [
+                'label' => 'Ajouter une pièce jointe ?',
+                // 'multiple' => true,
+                'mapped' => false,
+                'required' => false,
+                'help' => ' (Formats acceptés : png, jpeg, webp, pdf, doc, odt)',
+                'constraints' => [
+                    new File(
+                        [
+                            'mimeTypes' =>
+                            [
+                                'image/jpeg',
+                                'image/jpg',
+                                'image/jp2',
+                                'image/webp',
+                                'image/png',
+                                'application/pdf',
+                                'application / msword',
+                                'application / vnd . oasis . opendocument . text'
+                            ],
+                            'mimeTypesMessage' => "Le format {{ type }} de ce fichier est invalide.",
+
+                            'maxSize' =>
+                            10485760,
+                            'maxSizeMessage' => 'Le fichier est trop volumineux ( {{ size }} {{ suffix }})',
+                            'uploadIniSizeErrorMessage' => 'Le fichier est trop volumineux. Taille maximale : {{ limit }} {{ suffix }}',
+                            'uploadFormSizeErrorMessage' => 'Le fichier est trop volumineux.',
+                            'uploadErrorMessage' => 'Ce fichier ne peut pas être téléchargé (taille trop importante, format invalide...).',
+                        ]
+                    )
+                ],
+            ]
+        )
 
             ->add('send', SubmitType::class, [
                 'label' => 'Envoyer',

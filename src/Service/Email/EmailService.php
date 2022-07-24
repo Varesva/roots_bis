@@ -2,6 +2,7 @@
 
 namespace App\Service\Email;
 
+use DateTime;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -10,28 +11,27 @@ use Symfony\Component\Mailer\MailerInterface;
 class EmailService
 {
     private $mailer;
+
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
+        $this->atRoots = new Address('contact@leroots.fr', 'Roots');
+        $this->expirationDate = new DateTime('+7 days');
     }
 
-    // ENVOI MAIL AUTO UTILISATEUR - ACCUSE DE RECEPTION
+    // USER - ENVOI MAIL AUTO ACCUSE DE RECEPTION
     public function sendNoReply($recipient, $noReplySubject, $data, $emailTemplate)
     {
-        $atRoots = new Address('contact@leroots.fr', 'Roots');
-
-        $expirationDate = new \DateTime('+7 days');
-
         $email = new TemplatedEmail();
         $email
-            ->from($atRoots)
+            ->from($this->atRoots)
 
             ->to($recipient)   // destinataire
 
             ->subject($noReplySubject)
 
             ->context([
-                'expirationDate' => $expirationDate,
+                'expirationDate' => $this->expirationDate,
                 'data' => $data,
             ])
 
@@ -40,28 +40,21 @@ class EmailService
         $this->mailer->send($email);
     }
 
-    // ENVOI EMAIL: NOUVEAU TICKET - ADMIN
+    // ADMIN - EMAIL: NOUVEAU TICKET
     public function sendAdminEmail($sender, $subject, $data, $emailTemplate)
     {
-        $atRoots = new Address('contact@leroots.fr', 'Roots');
-
-        $expirationDate = new \DateTime('+7 days');
-
         $email = new TemplatedEmail();
         $email
             ->from($sender)
 
-            ->to($atRoots)     // destinataire
-
-            // ->replyTo($recipient)
+            ->to($this->atRoots)  //destinataire
 
             ->priority(Email::PRIORITY_HIGH)
 
-            ->subject($subject)
+            ->subject('Nouveau ticket : ' . $subject)
 
             ->context([
                 'data' => $data,
-                'expirationDate' => $expirationDate,
             ])
 
             ->htmlTemplate($emailTemplate);
@@ -69,33 +62,35 @@ class EmailService
         $this->mailer->send($email);
     }
 
-    // ENVOI EMAIL: NOUVEAU TICKET - ADMIN avec PIECE JOINTE
+    // ADMIN - EMAIL + ATTACHEMENT (pièce jointe)
     public function sendAdminEmailWithAttachement($sender, $subject, $data, $attachement, $attachementName, $emailTemplate)
     {
-        $atRoots = new Address('contact@leroots.fr', 'Roots');
+        //            for ($i = 0; $i; $i++) {
+        // $attachement[$i];
 
-        $expirationDate = new \DateTime('+7 days');
+        //                                    }
 
         $email = new TemplatedEmail();
+
         $email
             ->from($sender)
 
-            ->to($atRoots)     // destinataire
+            ->to($this->atRoots) // destinataire
 
             // ->replyTo($recipient)
 
             ->priority(Email::PRIORITY_HIGH)
 
-            ->subject($subject)
+            ->subject('Nouveau ticket : '.$subject)
 
             ->context([
                 'data' => $data,
-                'expirationDate' => $expirationDate,
             ])
-
-            ->attachFromPath($attachement, $attachementName)
+            // ESSAYER DE METTRE PLUSIEURS PJ A UN MAIL
+            ->attachFromPath('../public/upload/' . $attachement, $attachementName)
 
             ->htmlTemplate($emailTemplate);
+
 
         $this->mailer->send($email);
     }

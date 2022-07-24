@@ -87,16 +87,18 @@ label,
 	color: #b22222;
 }
 
-.help-text {
+/* SMALL TEXTS */
+.help-text,
+p.small,
+p > .small:first-of-type {
 	opacity: 0.9 !important;
 	font-weight: 500;
+	color: black;
+	font-style: italic;
 }
 
-/* small text */
-p.small, p > .small:first-of-type {
-	font-weight: 500;
-	font-style: italic;
+p.small,
+p > .small:first-of-type {
 	justify-content: flex-end !important;
 	display: flex !important;
-	opacity: 0.65 !important;
 }

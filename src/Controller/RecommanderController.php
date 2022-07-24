@@ -1,10 +1,9 @@
 <?php
+
 namespace App\Controller;
 
-ob_get_contents();
-// ob_end_clean();
+ob_end_clean();
 
-use App\Form\FileUploadType;
 use App\Form\RecommanderType;
 use App\Service\Email\EmailService;
 use App\Service\FileUploader;
@@ -12,17 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class RecommanderController extends AbstractController
 {
     protected $fileUploader;
     protected $emailService;
 
-    public function __construct( FileUploader $fileUploader, EmailService $emailService)
+    public function __construct(FileUploader $fileUploader, EmailService $emailService)
     {
         $this->fileUploader = $fileUploader;
         $this->emailService = $emailService;
+        $this->adminSubject = 'Recommandation de restaurant';
+        $this->adminEmailTemplate = 'email/recommend_by_email_to_admin.html.twig';
     }
 
     /**
@@ -35,83 +35,76 @@ class RecommanderController extends AbstractController
         $recommendForm->handleRequest($request);
 
         if ($recommendForm->isSubmitted() && $recommendForm->isValid() && $_SERVER['CONTENT_LENGTH'] < 8380000) {
-            
+
             $ok_recommendForm = $recommendForm->getData();
-// dd($ok_recommendForm);
 
-            $files = $recommendForm->get('attachement')->getData();
-       //   dd($files);   // RETOURNE UN ARRAY
+            // USER
+            $ok_UserEmail = $ok_recommendForm['email'];
 
-            // $attachementFile = $recommendForm->get('attachement')->getData();
+            // ADMIN 
+            $attachementName = $ok_recommendForm['restaurant'];
 
-            if ($files) {
-                foreach ($files as $file) {
+            // UPLOAD ATTACHEMENTS
+            $file = $recommendForm->get('attachement')->getData();
+
+            if ($file) {
+                // foreach ($files as $file) {
                     $directory = 'recommend';
 
                     $uploaded_files = $this->fileUploader->upload($file, $directory);
-                }
-            }
-            // dd($files);
+
+                    $attachement = 'recommendAttachement/' . $uploaded_files;
+
+                    // $attachement = implode($attach);
+                // }
+                // $a = '';
+                //                 foreach ([$attachement] as $k => $v) {
+                //                     $a = json_encode($v) ;
+
+                //                 }
+                // dd($attachement);
+
+                // $a = implode(',', $attachement);
+
+                // foreach($files as $key => $value) {
+                // $attachement = $value['original']
+                // }
+
+                // for($i = 0; $i; $i++) {
 
 
-            // // USER
-            // $ok_email = $ok_recommendForm['email'];
-
-            // $noReplySubject = 'Recommandation prise en compte';
-
-            // $emailTemplate = 'email/recommend_email.html.twig';
-
-            // // ADMIN
-            // $adminEmailTemplate = 'email/recommend_by_email_to_admin.html.twig';
-
-            // $subjectRecommend =  'Nouveau ticket : Recommandation de restaurant';
-
-            // if ($attachementFile) {
-            
-            //     $directory = 'recommend';
-
-            //     $uploaded = $this->fileUploader->upload($attachementFile, $directory);
-
-            //     $attachement = '../public/upload/recommendAttachement/' . $uploaded;
-
-            //     $attachementName = $ok_recommendForm['restaurant'];
-
-
-            //     // ENVOI EMAIL ADMIN : NOUVEAU TICKET UTILISATEUR
-            //     $emailService->sendAdminEmailWithAttachement(
-            //         $sender = $ok_email,
-            //         $subjectRecommend,
-            //         $data = $ok_recommendForm,
-            //         $attachement,
-            //         $attachementName,
-            //         $adminEmailTemplate,
-            //     );
-            // } else {
-
-            //     // ENVOI EMAIL ADMIN : NOUVEAU TICKET UTILISATEUR
-            //     $emailService->sendAdminEmail(
-            //         $sender = $ok_email,
-            //         $subjectRecommend,
-            //         $data = $ok_recommendForm,
-            //         $adminEmailTemplate,
-            //     );
+                // ENVOI EMAIL ADMIN + ATTACHEMENTS : NOUVEAU TICKET UTILISATEUR
+                $this->emailService->sendAdminEmailWithAttachement(
+                    $ok_UserEmail,
+                    $this->adminSubject,
+                    $ok_recommendForm,
+                    $attachement,
+                    $attachementName,
+                    $this->adminEmailTemplate,
+                );
             // }
-            // dd($data['attachement']);
-            // $file = $fileUploader->;
-            // dd($file);
-            // // ENVOI MAIL AUTO RECOMMANDATION - ACCUSE DE RECEPTION
-            // $emailService->sendNoReply(
-            //     $recipient = $ok_email,
-            //     $noReplySubject,
-            //     $ok_recommendForm,
-            //     $emailTemplate,
-            // );
-            return $this->renderForm('recommander/confirm.html.twig', [
-                // $sender,
-                // // $recipient,
-                // 'data' => $data,
-                // 'attachement' => $attachementFile,
-            ]);
+
+                // dd($attachement);
+            } else {
+                // ENVOI EMAIL ADMIN : NOUVEAU TICKET UTILISATEUR
+                $this->emailService->sendAdminEmail(
+                    $ok_UserEmail,
+                    $this->adminSubject,
+                    $ok_recommendForm,
+                    $this->adminEmailTemplate,
+                );
+            };
+
+            $this->addFlash('success', 'Recommandation envoyée ! L\'équipe Roots vous remercie !');
+
+            return $this->redirectToRoute('app_restaurant_index');
+
+            // return $this->renderForm('recommander/confirm.html.twig', [
+            //     // DONNEES POUR L'EMAIL
+            //     // 'data' => $ok_recommendForm,
+            //     // 'attachement' => $file,
+            // ]);
+            
         } elseif ($recommendForm->isSubmitted() && $_SERVER['CONTENT_LENGTH'] > 8380000) {
 
             $this->addFlash('uploadFile_error', 'Impossible de télécharger ce fichier. Veuillez réessayer');
@@ -119,7 +112,6 @@ class RecommanderController extends AbstractController
             return $this->renderForm('recommander/index.html.twig', [
                 'recommendForm' => $recommendForm,
             ]);
-        
         } else {
 
             return $this->renderForm('recommander/index.html.twig', [

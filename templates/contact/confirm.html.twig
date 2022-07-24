@@ -10,10 +10,10 @@
 		Message envoyé !
 	</h1>
 
-	<section class="mb-5 pt-4 px-3 pb-5 bg-light">
+	<section class="mb-5 pt-4 px-3 pb-5 bg-roots-yellow-bordered">
 
 		<div class="mx-auto text-center">
-			<p class="mb-5 h4 text-dark text-center">
+			<p class="mb-5 h4 text-dark">
 				Merci
 				<span class="font-weight-bold text-success">
 					{{ data.identity | capitalize }}
@@ -24,7 +24,7 @@
 				L'équipe de Roots reviendra vers vous dans les meilleurs délais.
 			</p>
 			<p class="mb-3">
-				Nous vous répondrons sur l'email suivant :
+				Nous vous répondrons sur l'adresse email suivante :
 				<span class=" font-weight-bold text-success">
 					{{ data.email | lower }}
 				</span>
@@ -32,24 +32,38 @@
 				(Vérifiez vos spams !)
 			</p>
 
-			<p class="mb-3 mt-5 h5">
-				Copie de votre message :
-			</p>
-			<p class="contact_copy text-wrap">
-				{{ data.message | capitalize }}
-			</p>
+			<div class="mt-4 mb-2">
+				<p class="mb-3">
+					Copie de votre message :
+				</p>
+				<p class="contact_copy text-wrap">
+					{{ data.message | capitalize }}
+				</p>
+			</div>
 			{# <figure class="w-75">
-				<img src="{{ data.image }}" alt="">
-
-			</figure> #}
+										<img src="{{ data.image }}" alt="">
+						
+									</figure> #}
 		</div>
 
-		<div class="d-flex justify-content-center m-5">
-			<a role="button" href="{{path('app_home') }}" class="btn btn-warning">
-				Retour à l'accueil
+		<div class="d-flex justify-content-center m-2">
+			<a role="button" href="{{path('app_home') }}" class="btn btn-lg btn-warning">
+				Accueil&nbsp
+				<i class="fa-solid fa-sm fa-house"></i>
 			</a>
 		</div>
 
 	</section>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript">
+	window.onbeforeunload = function () {
+// return "QUitter"
+}
+</script>
+
 
 {% endblock %}
