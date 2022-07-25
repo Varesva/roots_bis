@@ -1,0 +1,20 @@
+{{ form_start(searchForm, {'action': path('rechercher')})}}
+
+
+    <div class="input-group mb-4">
+        <span class="input-group-text" id="rechercheInfo">
+            <i class="fa-solid fa-utensils"></i>
+        </span>
+        {{ form_widget(searchForm.query) }}
+    </div>
+
+    <div class="input-group mb-4">
+        <span class="input-group-text" id="rechercheInfoLocalisation">
+            <i class="fa-solid fa-location-dot"></i>
+        </span>
+        {{ form_widget(searchForm.queryLocation) }}
+    </div>
+
+    {{ form_row(searchForm.send) }}
+
+{{ form_end(searchForm) }}

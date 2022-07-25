@@ -1,0 +1,33 @@
+{% block searchbar %}
+	<section id="section_home" class="container text-center ">
+		<h1>
+			Les meilleurs restaurants<br/>africains et caribéens
+		</h1>
+
+		{# <div class="m-5 mx-auto p-5 d-flex flex-column rounded-3 align-items-center section_hero hero_img"> #}
+		<div
+			class="bg-roots-yellow-linear  " style="border-radius:15px;">
+
+			{#	<picture
+										class="hero_img img_overlay">
+										<img src="{{asset('img/spicess.jpg')}}" alt="Assortiment de plats traditionnels d'Afrique de l'Ouest (soupe aux cacahuètes, riz jollof, ailes de poulet grillées, bananes plantains frites, brochettes de poulet nigérianes, tourtes à la viande), vue en plongée"> 
+						
+									</picture>#}
+			<div>
+				<p class="mb-3 h5">
+					Plutôt saveurs familières
+					<br>
+					ou savoureuses découvertes ?
+				</p>
+				<p class="mb-3">
+					Découvrez vite notre sélection de restaurants !
+				</p>
+				{# SEARCH #}
+				<div class="d-flex justify-content-center">
+					{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+				</div>
+			</div>
+		</div>
+		{# </div> #}
+	</section>
+{% endblock %}

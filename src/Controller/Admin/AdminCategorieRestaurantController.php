@@ -56,7 +56,9 @@ class AdminCategorieRestaurantController extends AbstractController
 
             // this condition is needed because the image/photo field is not required
             if ($imageFile) {
-                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+                $image = $this->fileUploader->upload($imageFile,  $directory); 
+
                 $categorieRestaurant->setImage($image);  
             }
 
@@ -96,7 +98,9 @@ class AdminCategorieRestaurantController extends AbstractController
             $imageFile = $form->get('image')->getData();
 
             if ($imageFile) {
-                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+                $image = $this->fileUploader->upload($imageFile,  $directory); 
+
                 $categorieRestaurant->setImage($image);  
             }
             

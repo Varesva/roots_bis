@@ -9,6 +9,7 @@
 .bg_admin {
 	background-color: rgba(0, 0, 0, 0.65);
 	padding: 1rem;
+	min-height: 100vh;
 }
 
 .bg_admin div.card ul {
@@ -28,18 +29,25 @@
 }
 
 .bg_admin div.card {
-	max-width: 18rem;
-	width: 15rem;
-	margin: 20px 10px;
+	min-height: 12rem;
 }
 
 .bg_admin > h1,
 .bg_admin p,
-.bg_admin label {
+.bg_admin label
+{
 	color: white;
 }
 
 .bg_admin p:first-child {
 	text-align: center;
 	margin-bottom: 2rem;
+}
+
+.bg_admin td>div {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  height: 200px;
+  white-space: normal !important;
+
 }

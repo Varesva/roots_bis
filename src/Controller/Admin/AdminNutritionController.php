@@ -57,7 +57,8 @@ class AdminNutritionController extends AbstractController
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($imageFile) {
-                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+                $image = $this->fileUploader->upload($imageFile, $directory); // l'upload du fichier
                 $nutrition->setImage($image);  // le nom du fichier 
             }
             $this->nutritionRepository->add($nutrition);
@@ -97,7 +98,8 @@ class AdminNutritionController extends AbstractController
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($imageFile) {
-                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+                $image = $this->fileUploader->upload($imageFile, $directory); // l'upload du fichier
                 $nutrition->setImage($image);  // le nom du fichier 
             }
             $nutritionRepository->add($nutrition);

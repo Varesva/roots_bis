@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-ob_end_clean();
+// ob_end_clean();
 
 use App\Form\RecommanderType;
 use App\Service\Email\EmailService;

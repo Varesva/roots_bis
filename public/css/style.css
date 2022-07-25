@@ -45,6 +45,10 @@ a {
 a:hover {
 	color: #247c39;
 }
+/* TEXTE ALT */
+a > img:hover {
+	color: #0000ff;
+}
 
 ul {
 	list-style: none;
@@ -57,12 +61,24 @@ section {
 	max-width: 1000px;
 }
 
+/* BSEARCHBAR FLOTTANTE */
+#navbarSearch {
+	max-width: 600px;
+	border-radius: 50rem !important;
+	padding: 1rem !important;
+	margin-top: 1.5rem !important;
+	margin-bottom: 1.5rem !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+	border: 1px solid #dc3545;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
 /* responsive format petit */
 @media screen and (min-width: 425px) {
 	section {
 		padding: 1rem;
 	}
-
 }
 
 article {
@@ -75,7 +91,7 @@ article {
 
 .card {
 	min-height: 320px;
-		width: 14rem;
+	width: 14rem;
 	border-radius: 10px;
 	margin: 2rem;
 	border: 1px solid #e62121;
@@ -132,3 +148,13 @@ article {
 	}
 }
 /* ---- END BACK TO TOP */
+
+/* TEXTE ALT */
+img,
+svg {
+	font: 1.2em "Helvetica", sans-serif;
+	vertical-align: middle;
+	/* line-height: 50px; */
+	line-height: 80px;
+	text-align: center;
+}

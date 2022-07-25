@@ -11,67 +11,73 @@
 		<div class="container">
 			<p>Gérer les restaurants disponibles</p>
 
-			<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nom</th>
-						<th>Image</th>
-						<th>Description</th>
-						<th>Adresse</th>
-						<th>Catégorie</th>
-						<th>Contact</th>
-						<th>actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for restaurant in restaurants %}
+			<div class="table-responsive-lg">
+				<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
+					<thead>
 						<tr>
-							<td>{{ restaurant.id }}</td>
-							<td>{{ restaurant.nom }}</td>
-							<td>
-								<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
-							</td>
-							<td>{{ restaurant.description }}</td>
-							<td>
-								{{ restaurant.numRue }}
-								<br>
-								{{ restaurant.rue }}
-								<br>
-								{{ restaurant.ville }}
-								<br>
-								{{ restaurant.codePostal }}
-								<br>
-								{{ restaurant.pays }}
-							</td>
-							<td>{{ restaurant.categorie }}</td>
-							<td>
-								{{ restaurant.email }}
-								<br>
-								{{ restaurant.telephone }}
-								<br>
-								{{ restaurant.website }}
-							</td>
-							<td>
-								<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}" class="btn btn-primary ">Afficher</a>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Image</th>
+							<th>Description</th>
+							<th>Adresse</th>
+							<th>Catégorie</th>
+							<th>Contact</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for restaurant in restaurants %}
+							<tr>
+								<td>{{ restaurant.id }}</td>
+								<td>{{ restaurant.nom }}</td>
+								<td>
+									<img src="{{asset('upload/' ~ restaurant.image)}}" width="150" height="100">
+								</td>
+								<td>
+								<div>
+									{{ restaurant.description }}
+								</div>
+								</td>
+								<td>
+									{{ restaurant.numRue }}
+									<br>
+									{{ restaurant.rue }}
+									<br>
+									{{ restaurant.ville }}
+									<br>
+									{{ restaurant.codePostal }}
+									<br>
+									{{ restaurant.pays }}
+								</td>
+								<td>{{ restaurant.categorie }}</td>
+								<td>
+									{{ restaurant.email }}
+									<br>
+									{{ restaurant.telephone }}
+									<br>
+									{{ restaurant.website }}
+								</td>
+								<td>
+									<a href="{{ path('app_admin_restaurant_show', {'id': restaurant.id}) }}" class="btn btn-primary ">Afficher</a>
 
-								<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}" class="btn btn-warning ">Modifier</a>
-							
-								<form method="post" action="{{ path('app_admin_restaurant_delete', {'id': restaurant.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ restaurant.id) }}">
-									<button class="btn btn-danger">Supprimer</button>
-								</form>
-							</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-			<div class="justify-content-center flex-wrap d-flex">
-				<a href="{{ path('app_admin_restaurant_new') }}" class="btn btn-success ">Créer Restaurant</a>
+									<a href="{{ path('app_admin_restaurant_edit', {'id': restaurant.id}) }}" class="btn btn-warning ">Modifier</a>
+
+									<form method="post" action="{{ path('app_admin_restaurant_delete', {'id': restaurant.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ restaurant.id) }}">
+										<button class="btn btn-danger">Supprimer</button>
+									</form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="13">Pas de résultat / aucun restaurant disponible</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="justify-content-center flex-wrap d-flex">
+					<a href="{{ path('app_admin_restaurant_new') }}" class="btn btn-success ">Créer Restaurant</a>
+				</div>
 			</div>
 		</div>
 	</div>

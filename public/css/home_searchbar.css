@@ -2,7 +2,7 @@
 #section_home > div:first-of-type {
 	background-repeat: no-repeat;
 	width: 100%;
-	/* padding: 15px; */
+	padding: 15px;
 }
 #section_home picture {
 	background-size: cover;

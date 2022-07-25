@@ -49,7 +49,7 @@ class RestaurantRepository extends ServiceEntityRepository
      * @return Restaurant[] Returns an array of Restaurant objects
      */
 
-    public function findByCategRestau($categId)
+    public function findByCategRestau(int $categId)
     {
         return $this->createQueryBuilder('r')
             ->join('r.categorie', 'c')
@@ -61,6 +61,70 @@ class RestaurantRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByLocation( $query)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb
+            ->setParameter('query', '%' . $query . '%')
+
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('r.ville', ':query'),
+                        $qb->expr()->like('r.code_postal', ':query'),
+                    ),
+                )
+            );
+
+        return $qb
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // RECHERCHE NOM, SPECIALITE, NUTRITION, (CATEGORIE):pas sure
+    public function findByQuery( $query)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb
+            ->join('r.specialite', 's')
+            ->join('r.nutrition', 'n')
+            // ->andWhere('s.pays = :query')
+            ->setParameter('query', '%' . $query . '%')
+            // ->where('r.ville = :query')
+
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('r.nom', ':query'),
+                        // specialite
+                        $qb->expr()->like('s.pays', ':query'),
+                        // nutrition
+                        $qb->expr()->like('n.regime', ':query'),
+                    ),
+                )
+            );
+
+
+        return $qb
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByNutrition()
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.nutrition', 'n')
+            // ->setParameter('nutriId', $nutriId)
+            // ->where('n.regime = :nutriId')
+            // ->andWhere('s.exampleField = :val')
+            ->orderBy('n.regime', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
     // public function findByExampleField($value)

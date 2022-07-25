@@ -12,10 +12,9 @@
 		<div class="container">
 			<p>
 				Gérer les commandes (factures) clients
-				<br>
-				<span class="small">
-					(de la plus récente à la plus ancienne)
-				</span>
+			</p>
+			<p class="small">
+				(de la plus récente à la plus ancienne)
 			</p>
 
 			<div class="table-responsive-lg">
@@ -49,8 +48,8 @@
 									{{ commande.reference }}
 								</td>
 								{# <td>
-																																																																						{{ ligne_commande.prix }}
-																																																																					</td> #}
+																																																																														{{ ligne_commande.prix }}
+																																																																													</td> #}
 								<td>{{ commande.date ? commande.date|date('d/m/y (@H:i)') : '' }}</td>
 								<td>
 									<a href="{{ path('app_admin_commande_user', {'id': commande.user.id}) }}" class=" btn btn-sm btn-light ">

@@ -12,6 +12,15 @@
 {% block body %}
 	<h1>Tous les restaurants</h1>
 
+	{# SEARCH BAR #}
+	<div class="mx-2">
+		<div id="navbarSearch" class="bg-roots-yellow-form col-sm-8">
+			<div class="col-sm-9 mx-auto">
+				{{ render(controller('App\\Controller\\SearchController::navbarSearchBar')) }}
+			</div>
+		</div>
+	</div>
+
 	<section id="categ">
 		{% for resto in restaurants %}
 			<div class="card restaurant">
@@ -19,7 +28,7 @@
 				<div class="card-img-top">
 					<a class="card_container" href="{{ path('app_restaurant_show', {'id': resto.id}) }}">
 						<p class="card-text_img">{{ resto.specialite }}</p>
-						<img src="{{asset('upload/' ~ resto.image)}}" alt="Image du restaurant">
+						<img src="{{asset('upload/' ~ resto.image)}}" alt="Image du restaurant : {{ resto.nom }}">
 					</a>
 				</div>
 
@@ -50,4 +59,3 @@
 	</section>
 
 {% endblock %}
-

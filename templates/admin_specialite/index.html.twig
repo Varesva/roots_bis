@@ -15,7 +15,7 @@
 
 			<div class="table-responsive-lg">
 
-				<table class="table table-secondary table-hover table-striped table-bordered border-secondary">
+				<table class="table text-center table-secondary table-hover table-striped table-bordered border-secondary">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -26,9 +26,9 @@
 					<tbody>
 						{% for specialite in specialites %}
 							<tr>
-								<td>{{ specialite.id }}</td>
-								<td>{{ specialite.pays }}</td>
-								<td>
+								<td class="col-1">{{ specialite.id }}</td>
+								<td class="col-2">{{ specialite.pays }}</td>
+								<td class="col-3">
 									<a href="{{ path('app_admin_specialite_show', {'id': specialite.id}) }}" class="btn btn-primary  ">Afficher</a>
 
 									<a href="{{ path('app_admin_specialite_edit', {'id': specialite.id}) }}" class="btn btn-warning  ">Modifier</a>

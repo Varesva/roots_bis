@@ -80,7 +80,8 @@ class AdminProduitController extends AbstractController
             // this condition is needed because the image/photo field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($imageFile) {
-                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+                $image = $this->fileUploader->upload($imageFile, $directory); // l'upload du fichier
                 $produit->setImage($image);  // le nom du fichier 
             }
 
@@ -122,8 +123,8 @@ class AdminProduitController extends AbstractController
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($imageFile) {
-                
-                $image = $this->fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+                $image = $this->fileUploader->upload($imageFile, $directory); // l'upload du fichier
                 $produit->setImage($image);  // le nom du fichier 
             }
 

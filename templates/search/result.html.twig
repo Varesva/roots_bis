@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Résultat de votre recherche
+{% endblock %}
+
+{% block body %}
+	<h1>Résultats de recherche</h1>
+
+	<section>
+
+		{% if  query | length > 0 %}
+		{# {% if  location | length > 0 or query | length > 0 %} #}
+			{# {% for resto in location and resto in query %} #}
+			{% for resto in query %}
+				<div class="card restaurant">
+
+					<div class="card-img-top">
+						<a class="card_container" href="{{ path('app_restaurant_show', {'id': resto.id}) }}">
+							<p class="card-text_img">{{ resto.specialite }}</p>
+							<img src="{{asset('upload/' ~ resto.image)}}" alt="Image du restaurant : {{ resto.nom }}">
+						</a>
+					</div>
+
+					<div class="card-body">
+						<a class="card_container" href="{{ path('app_restaurant_show', {'id': resto.id}) }}">
+							<h5 class="card-title">{{ resto.nom }}</h5>
+						</a>
+
+						<small class="card-text">
+							{{ resto.codePostal }},
+							{{ resto.ville }}
+						</small>
+						<div class="card_favoris">
+							<a class="card_container" href="{{ path('app_restaurant_show', {'id': resto.id}) }}">
+								Découvrir...
+							</a>
+							<a type="button" id="addFav" href="{{ path('app_profile_control_favoris', {'id': resto.id}) }}">
+								<i class="fa-solid fa-xl fa-star"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+
+			{% endfor %}
+
+		{% else %}
+			<div class="bg-light p-3 rounded-3">
+				<p>>Aucun résulat trouvé pour votre recherche</p>
+			</div>
+
+		{% endif %}
+
+	</section>
+{% endblock %}

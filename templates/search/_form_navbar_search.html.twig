@@ -1,0 +1,7 @@
+{{ form_start(navbarSearchForm, {'action': path('rechercher')})}}
+    <div class="input-group">
+        {{ form_widget(navbarSearchForm.queryAll) }}
+
+        {{ form_widget(navbarSearchForm.send) }}
+    </div>
+{{ form_end(navbarSearchForm) }}

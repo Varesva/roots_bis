@@ -54,7 +54,9 @@ class AdminRestaurantController extends AbstractController
 
             // this condition is needed because the 'brochure' field is not required
             if ($imageFile) {
-                $image = $fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+
+                $image = $fileUploader->upload($imageFile, $directory); // l'upload du fichier
                 $restaurant->setImage($image);  // le nom du fichier 
 
                 $restaurantRepository->add($restaurant);
@@ -96,7 +98,10 @@ class AdminRestaurantController extends AbstractController
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($imageFile) {
-                $image = $fileUploader->upload($imageFile); // l'upload du fichier
+                $directory = 'content';
+
+                $image = $fileUploader->upload($imageFile, $directory); 
+
                 $restaurant->setImage($image);  // le nom du fichier 
 
                 $restaurantRepository->add($restaurant);

@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\SearchType;
+use App\Controller\SearchController;
 use App\Service\Display\DisplayService;
 use App\Repository\RestaurantRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,10 +15,11 @@ class HomeController extends AbstractController
 {
     // afficher dans carousel les derniers restaurants ajoutés en bdd
     /**
-     * @Route("/", name="app_home", methods={"GET"})
+     * @Route("/", name="app_home", methods={"GET", "POST"})
      */
-    public function home(RestaurantRepository $restaurantRepository): Response
+    public function home(RestaurantRepository $restaurantRepository, Request $request): Response
     {
+        // CAROUSEL
         $incr5 = 0;
 
         for ($i = 1; $i <= 3; $i++) {
@@ -29,14 +33,9 @@ class HomeController extends AbstractController
             $incr5 = $incr5 + 5;
         }
 
-        return $this->render('home/index.html.twig', [
+        return $this->renderForm('home/index.html.twig', [
             'carousel_restaurants' => $homeCarousel,
         ]);
-    }
-
-    public function searchBar()
-    {
-        return $this->renderForm('home/search.html.twig', []);
     }
 
     // ADMIN - DASHBOARD  
@@ -45,6 +44,6 @@ class HomeController extends AbstractController
      */
     public function homeAdmin(): Response
     {
-        return $this->render('home/admin/dashboard.html.twig', []);
-    } 
+        return $this->render('admin/dashboard.html.twig', []);
+    }
 }

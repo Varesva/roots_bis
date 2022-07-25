@@ -37,7 +37,7 @@
 			<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/security_register.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/home_carousel.css') }}">
-			<link rel="stylesheet" href="{{ asset('css/section_home.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/home_searchbar.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/about.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/admin_interface.css') }}">
 			<link rel="stylesheet" href="{{ asset('css/legal.css') }}">
@@ -66,7 +66,7 @@
 		{% if is_granted('ROLE_ADMIN') %}
 
 			{# ADMIN #}
-			{% include "home/admin/_header.html.twig" %}
+			{% include "admin/_header.html.twig" %}
 
 		{% else %}
 
@@ -91,6 +91,17 @@
 					</button>
 				</div>
 			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="alert alert-danger p-2 w-75 mx-auto text-center fade show align-items-center d-flex space-between" role="alert">
+					<p class="mx-auto">
+						{{ message }}
+					</p>
+					<button type="button" class="btn" data-bs-dismiss="alert" aria-label="Fermer ce message">
+						<i class="fa-solid fa-xmark"></i>
+					</button>
+				</div>
+			{% endfor %}
+
 
 			{# BODY #}
 			{% block body %}{% endblock %}

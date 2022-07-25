@@ -229,22 +229,14 @@
 				</p>
 				<button type="button" class="btn-close text-reset rounded-circle border border-dark border-1" data-bs-dismiss="offcanvas" type="button" aria-label="Fermer le menu général"></button>
 			</div>
-			<div
-				class="offcanvas-body">
+			<div class="offcanvas-body">
 				{# SEARCH FORM #}
-				<form class="d-flex">
-					<div class="input-group mb-3">
-						<input class="form-control" type="search" placeholder="Que recherchez-vous ?" aria-label="Recherche" aria-describedby="basic-addon1">
-						<button type="submit" aria-label="Lancer la recherche" class="btn btn-success" id="basic-addon1">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-						{# ajouter ce champ de recherche en js #}
-						{# <input class="form-control" type="search" placeholder="Que recherchez-vous ?" aria-label="Recherche" aria-describedby="basic-addon1"> #}
-					</div>
-				</form>
+				<div class="mb-3">
+				{{ render(controller('App\\Controller\\SearchController::navbarSearchBar')) }}
+				</div>
+				
 				{# OFFCANVAS MAIN MENU #}
-				<ul
-					class="navbar-nav justify-content-end flex-grow-1 pe-3">
+				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 					{# HOMEPAGE #}
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('app_home') }}">
